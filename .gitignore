@@ -1,0 +1,24 @@
+# ==== 本机密钥与私有配置（禁止入库）====
+application-local.yml
+**/application-local.yml
+**/.env
+*.pem
+*.key
+
+# ==== 构建产物（可再生成）====
+**/target/
+**/node_modules/
+**/dist/
+
+# ==== 日志 / 系统 / 编辑器 ====
+*.log
+logs/
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.iml
+
+# ==== 临时与验收产物 ====
+**/acceptance/
+*.har

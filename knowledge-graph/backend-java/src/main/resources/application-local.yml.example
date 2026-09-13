@@ -1,0 +1,19 @@
+# =====================================================================
+# 本机个人配置模板：复制为 application-local.yml 并填入真实值
+# application.yml 通过 spring.config.import: optional:application-local.yml 加载
+# 也可以改用环境变量：KG_DB_URL / KG_DB_USERNAME / KG_DB_PASSWORD / KG_STORAGE_ROOT
+#                     KG_LLM_BASE_URL / KG_LLM_API_KEY / KG_LLM_MODEL / KG_OCR_MODE / KG_OCR_DATA_PATH
+# =====================================================================
+spring:
+  datasource:
+    username: your_db_username
+    password: your_db_password
+
+kg:
+  llm:
+    base-url: https://llm.example.com/v1
+    api-key: your_llm_api_key
+    model: your_llm_model
+  ocr:
+    mode: local
+    data-path: /path/to/ocr/models

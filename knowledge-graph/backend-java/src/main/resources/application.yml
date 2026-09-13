@@ -1,0 +1,54 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: knowledge-graph-backend
+  # 本机个人配置（真实密码等）放 application-local.yml，仓库只提交 .example
+  config:
+    import: optional:application-local.yml
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: ${KG_DB_URL:jdbc:mysql://127.0.0.1:3306/knowledge_graph?useUnicode=true&characterEncoding=utf8&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=Asia/Shanghai}
+    username: ${KG_DB_USERNAME:root}
+    # 默认为空：真实密码通过环境变量 KG_DB_PASSWORD 或 application-local.yml 提供，禁止写入本文件
+    password: ${KG_DB_PASSWORD:}
+  sql:
+    init:
+      # 启动时按顺序执行迁移脚本，所有脚本均可重复执行（幂等）
+      mode: always
+      encoding: UTF-8
+      schema-locations:
+        - classpath:db/migration/V1__schema.sql
+        - classpath:db/migration/V2__migrate_legacy.sql
+        - classpath:db/migration/V3__seed.sql
+        - classpath:db/migration/V4__llm_profiles.sql
+        - classpath:db/migration/V5__ingestion.sql
+  servlet:
+    multipart:
+      max-file-size: 200MB
+      max-request-size: 210MB
+
+kg:
+  cors:
+    allowed-origins:
+      - http://localhost:5173
+      - http://127.0.0.1:5173
+  storage:
+    root: ${KG_STORAGE_ROOT:${user.home}/.knowledge-graph/storage}
+  llm:
+    base-url: ${KG_LLM_BASE_URL:}
+    api-key: ${KG_LLM_API_KEY:}
+    model: ${KG_LLM_MODEL:}
+    timeout-ms: 30000
+    max-output-tokens: 2048
+  ocr:
+    mode: ${KG_OCR_MODE:}
+    data-path: ${KG_OCR_DATA_PATH:}
+  settings:
+    # 用于加密 system_settings 中密钥的本地主密钥，生产环境应通过环境变量覆盖
+    master-key: ${KG_SETTINGS_MASTER_KEY:knowledge-graph-local-dev-master-key}
+
+logging:
+  level:
+    com.knowledgegraph: INFO
