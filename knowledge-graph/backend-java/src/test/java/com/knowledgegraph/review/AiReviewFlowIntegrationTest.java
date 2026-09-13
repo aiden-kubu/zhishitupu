@@ -109,5 +109,8 @@ class AiReviewFlowIntegrationTest {
         }).when(llm).complete(any(),anyList());
         extraction.runExtraction(job);
         assertEquals("COMPLETED",status()); assertEquals(1,nodes());
+        var verification = jdbc.sql("SELECT verification_json FROM document_metadata WHERE document_id=:d")
+                .param("d",document).query(String.class).single();
+        assertTrue(verification.contains("aiReview") && verification.contains("approved"));
     }
 }

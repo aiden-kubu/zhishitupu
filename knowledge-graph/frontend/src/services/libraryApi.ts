@@ -24,4 +24,9 @@ export const libraryApi = {
   remove(id: number): Promise<void> {
     return api(`/api/libraries/${id}`, { method: 'DELETE' })
   },
+
+  /** 维护知识库别名（整体替换；AI 自动整理按别名匹配同主题） */
+  updateAliases(id: number, aliases: string[]): Promise<LibraryDto> {
+    return api(`/api/libraries/${id}/aliases`, { method: 'PUT', body: { aliases } })
+  },
 }

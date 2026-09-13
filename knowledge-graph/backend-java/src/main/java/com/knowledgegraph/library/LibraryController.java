@@ -57,4 +57,14 @@ public class LibraryController {
     public ApiResponse<Map<String, Object>> delete(@PathVariable long id) {
         return ApiResponse.ok(libraryService.delete(id));
     }
+
+    public record LibraryAliasesRequest(java.util.List<String> aliases) {
+    }
+
+    /** 维护知识库别名（整体替换；AI 自动整理按别名匹配同主题）。 */
+    @PutMapping("/{id}/aliases")
+    public ApiResponse<LibraryDetail> updateAliases(
+            @PathVariable long id, @jakarta.validation.Valid @RequestBody LibraryAliasesRequest request) {
+        return ApiResponse.ok(libraryService.replaceAliases(id, request.aliases()));
+    }
 }

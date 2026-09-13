@@ -78,7 +78,7 @@
         v-for="library in filteredLibraries"
         :key="library.id"
         class="min-w-0 overflow-hidden rounded-xl border bg-white transition-shadow hover:shadow-theme-sm dark:bg-gray-900"
-        :class="expandedLibraryId === library.id ? 'border-brand-300 dark:border-brand-500/40' : 'border-gray-200 dark:border-gray-800'"
+        :class="expandedLibraryId === library.id || documentsLibraryId === library.id ? 'border-brand-300 dark:border-brand-500/40' : 'border-gray-200 dark:border-gray-800'"
       >
         <div class="p-5">
           <div class="flex items-start gap-3">
@@ -98,7 +98,7 @@
                 type="button"
                 class="flex size-8 items-center justify-center rounded-lg text-gray-400 transition hover:bg-gray-100 hover:text-gray-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 dark:text-gray-500 dark:hover:bg-gray-800 dark:hover:text-gray-200"
                 :aria-label="`编辑${library.name}`"
-                title="编辑知识库"
+                title="编辑知识库与别名"
                 @click="editLibrary(library)"
               ><SettingsIcon class="size-[18px]" aria-hidden="true" /></button>
               <button
@@ -119,17 +119,100 @@
               <span><strong class="font-semibold tabular-nums text-gray-700 dark:text-gray-200">{{ library.nodeCount ?? 0 }}</strong> 个知识点</span>
               <span><strong class="font-semibold tabular-nums text-gray-700 dark:text-gray-200">{{ library.edgeCount ?? 0 }}</strong> 条关系</span>
             </div>
-            <Button
-              size="sm"
-              variant="outline"
-              class="!bg-brand-50 !text-brand-600 !ring-brand-100 hover:!bg-brand-100 dark:!bg-brand-500/10 dark:!text-brand-400 dark:!ring-brand-500/20"
-              :aria-expanded="expandedLibraryId === library.id"
-              :aria-controls="`library-nodes-${library.id}`"
-              @click="toggleNodes(library)"
+            <div class="flex items-center gap-2">
+              <Button
+                size="sm"
+                variant="outline"
+                :aria-expanded="documentsLibraryId === library.id"
+                :aria-controls="`library-docs-${library.id}`"
+                @click="toggleDocuments(library)"
+              >
+                资料 {{ library.documentCount ?? 0 }}
+                <ChevronDownIcon class="size-4 transition-transform" :class="documentsLibraryId === library.id ? 'rotate-180' : ''" aria-hidden="true" />
+              </Button>
+              <Button
+                size="sm"
+                variant="outline"
+                class="!bg-brand-50 !text-brand-600 !ring-brand-100 hover:!bg-brand-100 dark:!bg-brand-500/10 dark:!text-brand-400 dark:!ring-brand-500/20"
+                :aria-expanded="expandedLibraryId === library.id"
+                :aria-controls="`library-nodes-${library.id}`"
+                @click="toggleNodes(library)"
+              >
+                {{ expandedLibraryId === library.id ? '收起知识' : '查看知识' }}
+                <ChevronDownIcon class="size-4 transition-transform" :class="expandedLibraryId === library.id ? 'rotate-180' : ''" aria-hidden="true" />
+              </Button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 资料列表：标题 / 生命周期 / 可信度 / 标签（属性面板） -->
+        <div v-if="documentsLibraryId === library.id" :id="`library-docs-${library.id}`" class="border-t border-gray-100 bg-gray-50/70 px-5 py-4 dark:border-gray-800 dark:bg-gray-800/30">
+          <p v-if="docsLoading" class="text-sm text-gray-500 dark:text-gray-400" role="status">正在加载资料…</p>
+          <div v-else-if="docsError" role="alert">
+            <p class="text-sm text-error-500 dark:text-error-400">{{ docsError }}</p>
+            <button type="button" class="mt-2 text-sm font-medium text-brand-600 hover:underline dark:text-brand-400" @click="loadDocuments(library)">重新加载</button>
+          </div>
+          <div v-else-if="documents.length === 0" class="py-2">
+            <p class="text-sm font-medium text-gray-700 dark:text-gray-300">本库还没有资料</p>
+            <p class="mt-1 text-xs leading-5 text-gray-500 dark:text-gray-400">从顶部「导入资料」上传，AI 整理后会显示在这里。</p>
+          </div>
+          <div v-else class="space-y-3">
+            <div
+              v-for="doc in documents"
+              :key="doc.id"
+              class="rounded-xl border border-gray-200 bg-white p-3.5 dark:border-gray-700 dark:bg-gray-900"
             >
-              {{ expandedLibraryId === library.id ? '收起知识' : '查看知识' }}
-              <ChevronDownIcon class="size-4 transition-transform" :class="expandedLibraryId === library.id ? 'rotate-180' : ''" aria-hidden="true" />
-            </Button>
+              <div class="flex flex-wrap items-start justify-between gap-2">
+                <div class="min-w-0">
+                  <p class="break-words text-sm font-medium text-gray-800 dark:text-white/90">{{ doc.title || doc.originalName }}</p>
+                  <p class="mt-0.5 text-xs text-gray-400">
+                    {{ doc.originalName }} · {{ doc.extension.toUpperCase() }} · {{ formatSize(doc.sizeBytes) }} ·
+                    更新 {{ shortTime(doc.updatedAt || doc.createdAt) }}
+                  </p>
+                  <div class="mt-1.5 flex flex-wrap items-center gap-1.5">
+                    <Badge :color="lifecycleColor(doc.lifecycleStatus)" size="sm">{{ lifecycleLabel(doc.lifecycleStatus) }}</Badge>
+                    <Badge v-if="doc.verification?.hash" color="light" size="sm" title="上传时已做 SHA-256 完整性校验">哈希已校验</Badge>
+                    <Badge
+                      v-if="doc.verification?.aiReview"
+                      :color="doc.verification.aiReview.rejected === 0 ? 'success' : 'warning'"
+                      size="sm"
+                      :title="`AI 复审模型 ${doc.verification.aiReview.model} · ${doc.verification.aiReview.reviewedAt}`"
+                    >
+                      AI 复审 {{ doc.verification.aiReview.approved }}/{{ doc.verification.aiReview.total }}
+                    </Badge>
+                    <Badge v-if="doc.verification?.human?.checked" color="info" size="sm" :title="doc.verification.human.note || '人工校对'">人工已校对</Badge>
+                  </div>
+                </div>
+                <Button size="sm" variant="outline" class="!px-2.5 !py-1.5" @click="openDocEditor(doc)">编辑</Button>
+              </div>
+              <div class="mt-2.5 flex flex-wrap items-center gap-1.5">
+                <span
+                  v-for="tag in doc.tags"
+                  :key="tag.tag"
+                  class="inline-flex items-center gap-1 rounded-full border px-2 py-0.5 text-xs"
+                  :class="tag.source === 'ai'
+                    ? 'border-gray-200 bg-gray-50 text-gray-500 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400'
+                    : 'border-brand-200 bg-brand-50 text-brand-600 dark:border-brand-500/30 dark:bg-brand-500/10 dark:text-brand-300'"
+                  :title="tag.source === 'ai' ? 'AI 自动整理标签' : '人工标签'"
+                >
+                  {{ tag.tag }}
+                  <button
+                    type="button"
+                    class="text-gray-400 transition hover:text-error-500 focus-visible:outline-none"
+                    :aria-label="`删除标签 ${tag.tag}`"
+                    @click="removeTag(doc, tag.tag)"
+                  >×</button>
+                </span>
+                <input
+                  v-model="tagInputs[doc.id]"
+                  type="text"
+                  maxlength="100"
+                  placeholder="+ 标签，回车添加"
+                  class="w-36 rounded-full border border-gray-200 bg-white px-2.5 py-0.5 text-xs text-gray-700 placeholder:text-gray-400 focus:border-brand-400 focus:outline-none focus:ring-1 focus:ring-brand-400 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300"
+                  @keydown.enter.prevent="addTag(doc)"
+                />
+              </div>
+            </div>
           </div>
         </div>
 
@@ -168,7 +251,7 @@
       <template #body>
         <div class="relative mx-4 w-full max-w-[480px] rounded-3xl bg-white p-6 dark:bg-gray-900">
           <h4 class="text-xl font-semibold text-gray-800 dark:text-white/90">{{ editingId ? '编辑知识库' : '新建知识库' }}</h4>
-          <p class="mt-2 text-sm leading-6 text-gray-500 dark:text-gray-400">{{ editingId ? '调整名称和描述，让内容更容易找到。' : '按需要创建一个收录主题，也可以直接上传资料让 AI 整理。' }}</p>
+          <p class="mt-2 text-sm leading-6 text-gray-500 dark:text-gray-400">{{ editingId ? '调整名称、描述和别名；别名可帮助 AI 按同义名称归库。' : '按需要创建一个收录主题，也可以直接上传资料让 AI 整理。' }}</p>
           <div class="mt-5 space-y-4">
             <div>
               <label for="library-name" class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400">
@@ -191,6 +274,12 @@
               <label for="library-description" class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400">描述 <span class="font-normal text-gray-400">（选填）</span></label>
               <TextArea id="library-description" v-model="createForm.description" :rows="3" placeholder="一句话说明该知识库收录的内容" />
             </div>
+            <div v-if="editingId">
+              <label for="library-aliases" class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400">
+                别名 <span class="font-normal text-gray-400">（选填，逗号分隔，同义名称归库依据）</span>
+              </label>
+              <TextInput id="library-aliases" v-model="createForm.aliases" placeholder="如：数据结构,DS" :disabled="submitting" />
+            </div>
             <p v-if="formError" class="text-sm text-error-500">{{ formError }}</p>
           </div>
           <div class="mt-6 flex justify-end gap-3">
@@ -198,6 +287,46 @@
             <Button size="sm" :disabled="submitting || !createForm.name.trim()" @click="createLibrary">
               {{ submitting ? '保存中…' : '保存' }}
             </Button>
+          </div>
+        </div>
+      </template>
+    </Modal>
+
+    <!-- 资料编辑：标题 / 生命周期 -->
+    <Modal v-if="docEditor" full-screen-backdrop @close="docEditor = null">
+      <template #body>
+        <div class="relative mx-4 w-full max-w-[480px] rounded-3xl bg-white p-6 dark:bg-gray-900">
+          <h4 class="break-words text-xl font-semibold text-gray-800 dark:text-white/90">编辑资料</h4>
+          <p class="mt-2 break-all text-xs text-gray-400">{{ docEditor.doc.originalName }}</p>
+          <div class="mt-5 space-y-4">
+            <div>
+              <label for="doc-title" class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400">标题</label>
+              <TextInput id="doc-title" v-model="docEditor.form.title" :disabled="savingDoc" />
+            </div>
+            <div>
+              <label class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400">生命周期</label>
+              <SelectInput
+                v-model="docEditor.form.lifecycleStatus"
+                :options="[
+                  { value: 'active', label: '在用' },
+                  { value: 'archived', label: '已归档' },
+                  { value: 'outdated', label: '已过期' },
+                ]"
+              />
+            </div>
+            <label class="flex items-center gap-2 text-sm text-gray-700 dark:text-gray-300">
+              <input
+                v-model="docEditor.humanChecked"
+                type="checkbox"
+                class="size-4 rounded border-gray-300 text-brand-600 focus:ring-brand-400 dark:border-gray-700 dark:bg-gray-900"
+              />
+              标记为已人工校对（记录到资料可信度）
+            </label>
+            <p v-if="docFormError" class="text-sm text-error-500">{{ docFormError }}</p>
+          </div>
+          <div class="mt-6 flex justify-end gap-3">
+            <Button variant="outline" size="sm" @click="docEditor = null">取消</Button>
+            <Button size="sm" :disabled="savingDoc" @click="saveDocEditor">{{ savingDoc ? '保存中…' : '保存' }}</Button>
           </div>
         </div>
       </template>
@@ -232,7 +361,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, onMounted, ref } from 'vue'
+import { computed, onMounted, reactive, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import AdminLayout from '@/components/layout/AdminLayout.vue'
 import PageBreadcrumb from '@/components/common/PageBreadcrumb.vue'
@@ -247,9 +376,10 @@ import { BoxCubeIcon, ChevronDownIcon, DocsIcon, FolderIcon, GridIcon, PlusIcon,
 import { libraryApi } from '@/services/libraryApi'
 import { insightsApi } from '@/services/insightsApi'
 import { graphApi } from '@/services/graphApi'
+import { ingestionApi } from '@/services/ingestionApi'
 import { ApiError } from '@/services/http'
 import { NODE_TYPE_LABELS } from '@/services/types'
-import type { GraphNodeDto, InsightSummaryDto, LibraryDto } from '@/services/types'
+import type { DocumentDto, GraphNodeDto, InsightSummaryDto, LibraryDto } from '@/services/types'
 
 const router = useRouter()
 
@@ -264,13 +394,23 @@ const deleteError = ref<string | null>(null)
 
 const createOpen = ref(false)
 const editingId = ref<number | null>(null)
-const createForm = ref({ name: '', type: 'course', description: '' })
+const createForm = ref({ name: '', type: 'course', description: '', aliases: '' })
 const deleteTarget = ref<LibraryDto | null>(null)
 
 const expandedLibraryId = ref<number | null>(null)
 const libraryNodes = ref<GraphNodeDto[]>([])
 const nodesLoading = ref(false)
 const nodesError = ref<string | null>(null)
+
+// 资料面板（文档标签 / 标题 / 生命周期 / 可信度）
+const documentsLibraryId = ref<number | null>(null)
+const documents = ref<DocumentDto[]>([])
+const docsLoading = ref(false)
+const docsError = ref<string | null>(null)
+const tagInputs = reactive<Record<number, string>>({})
+const docEditor = ref<{ doc: DocumentDto; form: { title: string; lifecycleStatus: string }; humanChecked: boolean } | null>(null)
+const savingDoc = ref(false)
+const docFormError = ref<string | null>(null)
 
 const typeFilters = [
   { value: '', label: '全部' },
@@ -305,6 +445,36 @@ function libraryTypeLabel(type: string): string {
   }
 }
 
+function lifecycleLabel(status?: string | null): string {
+  switch (status) {
+    case 'active':
+      return '在用'
+    case 'archived':
+      return '已归档'
+    case 'outdated':
+      return '已过期'
+    default:
+      return '在用'
+  }
+}
+
+function lifecycleColor(status?: string | null): 'success' | 'warning' | 'light' {
+  if (status === 'archived') return 'light'
+  if (status === 'outdated') return 'warning'
+  return 'success'
+}
+
+function formatSize(bytes: number): string {
+  if (bytes >= 1024 * 1024) return (bytes / 1024 / 1024).toFixed(1) + ' MB'
+  if (bytes >= 1024) return (bytes / 1024).toFixed(0) + ' KB'
+  return bytes + ' B'
+}
+
+function shortTime(value?: string): string {
+  if (!value) return '—'
+  return value.slice(0, 10)
+}
+
 async function loadAll() {
   loading.value = true
   error.value = null
@@ -324,13 +494,18 @@ async function loadAll() {
 
 function openCreate() {
   editingId.value = null
-  createForm.value = { name: '', type: 'topic', description: '' }
+  createForm.value = { name: '', type: 'topic', description: '', aliases: '' }
   formError.value = null
   createOpen.value = true
 }
 function editLibrary(library: LibraryDto) {
   editingId.value = library.id
-  createForm.value = { name: library.name, type: library.type, description: library.description ?? '' }
+  createForm.value = {
+    name: library.name,
+    type: library.type,
+    description: library.description ?? '',
+    aliases: (library.aliases ?? []).join(', '),
+  }
   formError.value = null
   createOpen.value = true
 }
@@ -344,10 +519,19 @@ async function createLibrary() {
       type: createForm.value.type,
       description: createForm.value.description.trim(),
     }
-    if (editingId.value) await libraryApi.update(editingId.value, payload)
-    else await libraryApi.create(payload)
+    if (editingId.value) {
+      const updated = await libraryApi.update(editingId.value, payload)
+      // 别名整体替换（编辑态才出现该字段）
+      const aliases = createForm.value.aliases
+        .split(/[,，、;；]/)
+        .map((item) => item.trim())
+        .filter((item) => item.length > 0)
+      await libraryApi.updateAliases(updated.id, aliases)
+    } else {
+      await libraryApi.create(payload)
+    }
     createOpen.value = false
-    createForm.value = { name: '', type: 'course', description: '' }
+    createForm.value = { name: '', type: 'course', description: '', aliases: '' }
     await loadAll()
   } catch (err) {
     formError.value = err instanceof ApiError ? err.message : '创建失败，请稍后重试'
@@ -397,6 +581,94 @@ async function loadNodes(library: LibraryDto) {
   } finally {
     if (expandedLibraryId.value === library.id) nodesLoading.value = false
   }
+}
+
+// ---------------------------------------------------------------- 资料面板
+
+async function toggleDocuments(library: LibraryDto) {
+  if (documentsLibraryId.value === library.id) {
+    documentsLibraryId.value = null
+    return
+  }
+  documentsLibraryId.value = library.id
+  await loadDocuments(library)
+}
+
+async function loadDocuments(library: LibraryDto) {
+  docsLoading.value = true
+  docsError.value = null
+  documents.value = []
+  try {
+    const page = await ingestionApi.listDocuments({ libraryId: library.id, pageSize: 100 })
+    if (documentsLibraryId.value === library.id) documents.value = page.items
+  } catch (err) {
+    if (documentsLibraryId.value === library.id) docsError.value = err instanceof ApiError ? err.message : '资料加载失败，请重试'
+  } finally {
+    if (documentsLibraryId.value === library.id) docsLoading.value = false
+  }
+}
+
+function openDocEditor(doc: DocumentDto) {
+  docEditor.value = {
+    doc,
+    form: {
+      title: doc.title || doc.originalName,
+      lifecycleStatus: doc.lifecycleStatus || 'active',
+    },
+    humanChecked: doc.verification?.human?.checked ?? false,
+  }
+  docFormError.value = null
+}
+
+async function saveDocEditor() {
+  if (!docEditor.value || savingDoc.value) return
+  savingDoc.value = true
+  docFormError.value = null
+  try {
+    let updated = await ingestionApi.updateDocumentMetadata(docEditor.value.doc.id, {
+      title: docEditor.value.form.title.trim(),
+      lifecycleStatus: (docEditor.value.form.lifecycleStatus ?? 'active') as 'active' | 'archived' | 'outdated',
+    })
+    if (docEditor.value.humanChecked && !docEditor.value.doc.verification?.human?.checked) {
+      updated = await ingestionApi.setDocumentVerification(docEditor.value.doc.id, {
+        humanChecked: true,
+        note: '编辑资料时标记人工校对',
+      })
+    }
+    const index = documents.value.findIndex((d) => d.id === updated.id)
+    if (index >= 0) documents.value[index] = updated
+    docEditor.value = null
+  } catch (err) {
+    docFormError.value = err instanceof ApiError ? err.message : '保存失败，请重试'
+  } finally {
+    savingDoc.value = false
+  }
+}
+
+async function addTag(doc: DocumentDto) {
+  const tag = (tagInputs[doc.id] || '').trim()
+  if (!tag) return
+  try {
+    const updated = await ingestionApi.addDocumentTag(doc.id, tag)
+    replaceDocument(updated)
+    tagInputs[doc.id] = ''
+  } catch (err) {
+    docsError.value = err instanceof ApiError ? err.message : '标签添加失败'
+  }
+}
+
+async function removeTag(doc: DocumentDto, tag: string) {
+  try {
+    const updated = await ingestionApi.removeDocumentTag(doc.id, tag)
+    replaceDocument(updated)
+  } catch (err) {
+    docsError.value = err instanceof ApiError ? err.message : '标签删除失败'
+  }
+}
+
+function replaceDocument(updated: DocumentDto) {
+  const index = documents.value.findIndex((d) => d.id === updated.id)
+  if (index >= 0) documents.value[index] = updated
 }
 
 function gotoNode(node: GraphNodeDto) {

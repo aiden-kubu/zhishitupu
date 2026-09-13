@@ -158,6 +158,38 @@ public class LibraryService {
                 rs.getTimestamp("updated_at").toLocalDateTime(),
                 countDocuments(rs.getLong("id")),
                 rs.getLong("node_count"),
-                rs.getLong("edge_count"));
+                rs.getLong("edge_count"),
+                aliasesOf(rs.getLong("id")));
+    }
+
+    /** 知识库别名（供 AI 自动整理按同义名称归库）。 */
+    private java.util.List<String> aliasesOf(long libraryId) {
+        return jdbc.sql("SELECT alias FROM library_aliases WHERE library_id = :id ORDER BY id")
+                .param("id", libraryId).query((rs, i) -> rs.getString(1)).list();
+    }
+
+    /** 整体替换别名（幂等；最多 10 个，归一化去重）。 */
+    @Transactional
+    public LibraryDetail replaceAliases(long id, java.util.List<String> aliases) {
+        getById(id);
+        java.util.List<String> cleaned = new java.util.ArrayList<>();
+        if (aliases != null) {
+            for (String alias : aliases) {
+                if (alias == null) continue;
+                String trimmed = alias.strip();
+                if (trimmed.isEmpty()) continue;
+                if (trimmed.length() > 200) throw ApiException.badRequest("别名不能超过 200 字");
+                String normalized = trimmed.toLowerCase(java.util.Locale.ROOT);
+                if (cleaned.stream().noneMatch(a -> a.equalsIgnoreCase(normalized))) cleaned.add(trimmed);
+            }
+        }
+        if (cleaned.size() > 10) throw ApiException.badRequest("别名最多 10 个");
+        jdbc.sql("DELETE FROM library_aliases WHERE library_id = :id").param("id", id).update();
+        for (String alias : cleaned) {
+            jdbc.sql("INSERT INTO library_aliases (library_id, alias, normalized_alias) VALUES (:id, :a, :n)")
+                    .param("id", id).param("a", alias)
+                    .param("n", alias.toLowerCase(java.util.Locale.ROOT)).update();
+        }
+        return getById(id);
     }
 }

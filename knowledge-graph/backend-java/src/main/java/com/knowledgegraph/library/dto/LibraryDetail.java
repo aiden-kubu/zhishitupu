@@ -15,5 +15,6 @@ public record LibraryDetail(
         LocalDateTime updatedAt,
         long documentCount,
         long nodeCount,
-        long edgeCount) {
+        long edgeCount,
+        java.util.List<String> aliases) {
 }

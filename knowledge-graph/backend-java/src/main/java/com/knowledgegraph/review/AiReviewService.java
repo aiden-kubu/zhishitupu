@@ -39,15 +39,16 @@ public class AiReviewService {
     private final LlmClient llm;
     private final LlmProfileService profiles;
     private final ReviewService review;
+    private final com.knowledgegraph.ingestion.DocumentService documentService;
     private final TransactionTemplate tx;
     private final Executor executor;
     private final Set<Long> running = ConcurrentHashMap.newKeySet();
 
     public AiReviewService(JdbcClient jdbc, ObjectMapper mapper, LlmClient llm, LlmProfileService profiles,
-                           ReviewService review, TransactionTemplate tx,
-                           @Qualifier("ingestionExecutor") Executor executor) {
+                           ReviewService review, com.knowledgegraph.ingestion.DocumentService documentService,
+                           TransactionTemplate tx, @Qualifier("ingestionExecutor") Executor executor) {
         this.jdbc = jdbc; this.mapper = mapper; this.llm = llm; this.profiles = profiles;
-        this.review = review; this.tx = tx; this.executor = executor;
+        this.review = review; this.documentService = documentService; this.tx = tx; this.executor = executor;
     }
 
     public void start(long jobId) {
@@ -124,6 +125,13 @@ public class AiReviewService {
                 // Existing commit owns deduplication, evidence, library links and atomic completion.
                 jdbc.sql("UPDATE ingestion_jobs SET stage='AWAITING_REVIEW' WHERE id=:id").param("id", jobId).update();
                 review.commit(jobId);
+                // 复审汇总写入文档可信度徽标（与入库同一事务）
+                long documentId = jdbc.sql("SELECT document_id FROM ingestion_jobs WHERE id=:id")
+                        .param("id", jobId).query(Long.class).single();
+                long approved = all.values().stream().filter(Decision::approved).count();
+                documentService.mergeVerificationJson(documentId, "$.aiReview", Map.of(
+                        "total", all.size(), "approved", approved, "rejected", all.size() - approved,
+                        "model", model.model(), "reviewedAt", LocalDateTime.now().toString()));
             });
         } catch (Exception ex) { fail(jobId, ex); }
         finally { running.remove(jobId); }

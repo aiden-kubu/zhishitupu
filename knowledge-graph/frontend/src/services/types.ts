@@ -78,6 +78,7 @@ export interface LibraryDto {
   edgeCount?: number
   createdAt?: string
   updatedAt?: string
+  aliases?: string[]
 }
 
 /** GET /api/nodes/{id} 节点详情（后端 NodeDetail） */
@@ -230,6 +231,38 @@ export interface ChatCitationDto {
   unitIndex: number
   chunkId: number
   excerpt: string
+}
+
+/** 文档标签（source：human 人工 / ai 自动整理） */
+export interface DocumentTagDto {
+  tag: string
+  source: 'human' | 'ai'
+}
+
+/** 文档可信度汇总（verification_json） */
+export interface DocumentVerificationDto {
+  hash?: { sha256: string; checkedAt: string; matched?: boolean }
+  aiReview?: { total: number; approved: number; rejected: number; model: string; reviewedAt: string }
+  human?: { checked: boolean; note?: string; checkedAt: string }
+}
+
+/** 文档（含元数据扩展） */
+export interface DocumentDto {
+  id: number
+  libraryId: number
+  libraryName: string
+  originalName: string
+  mimeType?: string
+  extension: string
+  sizeBytes: number
+  sha256: string
+  status: string
+  createdAt: string
+  title?: string | null
+  lifecycleStatus?: 'active' | 'archived' | 'outdated' | null
+  tags: DocumentTagDto[]
+  verification?: DocumentVerificationDto | null
+  updatedAt?: string
 }
 
 /** 节点类型（§11.1 首批值） */

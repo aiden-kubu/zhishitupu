@@ -4,6 +4,8 @@ import com.knowledgegraph.common.ApiException;
 import com.knowledgegraph.common.ErrorCodes;
 import com.knowledgegraph.common.PageResponse;
 import com.knowledgegraph.settings.SettingsService;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.jdbc.core.simple.JdbcClient;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -11,6 +13,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.Set;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
@@ -24,7 +29,12 @@ public class DocumentService {
 
     public record DocumentView(long id, long libraryId, String libraryName, String originalName,
                                String mimeType, String extension, long sizeBytes, String sha256,
-                               String status, String createdAt) {
+                               String status, String createdAt, String title, String lifecycleStatus,
+                               List<TagView> tags, Map<String, Object> verification) {
+    }
+
+    /** 文档标签（source：human 人工 / ai 自动整理）。 */
+    public record TagView(String tag, String source) {
     }
 
     public record UnitView(long id, int unitIndex, String unitType, String sourceLocator,
@@ -40,14 +50,16 @@ public class DocumentService {
     private final DocumentValidator validator;
     private final ZipSafety zipSafety;
     private final SettingsService settingsService;
+    private final ObjectMapper objectMapper;
 
     public DocumentService(JdbcClient jdbc, DocumentStorage storage, DocumentValidator validator,
-                           ZipSafety zipSafety, SettingsService settingsService) {
+                           ZipSafety zipSafety, SettingsService settingsService, ObjectMapper objectMapper) {
         this.jdbc = jdbc;
         this.storage = storage;
         this.validator = validator;
         this.zipSafety = zipSafety;
         this.settingsService = settingsService;
+        this.objectMapper = objectMapper;
     }
 
     @Transactional
@@ -127,6 +139,17 @@ public class DocumentService {
                 throw new ApiException(409, ErrorCodes.CONFLICT, "该文件已上传，请查看处理中心");
             }
         }
+        // 默认元数据：标题=原文件名、生命周期 active，并记录上传时的哈希校验
+        jdbc.sql("""
+                INSERT INTO document_metadata (document_id, title, lifecycle_status, verification_json)
+                VALUES (:id, :title, 'active', :verification)
+                ON DUPLICATE KEY UPDATE title = IFNULL(title, VALUES(title))
+                """)
+                .param("id", id)
+                .param("title", originalName)
+                .param("verification", toJson(Map.of("hash", Map.of(
+                        "sha256", stored.sha256(), "checkedAt", LocalDateTime.now().toString(), "matched", true))))
+                .update();
         return get(id);
     }
 
@@ -145,31 +168,181 @@ public class DocumentService {
         long total = jdbc.sql("SELECT COUNT(*) FROM documents d" + where).query(Long.class).single();
         List<DocumentView> items = jdbc.sql("""
                         SELECT d.id, d.library_id, IFNULL(l.name, ''), d.original_name, d.mime_type, d.extension,
-                               d.size_bytes, d.sha256, d.status, d.created_at
-                        FROM documents d LEFT JOIN knowledge_libraries l ON l.id = d.library_id
+                               d.size_bytes, d.sha256, d.status, d.created_at,
+                               m.title, m.lifecycle_status, m.verification_json
+                        FROM documents d
+                        LEFT JOIN knowledge_libraries l ON l.id = d.library_id
+                        LEFT JOIN document_metadata m ON m.document_id = d.id
                         """ + where + " ORDER BY d.id DESC LIMIT " + size + " OFFSET " + ((p - 1) * size))
-                .query((rs, i) -> new DocumentView(
-                        rs.getLong(1), rs.getLong(2), rs.getString(3), rs.getString(4),
-                        rs.getString(5), rs.getString(6), rs.getLong(7), rs.getString(8),
-                        rs.getString(9), String.valueOf(rs.getTimestamp(10))))
+                .query(this::documentRow)
                 .list();
+        attachTags(items);
         return new PageResponse<>(items, p, size, total, (int) ((total + size - 1) / size));
     }
 
     public DocumentView get(long id) {
-        return jdbc.sql("""
+        DocumentView view = jdbc.sql("""
                         SELECT d.id, d.library_id, IFNULL(l.name, ''), d.original_name, d.mime_type, d.extension,
-                               d.size_bytes, d.sha256, d.status, d.created_at
-                        FROM documents d LEFT JOIN knowledge_libraries l ON l.id = d.library_id
+                               d.size_bytes, d.sha256, d.status, d.created_at,
+                               m.title, m.lifecycle_status, m.verification_json
+                        FROM documents d
+                        LEFT JOIN knowledge_libraries l ON l.id = d.library_id
+                        LEFT JOIN document_metadata m ON m.document_id = d.id
                         WHERE d.id = :id
                         """)
                 .param("id", id)
-                .query((rs, i) -> new DocumentView(
-                        rs.getLong(1), rs.getLong(2), rs.getString(3), rs.getString(4),
-                        rs.getString(5), rs.getString(6), rs.getLong(7), rs.getString(8),
-                        rs.getString(9), String.valueOf(rs.getTimestamp(10))))
+                .query(this::documentRow)
                 .optional()
                 .orElseThrow(() -> new ApiException(404, ErrorCodes.NOT_FOUND, "资料不存在"));
+        attachTags(List.of(view));
+        return view;
+    }
+
+    // ---------------------------------------------------------------- 文档元数据 / 标签 / 校验
+
+    private static final Set<String> LIFECYCLE_STATUSES = Set.of("active", "archived", "outdated");
+    private static final int MAX_TAGS_PER_DOCUMENT = 20;
+    private static final int MAX_TITLE_CHARS = 255;
+    private static final int MAX_TAG_CHARS = 100;
+
+    /** 更新标题与生命周期（缺省字段保持原值；元数据行不存在时按原文件名补建）。 */
+    public DocumentView updateMetadata(long id, String title, String lifecycleStatus) {
+        requireDocument(id);
+        if (title != null && title.strip().isEmpty()) throw ApiException.badRequest("标题不能为空字符串");
+        if (title != null && title.strip().length() > MAX_TITLE_CHARS)
+            throw ApiException.badRequest("标题不能超过 " + MAX_TITLE_CHARS + " 字");
+        String lifecycle = lifecycleStatus == null ? null : lifecycleStatus.strip().toLowerCase(java.util.Locale.ROOT);
+        if (lifecycle != null && !LIFECYCLE_STATUSES.contains(lifecycle))
+            throw ApiException.badRequest("非法的资料生命周期: " + lifecycleStatus);
+        ensureMetadata(id);
+        jdbc.sql("""
+                UPDATE document_metadata SET
+                  title = COALESCE(:title, title),
+                  lifecycle_status = COALESCE(:lifecycle, lifecycle_status)
+                WHERE document_id = :id
+                """)
+                .param("title", title == null ? null : title.strip())
+                .param("lifecycle", lifecycle)
+                .param("id", id).update();
+        return get(id);
+    }
+
+    /** 人工添加标签（来源 human；归一化去重，AI 同名标签被唯一键阻挡，人工优先）。 */
+    public DocumentView addTag(long id, String tag) {
+        requireDocument(id);
+        NormalizedTag normalized = normalizeTag(tag);
+        Long count = jdbc.sql("SELECT COUNT(*) FROM document_tags WHERE document_id = :id")
+                .param("id", id).query(Long.class).single();
+        if (count != null && count >= MAX_TAGS_PER_DOCUMENT)
+            throw ApiException.badRequest("每个资料最多 " + MAX_TAGS_PER_DOCUMENT + " 个标签");
+        jdbc.sql("""
+                INSERT INTO document_tags (document_id, tag, normalized_tag, source)
+                VALUES (:id, :tag, :normalized, 'human')
+                ON DUPLICATE KEY UPDATE source = 'human', tag = VALUES(tag)
+                """)
+                .param("id", id).param("tag", normalized.tag())
+                .param("normalized", normalized.normalizedTag()).update();
+        return get(id);
+    }
+
+    /** 删除标签（人工与 AI 标签都可删，对应标签 chips 的 ×）。 */
+    public DocumentView removeTag(long id, String tag) {
+        requireDocument(id);
+        jdbc.sql("DELETE FROM document_tags WHERE document_id = :id AND normalized_tag = :n")
+                .param("id", id).param("n", normalizeTag(tag).normalizedTag()).update();
+        return get(id);
+    }
+
+    /** 人工校对记录：合并进 verification_json.human。 */
+    public DocumentView setHumanVerification(long id, boolean checked, String note) {
+        requireDocument(id);
+        ensureMetadata(id);
+        Map<String, Object> human = new LinkedHashMap<>();
+        human.put("checked", checked);
+        if (note != null && !note.isBlank()) human.put("note", note.strip());
+        human.put("checkedAt", LocalDateTime.now().toString());
+        mergeVerificationJson(id, "$.human", human);
+        return get(id);
+    }
+
+    /** 汇总信息写入 verification_json 的指定路径（行不存在时按原文件名补建）。 */
+    public void mergeVerificationJson(long documentId, String path, Object value) {
+        ensureMetadata(documentId);
+        jdbc.sql("""
+                UPDATE document_metadata
+                SET verification_json = JSON_SET(COALESCE(verification_json, JSON_OBJECT()), :path, CAST(:value AS JSON))
+                WHERE document_id = :id
+                """)
+                .param("path", path).param("value", toJson(value)).param("id", documentId).update();
+    }
+
+    private void ensureMetadata(long documentId) {
+        String originalName = jdbc.sql("SELECT original_name FROM documents WHERE id = :id")
+                .param("id", documentId).query(String.class).optional().orElse(null);
+        if (originalName == null) throw ApiException.notFound("资料不存在: " + documentId);
+        jdbc.sql("INSERT IGNORE INTO document_metadata (document_id, title, lifecycle_status) VALUES (:id, :title, 'active')")
+                .param("id", documentId).param("title", originalName).update();
+    }
+
+    private void requireDocument(long id) {
+        Boolean exists = jdbc.sql("SELECT EXISTS(SELECT 1 FROM documents WHERE id = :id)")
+                .param("id", id).query((rs, i) -> rs.getBoolean(1)).single();
+        if (!Boolean.TRUE.equals(exists)) throw ApiException.notFound("资料不存在: " + id);
+    }
+
+    private record NormalizedTag(String tag, String normalizedTag) {
+    }
+
+    private static NormalizedTag normalizeTag(String raw) {
+        if (raw == null || raw.strip().isEmpty()) throw ApiException.badRequest("标签不能为空");
+        String tag = raw.strip().replaceAll("[\\p{Cntrl}]", " ");
+        if (tag.length() > MAX_TAG_CHARS) throw ApiException.badRequest("标签不能超过 " + MAX_TAG_CHARS + " 字");
+        return new NormalizedTag(tag, tag.toLowerCase(java.util.Locale.ROOT));
+    }
+
+    private DocumentView documentRow(java.sql.ResultSet rs, int i) throws java.sql.SQLException {
+        Map<String, Object> verification = null;
+        String verificationJson = rs.getString("verification_json");
+        if (verificationJson != null && !verificationJson.isBlank()) {
+            try {
+                verification = objectMapper.readValue(verificationJson,
+                        new com.fasterxml.jackson.core.type.TypeReference<LinkedHashMap<String, Object>>() {
+                        });
+            } catch (JsonProcessingException ignored) {
+                verification = null;
+            }
+        }
+        return new DocumentView(
+                rs.getLong(1), rs.getLong(2), rs.getString(3), rs.getString(4),
+                rs.getString(5), rs.getString(6), rs.getLong(7), rs.getString(8),
+                rs.getString(9), String.valueOf(rs.getTimestamp(10)),
+                rs.getString("title"), rs.getString("lifecycle_status"),
+                new ArrayList<>(), verification);
+    }
+
+    /** 批量装配标签（避免逐行查询）。 */
+    private void attachTags(List<DocumentView> views) {
+        if (views.isEmpty()) return;
+        List<Long> ids = views.stream().map(DocumentView::id).toList();
+        Map<Long, List<TagView>> byDocument = new LinkedHashMap<>();
+        jdbc.sql("SELECT document_id, tag, source FROM document_tags WHERE document_id IN (:ids) ORDER BY id")
+                .param("ids", ids)
+                .query((rs, i) -> new Object[] { rs.getLong(1), new TagView(rs.getString(2), rs.getString(3)) })
+                .list()
+                .forEach(pair -> byDocument.computeIfAbsent((Long) pair[0], k -> new ArrayList<>())
+                        .add((TagView) pair[1]));
+        views.forEach(view -> {
+            List<TagView> tags = byDocument.get(view.id());
+            if (tags != null) view.tags().addAll(tags);
+        });
+    }
+
+    private String toJson(Object value) {
+        try {
+            return objectMapper.writeValueAsString(value);
+        } catch (JsonProcessingException e) {
+            return null;
+        }
     }
 
     public Path storagePathOf(long id) {
