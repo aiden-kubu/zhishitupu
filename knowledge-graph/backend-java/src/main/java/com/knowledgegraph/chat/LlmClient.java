@@ -40,19 +40,19 @@ public class LlmClient {
                 .requestFactory(requestFactory(model.timeoutSeconds()))
                 .build();
         Map<?, ?> response;
+        Map<String, Object> payload = new java.util.LinkedHashMap<>(Map.of(
+                "model", model.model(),
+                "messages", messages.stream().map(m -> Map.of("role", m.role(), "content", m.content())).toList(),
+                "max_tokens", model.maxTokens(), "temperature", model.temperature(), "stream", false));
+        if (model.thinkingEnabled() != null && "api.deepseek.com".equalsIgnoreCase(java.net.URI.create(model.baseUrl()).getHost())) {
+            payload.put("thinking", Map.of("type", model.thinkingEnabled() ? "enabled" : "disabled"));
+        }
         try {
             response = client.post()
                     .uri("/chat/completions")
                     .header("Authorization", "Bearer " + model.apiKey())
                     .contentType(MediaType.APPLICATION_JSON)
-                    .body(Map.of(
-                            "model", model.model(),
-                            "messages", messages.stream()
-                                    .map(m -> Map.of("role", m.role(), "content", m.content()))
-                                    .toList(),
-                            "max_tokens", model.maxTokens(),
-                            "temperature", model.temperature(),
-                            "stream", false))
+                    .body(payload)
                     .retrieve()
                     .body(Map.class);
         } catch (RestClientResponseException ex) {
@@ -109,6 +109,10 @@ public class LlmClient {
             throw new ApiException(502, ErrorCodes.LLM_BAD_RESPONSE, "模型返回缺少 choices 内容");
         }
         Object content = null;
+        if (choices.get(0) instanceof Map<?, ?> choice && "length".equals(choice.get("finish_reason"))) {
+            throw new ApiException(502, ErrorCodes.LLM_BAD_RESPONSE,
+                    "模型输出达到长度上限，内容不完整，请减少单次输出后重试");
+        }
         if (choices.get(0) instanceof Map<?, ?> choice && choice.get("message") instanceof Map<?, ?> message) {
             content = message.get("content");
         }

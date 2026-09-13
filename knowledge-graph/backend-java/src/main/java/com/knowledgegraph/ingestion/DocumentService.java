@@ -51,11 +51,12 @@ public class DocumentService {
     }
 
     @Transactional
-    public DocumentView upload(long libraryId, MultipartFile file) {
+    public DocumentView upload(Long libraryId, MultipartFile file) {
         if (file == null || file.isEmpty()) {
             throw new ApiException(400, ErrorCodes.INVALID_ARGUMENT, "请选择要上传的文件");
         }
-        requireLibrary(libraryId);
+        boolean automatic = libraryId == null;
+        if (!automatic) requireLibrary(libraryId);
         String originalName = Optional.ofNullable(file.getOriginalFilename()).orElse("upload.bin");
         String extension = validator.extensionOf(originalName);
         byte[] content;
@@ -72,14 +73,29 @@ public class DocumentService {
         }
 
         DocumentStorage.StoredFile stored = storage.save(new java.io.ByteArrayInputStream(content), extension);
+        // 数据库失败或并发重复上传回滚时，一并清理刚保存的文件。
+        org.springframework.transaction.support.TransactionSynchronizationManager.registerSynchronization(
+                new org.springframework.transaction.support.TransactionSynchronization() {
+                    @Override public void afterCompletion(int status) {
+                        if (status != STATUS_COMMITTED) storage.delete(stored.path());
+                    }
+                });
         Long duplicate = jdbc.sql(
-                        "SELECT id FROM documents WHERE sha256 = :sha AND library_id = :libraryId")
-                .param("sha", stored.sha256()).param("libraryId", libraryId)
+                        "SELECT id FROM documents WHERE sha256 = :sha AND (:automatic OR library_id = :libraryId) LIMIT 1")
+                .param("sha", stored.sha256()).param("automatic", automatic).param("libraryId", libraryId)
                 .query(Long.class).optional().orElse(null);
         if (duplicate != null) {
             storage.delete(stored.path());
             throw new ApiException(409, ErrorCodes.CONFLICT,
-                    "该文件已存在于当前知识库中（SHA-256 相同），请勿重复上传；如需替换请先删除原资料");
+                    "该文件已上传，请到处理中心查看原任务或重试，无需重复上传");
+        }
+        if (automatic) {
+            var keys = new org.springframework.jdbc.support.GeneratedKeyHolder();
+            jdbc.sql("INSERT INTO knowledge_libraries (name, type, description, status) VALUES (:name, 'topic', :description, 'pending')")
+                    .param("name", "待 AI 识别 · " + originalName.substring(0, Math.min(originalName.length(), 160)))
+                    .param("description", "识别完成后自动命名，按主题归入已有知识库或新建多个知识库。")
+                    .update(keys);
+            libraryId = keys.getKey().longValue();
         }
         jdbc.sql("""
                         INSERT INTO documents (library_id, original_name, stored_name, mime_type, extension,
@@ -103,6 +119,14 @@ public class DocumentService {
         jdbc.sql("""
                 INSERT INTO ingestion_jobs (document_id, stage, status) VALUES (:documentId, 'UPLOADED', 'UPLOADED')
                 """).param("documentId", id).update();
+        if (automatic) {
+            try {
+                jdbc.sql("INSERT INTO auto_document_imports (document_id, sha256) VALUES (:id, :sha)")
+                        .param("id", id).param("sha", stored.sha256()).update();
+            } catch (org.springframework.dao.DuplicateKeyException ex) {
+                throw new ApiException(409, ErrorCodes.CONFLICT, "该文件已上传，请查看处理中心");
+            }
+        }
         return get(id);
     }
 
@@ -111,7 +135,9 @@ public class DocumentService {
         int size = pageSize != null && pageSize > 0 ? pageSize : 20;
         StringBuilder where = new StringBuilder(" WHERE 1 = 1");
         if (libraryId != null) {
-            where.append(" AND d.library_id = ").append(libraryId);
+            where.append(" AND (d.library_id = ").append(libraryId)
+                    .append(" OR EXISTS (SELECT 1 FROM document_topic_assignments a WHERE a.document_id = d.id AND a.library_id = ")
+                    .append(libraryId).append("))");
         }
         if (status != null && !status.isBlank()) {
             where.append(" AND d.status = '").append(status.replace("'", "")).append("'");

@@ -3,9 +3,9 @@
     <div
       v-for="candidate in candidates"
       :key="candidate.id"
-      class="flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-gray-200 p-4 dark:border-gray-800"
+      class="flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-gray-200 bg-white dark:bg-white/[0.03] p-4 dark:border-gray-800"
     >
-      <div class="min-w-0">
+      <div class="min-w-0 max-w-full break-words">
         <p class="text-sm text-gray-800 dark:text-white/90">
           <span class="font-medium">{{ candidate.sourceName }}</span>
           <Badge color="light" size="sm" class="mx-1.5">{{ candidate.relationType }}</Badge>
@@ -16,7 +16,7 @@
           <template v-if="candidate.matchedEdgeId">· 与已有关系重复</template>
         </p>
       </div>
-      <div class="flex shrink-0 items-center gap-2">
+      <div class="flex flex-wrap items-center gap-2">
         <Button size="sm" variant="outline" class="!px-3 !py-1.5" @click="emit('edit', candidate)">编辑</Button>
         <Button size="sm" variant="outline" class="!px-3 !py-1.5 !text-error-500" @click="emit('reject', candidate)">
           拒绝

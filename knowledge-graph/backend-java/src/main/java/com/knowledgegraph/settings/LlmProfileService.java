@@ -205,7 +205,11 @@ public class LlmProfileService {
      * 绝不通过 Controller 返回。temperature 无档案字段，问答场景固定低温度。
      */
     public record DefaultModel(long profileId, String baseUrl, String model, String apiKey,
-                               int timeoutSeconds, int maxTokens, double temperature) {
+                               int timeoutSeconds, int maxTokens, double temperature, Boolean thinkingEnabled) {
+        public DefaultModel(long profileId, String baseUrl, String model, String apiKey,
+                            int timeoutSeconds, int maxTokens, double temperature) {
+            this(profileId, baseUrl, model, apiKey, timeoutSeconds, maxTokens, temperature, null);
+        }
     }
 
     private record DefaultProfileRow(long id, String baseUrl, String model, String encryptedKey,

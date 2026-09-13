@@ -3,7 +3,7 @@
     <!-- 用户消息 -->
     <div v-if="message.role === 'user'" class="flex justify-end">
       <p
-        class="max-w-[85%] rounded-2xl rounded-br-sm bg-brand-500 px-3.5 py-2.5 text-sm leading-6 text-white shadow-theme-xs"
+        class="max-w-[85%] rounded-2xl ltr:rounded-br-sm rtl:rounded-bl-sm bg-brand-500 px-3.5 py-2.5 text-sm leading-6 text-white shadow-theme-xs"
       >
         {{ message.content }}
       </p>
@@ -11,9 +11,9 @@
 
     <!-- 助手消息 -->
     <div v-else class="flex justify-start">
-      <div class="max-w-[92%]">
+      <div class="min-w-0 max-w-full">
         <div
-          class="rounded-2xl rounded-bl-sm border px-3.5 py-2.5 text-sm leading-6 shadow-theme-xs"
+          class="rounded-2xl ltr:rounded-bl-sm rtl:rounded-br-sm border px-3.5 py-2.5 text-sm leading-6 shadow-theme-xs"
           :class="
             message.error
               ? 'border-error-200 bg-error-50 text-error-600 dark:border-error-500/30 dark:bg-error-500/10 dark:text-error-400'
@@ -23,7 +23,7 @@
           <Badge v-if="message.insufficientEvidence" color="warning" size="sm" class="mb-2">
             证据不足
           </Badge>
-          <p class="whitespace-pre-wrap">{{ message.content }}</p>
+          <p class="whitespace-pre-wrap break-words">{{ message.content }}</p>
         </div>
 
         <!-- 引用区（§7.3） -->

@@ -62,6 +62,7 @@ public class ExtractionService {
 
             要求：tempKey 在本批内唯一（entity_1、entity_2…）；relations 两端的 tempKey 必须是本批 entities 已定义的；
             没有把握的关系不要输出；所有内容均为纯文本，禁止生成 SQL、HTML 或可执行代码。
+            每批优先抽取最多 30 个核心实体和 30 条关系，定义简明（不超过 120 字）；不得引用未在本批声明的实体编号。
             """;
 
     private final JdbcClient jdbc;
@@ -69,14 +70,19 @@ public class ExtractionService {
     private final LlmClient llmClient;
     private final ObjectMapper objectMapper;
     private final TransactionTemplate transactionTemplate;
+    private final LibraryOrganizationService organization;
+    private final com.knowledgegraph.review.AiReviewService aiReview;
 
     public ExtractionService(JdbcClient jdbc, LlmProfileService llmProfileService, LlmClient llmClient,
-                             ObjectMapper objectMapper, TransactionTemplate transactionTemplate) {
+                             ObjectMapper objectMapper, TransactionTemplate transactionTemplate,
+                             LibraryOrganizationService organization, com.knowledgegraph.review.AiReviewService aiReview) {
         this.jdbc = jdbc;
         this.llmProfileService = llmProfileService;
         this.llmClient = llmClient;
         this.objectMapper = objectMapper;
         this.transactionTemplate = transactionTemplate;
+        this.organization = organization;
+        this.aiReview = aiReview;
     }
 
     // ---------------------------------------------------------------- 恢复入口
@@ -136,9 +142,15 @@ public class ExtractionService {
         jdbc.sql("UPDATE documents SET status = 'PROCESSING' WHERE id = :id").param("id", documentId).update();
 
         // 默认模型；未配置/禁用/缺 Key → LLM_NOT_CONFIGURED（任务不得显示已完成）
-        LlmProfileService.DefaultModel model = llmProfileService.requireDefaultEnabledProfile();
+        LlmProfileService.DefaultModel configured = llmProfileService.requireDefaultEnabledProfile();
+        // 文档结构化抽取使用有界输出；DeepSeek 关闭思考模式，避免长思考耗尽读取等待。
+        LlmProfileService.DefaultModel model = new LlmProfileService.DefaultModel(configured.profileId(),
+                configured.baseUrl(), configured.model(), configured.apiKey(),
+                Math.max(120, configured.timeoutSeconds()), Math.min(8192, configured.maxTokens()), configured.temperature(), false);
 
         List<List<ChunkRow>> batches = buildBatches(chunks);
+        jdbc.sql("UPDATE ingestion_jobs SET processed_units = 0, total_units = :total WHERE id = :id")
+                .param("total", batches.size()).param("id", jobId).update();
         String documentName = loadDocumentName(documentId);
 
         // 批内校验后的原始候选：全部批次成功后才写库，失败不留半成品
@@ -153,15 +165,29 @@ public class ExtractionService {
             for (ChunkRow chunk : batch) {
                 batchChunkIds.add(chunk.id());
             }
-            String answer = llmClient.complete(model, List.of(
-                    new LlmClient.LlmMessage("system", SYSTEM_PROMPT),
-                    new LlmClient.LlmMessage("user", buildBatchPrompt(documentName, i + 1, batches.size(), batch))));
-            NormalizedExtraction parsed = ExtractionPayloadParser.parse(objectMapper, answer, batchChunkIds);
-            accumulatedEntities.addAll(parsed.entities());
-            accumulatedRelations.addAll(parsed.relations());
-            int progress = Math.min(80 + (i + 1) * 15 / batches.size(), 95);
-            jdbc.sql("UPDATE ingestion_jobs SET progress = :p, total_units = :total WHERE id = :id")
+            NormalizedExtraction parsed = extractBatch(model,
+                    buildBatchPrompt(documentName, i + 1, batches.size(), batch), batchChunkIds,
+                    () -> isCancelled(jobId), i + 1, batches.size());
+            // 模型各批可重复使用 entity_1；改为任务内唯一键，防止不同主题错误归到同一候选。
+            Set<String> usedKeys = new LinkedHashSet<>();
+            accumulatedEntities.forEach(e -> usedKeys.add(e.tempKey()));
+            Map<String, String> batchKeys = new LinkedHashMap<>();
+            int keyIndex = 0;
+            for (NormalizedEntity entity : parsed.entities()) {
+                String key = entity.tempKey();
+                while (!usedKeys.add(key)) key = "batch_" + (i + 1) + "_entity_" + (++keyIndex);
+                batchKeys.put(entity.tempKey(), key);
+                accumulatedEntities.add(new NormalizedEntity(key, entity.name(), entity.nameEn(), entity.aliases(),
+                        entity.nodeType(), entity.definition(), entity.confidence(), entity.evidenceChunkIds()));
+            }
+            for (NormalizedRelation relation : parsed.relations()) {
+                accumulatedRelations.add(new NormalizedRelation(batchKeys.get(relation.sourceTempKey()),
+                        batchKeys.get(relation.targetTempKey()), relation.relationType(), relation.confidence(), relation.evidenceChunkIds()));
+            }
+            int progress = Math.min(80 + (i + 1) * 14 / batches.size(), 94);
+            jdbc.sql("UPDATE ingestion_jobs SET progress = :p, processed_units = :done, total_units = :total WHERE id = :id")
                     .param("p", progress)
+                    .param("done", i + 1)
                     .param("total", batches.size())
                     .param("id", jobId)
                     .update();
@@ -169,10 +195,36 @@ public class ExtractionService {
 
         DeduplicatedCandidates candidates = deduplicate(accumulatedEntities, accumulatedRelations);
         matchExisting(candidates);
-        persistCandidates(jobId, documentId, candidates);
+        jdbc.sql("UPDATE ingestion_jobs SET stage = 'AI_ORGANIZING', progress = 94 WHERE id = :id AND status = 'AI_EXTRACTING'")
+                .param("id", jobId).update();
+        var groups = organization.plan(documentId, candidates, model);
+        persistCandidates(jobId, documentId, candidates, groups);
+        aiReview.reviewAndImport(jobId);
     }
 
     // ---------------------------------------------------------------- 批次构建
+
+    /** Only validated results leave this bounded retry loop; never repair truncated JSON by guessing. */
+    NormalizedExtraction extractBatch(LlmProfileService.DefaultModel model, String prompt,
+                                      Set<Long> chunkIds, java.util.function.BooleanSupplier cancelled,
+                                      int batchIndex, int totalBatches) {
+        for (int attempt = 1; attempt <= 3; attempt++) {
+            if (cancelled.getAsBoolean()) throw new ApiException(409, ErrorCodes.CONFLICT, "任务已取消");
+            String guidance = attempt == 1 ? "" : "\n重新生成完整 JSON，严格转义字符串中的双引号、反斜杠和换行。"
+                    + "本次最多 15 个核心实体和 15 条关系，定义不超过 60 字，必须闭合所有数组和对象。";
+            try {
+                String answer = llmClient.complete(model, List.of(
+                        new LlmClient.LlmMessage("system", SYSTEM_PROMPT + guidance),
+                        new LlmClient.LlmMessage("user", prompt)));
+                return ExtractionPayloadParser.parse(objectMapper, answer, chunkIds);
+            } catch (ApiException ex) {
+                if (!ErrorCodes.LLM_BAD_RESPONSE.equals(ex.getCode())) throw ex;
+                if (attempt == 3) throw new ApiException(ex.getHttpStatus(), ex.getCode(),
+                        "第 " + batchIndex + "/" + totalBatches + " 批抽取连续 3 次失败：" + ex.getMessage());
+            }
+        }
+        throw new IllegalStateException("Unreachable retry state");
+    }
 
     private List<List<ChunkRow>> buildBatches(List<ChunkRow> chunks) {
         List<List<ChunkRow>> batches = new ArrayList<>();
@@ -400,8 +452,13 @@ public class ExtractionService {
     // ---------------------------------------------------------------- 候选入库
 
     /** 全部批次成功后：同一事务写入候选 + 任务置为 AWAITING_REVIEW（§七.10）。 */
-    private void persistCandidates(long jobId, long documentId, DeduplicatedCandidates candidates) {
+    private void persistCandidates(long jobId, long documentId, DeduplicatedCandidates candidates,
+                                   List<LibraryOrganizationService.Group> groups) {
         transactionTemplate.executeWithoutResult(status -> {
+            String jobStatus = jdbc.sql("SELECT status FROM ingestion_jobs WHERE id = :id FOR UPDATE")
+                    .param("id", jobId).query(String.class).single();
+            if (!"AI_EXTRACTING".equals(jobStatus)) throw new ApiException(409, ErrorCodes.CONFLICT, "任务状态已变化，停止入库");
+            organization.apply(documentId, groups);
             for (DedupedEntity entity : candidates.entities()) {
                 // 候选表没有独立英文名列：把 nameEn 折叠进别名，保证英文检索路径不丢失
                 List<String> aliases = new ArrayList<>(entity.aliases);

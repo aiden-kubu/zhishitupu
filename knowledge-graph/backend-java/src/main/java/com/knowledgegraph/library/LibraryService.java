@@ -93,17 +93,32 @@ public class LibraryService {
     }
 
     /**
-     * 删除知识库：仅删除知识库本身与其节点关联（library_nodes，外键级联）；
-     * 知识节点为全局资源，不受影响。
+     * 删除知识库及仅属于该库的节点；共享节点及共享文档保留。
      */
     @Transactional
     public Map<String, Object> delete(long id) {
         LibraryDetail detail = getById(id);
+        List<Long> ownedNodes = jdbc.sql("SELECT node_id FROM library_nodes WHERE library_id = :id")
+                .param("id", id).query(Long.class).list();
+        // 多主题资料可能同时被其他库引用；删除当前库前保留其原文件和证据。
+        jdbc.sql("""
+                UPDATE documents d SET library_id = (
+                  SELECT MIN(a.library_id) FROM document_topic_assignments a
+                  WHERE a.document_id = d.id AND a.library_id <> :id)
+                WHERE d.library_id = :id AND EXISTS (
+                  SELECT 1 FROM document_topic_assignments a WHERE a.document_id = d.id AND a.library_id <> :id)
+                """).param("id", id).update();
         jdbc.sql("DELETE FROM knowledge_libraries WHERE id = :id").param("id", id).update();
+        int deletedNodes = 0;
+        if (!ownedNodes.isEmpty()) {
+            deletedNodes = jdbc.sql("DELETE FROM knowledge_nodes WHERE id IN (:ids) AND NOT EXISTS (SELECT 1 FROM library_nodes ln WHERE ln.node_id = knowledge_nodes.id)")
+                    .param("ids", ownedNodes).update();
+        }
         Map<String, Object> result = new LinkedHashMap<>();
         result.put("deleted", true);
         result.put("id", id);
         result.put("affectedNodes", detail.nodeCount());
+        result.put("deletedNodes", deletedNodes);
         result.put("affectedDocuments", detail.documentCount());
         return result;
     }
@@ -114,7 +129,7 @@ public class LibraryService {
      */
     private long countDocuments(long libraryId) {
         try {
-            return jdbc.sql("SELECT COUNT(*) FROM documents WHERE library_id = :id")
+            return jdbc.sql("SELECT COUNT(*) FROM documents d WHERE d.library_id = :id OR EXISTS (SELECT 1 FROM document_topic_assignments a WHERE a.document_id = d.id AND a.library_id = :id)")
                     .param("id", libraryId)
                     .query((rs, i) -> rs.getLong(1))
                     .single();

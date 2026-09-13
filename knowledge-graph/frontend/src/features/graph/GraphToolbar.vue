@@ -79,7 +79,7 @@
       <Button size="sm" variant="outline" class="!px-3 !py-1.5" @click="emit('reset')">重置</Button>
 
       <!-- AI 面板开关：桌面折叠 / 移动端抽屉 -->
-      <Button size="sm" variant="outline" class="!px-3 !py-1.5 lg:hidden" @click="emit('toggle-panel')">
+      <Button size="sm" variant="outline" class="!px-3 !py-1.5" :class="{ 'lg:hidden': panelOpen }" @click="emit('toggle-panel')">
         AI 助手
       </Button>
     </div>
@@ -91,6 +91,7 @@ import Button from '@/components/ui/Button.vue'
 import type { RenderMode, WorkspaceMode } from '@/composables/useGraphWorkspace'
 
 defineProps<{
+  panelOpen?: boolean
   mode: WorkspaceMode
   renderMode: RenderMode
   depth: 1 | 2

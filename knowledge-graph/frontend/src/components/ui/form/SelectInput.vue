@@ -123,8 +123,8 @@ const open = ref(false)
 const activeIndex = ref(0)
 
 const selectableOptions = computed(() => {
-  // 提供占位符时允许选回空值（如「请选择知识库」）
-  if (props.placeholder) {
+  // 已有空值选项时直接使用它，避免占位符重复生成同一个选项。
+  if (props.placeholder && !props.options.some((option) => option.value === '')) {
     return [{ value: '', label: props.placeholder }, ...props.options]
   }
   return props.options
@@ -175,6 +175,7 @@ function onKeydown(event: KeyboardEvent) {
     const option = selectableOptions.value[activeIndex.value]
     if (option) select(option)
   } else if (event.key === 'Escape') {
+    event.stopPropagation()
     close()
   }
 }

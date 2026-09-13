@@ -1,10 +1,10 @@
 <template>
   <span :class="[baseStyles, sizeClass, colorStyles]">
-    <span v-if="startIcon" class="mr-1">
+    <span v-if="startIcon" class="me-1">
       <component :is="startIcon" />
     </span>
     <slot></slot>
-    <span v-if="endIcon" class="ml-1">
+    <span v-if="endIcon" class="ms-1">
       <component :is="endIcon" />
     </span>
   </span>
@@ -32,7 +32,7 @@ const props = withDefaults(defineProps<BadgeProps>(), {
 })
 
 const baseStyles =
-  'inline-flex items-center px-2.5 py-0.5 justify-center gap-1 rounded-full font-medium capitalize'
+  'inline-flex shrink-0 items-center px-2.5 py-0.5 justify-center gap-1 rounded-full font-medium capitalize'
 
 const sizeStyles = {
   sm: 'text-theme-xs',

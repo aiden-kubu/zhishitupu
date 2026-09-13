@@ -32,7 +32,12 @@ export type RelationCandidate = {
   evidence: { chunkId: number; documentName: string; locator: string; excerpt: string }[]
 }
 
+export type AiReviewAudit = { id: string; approved: boolean; reason: string; model: string; reviewedAt: string }
+
 export const reviewApi = {
+  aiDecisions(jobId: number): Promise<AiReviewAudit[]> {
+    return api(`/api/review/jobs/${jobId}/ai-decisions`)
+  },
   listEntities(jobId: number): Promise<EntityCandidate[]> {
     return api(`/api/review/jobs/${jobId}/entities`)
   },

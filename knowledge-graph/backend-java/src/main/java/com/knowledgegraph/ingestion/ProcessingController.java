@@ -17,9 +17,11 @@ import org.springframework.web.bind.annotation.RestController;
 public class ProcessingController {
 
     private final ProcessingService processingService;
+    private final com.knowledgegraph.review.AiReviewService aiReview;
 
-    public ProcessingController(ProcessingService processingService) {
+    public ProcessingController(ProcessingService processingService, com.knowledgegraph.review.AiReviewService aiReview) {
         this.processingService = processingService;
+        this.aiReview = aiReview;
     }
 
     @GetMapping("/jobs")
@@ -37,7 +39,17 @@ public class ProcessingController {
 
     @PostMapping("/jobs/{id}/retry")
     public ApiResponse<ProcessingService.IngestionJobRow> retry(@PathVariable long id) {
+        if (processingService.get(id).candidateCount() > 0) {
+            aiReview.start(id);
+            return ApiResponse.ok(processingService.get(id));
+        }
         return ApiResponse.ok(processingService.retry(id));
+    }
+
+    @PostMapping("/jobs/{id}/ai-review")
+    public ApiResponse<ProcessingService.IngestionJobRow> aiReview(@PathVariable long id) {
+        aiReview.start(id);
+        return ApiResponse.ok(processingService.get(id));
     }
 
     @PostMapping("/jobs/{id}/cancel")

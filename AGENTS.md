@@ -1,8 +1,16 @@
 # AGENTS.md — 知识图谱项目（Java + TailAdmin 重构版）
 
+> 2026-09-13 本机环境更新：当前仓库位于 `E:\知识图谱`。已安装 Temurin JDK 17；根目录 `start-dev.cmd` / `stop-dev.cmd` 管理本地服务。独立 MySQL 位于 `127.0.0.1:13306`，本地配置跳过无旧表环境的 V2；数据保存在 `C:\Users\Administrator\.knowledge-graph-dev`。完整操作见 `docs/本地开发环境.md`。下方 D 盘路径与 3306 为原开发机记录。V3 空库种子判断已修正，TCP/UDP 及关系完整初始化。后端 109 项测试通过。
+
 > 本文件供 AI 助手在后续会话中快速了解项目状态。**每次接手请先读完本文件与开发文档。**
 
 ## 一、项目现状（2026-09-12，阶段 A/B 完成时点）
+
+- **2026-09-13 最新用户决策：取消人工审核，改为 AI 独立对照原文复审后自动入库。此决策覆盖下文和旧开发文档中所有“必须人工审核/确认入库”的旧要求。** 新流程抽取/分类 → AI_REVIEWING（95–98%）→ IMPORTING（99%）→ COMPLETED（100%）。默认模型逐项复审候选；证据不足拒绝、拒绝端点的关系连带拒绝；全部结果完整后同事务入库，失败保留候选可重试。前端 /review 改为 AI 复审记录；人工修改/批量审核/commit HTTP 入口返回 409，新入口 POST /api/processing/jobs/{id}/ai-review 或候选任务 retry，GET /api/review/jobs/{id}/ai-decisions 查看理由。详见 docs/AI自动复审入库.md。
+
+- 2026-09-13 删除知识库语义已按用户预期调整：删除该库独占节点（关联边、证据、会话按外键级联），其他库共享节点和共享资料保留；首页不保留已删除节点的旧上下文。V3 通过 `bootstrap_flags/demo_seed_v3` 只初始化一次，用户清空知识后重启不恢复演示节点。历史孤立 TCP/UDP 已备份至 `.local/deleted-library-backup.sql` 后清理。
+
+- 2026-09-13 用户新决策：新上传资料默认无需选库，由 AI 自动识别、命名、同主题归入已有库、多主题分入多个库；不重组已有库。显式指定库仍兼容，知识候选仍需审核。V6 增加 `auto_document_imports` 和 `document_topic_assignments`；`LibraryOrganizationService` 在抽取全部成功后规划，分类及建库和候选同事务保存。审核按每个候选的目标库写关联，合并已有节点也写关联，原资料由多个库共享。详见 `docs/AI自动整理.md`。
 
 - 旧 PHP 项目（knowledge-graph/backend、旧前端）已由用户于 2026-09-12 明确要求全量删除，仅保留 TailAdmin 压缩包。
 - 依据 `docs/第一版开发文档-Java-TailAdmin.md`（V1.0，1206 行）执行重构，**该文档是唯一需求/架构/接口/UI 依据**。
@@ -37,7 +45,7 @@
 ## 四、关键约定
 
 - 前端严格遵守 `frontend/AGENTS.md`（TailAdmin 令牌、RTL 逻辑属性、`<script setup lang="ts">`、dark: 变体）；新增 UI 原语放 `components/ui/`，表单原语在 `components/ui/form/`；业务组件按 §10.3 放 `features/`
-- UI 反馈已落实（2026-09-13）：内容区去掉 max-w 上限改为流式自适应；`SelectInput` 为自绘下拉（复用 `v-click-outside` 指令，键盘可选），**不要再使用原生 `<select>`**；品牌 Logo 组件 `components/layout/AppBrandLogo.vue`（侧栏+顶栏共用）；图标一律 `currentColor` 描边（CheckIcon 曾因写死白色在侧栏隐形）
+- UI 最新决策（2026-09-13）：用户提供同为 TailAdmin 的参考程序，要求深入调整布局与按钮，覆盖此前“所有页面流式铺满”的反馈。管理页面使用居中、最大 1280px 内容区；侧栏展开 240px、折叠 76px；图谱画布继续使用可用工作区。概览→主要内容→可选高级设置，主次操作有明确区分。存储与图谱偏好不作为前置表单。细节见 `docs/UI布局与交互规范.md`。`SelectInput` 仍为自绘下拉，**不要再使用原生 `<select>`**；品牌 Logo 共用 `components/layout/AppBrandLogo.vue`；图标使用当前主题颜色。
 - API 合同以开发文档 §12 为准，前端统一走 `src/services/http.ts`（包络解析 + ApiError）；**后端实际字段以 backend-java 的 DTO record 为准**（如节点详情是 `name/type` 而非 canonicalName/nodeType，洞察是 `nodeTypeDistribution/topDegreeNodes`），前端已对齐
 - 3D 画布容器必须绝对定位（three.js 固定像素画布会撑破 flex 布局）；设置 PUT 是整包 `SaveRequest{llm,ocr,storage,graph}`
 - 状态用组合式函数共享（模块级 ref），**不引入 Pinia**；新依赖（npm/Maven）必须先列清单征求用户同意（§0.7）；已批准：3d-force-graph、three、@types/three

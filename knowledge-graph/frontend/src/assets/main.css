@@ -7,7 +7,7 @@ layer(base);
 
 @theme {
   --font-*: initial;
-  --font-outfit: Outfit, sans-serif;
+  --font-outfit: Outfit, "Microsoft YaHei", "PingFang SC", sans-serif;
 
   --breakpoint-*: initial;
   --breakpoint-2xsm: 375px;
@@ -1391,3 +1391,14 @@ pre code,
 }
 
 
+
+/* Shared interaction details across the knowledge workspace. */
+@layer base {
+  button:not(:disabled), summary { cursor: pointer; }
+  button:disabled { cursor: not-allowed; }
+  :where(button, a, summary, [role="combobox"]):focus-visible { outline: 2px solid var(--color-brand-500); outline-offset: 3px; }
+  summary::-webkit-details-marker { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}

@@ -24,6 +24,7 @@ spring:
         - classpath:db/migration/V3__seed.sql
         - classpath:db/migration/V4__llm_profiles.sql
         - classpath:db/migration/V5__ingestion.sql
+        - classpath:db/migration/V6__auto_organization.sql
   servlet:
     multipart:
       max-file-size: 200MB

@@ -8,6 +8,7 @@
         >
           <GraphToolbar
             :mode="mode"
+            :panel-open="panelOpen"
             :render-mode="renderMode"
             :depth="depth"
             :node-count="subgraph?.nodes.length ?? 0"
@@ -17,7 +18,7 @@
             @update:depth="setDepth"
             @update:render-mode="setRenderMode"
             @reset="resetView"
-            @toggle-panel="mobilePanelOpen = true"
+            @toggle-panel="openAiPanel"
           />
         </div>
 
@@ -47,13 +48,14 @@
             v-else-if="!subgraph || subgraph.nodes.length === 0"
             class="absolute inset-0 z-10 flex flex-col items-center justify-center gap-2 px-6 text-center"
           >
-            <p class="text-sm font-medium text-gray-700 dark:text-gray-300">图谱暂无可展示的节点</p>
-            <p class="text-xs text-gray-400">请先在「知识库」导入资料，或检查数据库中是否有示例数据</p>
+            <span class="mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-brand-50 text-brand-500 dark:bg-brand-500/10"><LayoutDashboardIcon class="h-8 w-8" /></span>
+            <p class="text-xl font-semibold text-gray-800 dark:text-white/90">从第一份资料开始，建立知识连接</p>
+            <p class="mt-1 max-w-sm text-sm leading-6 text-gray-500 dark:text-gray-400">通过顶部「导入资料」上传内容；识别中或未审核入库的知识暂不显示在图谱中。</p>
             <router-link
-              to="/library"
+              to="/processing"
               class="mt-2 text-sm font-medium text-brand-500 hover:text-brand-600"
             >
-              前往知识库 →
+              查看处理进度 →
             </router-link>
           </div>
 
@@ -98,7 +100,7 @@
       <!-- 右侧 AI 面板（桌面常驻可折叠，<1024px 抽屉，§5.3） -->
       <aside
         v-if="panelOpen"
-        class="hidden min-h-0 shrink-0 border-s border-gray-200 bg-white lg:flex lg:w-[400px] xl:w-[430px] dark:border-gray-800 dark:bg-gray-900"
+        class="hidden min-h-0 shrink-0 border-s border-gray-200 bg-white lg:flex lg:w-[320px] xl:w-[360px] 2xl:w-[380px] dark:border-gray-800 dark:bg-gray-900"
       >
         <AiChatPanel
           :node="contextNode"
@@ -143,6 +145,8 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
+function openAiPanel() { if (window.innerWidth >= 1024) panelOpen.value = true; else mobilePanelOpen.value = true }
+import { LayoutDashboardIcon } from '@/icons'
 import AdminLayout from '@/components/layout/AdminLayout.vue'
 import Alert from '@/components/ui/Alert.vue'
 import Button from '@/components/ui/Button.vue'

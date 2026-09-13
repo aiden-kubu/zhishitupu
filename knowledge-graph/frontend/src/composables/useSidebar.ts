@@ -24,6 +24,7 @@ import { ref, computed, onMounted, onUnmounted, provide, inject } from 'vue'
 import type { Ref } from 'vue' //
 
 interface SidebarContextType {
+  isMobile: Ref<boolean>
   isExpanded: Ref<boolean>
   isMobileOpen: Ref<boolean>
   isHovered: Ref<boolean>
@@ -47,7 +48,7 @@ export function useSidebarProvider() {
   const openSubmenu = ref<string | null>(null)
 
   const handleResize = () => {
-    const mobile = window.innerWidth < 768
+    const mobile = window.innerWidth < 1280
     isMobile.value = mobile
     if (!mobile) {
       isMobileOpen.value = false
@@ -88,6 +89,7 @@ export function useSidebarProvider() {
   }
 
   const context: SidebarContextType = {
+    isMobile,
     isExpanded: computed(() => (isMobile.value ? false : isExpanded.value)),
     isMobileOpen,
     isHovered,

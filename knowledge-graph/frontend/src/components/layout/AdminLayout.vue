@@ -3,19 +3,19 @@
     <app-sidebar />
     <Backdrop />
     <div
-      class="flex-1 transition-all duration-300 ease-in-out"
-      :class="[isExpanded || isHovered ? 'xl:ms-[290px]' : 'xl:ms-[90px]']"
+      class="min-w-0 flex-1 transition-all duration-300 ease-in-out"
+      :class="[isExpanded || isHovered ? 'xl:ms-[240px]' : 'xl:ms-[76px]']"
     >
       <app-header />
       <!-- bare：图谱工作台等全高页面使用，去掉内边距与最大宽度约束（§5.3 无双滚动条） -->
       <div
         v-if="bare"
-        class="flex h-[calc(100vh-4.1rem)] flex-col overflow-hidden lg:h-[calc(100vh-4.8rem)]"
+        class="flex h-[calc(100dvh-8rem)] flex-col overflow-hidden xl:h-[calc(100dvh-4.5rem)]"
       >
         <slot></slot>
       </div>
-      <!-- 内容区自适应宽度：不设最大宽度上限，随视口流式伸展（反馈①） -->
-      <div v-else class="w-full p-4 pb-20 md:p-6 md:pb-6">
+      <!-- 管理页面约束阅读宽度；图谱画布继续占满工作区。 -->
+      <div v-else class="mx-auto w-full max-w-[1280px] px-4 py-6 pb-16 md:px-8 md:py-8">
         <slot></slot>
       </div>
     </div>

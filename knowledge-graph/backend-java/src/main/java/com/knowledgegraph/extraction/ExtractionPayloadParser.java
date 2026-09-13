@@ -20,8 +20,8 @@ import java.util.regex.Pattern;
  */
 public final class ExtractionPayloadParser {
 
-    public static final int MAX_ENTITIES_PER_BATCH = 30;
-    public static final int MAX_RELATIONS_PER_BATCH = 20;
+    public static final int MAX_ENTITIES_PER_BATCH = 128;
+    public static final int MAX_RELATIONS_PER_BATCH = 256;
     public static final int MAX_NAME_CHARS = 200;
     public static final int MAX_RELATION_TYPE_CHARS = 100;
     public static final int MAX_DEFINITION_CHARS = 1000;
@@ -107,11 +107,9 @@ public final class ExtractionPayloadParser {
         if (!entitiesNode.isArray()) {
             return entities;
         }
+        if (entitiesNode.size() > MAX_ENTITIES_PER_BATCH) throw badResponse("单批实体过多，请减少抽取数量");
         Set<String> tempKeys = new LinkedHashSet<>();
         for (JsonNode item : entitiesNode) {
-            if (entities.size() >= MAX_ENTITIES_PER_BATCH) {
-                break;
-            }
             if (!item.isObject()) {
                 continue;
             }
@@ -148,10 +146,8 @@ public final class ExtractionPayloadParser {
         if (!relationsNode.isArray()) {
             return relations;
         }
+        if (relationsNode.size() > MAX_RELATIONS_PER_BATCH) throw badResponse("单批关系过多，请减少抽取数量");
         for (JsonNode item : relationsNode) {
-            if (relations.size() >= MAX_RELATIONS_PER_BATCH) {
-                break;
-            }
             if (!item.isObject()) {
                 continue;
             }

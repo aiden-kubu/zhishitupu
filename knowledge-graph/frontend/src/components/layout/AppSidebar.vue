@@ -3,9 +3,9 @@
     :class="[
       'fixed flex flex-col mt-0 top-0 px-4 start-0 bg-white dark:bg-gray-900 dark:border-gray-800 text-gray-900 h-screen transition-all duration-300 ease-in-out z-99999 border-e border-gray-200',
       {
-        'xl:w-[290px]': isExpanded || isMobileOpen || isHovered,
-        'xl:w-[90px]': !isExpanded && !isHovered,
-        'translate-x-0 w-[290px]': isMobileOpen,
+        'xl:w-[240px]': isExpanded || isMobileOpen || isHovered,
+        'xl:w-[76px]': !isExpanded && !isHovered,
+        'translate-x-0 w-[240px]': isMobileOpen,
         'max-xl:-translate-x-full max-xl:rtl:translate-x-full': !isMobileOpen,
         'xl:translate-x-0': true,
       },
@@ -16,21 +16,18 @@
     <!-- 品牌区 -->
     <div
       :class="[
-        'flex pt-6 pb-5',
+        'flex h-[72px] items-center',
         !isExpanded && !isHovered ? 'xl:justify-center' : 'justify-start',
       ]"
     >
       <AppBrandLogo :compact="!isExpanded && !isHovered && !isMobileOpen" />
     </div>
 
-    <div
-      class="mb-4 h-px bg-gray-100 dark:bg-gray-800"
-      role="presentation"
-    ></div>
+    <div class="mb-6 h-px bg-gray-100 dark:bg-gray-800" role="presentation"></div>
 
     <!-- 模块导航（§4.1 六模块三分组） -->
     <nav class="flex min-h-0 flex-1 flex-col overflow-y-auto no-scrollbar">
-      <div class="flex flex-col gap-5 pb-4">
+      <div class="flex flex-col gap-7 pb-4">
         <div v-for="(menuGroup, groupIndex) in menuGroups" :key="groupIndex">
           <h2
             :class="[
@@ -43,10 +40,14 @@
             </template>
             <HorizontalDots v-else class="h-4 w-4" />
           </h2>
-          <ul class="flex flex-col gap-0.5">
+          <ul class="flex flex-col gap-1">
             <li v-for="item in menuGroup.items" :key="item.name">
               <router-link
                 :to="item.path"
+                :aria-label="item.name"
+                :title="!isExpanded && !isHovered && !isMobileOpen ? item.name : undefined"
+                @click="isMobileOpen && toggleMobileSidebar()"
+                :aria-current="isActive(item.path) ? 'page' : undefined"
                 :class="[
                   'menu-item group',
                   {
@@ -58,11 +59,7 @@
                 <!-- 统一图标盒：所有图标固定 20px 居中，保证文字左缘对齐 -->
                 <span
                   class="flex h-5 w-5 shrink-0 items-center justify-center [&>svg]:h-5 [&>svg]:w-5 [&>svg]:max-w-none"
-                  :class="
-                    isActive(item.path)
-                      ? 'menu-item-icon-active'
-                      : 'menu-item-icon-inactive'
-                  "
+                  :class="isActive(item.path) ? 'menu-item-icon-active' : 'menu-item-icon-inactive'"
                 >
                   <component :is="item.icon" />
                 </span>
@@ -78,11 +75,11 @@
       </div>
     </nav>
 
-    <!-- 底部：后端服务状态（真实健康检查数据，30s 刷新） -->
+    <!-- 底部：本地服务状态（真实健康检查数据，30s 刷新） -->
     <div class="pb-5 pt-2">
       <div
         v-if="isExpanded || isHovered || isMobileOpen"
-        class="rounded-2xl border border-gray-200 bg-gray-50 px-3.5 py-3 dark:border-gray-800 dark:bg-white/[0.03]"
+        class="rounded-xl border border-gray-100 bg-gray-50 px-3.5 py-3 dark:border-gray-800 dark:bg-white/[0.03]"
       >
         <div class="flex items-center gap-2">
           <span class="relative flex h-2 w-2 shrink-0">
@@ -102,24 +99,20 @@
             ></span>
           </span>
           <p class="truncate text-xs font-medium text-gray-700 dark:text-gray-300">
-            后端服务{{ statusLabel }}
+            本地服务{{ statusLabel }}
           </p>
         </div>
         <p class="mt-1 truncate text-[11px] text-gray-400 dark:text-gray-500">
-          Java 后端 · 127.0.0.1:8080
+          {{ status === 'up' ? '资料保存在本机' : '正在检查服务连接' }}
         </p>
       </div>
       <div v-else class="flex justify-center py-1">
         <span
           class="h-2 w-2 rounded-full"
           :class="
-            status === 'up'
-              ? 'bg-success-500'
-              : status === 'down'
-                ? 'bg-error-500'
-                : 'bg-gray-400'
+            status === 'up' ? 'bg-success-500' : status === 'down' ? 'bg-error-500' : 'bg-gray-400'
           "
-          :title="`后端服务${statusLabel}`"
+          :title="`本地服务${statusLabel}`"
         ></span>
       </div>
     </div>
@@ -145,7 +138,7 @@ import {
 
 const route = useRoute()
 
-const { isExpanded, isMobileOpen, isHovered } = useSidebar()
+const { isExpanded, isMobileOpen, isHovered, toggleMobileSidebar } = useSidebar()
 const { status, start } = useBackendStatus()
 
 onMounted(() => {
@@ -178,7 +171,7 @@ const menuGroups: MenuGroup[] = [
     items: [
       { icon: DocsIcon, name: '知识库', path: '/library' },
       { icon: TaskIcon, name: '处理中心', path: '/processing' },
-      { icon: CheckIcon, name: '审核中心', path: '/review' },
+      { icon: CheckIcon, name: 'AI 复审', path: '/review' },
     ],
   },
   {

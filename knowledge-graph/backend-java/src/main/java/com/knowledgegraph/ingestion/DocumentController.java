@@ -40,9 +40,6 @@ public class DocumentController {
     public ApiResponse<DocumentService.DocumentView> upload(
             @RequestParam(required = false) MultipartFile file,
             @RequestParam(required = false) Long libraryId) {
-        if (libraryId == null) {
-            throw new ApiException(400, ErrorCodes.INVALID_ARGUMENT, "请选择导入的知识库");
-        }
         return ApiResponse.ok(documentService.upload(libraryId, file));
     }
 
@@ -93,7 +90,7 @@ public class DocumentController {
         Long active = jdbc.sql("""
                         SELECT COUNT(*) FROM ingestion_jobs
                         WHERE document_id = :id AND status IN
-                              ('VALIDATING','PARSING','OCR_RUNNING','CHUNKING','AI_EXTRACTING','IMPORTING')
+                              ('VALIDATING','PARSING','OCR_RUNNING','CHUNKING','AI_EXTRACTING','AI_REVIEWING','IMPORTING')
                         """)
                 .param("id", id).query(Long.class).single();
         if (active != null && active > 0) {

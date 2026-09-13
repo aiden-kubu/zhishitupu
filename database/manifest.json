@@ -1,0 +1,39 @@
+{
+  "created_at": "2026-09-13T15:57:10.575692",
+  "tables": {
+    "auto_document_imports": 1,
+    "bootstrap_flags": 1,
+    "chat_messages": 10,
+    "chat_sessions": 4,
+    "document_chunks": 401,
+    "document_topic_assignments": 618,
+    "document_units": 216,
+    "documents": 1,
+    "edge_evidence": 998,
+    "entity_candidates": 652,
+    "ingestion_jobs": 1,
+    "knowledge_edges": 844,
+    "knowledge_libraries": 9,
+    "knowledge_nodes": 610,
+    "library_nodes": 612,
+    "llm_profiles": 1,
+    "node_aliases": 830,
+    "node_evidence": 1340,
+    "organization_mutex": 1,
+    "relation_candidates": 903,
+    "system_settings": 0
+  },
+  "files": {
+    "storage/documents/b935c068-39e2-470a-b2ee-eb47c03cd51f.pdf": {
+      "sha256": "2c04be6f0790af9b763fba0b334975028bc523f507a4b72bcb332e607e32c33c",
+      "bytes": 2026604,
+      "original_name": "数据结构与算法（JAVA语言版）.pdf"
+    }
+  },
+  "sanitization": [
+    "Model API keys removed; model profiles disabled.",
+    "Secret settings removed.",
+    "Document paths converted to storage/documents/<stored_name>.",
+    "No MySQL accounts, grants or database passwords included."
+  ]
+}

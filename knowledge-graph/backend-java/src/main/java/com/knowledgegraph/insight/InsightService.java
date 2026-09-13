@@ -22,8 +22,8 @@ public class InsightService {
         long nodeCount = count("SELECT COUNT(*) FROM knowledge_nodes");
         long edgeCount = count("SELECT COUNT(*) FROM knowledge_edges WHERE status = 'active'");
         long documentCount = count("SELECT COUNT(*) FROM documents");
-        long pendingReviewCount = count("SELECT COUNT(*) FROM entity_candidates WHERE review_status = 'PENDING'")
-                + count("SELECT COUNT(*) FROM relation_candidates WHERE review_status = 'PENDING'");
+        // Candidate history may outlive a deleted job; only resumable, existing document tasks count.
+        long pendingReviewCount = pendingCount("entity_candidates") + pendingCount("relation_candidates");
 
         List<InsightSummary.TypeCount> distribution = jdbc.sql(
                         "SELECT node_type AS type, COUNT(*) AS cnt FROM knowledge_nodes GROUP BY node_type ORDER BY cnt DESC, type")
@@ -65,5 +65,15 @@ public class InsightService {
     private long count(String sql) {
         Long result = jdbc.sql(sql).query((rs, i) -> rs.getLong(1)).single();
         return result == null ? 0 : result;
+    }
+
+    private long pendingCount(String table) {
+        return count("""
+                SELECT COUNT(*) FROM %s c
+                JOIN ingestion_jobs j ON j.id = c.job_id
+                JOIN documents d ON d.id = j.document_id
+                WHERE c.review_status = 'PENDING'
+                  AND j.status IN ('AWAITING_REVIEW', 'AI_REVIEWING', 'FAILED', 'CANCELLED')
+                """.formatted(table));
     }
 }

@@ -21,9 +21,16 @@ import java.util.Map;
 public class ReviewController {
 
     private final ReviewService reviewService;
+    private final AiReviewService aiReview;
 
-    public ReviewController(ReviewService reviewService) {
+    public ReviewController(ReviewService reviewService, AiReviewService aiReview) {
         this.reviewService = reviewService;
+        this.aiReview = aiReview;
+    }
+
+    @GetMapping("/jobs/{jobId}/ai-decisions")
+    public ApiResponse<List<AiReviewService.Audit>> decisions(@PathVariable long jobId) {
+        return ApiResponse.ok(aiReview.audits(jobId));
     }
 
     @GetMapping("/jobs/{jobId}/entities")
@@ -39,23 +46,23 @@ public class ReviewController {
     @PutMapping("/entities/{id}")
     public ApiResponse<ReviewService.EntityCandidateView> updateEntity(
             @PathVariable long id, @RequestBody ReviewService.UpdateEntityRequest request) {
-        return ApiResponse.ok(reviewService.updateEntity(id, request));
+        throw com.knowledgegraph.common.ApiException.conflict("已改为 AI 复审并自动入库，请在处理中心查看或重试任务");
     }
 
     @PutMapping("/relations/{id}")
     public ApiResponse<ReviewService.RelationCandidateView> updateRelation(
             @PathVariable long id, @RequestBody ReviewService.UpdateRelationRequest request) {
-        return ApiResponse.ok(reviewService.updateRelation(id, request));
+        throw com.knowledgegraph.common.ApiException.conflict("已改为 AI 复审并自动入库，请在处理中心查看或重试任务");
     }
 
     @PostMapping("/jobs/{jobId}/bulk-action")
     public ApiResponse<Map<String, Object>> bulkAction(
             @PathVariable long jobId, @RequestBody ReviewService.BulkActionRequest request) {
-        return ApiResponse.ok(reviewService.bulkAction(jobId, request));
+        throw com.knowledgegraph.common.ApiException.conflict("已改为 AI 复审并自动入库，请在处理中心查看或重试任务");
     }
 
     @PostMapping("/jobs/{jobId}/commit")
     public ApiResponse<ReviewService.CommitResult> commit(@PathVariable long jobId) {
-        return ApiResponse.ok(reviewService.commit(jobId));
+        throw com.knowledgegraph.common.ApiException.conflict("已改为 AI 复审并自动入库，请在处理中心查看或重试任务");
     }
 }

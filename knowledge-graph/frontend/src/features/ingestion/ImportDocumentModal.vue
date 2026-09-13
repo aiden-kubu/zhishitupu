@@ -2,14 +2,14 @@
   <Modal v-if="isOpen" full-screen-backdrop @close="close">
     <template #body>
       <div
-        class="relative m-4 w-full max-w-[620px] overflow-y-auto rounded-3xl bg-white p-5 lg:p-8 dark:bg-gray-900"
+        class="relative m-4 w-full max-w-[600px] overflow-y-auto rounded-2xl bg-white p-5 lg:p-8 dark:bg-gray-900"
       >
         <!-- header -->
         <div class="mb-6 flex items-start justify-between">
           <div>
-            <h3 class="text-title-md font-semibold text-gray-800 dark:text-white/90">导入资料</h3>
+            <h3 class="text-xl font-semibold text-gray-800 dark:text-white/90">导入资料</h3>
             <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">
-              上传后自动解析、分段，AI 抽取的候选内容经人工审核后才会入库
+              选择资料即可开始，AI 会识别内容、自动命名并按主题整理。
             </p>
           </div>
           <button
@@ -17,7 +17,13 @@
             aria-label="关闭"
             @click="close"
           >
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
               <path
                 fill-rule="evenodd"
                 clip-rule="evenodd"
@@ -28,43 +34,53 @@
           </button>
         </div>
 
-        <!-- §8.1 支持范围 -->
         <div
-          class="mb-6 rounded-xl border border-blue-light-200 bg-blue-light-50 p-4 text-sm dark:border-blue-light-500/20 dark:bg-blue-light-500/10"
+          class="mb-6 flex items-center justify-between rounded-lg bg-gray-50 px-4 py-3 text-xs font-medium text-gray-500 dark:bg-gray-800 dark:text-gray-400"
         >
-          <p class="font-medium text-blue-light-700 dark:text-blue-light-300">支持的资料格式</p>
-          <ul class="mt-2 space-y-1 text-gray-600 dark:text-gray-300">
-            <li>· PDF（.pdf）：按页提取文本，扫描页进入 OCR</li>
-            <li>· PowerPoint（.ppt / .pptx）：按幻灯片提取文字、备注与图片</li>
-            <li>· 书本照片压缩包（.zip）：仅含 JPG/JPEG/PNG/WebP，按文件名自然排序</li>
-            <li class="text-gray-500 dark:text-gray-400">
-              限制：单文件 ≤ 200MB；ZIP 内 ≤ 500 张图片，解压后 ≤ 1GB；暂不支持 RAR/7z/加密压缩包
-            </li>
-          </ul>
+          <span>01 上传资料</span><ChevronRightIcon class="h-3.5 w-3.5 rtl:rotate-180" /><span
+            >02 AI 整理</span
+          ><ChevronRightIcon class="h-3.5 w-3.5 rtl:rotate-180" /><span>03 自动入库</span>
         </div>
-
         <div class="space-y-5">
-          <div>
-            <label class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400">
-              导入到知识库 <span class="text-error-500">*</span>
-            </label>
-            <SelectInput
-              v-model="libraryId"
-              :options="libraryOptions"
-              placeholder="请选择知识库"
-              :disabled="loadingLibraries"
-            />
-          </div>
-
           <FileInput
             v-model="file"
             label="资料文件"
             accept=".pdf,.ppt,.pptx,.zip"
-            hint="上传前会进行安全校验与 SHA-256 去重；重复文件将提示复用已有资料"
+            hint="支持 PDF、PowerPoint 和照片 ZIP。重复资料会自动提示，无需重复上传。"
+            :disabled="submitting"
             :error="fileError"
           />
+          <div>
+            <label class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400">
+              知识整理方式
+            </label>
+            <SelectInput
+              v-model="libraryId"
+              :options="libraryOptions"
+              placeholder="AI 自动整理（推荐）"
+              :disabled="submitting"
+            />
+            <p class="mt-2 text-xs text-gray-500 dark:text-gray-400">
+              无需提前建库或起名；识别完成后可在「AI 复审」查看分类，在知识库中修改名称。
+            </p>
+          </div>
         </div>
 
+        <details
+          class="mt-5 rounded-xl border border-gray-200 px-4 py-3 text-xs leading-5 text-gray-500 dark:border-gray-800 dark:text-gray-400"
+        >
+          <summary class="cursor-pointer font-medium text-gray-600 dark:text-gray-300">
+            文件要求与识别说明
+          </summary>
+          <ul class="mt-3 space-y-2">
+            <li>PDF：支持文字与扫描页；PPT / PPTX：识别文字与备注。</li>
+            <li>照片 ZIP：仅放入 JPG、PNG 或 WebP 图片，按文件名排序。</li>
+            <li>
+              单文件最大 200MB；ZIP 最多 500 张图片，解压后不超过 1GB。不支持 RAR、7z 或加密压缩包。
+            </li>
+            <li>扫描页与照片需要支持图片识别的模型。</li>
+          </ul>
+        </details>
         <Alert
           v-if="errorMessage"
           variant="error"
@@ -74,10 +90,12 @@
         />
 
         <!-- footer -->
-        <div class="mt-8 flex items-center justify-end gap-3">
+        <div
+          class="mt-6 flex items-center justify-end gap-3 border-t border-gray-100 pt-5 dark:border-gray-800"
+        >
           <Button variant="outline" @click="close">取消</Button>
           <Button :disabled="!canSubmit || submitting" @click="submit">
-            {{ submitting ? '上传中…' : '开始上传' }}
+            {{ submitting ? '上传中…' : '上传并识别' }}
           </Button>
         </div>
       </div>
@@ -87,6 +105,7 @@
 
 <script setup lang="ts">
 import { computed, ref, watch } from 'vue'
+import { ChevronRightIcon } from '@/icons'
 import { useRouter } from 'vue-router'
 import Modal from '@/components/ui/Modal.vue'
 import Button from '@/components/ui/Button.vue'
@@ -111,16 +130,26 @@ const fileError = ref<string | null>(null)
 const errorMessage = ref<string | null>(null)
 const submitting = ref(false)
 
-const libraryOptions = computed<SelectOption[]>(() =>
-  libraries.value.map((library) => ({ value: String(library.id), label: library.name })),
-)
+const libraryOptions = computed<SelectOption[]>(() => [
+  { value: '', label: 'AI 自动整理（推荐）' },
+  ...libraries.value
+    .filter((library) => library.status === 'active')
+    .map((library) => ({ value: String(library.id), label: `指定知识库：${library.name}` })),
+])
 
-const canSubmit = computed(() => Boolean(libraryId.value && file.value))
+const canSubmit = computed(() => Boolean(file.value) && !fileError.value)
+
+watch(file, (selected) => {
+  errorMessage.value = null
+  if (selected) validateFile()
+  else fileError.value = null
+})
 
 watch(isOpen, (open) => {
   if (open) {
     errorMessage.value = null
     fileError.value = null
+    if (file.value) validateFile()
     void loadLibraries()
   }
 })
@@ -129,12 +158,8 @@ async function loadLibraries() {
   loadingLibraries.value = true
   try {
     libraries.value = await libraryApi.list()
-    if (!libraryId.value && libraries.value.length > 0) {
-      libraryId.value = String(libraries.value[0].id)
-    }
   } catch (error) {
-    errorMessage.value =
-      error instanceof ApiError ? error.message : '知识库列表加载失败，请确认后端服务已启动'
+    libraries.value = [] // 自动识别不依赖已有知识库列表
   } finally {
     loadingLibraries.value = false
   }
@@ -164,9 +189,13 @@ async function submit() {
   submitting.value = true
   errorMessage.value = null
   try {
-    const document = await ingestionApi.upload(Number(libraryId.value), file.value)
+    const document = await ingestionApi.upload(
+      libraryId.value ? Number(libraryId.value) : null,
+      file.value,
+    )
     // 上传成功后立即触发解析流水线（§12.4），进度在处理中心轮询
     await ingestionApi.startProcess(document.id)
+    file.value = null
     close()
     void router.push('/processing')
   } catch (error) {

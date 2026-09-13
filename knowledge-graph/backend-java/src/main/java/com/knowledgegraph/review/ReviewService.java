@@ -247,7 +247,7 @@ public class ReviewService {
                     "任务当前状态为 " + stage + "，仅「等待审核」任务可以确认入库");
         }
         // 2. IMPORTING（96）
-        jdbc.sql("UPDATE ingestion_jobs SET stage = 'IMPORTING', status = 'IMPORTING', progress = 96 WHERE id = :id")
+        jdbc.sql("UPDATE ingestion_jobs SET stage = 'IMPORTING', status = 'IMPORTING', progress = 99 WHERE id = :id")
                 .param("id", jobId).update();
 
         long documentId = jdbc.sql("SELECT document_id FROM ingestion_jobs WHERE id = :id")
@@ -292,10 +292,13 @@ public class ReviewService {
             nodeIdByTempKey.put(entity.tempKey(), resolution.nodeId());
             if (resolution.created()) {
                 createdNodes++;
-                insertLibraryNode(libraryId, resolution.nodeId());
             } else {
                 mergedNodes++;
             }
+            List<Long> targets = jdbc.sql("SELECT library_id FROM document_topic_assignments WHERE document_id = :d AND temp_key = :k")
+                    .param("d", documentId).param("k", entity.tempKey()).query(Long.class).list();
+            if (targets.isEmpty()) targets = List.of(libraryId);
+            for (long target : targets) insertLibraryNode(target, resolution.nodeId());
             List<String> aliasesToInsert = new ArrayList<>(effective.aliases());
             if (effective.nameEn() != null && !effective.nameEn().isBlank()) {
                 aliasesToInsert.add(effective.nameEn());
@@ -445,7 +448,7 @@ public class ReviewService {
                               UNION ALL
                               (SELECT id FROM knowledge_nodes WHERE name_en IS NOT NULL AND LOWER(TRIM(name_en)) = :v ORDER BY id LIMIT 1)
                               UNION ALL
-                              (SELECT id FROM node_aliases WHERE normalized_alias = :v ORDER BY node_id, id LIMIT 1)
+                              (SELECT node_id AS id FROM node_aliases WHERE normalized_alias = :v ORDER BY node_id, id LIMIT 1)
                             ) hits LIMIT 1
                             """)
                     .param("v", key)

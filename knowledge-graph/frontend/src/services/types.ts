@@ -261,7 +261,8 @@ export const JOB_STATUS_LABELS: Record<string, string> = {
   OCR_RUNNING: 'OCR 识别中',
   CHUNKING: '分段中',
   AI_EXTRACTING: 'AI 抽取中',
-  AWAITING_REVIEW: '待审核',
+  AWAITING_REVIEW: '等待 AI 复审',
+  AI_REVIEWING: 'AI 复审中',
   IMPORTING: '入库中',
   COMPLETED: '已完成',
   FAILED: '失败',
@@ -275,6 +276,7 @@ export const JOB_ACTIVE_STATUSES = [
   'OCR_RUNNING',
   'CHUNKING',
   'AI_EXTRACTING',
+  'AI_REVIEWING',
   'IMPORTING',
 ]
 

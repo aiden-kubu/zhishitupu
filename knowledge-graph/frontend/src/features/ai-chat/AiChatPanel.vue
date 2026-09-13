@@ -20,7 +20,7 @@
           新对话
         </button>
         <button
-          class="flex h-8 w-8 items-center justify-center rounded-lg text-gray-400 hover:bg-gray-100 dark:hover:bg-white/[0.05] max-lg:hidden"
+          class="flex h-8 w-8 items-center justify-center rounded-lg text-gray-400 hover:bg-gray-100 dark:hover:bg-white/[0.05]"
           aria-label="折叠面板"
           @click="emit('collapse')"
         >
@@ -43,7 +43,7 @@
       <NodeContextCard :node="node" @open-detail="emit('open-detail')" />
 
       <!-- 快捷提问 -->
-      <div class="flex flex-wrap gap-1.5">
+      <div v-if="node" class="flex flex-wrap gap-1.5">
         <button
           v-for="question in quickQuestions"
           :key="question"
@@ -62,7 +62,7 @@
           v-if="!node"
           class="mt-8 text-center text-sm text-gray-400 dark:text-gray-500"
         >
-          请先选择一个知识节点（§7.2：未选择节点时输入不可用）
+          请先选择一个知识节点
         </p>
         <template v-else>
           <p
@@ -75,7 +75,7 @@
             v-else-if="messages.length === 0 && !chat.isLoading(node.id)"
             class="mt-8 text-center text-xs leading-6 text-gray-400 dark:text-gray-500"
           >
-            AI 回答默认只依据知识库证据（§7.3）。<br />
+            AI 回答默认只依据知识库证据。<br />
             证据不足时会明确提示，不会编造答案。
           </p>
           <ChatMessage
@@ -186,6 +186,6 @@ async function sendQuestion(preset?: string) {
 }
 
 function onLocateCitation(citation: ChatCitationDto) {
-  citationNotice.value = `「${citation.documentName} · 引用 ${citation.index}」的原文预览将在阶段 D（文档解析）与阶段 F（问答引用定位）交付后可用。`
+  citationNotice.value = `「${citation.documentName} · 引用 ${citation.index}」可根据来源资料名称与页码查阅原文。`
 }
 </script>

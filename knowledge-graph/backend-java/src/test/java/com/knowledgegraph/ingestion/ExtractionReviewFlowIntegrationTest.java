@@ -57,6 +57,9 @@ class ExtractionReviewFlowIntegrationTest {
     @MockitoBean
     private LlmProfileService llmProfileService;
 
+    // These tests isolate extraction and the legacy commit contract; AI review has its own flow tests.
+    @MockitoBean private com.knowledgegraph.review.AiReviewService aiReview;
+
     @Autowired
     private ExtractionService extractionService;
 
@@ -71,6 +74,9 @@ class ExtractionReviewFlowIntegrationTest {
 
     @Autowired
     private JdbcClient jdbc;
+
+    @Autowired private DocumentService documentService;
+    @Autowired private com.knowledgegraph.library.LibraryService libraryService;
 
     private String suffix;
     private long libraryId;
@@ -248,6 +254,96 @@ class ExtractionReviewFlowIntegrationTest {
         throw new AssertionError("等待任务状态 " + expected + " 超时");
     }
 
+    @Test
+    void deletingLibraryRemovesExclusiveNodesButRetainsSharedNodes() {
+        long other = insertAndGet("INSERT INTO knowledge_libraries(name,type,status) VALUES (:name,'topic','active')",
+                Map.of("name", "共享测试" + suffix), "id");
+        createdLibraryIds.add(other);
+        long exclusive = insertExistingNode("独有" + suffix, "exclusive" + suffix);
+        long shared = insertExistingNode("共享" + suffix, "shared" + suffix);
+        jdbc.sql("INSERT INTO library_nodes(library_id,node_id) VALUES (:lib,:only),(:lib,:shared),(:other,:shared)")
+                .param("lib", libraryId).param("only", exclusive).param("shared", shared).param("other", other).update();
+        libraryService.delete(libraryId);
+        assertEquals(0L, jdbc.sql("SELECT COUNT(*) FROM knowledge_nodes WHERE id=:id").param("id", exclusive).query(Long.class).single());
+        assertEquals(1L, jdbc.sql("SELECT COUNT(*) FROM knowledge_nodes WHERE id=:id").param("id", shared).query(Long.class).single());
+        assertEquals(1L, count("library_nodes", "node_id", shared));
+    }
+
+    @Test
+    void uploadWithoutLibraryValidatesAndDeduplicatesWithoutOrphanLibraries() throws Exception {
+        long before = jdbc.sql("SELECT COUNT(*) FROM knowledge_libraries").query(Long.class).single();
+        var invalid = new org.springframework.mock.web.MockMultipartFile("file", "invalid.pdf", "application/pdf", "bad content".getBytes());
+        assertThrows(ApiException.class, () -> documentService.upload(null, invalid));
+        assertEquals(before, jdbc.sql("SELECT COUNT(*) FROM knowledge_libraries").query(Long.class).single());
+        byte[] pdf;
+        try (var doc = new org.apache.pdfbox.pdmodel.PDDocument(); var out = new java.io.ByteArrayOutputStream()) {
+            doc.addPage(new org.apache.pdfbox.pdmodel.PDPage());
+            doc.getDocumentInformation().setTitle(suffix);
+            doc.save(out); pdf = out.toByteArray();
+        }
+        var file = new org.springframework.mock.web.MockMultipartFile("file", "auto.pdf", "application/pdf", pdf);
+        var uploaded = documentService.upload(null, file);
+        createdLibraryIds.add(uploaded.libraryId());
+        try {
+            assertEquals(1L, count("auto_document_imports", "document_id", uploaded.id()));
+            assertTrue(uploaded.libraryName().startsWith("待 AI 识别"));
+            assertThrows(ApiException.class, () -> documentService.upload(null, file));
+            assertEquals(before + 1, jdbc.sql("SELECT COUNT(*) FROM knowledge_libraries").query(Long.class).single());
+        } finally { documentService.delete(uploaded.id()); }
+    }
+
+    @Test
+    void automaticOrganizationSplitsReusesAndCommitsWithEvidence() {
+        jdbc.sql("INSERT INTO auto_document_imports(document_id, sha256) VALUES (:id, :sha)")
+                .param("id", documentId).param("sha", "auto-" + suffix).update();
+        answerFn.set(messages -> messages.get(0).content().contains("主题整理器")
+                ? """
+                  {"groups":[
+                    {"existingLibraryId":%d,"name":"已有资料库","description":"复用","entityKeys":["entity_1"]},
+                    {"existingLibraryId":null,"name":"自动新主题%s","description":"分库","entityKeys":["entity_2"]}
+                  ]}
+                  """.formatted(libraryId, suffix)
+                : autoAnswer(messages.get(1).content()));
+        extractionService.runExtraction(jobId);
+        assertEquals("AWAITING_REVIEW", job().status());
+        long secondLibrary = jdbc.sql("SELECT library_id FROM document_topic_assignments WHERE document_id = :d AND temp_key = 'entity_2'")
+                .param("d", documentId).query(Long.class).single();
+        createdLibraryIds.add(secondLibrary);
+        assertNotEquals(libraryId, secondLibrary);
+        // 恢复重跑复用已经创建的同名主题库。
+        extractionService.runExtraction(jobId);
+        assertEquals(2L, count("document_topic_assignments", "document_id", documentId));
+        assertEquals(secondLibrary, jdbc.sql("SELECT library_id FROM document_topic_assignments WHERE document_id = :d AND temp_key = 'entity_2'")
+                .param("d", documentId).query(Long.class).single());
+        jdbc.sql("UPDATE entity_candidates SET review_status = 'ACCEPTED' WHERE job_id = :id").param("id", jobId).update();
+        jdbc.sql("UPDATE relation_candidates SET review_status = 'ACCEPTED' WHERE job_id = :id").param("id", jobId).update();
+        reviewService.commit(jobId);
+        List<Long> nodes = jdbc.sql("SELECT node_id FROM library_nodes WHERE library_id IN (:a, :b)")
+                .param("a", libraryId).param("b", secondLibrary).query(Long.class).list();
+        createdNodeIds.addAll(nodes);
+        assertEquals(2, nodes.size());
+        assertEquals(1L, count("library_nodes", "library_id", secondLibrary));
+        assertTrue(jdbc.sql("SELECT COUNT(*) FROM node_evidence WHERE node_id IN (:ids)")
+                .param("ids", nodes).query(Long.class).single() > 0);
+        libraryService.delete(libraryId);
+        assertEquals(secondLibrary, documentService.get(documentId).libraryId());
+        assertEquals(1L, libraryService.getById(secondLibrary).documentCount());
+    }
+
+    @Test
+    void invalidOrganizationLeavesNoCandidatesOrNewLibraries() {
+        jdbc.sql("INSERT INTO auto_document_imports(document_id, sha256) VALUES (:id, :sha)")
+                .param("id", documentId).param("sha", "invalid-" + suffix).update();
+        long before = jdbc.sql("SELECT COUNT(*) FROM knowledge_libraries").query(Long.class).single();
+        answerFn.set(messages -> messages.get(0).content().contains("主题整理器")
+                ? "{\"groups\":[{\"name\":\"伪主题\",\"entityKeys\":[\"fake\"]}]}"
+                : autoAnswer(messages.get(1).content()));
+        assertThrows(ApiException.class, () -> extractionService.runExtraction(jobId));
+        assertEquals(0L, count("entity_candidates", "job_id", jobId));
+        assertEquals(0L, count("document_topic_assignments", "document_id", documentId));
+        assertEquals(before, jdbc.sql("SELECT COUNT(*) FROM knowledge_libraries").query(Long.class).single());
+    }
+
     // ---------------------------------------------------------------- 测试
 
     /** §十.1/2/3：分段完成后进入 AI 抽取并停在 AWAITING_REVIEW，不再直接 COMPLETED；候选带真实证据。 */
@@ -359,7 +455,7 @@ class ExtractionReviewFlowIntegrationTest {
                            "relationType":"同属线性表","confidence":0.7,"evidenceChunkIds":[%d]}]}
                         """.formatted(suffix, first, suffix, ids.get(ids.size() - 1), first);
                 default -> """
-                        {"entities":[{"tempKey":"entity_11","name":"树%s","aliases":[],
+                        {"entities":[{"tempKey":"entity_1","name":"树%s","aliases":[],
                           "nodeType":"concept","definition":"分层结构。","confidence":0.6,"evidenceChunkIds":[%d]}],
                          "relations":[]}
                         """.formatted(suffix, first);
@@ -369,6 +465,7 @@ class ExtractionReviewFlowIntegrationTest {
         assertEquals("AWAITING_REVIEW", job().status(), () -> "job error: " + job().errorMessage());
         // entity_9（Stack 别名）与 entity_1（栈+Stack 别名）合并 → 只剩 栈/队列/树 三个实体
         assertEquals(3, count("entity_candidates", "job_id", jobId));
+        assertEquals(3L, jdbc.sql("SELECT COUNT(DISTINCT temp_key) FROM entity_candidates WHERE job_id = :id").param("id", jobId).query(Long.class).single());
         List<ReviewService.EntityCandidateView> entities = reviewService.listEntities(jobId);
         ReviewService.EntityCandidateView stack = entities.stream()
                 .filter(e -> ("栈" + suffix).equals(e.name())).findFirst().orElseThrow();

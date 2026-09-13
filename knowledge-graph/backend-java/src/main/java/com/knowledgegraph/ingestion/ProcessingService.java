@@ -27,7 +27,7 @@ public class ProcessingService {
 
     /** 合法的取消/重试判断依据：仍处于活动阶段。 */
     private static final Set<String> ACTIVE_STATUSES = Set.of(
-            "UPLOADED", "VALIDATING", "PARSING", "OCR_RUNNING", "CHUNKING", "AI_EXTRACTING", "IMPORTING");
+            "UPLOADED", "VALIDATING", "PARSING", "OCR_RUNNING", "CHUNKING", "AI_EXTRACTING", "AI_REVIEWING", "IMPORTING");
 
     private final JdbcClient jdbc;
     private final IngestionPipeline pipeline;
@@ -118,6 +118,7 @@ public class ProcessingService {
     /** 取消：标记 CANCELLED，流水线在单元间检查标记后收尾。 */
     @Transactional
     public IngestionJobRow cancel(long id) {
+        jdbc.sql("SELECT id FROM ingestion_jobs WHERE id=:id FOR UPDATE").param("id", id).query(Long.class).optional();
         IngestionJobRow job = get(id);
         if (!ACTIVE_STATUSES.contains(job.status())) {
             throw new ApiException(409, ErrorCodes.CONFLICT, "任务已结束，无法取消");

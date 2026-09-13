@@ -1,42 +1,62 @@
 <template>
   <AdminLayout>
-    <PageBreadcrumb page-title="知识库" />
+    <PageBreadcrumb page-title="知识库" description="让资料按主题有序归集，随时回到知识本身。">
+      <template #actions>
+        <Button size="sm" variant="outline" :start-icon="PlusIcon" @click="openCreate">手动建库</Button>
+      </template>
+    </PageBreadcrumb>
 
-    <!-- 顶部统计（§9.1） -->
-    <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
+    <div class="grid grid-cols-2 overflow-hidden rounded-xl border border-gray-200 bg-white sm:grid-cols-4 dark:border-gray-800 dark:bg-gray-900">
       <div
-        v-for="stat in statCards"
+        v-for="(stat, index) in statCards"
         :key="stat.label"
-        class="rounded-2xl border border-gray-200 bg-white px-5 py-4 dark:border-gray-800 dark:bg-white/[0.03]"
+        class="flex items-center gap-3 px-4 py-4 sm:px-5"
+        :class="[
+          index > 1 ? 'border-t border-gray-100 sm:border-t-0 dark:border-gray-800' : '',
+          index % 2 === 1 ? 'border-s border-gray-100 dark:border-gray-800' : '',
+          index === 2 ? 'sm:border-s sm:border-gray-100 sm:dark:border-gray-800' : '',
+        ]"
       >
-        <p class="text-sm text-gray-500 dark:text-gray-400">{{ stat.label }}</p>
-        <p class="mt-1 text-title-lg font-bold text-gray-800 dark:text-white/90">
-          {{ stat.value }}
-        </p>
+        <span class="flex size-9 shrink-0 items-center justify-center rounded-lg bg-gray-50 text-gray-500 dark:bg-gray-800 dark:text-gray-400">
+          <component :is="stat.icon" class="size-5" aria-hidden="true" />
+        </span>
+        <div>
+          <p class="text-xs text-gray-500 dark:text-gray-400">{{ stat.label }}</p>
+          <p class="mt-0.5 text-xl font-semibold tabular-nums text-gray-800 dark:text-white/90">{{ loading ? '—' : stat.value }}</p>
+        </div>
       </div>
     </div>
 
-    <!-- 工具行 -->
-    <div class="mt-6 flex flex-wrap items-center justify-between gap-3">
-      <div class="w-56">
-        <SelectInput
-          v-model="typeFilter"
-          :options="[
-            { value: '', label: '全部类型' },
-            { value: 'course', label: '课程' },
-            { value: 'book', label: '书籍' },
-            { value: 'topic', label: '主题' },
-          ]"
-        />
+    <div class="mb-4 mt-7 flex flex-wrap items-center justify-between gap-4">
+      <div>
+        <h2 class="flex items-center gap-2 text-base font-semibold text-gray-800 dark:text-white/90">
+          我的知识库
+          <span class="rounded-md bg-gray-100 px-1.5 py-0.5 text-xs font-medium tabular-nums text-gray-500 dark:bg-gray-800 dark:text-gray-400">{{ filteredLibraries.length }}</span>
+        </h2>
+        <p class="mt-1 text-xs leading-5 text-gray-500 dark:text-gray-400">AI 自动命名、合并同主题资料，你可以随时调整。</p>
       </div>
-      <Button :start-icon="PlusIcon" @click="createOpen = true">新建知识库</Button>
+      <div class="flex max-w-full items-center gap-1 overflow-x-auto rounded-lg border border-gray-200 bg-white p-1 dark:border-gray-800 dark:bg-gray-900" role="group" aria-label="按知识库类型筛选">
+        <button
+          v-for="filter in typeFilters"
+          :key="filter.value"
+          type="button"
+          :aria-pressed="typeFilter === filter.value"
+          class="shrink-0 rounded-md px-3 py-1.5 text-xs font-medium transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500"
+          :class="typeFilter === filter.value ? 'bg-brand-50 text-brand-600 dark:bg-brand-500/15 dark:text-brand-400' : 'text-gray-500 hover:bg-gray-50 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-gray-200'"
+          @click="typeFilter = filter.value"
+        >{{ filter.label }}</button>
+      </div>
     </div>
 
-    <!-- 加载/错误/空态 -->
-    <div v-if="loading" class="mt-6 rounded-2xl border border-gray-200 p-10 text-center dark:border-gray-800">
-      <p class="text-sm text-gray-500 dark:text-gray-400">知识库加载中…</p>
+    <div v-if="loading" class="grid gap-4 lg:grid-cols-2" role="status" aria-label="知识库加载中">
+      <div v-for="item in 4" :key="item" class="animate-pulse rounded-xl border border-gray-200 bg-white p-5 dark:border-gray-800 dark:bg-gray-900">
+        <div class="h-9 w-2/3 rounded-lg bg-gray-100 dark:bg-gray-800"></div>
+        <div class="mt-5 h-3 w-full rounded bg-gray-100 dark:bg-gray-800"></div>
+        <div class="mt-2 h-3 w-4/5 rounded bg-gray-100 dark:bg-gray-800"></div>
+        <div class="mt-6 h-8 w-full rounded bg-gray-50 dark:bg-gray-800"></div>
+      </div>
     </div>
-    <div v-else-if="error" class="mt-6">
+    <div v-else-if="error">
       <Alert variant="error" title="加载失败" :message="error" />
       <div class="mt-3">
         <Button size="sm" variant="outline" @click="loadAll">重试</Button>
@@ -44,83 +64,117 @@
     </div>
     <div
       v-else-if="filteredLibraries.length === 0"
-      class="mt-6 rounded-2xl border border-gray-200 p-10 text-center dark:border-gray-800"
+      class="rounded-xl border border-dashed border-gray-300 bg-white px-5 py-14 text-center dark:border-gray-700 dark:bg-gray-900"
     >
-      <p class="text-sm font-medium text-gray-700 dark:text-gray-300">还没有知识库</p>
-      <p class="mt-1 text-xs text-gray-400">新建知识库后即可导入 PDF / PPT / 书本照片资料</p>
-      <Button class="mt-4" size="sm" :start-icon="PlusIcon" @click="createOpen = true">新建知识库</Button>
+      <span class="mx-auto mb-4 flex size-12 items-center justify-center rounded-xl bg-brand-50 text-brand-500 dark:bg-brand-500/10 dark:text-brand-400"><FolderIcon class="size-6" aria-hidden="true" /></span>
+      <p class="text-base font-medium text-gray-700 dark:text-gray-300">{{ typeFilter ? '没有符合此类型的知识库' : '还没有知识库' }}</p>
+      <p class="mx-auto mt-2 max-w-sm text-sm leading-6 text-gray-500 dark:text-gray-400">{{ typeFilter ? '试试其他类型，或查看已整理的全部知识库。' : '从顶部「导入资料」开始，AI 会识别内容，并自动归入已有主题或创建新知识库。' }}</p>
+      <Button v-if="typeFilter" class="mt-4" size="sm" variant="outline" @click="typeFilter = ''">查看全部知识库</Button>
     </div>
 
     <!-- 知识库列表 -->
-    <div v-else class="mt-4 space-y-4">
-      <div
+    <div v-else class="grid items-start gap-4 lg:grid-cols-2">
+      <article
         v-for="library in filteredLibraries"
         :key="library.id"
-        class="rounded-2xl border border-gray-200 bg-white dark:border-gray-800 dark:bg-white/[0.03]"
+        class="min-w-0 overflow-hidden rounded-xl border bg-white transition-shadow hover:shadow-theme-sm dark:bg-gray-900"
+        :class="expandedLibraryId === library.id ? 'border-brand-300 dark:border-brand-500/40' : 'border-gray-200 dark:border-gray-800'"
       >
-        <div class="flex flex-wrap items-center justify-between gap-3 px-5 py-4">
-          <div class="min-w-0">
-            <div class="flex items-center gap-2">
-              <h3 class="truncate text-base font-semibold text-gray-800 dark:text-white/90">
+        <div class="p-5">
+          <div class="flex items-start gap-3">
+            <span class="flex size-10 shrink-0 items-center justify-center rounded-lg bg-brand-50 text-brand-500 dark:bg-brand-500/10 dark:text-brand-400"><FolderIcon class="size-5" aria-hidden="true" /></span>
+            <div class="min-w-0 flex-1">
+              <h3 class="break-words text-base font-semibold leading-6 text-gray-800 dark:text-white/90">
                 {{ library.name }}
               </h3>
-              <Badge color="info" size="sm">{{ libraryTypeLabel(library.type) }}</Badge>
+              <div class="mt-1 flex flex-wrap items-center gap-2 text-xs text-gray-500 dark:text-gray-400">
+                <span>{{ libraryTypeLabel(library.type) }}知识库</span>
+                <Badge v-if="library.status === 'pending'" color="warning" size="sm">等待 AI 整理</Badge>
+              </div>
             </div>
-            <p class="mt-1 line-clamp-1 text-sm text-gray-500 dark:text-gray-400">
-              {{ library.description || '暂无描述' }}
-            </p>
+            <div class="flex shrink-0 items-center gap-1">
+              <button
+                v-if="library.status !== 'pending'"
+                type="button"
+                class="flex size-8 items-center justify-center rounded-lg text-gray-400 transition hover:bg-gray-100 hover:text-gray-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 dark:text-gray-500 dark:hover:bg-gray-800 dark:hover:text-gray-200"
+                :aria-label="`编辑${library.name}`"
+                title="编辑知识库"
+                @click="editLibrary(library)"
+              ><SettingsIcon class="size-[18px]" aria-hidden="true" /></button>
+              <button
+                type="button"
+                class="flex size-8 items-center justify-center rounded-lg text-gray-400 transition hover:bg-error-50 hover:text-error-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-error-500 dark:text-gray-500 dark:hover:bg-error-500/10 dark:hover:text-error-400"
+                :aria-label="`删除${library.name}`"
+                title="删除知识库"
+                @click="askDelete(library)"
+              ><TrashIcon class="size-[18px]" aria-hidden="true" /></button>
+            </div>
           </div>
-          <div class="flex flex-wrap items-center gap-4 text-sm text-gray-500 dark:text-gray-400">
-            <span>资料 {{ library.documentCount ?? 0 }}</span>
-            <span>节点 {{ library.nodeCount ?? 0 }}</span>
-            <span>关系 {{ library.edgeCount ?? 0 }}</span>
+          <p class="mt-4 line-clamp-2 min-h-10 text-sm leading-5 text-gray-500 dark:text-gray-400">
+            {{ library.description || '暂未添加描述，可在编辑中补充收录范围。' }}
+          </p>
+          <div class="mt-5 flex flex-wrap items-center justify-between gap-3 border-t border-gray-100 pt-4 dark:border-gray-800">
+            <div class="flex flex-wrap items-center gap-3 text-xs text-gray-500 dark:text-gray-400">
+              <span><strong class="font-semibold tabular-nums text-gray-700 dark:text-gray-200">{{ library.documentCount ?? 0 }}</strong> 份资料</span>
+              <span><strong class="font-semibold tabular-nums text-gray-700 dark:text-gray-200">{{ library.nodeCount ?? 0 }}</strong> 个知识点</span>
+              <span><strong class="font-semibold tabular-nums text-gray-700 dark:text-gray-200">{{ library.edgeCount ?? 0 }}</strong> 条关系</span>
+            </div>
             <Button
               size="sm"
               variant="outline"
-              class="!px-3 !py-1.5"
+              class="!bg-brand-50 !text-brand-600 !ring-brand-100 hover:!bg-brand-100 dark:!bg-brand-500/10 dark:!text-brand-400 dark:!ring-brand-500/20"
+              :aria-expanded="expandedLibraryId === library.id"
+              :aria-controls="`library-nodes-${library.id}`"
               @click="toggleNodes(library)"
             >
-              {{ expandedLibraryId === library.id ? '收起节点' : '查看节点' }}
+              {{ expandedLibraryId === library.id ? '收起知识' : '查看知识' }}
+              <ChevronDownIcon class="size-4 transition-transform" :class="expandedLibraryId === library.id ? 'rotate-180' : ''" aria-hidden="true" />
             </Button>
-            <button
-              class="text-sm text-error-500 hover:text-error-600"
-              @click="askDelete(library)"
-            >
-              删除
-            </button>
           </div>
         </div>
 
         <!-- 节点列表（点击跳转图谱工作台并聚焦，§9.1） -->
-        <div v-if="expandedLibraryId === library.id" class="border-t border-gray-100 px-5 py-4 dark:border-gray-800">
-          <p v-if="nodesLoading" class="text-sm text-gray-500">节点加载中…</p>
-          <p v-else-if="libraryNodes.length === 0" class="text-sm text-gray-400">该知识库暂无节点</p>
-          <div v-else class="flex flex-wrap gap-2">
+        <div v-if="expandedLibraryId === library.id" :id="`library-nodes-${library.id}`" class="border-t border-gray-100 bg-gray-50/70 px-5 py-4 dark:border-gray-800 dark:bg-gray-800/30">
+          <p v-if="nodesLoading" class="text-sm text-gray-500 dark:text-gray-400" role="status">正在加载知识点…</p>
+          <div v-else-if="nodesError" role="alert">
+            <p class="text-sm text-error-500 dark:text-error-400">{{ nodesError }}</p>
+            <button type="button" class="mt-2 text-sm font-medium text-brand-600 hover:underline dark:text-brand-400" @click="loadNodes(library)">重新加载</button>
+          </div>
+          <div v-else-if="libraryNodes.length === 0" class="py-2">
+            <p class="text-sm font-medium text-gray-700 dark:text-gray-300">还没有已入库的知识点</p>
+            <p class="mt-1 text-xs leading-5 text-gray-500 dark:text-gray-400">资料完成识别与复审、入库后，即可在这里查看。</p>
+            <router-link to="/processing" class="mt-3 inline-flex text-xs font-medium text-brand-600 hover:underline dark:text-brand-400">查看处理进度 →</router-link>
+          </div>
+          <div v-else>
+            <p class="mb-3 text-xs text-gray-500 dark:text-gray-400">选择知识点，在图谱中探索关联{{ (library.nodeCount ?? 0) > libraryNodes.length ? ` · 当前展示 ${libraryNodes.length} 个` : '' }}</p>
+            <div class="flex max-h-64 flex-wrap gap-2 overflow-y-auto">
             <button
               v-for="node in libraryNodes"
               :key="node.id"
-              class="rounded-full border border-gray-200 px-3 py-1 text-sm text-gray-700 transition hover:border-brand-300 hover:text-brand-500 dark:border-gray-700 dark:text-gray-300 dark:hover:border-brand-500/40"
+              class="rounded-lg border border-gray-200 bg-white px-2.5 py-1.5 text-start text-sm text-gray-700 transition hover:border-brand-300 hover:text-brand-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 dark:hover:border-brand-500/40 dark:hover:text-brand-400"
               @click="gotoNode(node)"
             >
               {{ node.name }}
               <span class="text-xs text-gray-400">· {{ NODE_TYPE_LABELS[node.type] ?? node.type }}</span>
             </button>
+            </div>
           </div>
         </div>
-      </div>
+      </article>
     </div>
 
     <!-- 新建知识库 -->
     <Modal v-if="createOpen" full-screen-backdrop @close="createOpen = false">
       <template #body>
         <div class="relative mx-4 w-full max-w-[480px] rounded-3xl bg-white p-6 dark:bg-gray-900">
-          <h4 class="text-title-md font-semibold text-gray-800 dark:text-white/90">新建知识库</h4>
+          <h4 class="text-xl font-semibold text-gray-800 dark:text-white/90">{{ editingId ? '编辑知识库' : '新建知识库' }}</h4>
+          <p class="mt-2 text-sm leading-6 text-gray-500 dark:text-gray-400">{{ editingId ? '调整名称和描述，让内容更容易找到。' : '按需要创建一个收录主题，也可以直接上传资料让 AI 整理。' }}</p>
           <div class="mt-5 space-y-4">
             <div>
-              <label class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400">
+              <label for="library-name" class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400">
                 名称 <span class="text-error-500">*</span>
               </label>
-              <TextInput v-model="createForm.name" placeholder="如：计算机网络" />
+              <TextInput id="library-name" v-model="createForm.name" placeholder="如：计算机网络" :disabled="submitting" />
             </div>
             <div>
               <label class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400">类型</label>
@@ -134,15 +188,15 @@
               />
             </div>
             <div>
-              <label class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400">描述</label>
-              <TextArea v-model="createForm.description" :rows="3" placeholder="一句话说明该知识库收录的内容" />
+              <label for="library-description" class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400">描述 <span class="font-normal text-gray-400">（选填）</span></label>
+              <TextArea id="library-description" v-model="createForm.description" :rows="3" placeholder="一句话说明该知识库收录的内容" />
             </div>
             <p v-if="formError" class="text-sm text-error-500">{{ formError }}</p>
           </div>
           <div class="mt-6 flex justify-end gap-3">
-            <Button variant="outline" size="sm" @click="createOpen = false">取消</Button>
+            <Button variant="outline" size="sm" :disabled="submitting" @click="createOpen = false">取消</Button>
             <Button size="sm" :disabled="submitting || !createForm.name.trim()" @click="createLibrary">
-              {{ submitting ? '创建中…' : '创建' }}
+              {{ submitting ? '保存中…' : '保存' }}
             </Button>
           </div>
         </div>
@@ -153,19 +207,21 @@
     <Modal v-if="deleteTarget" full-screen-backdrop @close="deleteTarget = null">
       <template #body>
         <div class="relative mx-4 w-full max-w-[460px] rounded-3xl bg-white p-6 dark:bg-gray-900">
-          <h4 class="text-title-md font-semibold text-gray-800 dark:text-white/90">
+          <span class="mb-4 flex size-11 items-center justify-center rounded-xl bg-error-50 text-error-500 dark:bg-error-500/10 dark:text-error-400"><TrashIcon class="size-5" aria-hidden="true" /></span>
+          <h4 class="break-words text-xl font-semibold leading-7 text-gray-800 dark:text-white/90">
             确认删除「{{ deleteTarget.name }}」
           </h4>
           <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">
             此操作将影响：
           </p>
           <ul class="mt-2 space-y-1 text-sm text-gray-600 dark:text-gray-300">
-            <li>· 资料 {{ deleteTarget.documentCount ?? 0 }} 份（含已解析产物）</li>
-            <li>· 知识库与节点的关联 {{ deleteTarget.nodeCount ?? 0 }} 条（节点本身保留）</li>
+            <li>· 关联资料 {{ deleteTarget.documentCount ?? 0 }} 份：仅属于本库的资料会删除，共享资料保留</li>
+            <li>· 关联知识点 {{ deleteTarget.nodeCount ?? 0 }} 个：仅属于本库的知识点、相关关系与对话会删除，其他库共享的知识点保留</li>
           </ul>
+          <p v-if="deleteError" class="mt-4 text-sm text-error-500 dark:text-error-400" role="alert">{{ deleteError }}</p>
           <div class="mt-6 flex justify-end gap-3">
-            <Button variant="outline" size="sm" @click="deleteTarget = null">取消</Button>
-            <Button size="sm" class="!bg-error-500 hover:!bg-error-600" @click="removeLibrary">
+            <Button variant="outline" size="sm" :disabled="submitting" @click="deleteTarget = null">取消</Button>
+            <Button size="sm" :disabled="submitting" class="!bg-error-500 hover:!bg-error-600" @click="removeLibrary">
               {{ submitting ? '删除中…' : '确认删除' }}
             </Button>
           </div>
@@ -187,7 +243,7 @@ import Modal from '@/components/ui/Modal.vue'
 import TextInput from '@/components/ui/form/TextInput.vue'
 import TextArea from '@/components/ui/form/TextArea.vue'
 import SelectInput from '@/components/ui/form/SelectInput.vue'
-import { PlusIcon } from '@/icons'
+import { BoxCubeIcon, ChevronDownIcon, DocsIcon, FolderIcon, GridIcon, PlusIcon, SettingsIcon, TrashIcon } from '@/icons'
 import { libraryApi } from '@/services/libraryApi'
 import { insightsApi } from '@/services/insightsApi'
 import { graphApi } from '@/services/graphApi'
@@ -204,14 +260,24 @@ const error = ref<string | null>(null)
 const typeFilter = ref('')
 const submitting = ref(false)
 const formError = ref<string | null>(null)
+const deleteError = ref<string | null>(null)
 
 const createOpen = ref(false)
+const editingId = ref<number | null>(null)
 const createForm = ref({ name: '', type: 'course', description: '' })
 const deleteTarget = ref<LibraryDto | null>(null)
 
 const expandedLibraryId = ref<number | null>(null)
 const libraryNodes = ref<GraphNodeDto[]>([])
 const nodesLoading = ref(false)
+const nodesError = ref<string | null>(null)
+
+const typeFilters = [
+  { value: '', label: '全部' },
+  { value: 'course', label: '课程' },
+  { value: 'book', label: '书籍' },
+  { value: 'topic', label: '主题' },
+]
 
 const filteredLibraries = computed(() =>
   typeFilter.value
@@ -220,10 +286,10 @@ const filteredLibraries = computed(() =>
 )
 
 const statCards = computed(() => [
-  { label: '知识库', value: libraries.value.length },
-  { label: '资料', value: summary.value?.documentCount ?? 0 },
-  { label: '知识节点', value: summary.value?.nodeCount ?? 0 },
-  { label: '知识关系', value: summary.value?.edgeCount ?? 0 },
+  { label: '知识库', value: libraries.value.length, icon: FolderIcon },
+  { label: '源资料', value: summary.value?.documentCount ?? '—', icon: DocsIcon },
+  { label: '已入库知识点', value: summary.value?.nodeCount ?? '—', icon: BoxCubeIcon },
+  { label: '知识关系', value: summary.value?.edgeCount ?? '—', icon: GridIcon },
 ])
 
 function libraryTypeLabel(type: string): string {
@@ -250,21 +316,36 @@ async function loadAll() {
     libraries.value = libraryList
     if (insightSummary) summary.value = insightSummary
   } catch (err) {
-    error.value = err instanceof ApiError ? err.message : '知识库加载失败，请确认 Java 后端已启动'
+    error.value = err instanceof ApiError ? err.message : '暂时无法加载知识库，请稍后重试'
   } finally {
     loading.value = false
   }
 }
 
+function openCreate() {
+  editingId.value = null
+  createForm.value = { name: '', type: 'topic', description: '' }
+  formError.value = null
+  createOpen.value = true
+}
+function editLibrary(library: LibraryDto) {
+  editingId.value = library.id
+  createForm.value = { name: library.name, type: library.type, description: library.description ?? '' }
+  formError.value = null
+  createOpen.value = true
+}
 async function createLibrary() {
+  if (submitting.value || !createForm.value.name.trim()) return
   submitting.value = true
   formError.value = null
   try {
-    await libraryApi.create({
+    const payload = {
       name: createForm.value.name.trim(),
       type: createForm.value.type,
-      description: createForm.value.description.trim() || undefined,
-    })
+      description: createForm.value.description.trim(),
+    }
+    if (editingId.value) await libraryApi.update(editingId.value, payload)
+    else await libraryApi.create(payload)
     createOpen.value = false
     createForm.value = { name: '', type: 'course', description: '' }
     await loadAll()
@@ -276,19 +357,20 @@ async function createLibrary() {
 }
 
 function askDelete(library: LibraryDto) {
+  deleteError.value = null
   deleteTarget.value = library
 }
 
 async function removeLibrary() {
-  if (!deleteTarget.value) return
+  if (!deleteTarget.value || submitting.value) return
   submitting.value = true
+  deleteError.value = null
   try {
     await libraryApi.remove(deleteTarget.value.id)
     deleteTarget.value = null
     await loadAll()
   } catch (err) {
-    formError.value = err instanceof ApiError ? err.message : '删除失败'
-    deleteTarget.value = null
+    deleteError.value = err instanceof ApiError ? err.message : '删除失败，请稍后重试'
   } finally {
     submitting.value = false
   }
@@ -300,14 +382,20 @@ async function toggleNodes(library: LibraryDto) {
     return
   }
   expandedLibraryId.value = library.id
+  await loadNodes(library)
+}
+
+async function loadNodes(library: LibraryDto) {
   nodesLoading.value = true
+  nodesError.value = null
+  libraryNodes.value = []
   try {
     const subgraph = await graphApi.getOverview(library.id, 100)
-    libraryNodes.value = subgraph.nodes
-  } catch {
-    libraryNodes.value = []
+    if (expandedLibraryId.value === library.id) libraryNodes.value = subgraph.nodes
+  } catch (err) {
+    if (expandedLibraryId.value === library.id) nodesError.value = err instanceof ApiError ? err.message : '知识点加载失败，请重试'
   } finally {
-    nodesLoading.value = false
+    if (expandedLibraryId.value === library.id) nodesLoading.value = false
   }
 }
 

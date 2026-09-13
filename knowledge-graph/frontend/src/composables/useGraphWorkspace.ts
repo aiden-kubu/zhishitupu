@@ -65,6 +65,12 @@ export function useGraphWorkspace() {
       depth.value = targetDepth
       mode.value = targetDepth === 2 ? 'local' : mode.value === 'focus' ? 'focus' : 'local'
     } catch (err) {
+      subgraph.value = null
+      selectedNodeId.value = null
+      if (err instanceof ApiError && err.code === 'NOT_FOUND') {
+        await router.replace({ path: '/' })
+        return
+      }
       error.value = err instanceof ApiError ? err.message : '子图加载失败，请稍后重试'
     } finally {
       loading.value = false

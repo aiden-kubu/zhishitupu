@@ -3,11 +3,15 @@ import type { PageDto, ProcessingJobDto } from './types'
 
 export const ingestionApi = {
   /** §12.3 上传文档（multipart/form-data），返回新建资料 */
-  upload(libraryId: number, file: File): Promise<{ id: number; originalName: string; status: string }> {
+  upload(libraryId: number | null, file: File): Promise<{ id: number; originalName: string; status: string }> {
     const formData = new FormData()
-    formData.append('libraryId', String(libraryId))
+    if (libraryId !== null) formData.append('libraryId', String(libraryId))
     formData.append('file', file)
     return api('/api/documents', { method: 'POST', formData })
+  },
+
+  organization(documentId: number): Promise<{ libraryId: number; name: string; nodeCount: number }[]> {
+    return api(`/api/documents/${documentId}/organization`)
   },
 
   listDocuments(params: { libraryId?: number; status?: string; page?: number }): Promise<

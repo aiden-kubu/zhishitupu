@@ -31,7 +31,7 @@ const router = createRouter({
       path: '/review',
       name: 'Review',
       component: () => import('../views/Review/ReviewView.vue'),
-      meta: { title: '审核中心' },
+      meta: { title: 'AI 复审' },
     },
     {
       path: '/insights',

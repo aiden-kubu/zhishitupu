@@ -197,7 +197,7 @@ const scrollActiveIntoView = () => {
 </script>
 
 <template>
-  <div ref="containerRef" class="relative hidden xl:block">
+  <div ref="containerRef" class="relative">
     <form @submit.prevent>
       <div class="relative">
         <label for="search-input" class="sr-only">搜索知识点、课程或资料</label>
@@ -224,7 +224,7 @@ const scrollActiveIntoView = () => {
           v-model="query"
           autocomplete="off"
           placeholder="搜索知识点、课程或资料…"
-          class="dark:bg-dark-900 h-11 w-full rounded-lg border border-gray-200 bg-transparent py-2.5 ps-12 pe-14 text-sm text-gray-800 shadow-theme-xs placeholder:text-gray-400 focus:border-brand-300 focus:outline-hidden focus:ring-3 focus:ring-brand-500/10 dark:border-gray-800 dark:bg-white/3 dark:text-white/90 dark:placeholder:text-white/30 dark:focus:border-brand-800 xl:w-[430px]"
+          class="dark:bg-dark-900 h-10 w-full rounded-lg border border-gray-200 bg-transparent py-2.5 ps-12 pe-14 text-sm text-gray-800 shadow-theme-xs placeholder:text-gray-400 focus:border-brand-300 focus:outline-hidden focus:ring-3 focus:ring-brand-500/10 dark:border-gray-800 dark:bg-white/3 dark:text-white/90 dark:placeholder:text-white/30 dark:focus:border-brand-800 xl:w-[360px]"
           @keydown="onInputKeydown"
           @focus="() => { if (suggestions.length > 0 || aiError) open = true }"
         />
