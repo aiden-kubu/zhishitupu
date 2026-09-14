@@ -89,10 +89,23 @@ public class AiReviewService {
             Map<Long, String> evidence = new LinkedHashMap<>();
             jdbc.sql("SELECT c.id,c.content FROM document_chunks c JOIN document_units u ON u.id=c.unit_id JOIN ingestion_jobs j ON j.document_id=u.document_id WHERE j.id=:id")
                     .param("id", jobId).query((rs, i) -> { evidence.put(rs.getLong(1), rs.getString(2)); return rs.getLong(1); }).list();
-            List<List<Item>> batches = batches(items, evidence);
-            jdbc.sql("UPDATE ingestion_jobs SET total_units=:n WHERE id=:id AND status='AI_REVIEWING'")
-                    .param("n", batches.size()).param("id", jobId).update();
+            // 断点续跑：复审结论随候选行落库，重跑时同一模型的既有结论直接复用，只送审缺失项；
+            // 因此第 N 批失败后重试不必再为前 N-1 批重复调用模型。
+            Map<String, Audit> previous = new LinkedHashMap<>();
+            audits(jobId).forEach(audit -> previous.put(audit.id(), audit));
             Map<String, Decision> all = new LinkedHashMap<>();
+            List<Item> pending = new ArrayList<>();
+            for (Item item : items) {
+                Audit audit = previous.get(item.id());
+                if (audit != null && model.model().equals(audit.model())) {
+                    all.put(item.id(), new Decision(item.id(), audit.approved(), audit.reason()));
+                } else {
+                    pending.add(item);
+                }
+            }
+            List<List<Item>> batches = batches(pending, evidence);
+            jdbc.sql("UPDATE ingestion_jobs SET processed_units=:done, total_units=:total WHERE id=:id AND status='AI_REVIEWING'")
+                    .param("done", all.size()).param("total", items.size()).param("id", jobId).update();
             for (int i = 0; i < batches.size(); i++) {
                 requireRunning(jobId);
                 var batch = batches.get(i);
@@ -102,7 +115,8 @@ public class AiReviewService {
                 // Audit results are retained even if a later batch fails; no knowledge is imported yet.
                 saveAudit(jobId, batch, all, model.model());
                 jdbc.sql("UPDATE ingestion_jobs SET processed_units=:done, progress=:p WHERE id=:id AND status='AI_REVIEWING'")
-                        .param("done", i + 1).param("p", 95 + (i + 1) * 3 / batches.size()).param("id", jobId).update();
+                        .param("done", all.size())
+                        .param("p", Math.min(98, 95 + all.size() * 3 / Math.max(1, items.size()))).param("id", jobId).update();
             }
             // A relation cannot pass if either endpoint failed its entity review.
             Set<String> acceptedKeys = new HashSet<>();

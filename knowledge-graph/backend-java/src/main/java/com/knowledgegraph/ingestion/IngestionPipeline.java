@@ -82,10 +82,13 @@ public class IngestionPipeline {
         insertUnits(documentId, units);
         setProgress(jobId, "PARSING", 40, units.size());        // OCR 阶段：仅处理 NEEDS_OCR 单元；无视觉模型时按用户决策跳过并提示
         long needsOcr = countNeedingOcr(documentId);
+        OcrRun ocrRun = null;
         if (needsOcr > 0) {
             markJob(jobId, "OCR_RUNNING", "OCR_RUNNING", -1, null, null);
             boolean visionAvailable = ocrProvider.isAvailable();
             int processed = 0;
+            int failed = 0;
+            String failureReason = null;
             for (ParsedUnit unit : units) {
                 if (isCancelled(jobId)) {
                     finishCancelled(jobId, documentId);
@@ -95,25 +98,29 @@ public class IngestionPipeline {
                     continue;
                 }
                 if (!visionAvailable) {
-                    jdbc.sql("UPDATE document_units SET status = 'NO_OCR' WHERE document_id = :d AND unit_index = :i")
-                            .param("d", documentId).param("i", unit.unitIndex()).update();
+                    // 没有识别通道：与「识别失败」「该单元本来就没有文字」分开记，重试时的引导文案不同
+                    markUnitOcrOutcome(documentId, unit.unitIndex(), "OCR_SKIPPED", null);
                 } else {
                     try {
                         String text = ocrProvider.transcribe(unit.imageBytes(), unit.imageFormat());
-                        jdbc.sql("""
-                                        UPDATE document_units SET extracted_text = :text, ocr_used = 1,
-                                              status = 'OCR_OK' WHERE document_id = :d AND unit_index = :i
-                                        """)
-                                .param("text", text).param("d", documentId).param("i", unit.unitIndex())
-                                .update();
+                        if (text == null || text.isBlank()) {
+                            // 返回空文本时记为失败：单元若显示为已识别却对问答毫无贡献，会让知识缺口静默通过
+                            failed++;
+                            failureReason = "视觉模型未返回文字";
+                            markUnitOcrOutcome(documentId, unit.unitIndex(), "OCR_FAILED", null);
+                        } else {
+                            markUnitOcrOutcome(documentId, unit.unitIndex(), "OCR_OK", text);
+                        }
                     } catch (Exception ex) {
-                        jdbc.sql("UPDATE document_units SET status = 'NO_OCR' WHERE document_id = :d AND unit_index = :i")
-                                .param("d", documentId).param("i", unit.unitIndex()).update();
+                        failed++;
+                        failureReason = ex.getMessage() == null ? ex.getClass().getSimpleName() : ex.getMessage();
+                        markUnitOcrOutcome(documentId, unit.unitIndex(), "OCR_FAILED", null);
                     }
                 }
                 processed++;
                 setProgress(jobId, "OCR_RUNNING", 40 + (int) (30.0 * processed / needsOcr), units.size());
             }
+            ocrRun = new OcrRun(visionAvailable, (int) needsOcr, failed, failureReason);
         }
 
         if (isCancelled(jobId)) {
@@ -127,7 +134,7 @@ public class IngestionPipeline {
         chunkUnits(documentId);
 
         // 分段完成 ≠ 任务完成：继续 AI 抽取，成功后进入 AWAITING_REVIEW（§8.4）
-        finalizeChunkingAndExtract(documentId, jobId, units.size());
+        finalizeChunkingAndExtract(documentId, jobId, units.size(), ocrRun);
     }
 
     /**
@@ -135,19 +142,24 @@ public class IngestionPipeline {
      * 包级可见以便集成测试直接驱动（不依赖真实文件解析）。
      */
     void finalizeChunkingAndExtract(long documentId, long jobId, int totalUnits) {
+        finalizeChunkingAndExtract(documentId, jobId, totalUnits, null);
+    }
+
+    /**
+     * @param ocrRun 本次 OCR 阶段的结果；由流水线传入以给出真实失败原因，测试与恢复入口可为 null（按单元状态归因）
+     */
+    void finalizeChunkingAndExtract(long documentId, long jobId, int totalUnits, OcrRun ocrRun) {
         try {
-            long chunkCount = countChunks(documentId);
-            if (chunkCount == 0) {
-                throw new ApiException(422, ErrorCodes.DOCUMENT_NO_EXTRACTABLE_TEXT,
-                        "文档中没有可抽取的文本片段，无法进行知识抽取");
+            if (countChunks(documentId) == 0) {
+                throw zeroChunkFailure(documentId, ocrRun);
             }
             setProgress(jobId, "AI_EXTRACTING", 80, totalUnits);
             // 同步执行（当前已在流水线异步线程）；成功 → AWAITING_REVIEW，失败 → 落 FAILED
             extractionService.runExtraction(jobId);
 
-            String warning = countNoOcr(documentId) > 0
-                    ? "部分图片单元未识别：未配置具备视觉能力的模型（模型管理 → 视觉能力）"
-                    : null;
+            String warning = OcrGaps.partialWarning(countUnitsByStatus(documentId, "OCR_SKIPPED"),
+                    countUnitsByStatus(documentId, "OCR_FAILED"),
+                    ocrRun == null ? null : ocrRun.failureReason());
             if (warning != null) {
                 jdbc.sql("UPDATE ingestion_jobs SET error_message = :w WHERE id = :id AND status = 'AWAITING_REVIEW'")
                         .param("w", warning).param("id", jobId).update();
@@ -158,6 +170,16 @@ public class IngestionPipeline {
             fail(jobId, documentId, "EXTRACT_FAILED",
                     ex.getClass().getSimpleName() + ": " + ex.getMessage());
         }
+    }
+
+    /**
+     * 零分段归因：资料本身没有文字，与「图片没被识别成文字」是两回事，后者要引导用户配置视觉模型后重试。
+     */
+    private ApiException zeroChunkFailure(long documentId, OcrRun ocrRun) {
+        long failedUnits = countUnitsByStatus(documentId, "OCR_FAILED");
+        long skippedUnits = countUnitsByStatus(documentId, "OCR_SKIPPED") + countUnitsByStatus(documentId, "NEEDS_OCR");
+        return OcrGaps.zeroChunkFailure(skippedUnits, failedUnits,
+                ocrRun == null ? null : ocrRun.failureReason());
     }
 
     private long countChunks(long documentId) {
@@ -245,10 +267,28 @@ public class IngestionPipeline {
         return value == null ? 0 : value;
     }
 
-    private long countNoOcr(long documentId) {
-        Long value = jdbc.sql("SELECT COUNT(*) FROM document_units WHERE document_id = :id AND status = 'NO_OCR'")
-                .param("id", documentId).query(Long.class).single();
+    private long countUnitsByStatus(long documentId, String status) {
+        Long value = jdbc.sql("SELECT COUNT(*) FROM document_units WHERE document_id = :id AND status = :status")
+                .param("id", documentId).param("status", status).query(Long.class).single();
         return value == null ? 0 : value;
+    }
+
+    /** 单个图片单元的识别结果；NO_OCR 表示没有通道，OCR_FAILED 表示尝试过但失败。 */
+    private void markUnitOcrOutcome(long documentId, int unitIndex, String status, String text) {
+        if ("OCR_OK".equals(status)) {
+            jdbc.sql("""
+                            UPDATE document_units SET extracted_text = :text, ocr_used = 1, status = 'OCR_OK'
+                            WHERE document_id = :d AND unit_index = :i
+                            """)
+                    .param("text", text).param("d", documentId).param("i", unitIndex).update();
+        } else {
+            jdbc.sql("UPDATE document_units SET status = :status WHERE document_id = :d AND unit_index = :i")
+                    .param("status", status).param("d", documentId).param("i", unitIndex).update();
+        }
+    }
+
+    /** 本次 OCR 阶段结果，用于零分段时给出可操作的错误码与真实原因。 */
+    record OcrRun(boolean channelAvailable, int requested, int failed, String failureReason) {
     }
 
     private boolean isCancelled(long jobId) {

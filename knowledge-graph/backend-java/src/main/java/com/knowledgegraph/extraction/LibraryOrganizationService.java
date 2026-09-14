@@ -215,7 +215,13 @@ public class LibraryOrganizationService {
                         .param("l", target).param("a", trimmed)
                         .param("n", trimmed.toLowerCase(java.util.Locale.ROOT)).update();
             }
-            jdbc.sql("INSERT IGNORE INTO document_tags (document_id, tag, normalized_tag, source) VALUES (:d, :t, :n, 'ai')")
+            // 资料标签列上限为 100 字、每份资料最多 20 个；超长主题仍可完成归库，只跳过标签沉淀。
+            jdbc.sql("""
+                    INSERT IGNORE INTO document_tags (document_id, tag, normalized_tag, source)
+                    SELECT :d, :t, :n, 'ai'
+                    WHERE CHAR_LENGTH(:t) <= 100
+                      AND (SELECT COUNT(*) FROM document_tags WHERE document_id = :d) < 20
+                    """)
                     .param("d", documentId).param("t", group.name())
                     .param("n", normalized).update();
             for (String key : group.entityKeys()) {

@@ -18,6 +18,8 @@ spring:
         - classpath:db/migration/V4__llm_profiles.sql
         - classpath:db/migration/V5__ingestion.sql
         - classpath:db/migration/V6__auto_organization.sql
+        - classpath:db/migration/V7__document_metadata.sql
+        - classpath:db/migration/V8__extraction_checkpoint.sql
 
 kg:
   storage:

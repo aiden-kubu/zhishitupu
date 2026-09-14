@@ -15,7 +15,7 @@ import static org.mockito.Mockito.*;
 
 class ExtractionRetryTest {
     final LlmClient client = mock(LlmClient.class);
-    final ExtractionService service = new ExtractionService(null, null, client, new ObjectMapper(), null, null, null);
+    final ExtractionService service = new ExtractionService(null, null, client, new ObjectMapper(), null, null, null, null, ExtractionService.DEFAULT_MAX_BATCHES);
     final LlmProfileService.DefaultModel model = new LlmProfileService.DefaultModel(1, "http://localhost", "test", "secret", 120, 8192, 0.1);
     final String valid = """
             {"entities":[{"tempKey":"e1","name":"栈","definition":"后进先出","evidenceChunkIds":[1]}],"relations":[]}

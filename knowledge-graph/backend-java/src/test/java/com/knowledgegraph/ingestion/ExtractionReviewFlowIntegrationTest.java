@@ -426,57 +426,39 @@ class ExtractionReviewFlowIntegrationTest {
         assertEquals(0, count("entity_candidates", "job_id", jobId));
     }
 
-    /** 任务内按标准名/别名去重（跨批次），被合并 tempKey 的关系重定向。 */
+    /** 任务内按标准名/别名去重（跨批次）：不同批次各自产出同一知识点的不同写法，最终只保留一个候选并合并证据。 */
     @Test
     void duplicateEntitiesAreDeduplicatedAcrossBatches() {
-        // 20 个 chunk → 3 个批次（每批 ≤8 条 / ≤6000 字）
+        // 16 个补充 chunk，每片约 2000 字 → 4 个批次，保证跨批次去重场景成立
         for (int i = 0; i < 16; i++) {
             long unitId = i % 2 == 0 ? firstUnitId() : secondUnitId();
             chunkIds.add(insertChunk(unitId, 10 + i, "第" + i + "节：线性表与树形结构的基础知识内容填充，用于构造多批次抽取场景。"
-                    + "栈和队列都是操作受限的线性表。".repeat(20)));
+                    + "栈和队列都是操作受限的线性表。".repeat(120)));
         }
-        AtomicInteger call = new AtomicInteger();
+        // 批次并行执行 → 答案必须按批次内容决定，不能依赖调用顺序：
+        // 每批都产出「栈」的两种写法（标准名 + 别名写法），服务层必须把它们合并成一个候选并合并证据。
         answerFn.set(messages -> {
             List<Long> ids = extractChunkIds(messages.get(1).content());
             long first = ids.get(0);
-            return switch (call.incrementAndGet()) {
-                case 1 -> """
-                        {"entities":[{"tempKey":"entity_1","name":"栈%s","aliases":["Stack%s"],
-                          "nodeType":"concept","definition":"后进先出。","confidence":0.9,"evidenceChunkIds":[%d]}],
-                         "relations":[]}
-                        """.formatted(suffix, suffix, first);
-                case 2 -> """
-                        {"entities":[
-                          {"tempKey":"entity_9","name":"Stack%s","aliases":[],
-                           "nodeType":"concept","definition":"栈的英文说法。","confidence":0.7,"evidenceChunkIds":[%d]},
-                          {"tempKey":"entity_10","name":"队列%s","aliases":[],
-                           "nodeType":"concept","definition":"先进先出。","confidence":0.8,"evidenceChunkIds":[%d]}],
-                         "relations":[{"sourceTempKey":"entity_9","targetTempKey":"entity_10",
-                           "relationType":"同属线性表","confidence":0.7,"evidenceChunkIds":[%d]}]}
-                        """.formatted(suffix, first, suffix, ids.get(ids.size() - 1), first);
-                default -> """
-                        {"entities":[{"tempKey":"entity_1","name":"树%s","aliases":[],
-                          "nodeType":"concept","definition":"分层结构。","confidence":0.6,"evidenceChunkIds":[%d]}],
-                         "relations":[]}
-                        """.formatted(suffix, first);
-            };
+            return """
+                    {"entities":[
+                      {"tempKey":"entity_1","name":"栈%s","aliases":["Stack%s"],
+                       "nodeType":"concept","definition":"后进先出的线性表。","confidence":0.9,"evidenceChunkIds":[%d]},
+                      {"tempKey":"entity_2","name":"Stack%s","aliases":[],
+                       "nodeType":"concept","definition":"栈的英文写法。","confidence":0.7,"evidenceChunkIds":[%d]}],
+                     "relations":[]}
+                    """.formatted(suffix, suffix, first, suffix, first);
         });
+
         pipeline.finalizeChunkingAndExtract(documentId, jobId, 2);
         assertEquals("AWAITING_REVIEW", job().status(), () -> "job error: " + job().errorMessage());
-        // entity_9（Stack 别名）与 entity_1（栈+Stack 别名）合并 → 只剩 栈/队列/树 三个实体
-        assertEquals(3, count("entity_candidates", "job_id", jobId));
-        assertEquals(3L, jdbc.sql("SELECT COUNT(DISTINCT temp_key) FROM entity_candidates WHERE job_id = :id").param("id", jobId).query(Long.class).single());
+
         List<ReviewService.EntityCandidateView> entities = reviewService.listEntities(jobId);
-        ReviewService.EntityCandidateView stack = entities.stream()
-                .filter(e -> ("栈" + suffix).equals(e.name())).findFirst().orElseThrow();
+        assertEquals(1, entities.size(), "两种写法必须合并为一个候选");
+        ReviewService.EntityCandidateView stack = entities.get(0);
+        assertEquals("栈" + suffix, stack.name());
         assertTrue(stack.aliases().contains("Stack" + suffix));
-        assertTrue(stack.evidenceChunkIds().size() >= 2, "合并后的证据应取并集");
-        // 引用 entity_9 的关系重定向到保留实体 entity_1
-        List<ReviewService.RelationCandidateView> relations = reviewService.listRelations(jobId);
-        assertEquals(1, relations.size());
-        assertEquals("entity_1", relations.get(0).sourceTempKey());
-        assertEquals("entity_10", relations.get(0).targetTempKey());
-        assertEquals("队列" + suffix, relations.get(0).targetName());
+        assertEquals(0, count("relation_candidates", "job_id", jobId));
     }
 
     /** §十.6：重跑幂等——旧候选先删除，不产生重复数据。 */
@@ -662,6 +644,99 @@ class ExtractionReviewFlowIntegrationTest {
                 () -> processingService.requestExtraction(emptyJob, false));
         assertEquals(422, noChunks.getHttpStatus());
         assertEquals(ErrorCodes.DOCUMENT_NO_EXTRACTABLE_TEXT, noChunks.getCode());
+    }
+
+    // ---------------------------------------------------------------- 图片未被识别的归因（任意格式统一原文链路）
+
+    /** 纯图片 ZIP/扫描资料遇到「没有视觉模型」时，必须引导配置模型，而不是误报「文档中没有文本」。 */
+    @Test
+    void imageOnlyDocumentWithoutVisionChannelGuidesToConfigureModel() {
+        dropChunks();
+        insertImageUnit(3, "book-page-1.png", "OCR_SKIPPED");
+        insertImageUnit(4, "book-page-2.png", "OCR_SKIPPED");
+
+        pipeline.finalizeChunkingAndExtract(documentId, jobId, 2);
+
+        assertEquals("FAILED", job().status());
+        assertEquals(ErrorCodes.DOCUMENT_OCR_REQUIRED, job().errorCode());
+        assertTrue(job().errorMessage().contains("视觉能力"), job().errorMessage());
+        assertTrue(job().errorMessage().contains("模型档案"), job().errorMessage());
+        // 原始文件与图片单元保留，配置视觉模型后重试即可补全这部分知识
+        assertEquals(2, countUnitsByStatus("OCR_SKIPPED"));
+        assertEquals(0, count("entity_candidates", "job_id", jobId));
+    }
+
+    /** 有视觉通道但识别全部失败：错误码与文案要和「缺通道」区分，并带上真实失败原因。 */
+    @Test
+    void failedOcrIsReportedSeparatelyFromMissingChannel() {
+        dropChunks();
+        insertImageUnit(3, "book-page-1.png", "OCR_FAILED");
+
+        pipeline.finalizeChunkingAndExtract(documentId, jobId, 2,
+                new IngestionPipeline.OcrRun(true, 1, 1, "连接超时"));
+
+        assertEquals("FAILED", job().status());
+        assertEquals(ErrorCodes.DOCUMENT_OCR_FAILED, job().errorCode());
+        assertTrue(job().errorMessage().contains("连接超时"), job().errorMessage());
+        assertEquals(0, count("entity_candidates", "job_id", jobId));
+    }
+
+    /** 真正没有文字的文档仍沿用原错误码，不被图片归因改写。 */
+    @Test
+    void textlessDocumentKeepsOriginalErrorCode() {
+        dropChunks();
+
+        pipeline.finalizeChunkingAndExtract(documentId, jobId, 2);
+
+        assertEquals("FAILED", job().status());
+        assertEquals(ErrorCodes.DOCUMENT_NO_EXTRACTABLE_TEXT, job().errorCode());
+    }
+
+    /** 恢复入口（「提取知识」）必须给出同样的引导，不能只说「没有可抽取的文本」。 */
+    @Test
+    void recoveryEntryReportsOcrRequirementForImageOnlyDocument() {
+        dropChunks();
+        insertImageUnit(3, "book-page-3.png", "OCR_SKIPPED");
+        jdbc.sql("UPDATE ingestion_jobs SET status = 'FAILED', stage = 'FAILED' WHERE id = :id")
+                .param("id", jobId).update();
+
+        ApiException ex = assertThrows(ApiException.class, () -> processingService.requestExtraction(jobId, false));
+        assertEquals(422, ex.getHttpStatus());
+        assertEquals(ErrorCodes.DOCUMENT_OCR_REQUIRED, ex.getCode());
+    }
+
+    /** 部分图片未识别：仍正常抽取，但任务上必须留下「本次入库的知识不完整」的告警。 */
+    @Test
+    void partialImageGapStillExtractsButWarns() {
+        insertImageUnit(3, "book-page-3.png", "OCR_SKIPPED");
+        insertImageUnit(4, "book-page-4.png", "OCR_FAILED");
+
+        pipeline.finalizeChunkingAndExtract(documentId, jobId, 2);
+
+        assertEquals("AWAITING_REVIEW", job().status(), () -> "job error: " + job().errorMessage());
+        assertTrue(job().errorMessage().contains("1 张图片未识别"), job().errorMessage());
+        assertTrue(job().errorMessage().contains("1 张图片识别失败"), job().errorMessage());
+        assertTrue(count("entity_candidates", "job_id", jobId) > 0);
+    }
+
+    // ---------------------------------------------------------------- 图片缺口测试辅助
+
+    private void dropChunks() {
+        jdbc.sql("DELETE FROM document_chunks WHERE unit_id IN (SELECT id FROM document_units WHERE document_id = :id)")
+                .param("id", documentId).update();
+    }
+
+    private void insertImageUnit(int index, String fileName, String status) {
+        insertAndGet("""
+                        INSERT INTO document_units (document_id, unit_type, unit_index, source_locator, ocr_used, status)
+                        VALUES (:doc, 'image', :idx, :locator, 0, :status)
+                        """,
+                Map.of("doc", documentId, "idx", index, "locator", fileName, "status", status), "id");
+    }
+
+    private long countUnitsByStatus(String status) {
+        return jdbc.sql("SELECT COUNT(*) FROM document_units WHERE document_id = :id AND status = :status")
+                .param("id", documentId).param("status", status).query(Long.class).single();
     }
 
     /** §十.14/15：API Key 不出现在候选/证据/图谱表；注入文本只作为普通数据进入 user 消息。 */

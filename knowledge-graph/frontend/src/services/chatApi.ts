@@ -1,44 +1,24 @@
 import { api } from './http'
 import type { ChatMessageDto } from './types'
 
-export interface ChatSessionDto {
-  id: number
-  nodeId: number
-  title: string
-  createdAt: string
-  updatedAt: string
-}
-
-/** 问答载荷（§12.6 提问请求） */
-export interface ChatSendMessagePayload {
+/** 临时历史单条（仅允许 user / assistant，后端拒绝 system） */
+export interface ChatHistoryItem {
+  role: 'user' | 'assistant'
   content: string
-  mode: 'knowledge_only'
-  depth: number
 }
 
+export interface ChatAskPayload {
+  content: string
+  depth: 1 | 2
+  history: ChatHistoryItem[]
+}
+
+/**
+ * 节点 AI 知识助手（无历史临时模式，2026-09-14 用户决策）：
+ * 只有一个无状态问答接口，应用不保存任何会话；旧 chat/sessions 系列接口已移除。
+ */
 export const chatApi = {
-  listSessions(nodeId: number, signal?: AbortSignal): Promise<ChatSessionDto[]> {
-    return api(`/api/nodes/${nodeId}/chat/sessions`, { signal })
-  },
-
-  createSession(nodeId: number, signal?: AbortSignal): Promise<ChatSessionDto> {
-    return api(`/api/nodes/${nodeId}/chat/sessions`, { method: 'POST', signal })
-  },
-
-  listMessages(sessionId: number, signal?: AbortSignal): Promise<ChatMessageDto[]> {
-    return api(`/api/chat/sessions/${sessionId}/messages`, { signal })
-  },
-
-  /** 发送提问：非流式，返回完整回答 + 引用 + 证据不足标记（§12.6） */
-  sendMessage(
-    sessionId: number,
-    payload: ChatSendMessagePayload,
-    signal?: AbortSignal,
-  ): Promise<ChatMessageDto> {
-    return api(`/api/chat/sessions/${sessionId}/messages`, { method: 'POST', body: payload, signal })
-  },
-
-  deleteSession(sessionId: number, signal?: AbortSignal): Promise<void> {
-    return api(`/api/chat/sessions/${sessionId}`, { method: 'DELETE', signal })
+  ask(nodeId: number, payload: ChatAskPayload, signal?: AbortSignal): Promise<ChatMessageDto> {
+    return api(`/api/nodes/${nodeId}/chat`, { method: 'POST', body: payload, signal })
   },
 }

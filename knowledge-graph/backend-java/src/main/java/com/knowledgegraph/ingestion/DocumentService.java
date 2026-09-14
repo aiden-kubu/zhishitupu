@@ -29,8 +29,9 @@ public class DocumentService {
 
     public record DocumentView(long id, long libraryId, String libraryName, String originalName,
                                String mimeType, String extension, long sizeBytes, String sha256,
-                               String status, String createdAt, String title, String lifecycleStatus,
-                               List<TagView> tags, Map<String, Object> verification) {
+                               String status, String createdAt, String updatedAt, String title,
+                               String lifecycleStatus, List<TagView> tags,
+                               Map<String, Object> verification) {
     }
 
     /** 文档标签（source：human 人工 / ai 自动整理）。 */
@@ -139,7 +140,7 @@ public class DocumentService {
                 throw new ApiException(409, ErrorCodes.CONFLICT, "该文件已上传，请查看处理中心");
             }
         }
-        // 默认元数据：标题=原文件名、生命周期 active，并记录上传时的哈希校验
+        // 默认元数据：标题=原文件名、生命周期 active；上传时只计算并记录 SHA-256（用于标识与去重，不做一致性比对）
         jdbc.sql("""
                 INSERT INTO document_metadata (document_id, title, lifecycle_status, verification_json)
                 VALUES (:id, :title, 'active', :verification)
@@ -148,7 +149,7 @@ public class DocumentService {
                 .param("id", id)
                 .param("title", originalName)
                 .param("verification", toJson(Map.of("hash", Map.of(
-                        "sha256", stored.sha256(), "checkedAt", LocalDateTime.now().toString(), "matched", true))))
+                        "sha256", stored.sha256(), "recordedAt", LocalDateTime.now().toString()))))
                 .update();
         return get(id);
     }
@@ -169,7 +170,7 @@ public class DocumentService {
         List<DocumentView> items = jdbc.sql("""
                         SELECT d.id, d.library_id, IFNULL(l.name, ''), d.original_name, d.mime_type, d.extension,
                                d.size_bytes, d.sha256, d.status, d.created_at,
-                               m.title, m.lifecycle_status, m.verification_json
+                               m.title, m.lifecycle_status, m.verification_json, m.updated_at AS meta_updated_at
                         FROM documents d
                         LEFT JOIN knowledge_libraries l ON l.id = d.library_id
                         LEFT JOIN document_metadata m ON m.document_id = d.id
@@ -184,7 +185,7 @@ public class DocumentService {
         DocumentView view = jdbc.sql("""
                         SELECT d.id, d.library_id, IFNULL(l.name, ''), d.original_name, d.mime_type, d.extension,
                                d.size_bytes, d.sha256, d.status, d.created_at,
-                               m.title, m.lifecycle_status, m.verification_json
+                               m.title, m.lifecycle_status, m.verification_json, m.updated_at AS meta_updated_at
                         FROM documents d
                         LEFT JOIN knowledge_libraries l ON l.id = d.library_id
                         LEFT JOIN document_metadata m ON m.document_id = d.id
@@ -231,8 +232,13 @@ public class DocumentService {
     public DocumentView addTag(long id, String tag) {
         requireDocument(id);
         NormalizedTag normalized = normalizeTag(tag);
-        Long count = jdbc.sql("SELECT COUNT(*) FROM document_tags WHERE document_id = :id")
-                .param("id", id).query(Long.class).single();
+        // 同名标签不占新名额：达到上限后仍允许幂等重加，或把 AI 标签提升为人工标签。
+        Long count = jdbc.sql("""
+                        SELECT COUNT(*) FROM document_tags
+                        WHERE document_id = :id AND normalized_tag <> :normalized
+                        """)
+                .param("id", id).param("normalized", normalized.normalizedTag())
+                .query(Long.class).single();
         if (count != null && count >= MAX_TAGS_PER_DOCUMENT)
             throw ApiException.badRequest("每个资料最多 " + MAX_TAGS_PER_DOCUMENT + " 个标签");
         jdbc.sql("""
@@ -294,8 +300,9 @@ public class DocumentService {
     }
 
     private static NormalizedTag normalizeTag(String raw) {
-        if (raw == null || raw.strip().isEmpty()) throw ApiException.badRequest("标签不能为空");
-        String tag = raw.strip().replaceAll("[\\p{Cntrl}]", " ");
+        if (raw == null) throw ApiException.badRequest("标签不能为空");
+        String tag = raw.replaceAll("[\\p{Cntrl}]", " ").strip();
+        if (tag.isEmpty()) throw ApiException.badRequest("标签不能为空");
         if (tag.length() > MAX_TAG_CHARS) throw ApiException.badRequest("标签不能超过 " + MAX_TAG_CHARS + " 字");
         return new NormalizedTag(tag, tag.toLowerCase(java.util.Locale.ROOT));
     }
@@ -312,10 +319,12 @@ public class DocumentService {
                 verification = null;
             }
         }
+        java.sql.Timestamp metaUpdated = rs.getTimestamp("meta_updated_at");
         return new DocumentView(
                 rs.getLong(1), rs.getLong(2), rs.getString(3), rs.getString(4),
                 rs.getString(5), rs.getString(6), rs.getLong(7), rs.getString(8),
                 rs.getString(9), String.valueOf(rs.getTimestamp(10)),
+                metaUpdated == null ? null : String.valueOf(metaUpdated),
                 rs.getString("title"), rs.getString("lifecycle_status"),
                 new ArrayList<>(), verification);
     }

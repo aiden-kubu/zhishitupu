@@ -68,7 +68,8 @@ export const ingestionApi = {
 
   /** 删除标签 */
   removeDocumentTag(id: number, tag: string): Promise<DocumentDto> {
-    return api(`/api/documents/${id}/tags/${encodeURIComponent(tag)}`, { method: 'DELETE' })
+    const search = new URLSearchParams({ tag })
+    return api(`/api/documents/${id}/tags?${search}`, { method: 'DELETE' })
   },
 
   /** 人工校对记录 */

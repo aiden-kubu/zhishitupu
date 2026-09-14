@@ -25,6 +25,8 @@ spring:
         - classpath:db/migration/V4__llm_profiles.sql
         - classpath:db/migration/V5__ingestion.sql
         - classpath:db/migration/V6__auto_organization.sql
+        - classpath:db/migration/V7__document_metadata.sql
+        - classpath:db/migration/V8__extraction_checkpoint.sql
   servlet:
     multipart:
       max-file-size: 200MB
@@ -46,6 +48,9 @@ kg:
   ocr:
     mode: ${KG_OCR_MODE:}
     data-path: ${KG_OCR_DATA_PATH:}
+  extraction:
+    # 单任务抽取批次上限（整本教材量级资料默认可通过；调低可限制单次模型调用量）
+    max-batches: ${KG_EXTRACTION_MAX_BATCHES:400}
   settings:
     # 用于加密 system_settings 中密钥的本地主密钥，生产环境应通过环境变量覆盖
     master-key: ${KG_SETTINGS_MASTER_KEY:knowledge-graph-local-dev-master-key}

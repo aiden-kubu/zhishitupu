@@ -101,21 +101,38 @@ function linkParticles(edge: Graph3DLinkObject): number {
   return focusId !== null && (edge.source === focusId || edge.target === focusId) ? 3 : 0
 }
 
+/**
+ * Tooltip 内容由底层 3D 图谱按 HTML 渲染，节点名、定义、类型标签与关系名都可能来自
+ * 持久化资料或 AI 生成内容（不可信输入），插入前必须转义。
+ * 调用方需先截断再转义，避免实体被截断破坏。
+ */
+function escapeHtml(value: unknown): string {
+  return String(value ?? '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;')
+}
+
 function nodeLabelHtml(node: Graph3DNodeObject): string {
   const meta = (node as NodeObject).meta
   const typeLabel = NODE_TYPE_LABELS[meta.type] ?? meta.type
+  const name = escapeHtml(meta.name)
+  const safeTypeLabel = escapeHtml(typeLabel)
+  const definition = meta.definition ? escapeHtml(meta.definition.slice(0, 60)) : ''
   return `
     <div style="max-width:260px;padding:8px 12px;border-radius:10px;background:rgba(255,255,255,.96);
       border:1px solid #e5e7eb;color:#1f2937;font-size:12px;line-height:1.6;box-shadow:0 4px 12px rgba(0,0,0,.08)">
-      <div style="font-weight:600">${meta.name}</div>
-      <div style="color:#6b7280">${typeLabel} · ${meta.degree} 个直接关联</div>
-      ${meta.definition ? `<div style="color:#9ca3af;margin-top:2px">${meta.definition.slice(0, 60)}…</div>` : ''}
+      <div style="font-weight:600">${name}</div>
+      <div style="color:#6b7280">${safeTypeLabel} · ${escapeHtml(meta.degree)} 个直接关联</div>
+      ${definition ? `<div style="color:#9ca3af;margin-top:2px">${definition}…</div>` : ''}
     </div>`
 }
 
 function linkLabelHtml(edge: Graph3DLinkObject): string {
   const relation = typeof edge.relation === 'string' ? edge.relation : ''
-  return `<div style="padding:4px 10px;border-radius:8px;background:rgba(255,255,255,.96);border:1px solid #e5e7eb;color:#374151;font-size:12px">${relation}</div>`
+  return `<div style="padding:4px 10px;border-radius:8px;background:rgba(255,255,255,.96);border:1px solid #e5e7eb;color:#374151;font-size:12px">${escapeHtml(relation)}</div>`
 }
 
 function updateGraphData() {

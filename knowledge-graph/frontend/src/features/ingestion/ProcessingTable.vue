@@ -12,7 +12,7 @@
         <div>
           <div class="mb-2 flex flex-wrap items-center justify-between gap-2 text-xs text-gray-500 dark:text-gray-400">
             <span>{{ STAGE_LABELS[job.stage] ?? job.stage }}</span>
-            <span class="tabular-nums">已处理 {{ job.processedUnits }} / {{ job.totalUnits || '—' }} {{ ['AI_EXTRACTING', 'AI_REVIEWING'].includes(job.status) ? '批' : '单元' }}<span v-if="job.retryCount > 0"> · 重试 {{ job.retryCount }} 次</span></span>
+            <span class="tabular-nums">已处理 {{ job.processedUnits }} / {{ job.totalUnits || '—' }} {{ unitLabel(job) }}<span v-if="job.retryCount > 0"> · 重试 {{ job.retryCount }} 次</span></span>
           </div>
           <JobProgress :progress="job.progress" class="w-full [&>div]:!w-full" />
           <p v-if="job.status === 'AI_EXTRACTING'" class="mt-2 text-xs leading-5 text-gray-500 dark:text-gray-400">
@@ -20,6 +20,9 @@
           </p>
           <p v-else-if="job.status === 'AI_REVIEWING'" class="mt-2 text-xs text-gray-500 dark:text-gray-400">正在逐项核对原文证据，通过后自动入库，无需人工确认。</p>
           <p v-else-if="job.status === 'AWAITING_REVIEW'" class="mt-2 text-xs text-gray-500 dark:text-gray-400">识别已完成，即将由 AI 复审并自动入库。</p>
+          <p v-else-if="['FAILED', 'CANCELLED'].includes(job.status) && (job.stagedBatches ?? 0) > 0" class="mt-2 text-xs leading-5 text-gray-500 dark:text-gray-400">
+            已保留 {{ job.stagedBatches }} 批抽取结果，点「重试任务」将从断点继续，这些批次不会再调用模型。
+          </p>
         </div>
         <div class="flex flex-wrap gap-2">
           <Button v-if="job.status === 'AWAITING_REVIEW'" size="sm" @click="emit('retry', job)">开始 AI 复审</Button>
@@ -45,6 +48,13 @@ defineProps<{ jobs: ProcessingJobDto[] }>()
 function formatDate(value: string) {
   const date = new Date(value)
   return Number.isNaN(date.getTime()) ? value : new Intl.DateTimeFormat('zh-CN', { month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', hour12: false }).format(date)
+}
+
+/** 抽取按批计数、AI 复审按候选条数计数、解析按单元计数 */
+function unitLabel(job: ProcessingJobDto) {
+  if (job.status === 'AI_EXTRACTING') return '批'
+  if (job.status === 'AI_REVIEWING') return '条'
+  return '单元'
 }
 
 const emit = defineEmits<{

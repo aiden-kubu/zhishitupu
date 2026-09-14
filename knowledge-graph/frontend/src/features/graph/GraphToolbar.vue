@@ -19,28 +19,7 @@
       </button>
     </div>
 
-    <!-- 深度切换（仅局部模式） -->
-    <div v-if="mode === 'local'" class="flex items-center gap-2">
-      <span class="text-sm text-gray-500 dark:text-gray-400">深度</span>
-      <div class="inline-flex items-center rounded-lg bg-gray-100 p-1 dark:bg-gray-800">
-        <button
-          v-for="value in ([1, 2] as const)"
-          :key="value"
-          type="button"
-          class="rounded-md px-2.5 py-1 text-xs font-medium transition"
-          :class="
-            depth === value
-              ? 'bg-white text-gray-800 shadow-theme-xs dark:bg-gray-900 dark:text-white/90'
-              : 'text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200'
-          "
-          @click="emit('update:depth', value)"
-        >
-          {{ value }}
-        </button>
-      </div>
-    </div>
-
-    <!-- 渲染模式（§6.3 可切换 2D/3D） -->
+    <!-- 渲染模式（§6.3 可切换 2D/3D）；深度由模式固定：局部 2 层、聚焦 1 层（GR02） -->
     <div class="inline-flex items-center rounded-lg bg-gray-100 p-1 dark:bg-gray-800">
       <button
         type="button"
@@ -94,7 +73,6 @@ defineProps<{
   panelOpen?: boolean
   mode: WorkspaceMode
   renderMode: RenderMode
-  depth: 1 | 2
   nodeCount: number
   edgeCount: number
   truncated: boolean
@@ -102,7 +80,6 @@ defineProps<{
 
 const emit = defineEmits<{
   (e: 'update:mode', value: WorkspaceMode): void
-  (e: 'update:depth', value: 1 | 2): void
   (e: 'update:renderMode', value: RenderMode): void
   (e: 'reset'): void
   (e: 'toggle-panel'): void

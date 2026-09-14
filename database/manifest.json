@@ -1,23 +1,27 @@
 {
-  "created_at": "2026-09-13T15:57:10.575692",
+  "created_at": "2026-09-14T22:54:16.3474949+08:00",
   "tables": {
-    "auto_document_imports": 1,
+    "auto_document_imports": 2,
     "bootstrap_flags": 1,
-    "chat_messages": 10,
-    "chat_sessions": 4,
-    "document_chunks": 401,
+    "chat_messages": 15,
+    "chat_sessions": 6,
+    "document_chunks": 2828,
+    "document_metadata": 2,
+    "document_tags": 1,
     "document_topic_assignments": 618,
-    "document_units": 216,
-    "documents": 1,
+    "document_units": 1466,
+    "documents": 2,
     "edge_evidence": 998,
     "entity_candidates": 652,
-    "ingestion_jobs": 1,
-    "knowledge_edges": 844,
-    "knowledge_libraries": 9,
-    "knowledge_nodes": 610,
-    "library_nodes": 612,
+    "extraction_batch_results": 0,
+    "ingestion_jobs": 2,
+    "knowledge_edges": 852,
+    "knowledge_libraries": 10,
+    "knowledge_nodes": 619,
+    "library_aliases": 8,
+    "library_nodes": 613,
     "llm_profiles": 1,
-    "node_aliases": 830,
+    "node_aliases": 837,
     "node_evidence": 1340,
     "organization_mutex": 1,
     "relation_candidates": 903,
@@ -28,12 +32,17 @@
       "sha256": "2c04be6f0790af9b763fba0b334975028bc523f507a4b72bcb332e607e32c33c",
       "bytes": 2026604,
       "original_name": "数据结构与算法（JAVA语言版）.pdf"
+    },
+    "storage/documents/17a71b97-6f47-4410-ab3b-5f3e24401d25.zip": {
+      "sha256": "a2953be49925ac009234953d38086139bd3db7ca4852c7a15dfaffb104e6a0c9",
+      "bytes": 66053795,
+      "original_name": "textbook.zip"
     }
   },
   "sanitization": [
-    "Model API keys removed; model profiles disabled.",
-    "Secret settings removed.",
-    "Document paths converted to storage/documents/<stored_name>.",
-    "No MySQL accounts, grants or database passwords included."
+    "Model API keys removed; model profiles disabled and unset as default.",
+    "Secret setting values removed.",
+    "Document paths converted to SNAPSHOT_STORAGE_ROOT/documents/<stored_name>.",
+    "No MySQL accounts, grants, database passwords, or local encryption keys included."
   ]
 }

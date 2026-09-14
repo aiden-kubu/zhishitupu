@@ -8,15 +8,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 书本照片 ZIP 解析（§8.5）：安全解压后逐张生成图片单元，按文件名自然排序。
+ * ZIP 资料解析（§8.5）：安全解压后按文件名自然排序逐条生成单元——
+ * 图片条目生成图片单元（走视觉 OCR 通道），PDF 条目按页提取文本（扫描页仍走 OCR）。
  */
 @Component
 public class ZipImageExtractor {
 
     private final ZipSafety zipSafety;
+    private final PdfTextExtractor pdfTextExtractor;
 
-    public ZipImageExtractor(ZipSafety zipSafety) {
+    public ZipImageExtractor(ZipSafety zipSafety, PdfTextExtractor pdfTextExtractor) {
         this.zipSafety = zipSafety;
+        this.pdfTextExtractor = pdfTextExtractor;
     }
 
     public List<ParsedUnit> extract(byte[] content) {
@@ -24,17 +27,27 @@ public class ZipImageExtractor {
         Path tempDir = null;
         try {
             tempDir = Files.createTempDirectory("kg-zip-");
-            List<ZipSafety.ExtractedImage> images = zipSafety.safeExtractImages(content, tempDir);
+            List<ZipSafety.ExtractedEntry> entries = zipSafety.safeExtractEntries(content, tempDir);
             int index = 1;
-            for (ZipSafety.ExtractedImage image : images) {
-                String extension = image.entryName().substring(image.entryName().lastIndexOf('.') + 1).toLowerCase();
-                String mime = switch (extension) {
-                    case "jpg", "jpeg" -> "image/jpeg";
-                    case "png" -> "image/png";
-                    default -> "image/webp";
+            for (ZipSafety.ExtractedEntry entry : entries) {
+                String extension = entry.entryName().substring(entry.entryName().lastIndexOf('.') + 1).toLowerCase();
+                if ("pdf".equals(extension)) {
+                    // ZIP 内的 PDF：按页解析，定位信息带上 ZIP 内文件名，证据可追溯到具体分册与页码
+                    for (ParsedUnit page : pdfTextExtractor.extract(entry.content())) {
+                        units.add(new ParsedUnit(page.unitType(), index++, entry.entryName() + " " + page.sourceLocator(),
+                                page.text(), page.needsOcr(), page.imageBytes(), page.imageFormat()));
+                    }
+                    continue;
+                }
+                // OcrProvider 约定的是裸格式名（png/jpeg/webp）。带 image/ 前缀会让 data URL 变成
+                // data:image/image/png，视觉模型一律拒收，ZIP 图片就永远识别不了。
+                String imageFormat = switch (extension) {
+                    case "jpg", "jpeg" -> "jpeg";
+                    case "png" -> "png";
+                    default -> "webp";
                 };
-                units.add(new ParsedUnit("image", index, image.entryName(), null, true,
-                        image.content(), mime));
+                units.add(new ParsedUnit("image", index, entry.entryName(), null, true,
+                        entry.content(), imageFormat));
                 index++;
             }
             return units;

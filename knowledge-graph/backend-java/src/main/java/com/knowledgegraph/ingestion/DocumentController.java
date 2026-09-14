@@ -3,6 +3,7 @@ package com.knowledgegraph.ingestion;
 import com.knowledgegraph.common.ApiException;
 import com.knowledgegraph.common.ErrorCodes;
 import com.knowledgegraph.common.ApiResponse;
+import jakarta.validation.Valid;
 import org.springframework.jdbc.core.simple.JdbcClient;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
@@ -121,20 +123,27 @@ public class DocumentController {
     /** 更新资料标题与生命周期（§属性面板）。 */
     @PutMapping("/{id}/metadata")
     public ApiResponse<DocumentService.DocumentView> updateMetadata(
-            @PathVariable long id, @org.springframework.web.bind.annotation.RequestBody DocumentMetadataRequest request) {
+            @PathVariable long id, @Valid @RequestBody DocumentMetadataRequest request) {
         return ApiResponse.ok(documentService.updateMetadata(id, request.title(), request.lifecycleStatus()));
     }
 
     /** 添加人工标签。 */
     @PostMapping("/{id}/tags")
     public ApiResponse<DocumentService.DocumentView> addTag(
-            @PathVariable long id, @org.springframework.web.bind.annotation.RequestBody DocumentTagRequest request) {
+            @PathVariable long id, @Valid @RequestBody DocumentTagRequest request) {
         return ApiResponse.ok(documentService.addTag(id, request.tag()));
     }
 
-    /** 删除标签（人工与 AI 标签均可删）。 */
-    @DeleteMapping("/{id}/tags/{tag}")
+    /** 删除标签（查询参数可可靠表达包含斜杠的标签）。 */
+    @DeleteMapping("/{id}/tags")
     public ApiResponse<DocumentService.DocumentView> removeTag(
+            @PathVariable long id, @RequestParam String tag) {
+        return ApiResponse.ok(documentService.removeTag(id, tag));
+    }
+
+    /** 兼容旧客户端；包含斜杠的标签请使用查询参数入口。 */
+    @DeleteMapping("/{id}/tags/{tag}")
+    public ApiResponse<DocumentService.DocumentView> removeTagLegacy(
             @PathVariable long id, @PathVariable String tag) {
         return ApiResponse.ok(documentService.removeTag(id, tag));
     }
@@ -142,7 +151,7 @@ public class DocumentController {
     /** 人工校对记录（写入 verification_json.human）。 */
     @PutMapping("/{id}/verification")
     public ApiResponse<DocumentService.DocumentView> setVerification(
-            @PathVariable long id, @org.springframework.web.bind.annotation.RequestBody DocumentVerificationRequest request) {
+            @PathVariable long id, @Valid @RequestBody DocumentVerificationRequest request) {
         return ApiResponse.ok(documentService.setHumanVerification(id, request.humanChecked(), request.note()));
     }
 }

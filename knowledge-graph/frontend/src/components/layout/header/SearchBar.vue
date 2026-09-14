@@ -113,8 +113,8 @@ function select(suggestion: SuggestionDto) {
   open.value = false
   query.value = ''
   suggestions.value = []
-  // §6.2.4 更新 URL，图谱工作台监听 query 自动聚焦
-  void router.push({ path: '/', query: { node: String(suggestion.id), depth: '1', mode: 'local' } })
+  // §6.2.4 更新 URL，图谱工作台监听 query 自动聚焦；定位具体节点固定聚焦一层（GR02）
+  void router.push({ path: '/', query: { node: String(suggestion.id), depth: '1', mode: 'focus' } })
 }
 
 /** 触发「AI 生成并收录」：仅由点击/Enter 显式调用；等待期间禁止重复提交，可取消前端等待。 */
@@ -135,7 +135,7 @@ async function triggerAiExpand() {
     open.value = false
     query.value = ''
     suggestions.value = []
-    void router.push({ path: '/', query: { node: String(result.node.id), depth: '1', mode: 'local' } })
+    void router.push({ path: '/', query: { node: String(result.node.id), depth: '1', mode: 'focus' } })
   } catch (error) {
     if ((error as Error)?.name === 'AbortError') return // 用户取消等待：保留关键词，后端仍会完成收录
     if (query.value.trim() !== keyword) return // 等待期间用户已转向其他搜索，错误不再展示

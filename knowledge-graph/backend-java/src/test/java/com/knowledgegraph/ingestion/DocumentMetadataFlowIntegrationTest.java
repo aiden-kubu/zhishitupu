@@ -4,7 +4,6 @@ import com.knowledgegraph.common.ApiException;
 import com.knowledgegraph.extraction.LibraryOrganizationService;
 import com.knowledgegraph.library.LibraryService;
 import com.knowledgegraph.library.dto.LibraryDetail;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +17,8 @@ import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -27,6 +28,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  */
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.MOCK,
         properties = "spring.sql.init.mode=never")
+// 夹具全部在测试事务内建立，测试结束自动回滚；不再依赖手工 DELETE 清理（进程中断不会残留）
+@org.springframework.transaction.annotation.Transactional
 class DocumentMetadataFlowIntegrationTest {
 
     @Autowired JdbcClient jdbc;
@@ -37,7 +40,6 @@ class DocumentMetadataFlowIntegrationTest {
     private String suffix;
     private long libraryId;
     private long documentId;
-    private final List<Long> createdLibraryIds = new ArrayList<>();
 
     private long insert(String sql, Map<String, ?> params) {
         var key = new GeneratedKeyHolder();
@@ -50,22 +52,12 @@ class DocumentMetadataFlowIntegrationTest {
         suffix = Long.toString(System.nanoTime());
         libraryId = insert("INSERT INTO knowledge_libraries(name,type,status) VALUES(:n,'topic','active')",
                 Map.of("n", "元数据测试库" + suffix));
-        createdLibraryIds.add(libraryId);
         documentId = insert("""
                 INSERT INTO documents(library_id,original_name,stored_name,mime_type,extension,size_bytes,sha256,storage_path,status)
                 VALUES(:l,:n,'s','application/pdf','pdf',1,:s,'s','COMPLETED')
                 """, Map.of("l", libraryId, "n", "meta-" + suffix, "s", "sha-meta-" + suffix));
     }
 
-    @AfterEach
-    void cleanup() {
-        jdbc.sql("DELETE FROM document_tags WHERE document_id = :id").param("id", documentId).update();
-        jdbc.sql("DELETE FROM document_metadata WHERE document_id = :id").param("id", documentId).update();
-        jdbc.sql("DELETE FROM document_topic_assignments WHERE document_id = :id").param("id", documentId).update();
-        jdbc.sql("DELETE FROM documents WHERE id = :id").param("id", documentId).update();
-        jdbc.sql("DELETE FROM knowledge_libraries WHERE id IN (:ids)")
-                .param("ids", createdLibraryIds).update();
-    }
 
     private DocumentService.DocumentView view() {
         return documentService.get(documentId);
@@ -113,9 +105,29 @@ class DocumentMetadataFlowIntegrationTest {
         documentService.removeTag(documentId, "重点");
         assertFalse(view().tags().stream().anyMatch(t -> t.tag().equals("重点")));
 
+        // 查询参数删除入口所需场景：斜杠是合法标签内容，服务层必须可正常增删。
+        documentService.addTag(documentId, "AI/ML");
+        documentService.removeTag(documentId, "AI/ML");
+        assertFalse(view().tags().stream().anyMatch(t -> t.tag().equals("AI/ML")));
+
         // 非法标签
         assertThrows(ApiException.class, () -> documentService.addTag(documentId, "   "));
+        assertThrows(ApiException.class, () -> documentService.addTag(documentId, "\t\r\n"));
         assertThrows(ApiException.class, () -> documentService.removeTag(999999, "x"));
+    }
+
+    @Test
+    void existingTagRemainsIdempotentAtLimit() {
+        for (int i = 0; i < 20; i++) {
+            jdbc.sql("INSERT INTO document_tags(document_id, tag, normalized_tag, source) VALUES(:d,:t,:t,'ai')")
+                    .param("d", documentId).param("t", "标签" + i).update();
+        }
+
+        documentService.addTag(documentId, "标签0");
+        assertEquals(20, view().tags().size());
+        assertEquals("human", view().tags().stream()
+                .filter(t -> t.tag().equals("标签0")).findFirst().orElseThrow().source());
+        assertThrows(ApiException.class, () -> documentService.addTag(documentId, "第21个标签"));
     }
 
     // ---------------------------------------------------------------- 可信度
@@ -186,13 +198,82 @@ class DocumentMetadataFlowIntegrationTest {
         assertEquals(librariesBefore + 1, countLibraries());
         Long created = jdbc.sql("SELECT id FROM knowledge_libraries WHERE name = :n")
                 .param("n", "全新主题" + suffix).query(Long.class).optional().orElse(null);
-        createdLibraryIds.add(created);
         // 新库别名已沉淀
         Integer aliasCount = jdbc.sql("SELECT COUNT(*) FROM library_aliases WHERE library_id = :id")
                 .param("id", created).query(Integer.class).single();
         assertEquals(1, aliasCount);
         // AI 标签
         assertTrue(view().tags().stream().anyMatch(t -> t.source().equals("ai")));
+    }
+
+    @Test
+    void organizationSkipsOversizedAiTagWithoutRollingBackAssignment() {
+        String longTopic = "长".repeat(101);
+        LibraryOrganizationService.Group group = new LibraryOrganizationService.Group(
+                libraryId, longTopic, "测试描述", List.of(), List.of("k1"));
+
+        organizationService.apply(documentId, List.of(group));
+
+        assertTrue(view().tags().stream().noneMatch(t -> t.tag().equals(longTopic)));
+        assertEquals(1, jdbc.sql("SELECT COUNT(*) FROM document_topic_assignments WHERE document_id = :id AND library_id = :l")
+                .param("id", documentId).param("l", libraryId).query(Integer.class).single());
+    }
+
+    // ---------------------------------------------------------------- R02：属性展示准确性
+
+    @Test
+    void metadataReturnsRealUpdatedAtAndReflectsChanges() {
+        // 存量资料未建元数据行：updatedAt 为 null（不得用 created_at 冒充）
+        assertNull(view().updatedAt());
+
+        documentService.updateMetadata(documentId, "标题一" + suffix, null);
+        String firstUpdated = view().updatedAt();
+        assertNotNull(firstUpdated);
+
+        // 可控旧时间夹具：显式赋值会停用 ON UPDATE，随后一次真实更新必须推进时间
+        jdbc.sql("UPDATE document_metadata SET updated_at = '2020-01-01 00:00:00' WHERE document_id = :id")
+                .param("id", documentId).update();
+        assertEquals("2020-01-01 00:00:00.0", view().updatedAt());
+
+        documentService.updateMetadata(documentId, "标题二" + suffix, null);
+        String secondUpdated = view().updatedAt();
+        assertFalse(secondUpdated.startsWith("2020-01-01"), "元数据更新后 updatedAt 必须真实变化");
+    }
+
+    @Test
+    void humanVerificationCanBeToggledOff() {
+        documentService.setHumanVerification(documentId, true, "首轮人工核对");
+        assertTrue(((Map<?, ?>) view().verification().get("human")).get("checked").equals(true));
+
+        documentService.setHumanVerification(documentId, false, null);
+        Map<?, ?> human = (Map<?, ?>) view().verification().get("human");
+        assertEquals(false, human.get("checked"), "人工校对应支持取消勾选并正确保存 false");
+    }
+
+    @Test
+    void uploadedHashUsesRecordedSemanticsWithoutMatchedFlag() throws Exception {
+        byte[] content = ("%PDF-1.4 hash-semantics-" + suffix).getBytes(java.nio.charset.StandardCharsets.UTF_8);
+        var file = new org.springframework.mock.web.MockMultipartFile("file", "hash-r02-" + suffix + ".pdf",
+                "application/pdf", content);
+        DocumentService.DocumentView view = documentService.upload(libraryId, file);
+        try {
+            Map<?, ?> hash = (Map<?, ?>) view.verification().get("hash");
+            assertNotNull(hash.get("sha256"));
+            assertNotNull(hash.get("recordedAt"), "新数据必须携带 recordedAt");
+            assertFalse(hash.containsKey("matched"), "上传只计算并记录 SHA-256，不得声称比对通过");
+            assertFalse(hash.containsKey("checkedAt"), "不得使用暗示校验成功的 checkedAt");
+        } finally {
+            // 磁盘文件在事务之外创建，必须显式删除；数据库记录随测试事务回滚
+            String storagePath = jdbc.sql("SELECT storage_path FROM documents WHERE id = :id")
+                    .param("id", view.id()).query(String.class).optional().orElse(null);
+            if (storagePath != null) {
+                try {
+                    java.nio.file.Files.deleteIfExists(java.nio.file.Path.of(storagePath));
+                } catch (Exception ignored) {
+                    // 清理失败不影响断言
+                }
+            }
+        }
     }
 
     private long countLibraries() {

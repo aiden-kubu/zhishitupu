@@ -19,6 +19,8 @@ public final class ErrorCodes {
     public static final String LLM_BAD_RESPONSE = "LLM_BAD_RESPONSE";
     public static final String DOCUMENT_PARSE_FAILED = "DOCUMENT_PARSE_FAILED";
     public static final String DOCUMENT_NO_EXTRACTABLE_TEXT = "DOCUMENT_NO_EXTRACTABLE_TEXT";
+    public static final String DOCUMENT_OCR_REQUIRED = "DOCUMENT_OCR_REQUIRED";
+    public static final String DOCUMENT_OCR_FAILED = "DOCUMENT_OCR_FAILED";
     public static final String DB_UNAVAILABLE = "DB_UNAVAILABLE";
     public static final String INTERNAL_ERROR = "INTERNAL_ERROR";
 

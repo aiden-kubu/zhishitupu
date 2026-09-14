@@ -28,16 +28,22 @@ import java.util.Set;
  * 全部批次成功后同一事务写入候选并把任务置为 AWAITING_REVIEW。
  * 任何批次失败都不写候选；重试/恢复先删除旧候选保证幂等。
  * 等待模型期间不持有数据库事务。
+ *
+ * 增量落库 + 断点续跑（CP01）：每批校验通过即写入 {@code extraction_batch_results}，
+ * 任务失败或取消后重试只补齐缺失批次；批次指纹由片段内容决定，重新解析后 chunkId 变化
+ * 也能按位置复用并按位置重映射证据编号。任务进入 AWAITING_REVIEW 时清除断点数据。
  */
 @Service
 public class ExtractionService {
 
-    /** 每批字符预算（第一版按字符数分批，不引入 tokenizer） */
-    static final int BATCH_CHAR_BUDGET = 6000;
+    /** 每批字符预算（第一版按字符数分批，不引入 tokenizer；越大调用次数越少、单次上下文越长） */
+    static final int BATCH_CHAR_BUDGET = 12000;
     /** 单批 chunk 数上限 */
-    static final int MAX_CHUNKS_PER_BATCH = 8;
-    /** 单任务批次上限：超出按文档过大拒绝，避免一次超长任务失控 */
-    static final int MAX_BATCHES = 60;
+    static final int MAX_CHUNKS_PER_BATCH = 16;
+    /** 批次上限缺省值：整本教材量级的资料也能一次跑完；可用 kg.extraction.max-batches 覆盖 */
+    public static final int DEFAULT_MAX_BATCHES = 400;
+    /** 并发批次数：云端往返是主要耗时，适度并发可把整本教材的等待缩短为约 1/3 */
+    static final int BATCH_CONCURRENCY = 3;
 
     static final String SYSTEM_PROMPT = """
             你是知识图谱系统的资料抽取引擎。你的唯一任务：从给定文本片段中抽取知识实体与关系，输出结构化 JSON。
@@ -61,7 +67,8 @@ public class ExtractionService {
             }
 
             要求：tempKey 在本批内唯一（entity_1、entity_2…）；relations 两端的 tempKey 必须是本批 entities 已定义的；
-            没有把握的关系不要输出；所有内容均为纯文本，禁止生成 SQL、HTML 或可执行代码。
+            没有把握的关系不要输出；所有内容均为纯文本，禁止生成 SQL、HTML 或可执行代码；
+            本批最多输出 24 个实体与 24 条关系，定义不超过 80 字，确保 JSON 完整闭合。
             每批优先抽取最多 30 个核心实体和 30 条关系，定义简明（不超过 120 字）；不得引用未在本批声明的实体编号。
             """;
 
@@ -72,10 +79,17 @@ public class ExtractionService {
     private final TransactionTemplate transactionTemplate;
     private final LibraryOrganizationService organization;
     private final com.knowledgegraph.review.AiReviewService aiReview;
+    private final ExtractionCheckpointStore checkpoints;
+
+    private final int maxBatches;
 
     public ExtractionService(JdbcClient jdbc, LlmProfileService llmProfileService, LlmClient llmClient,
                              ObjectMapper objectMapper, TransactionTemplate transactionTemplate,
-                             LibraryOrganizationService organization, com.knowledgegraph.review.AiReviewService aiReview) {
+                             LibraryOrganizationService organization, com.knowledgegraph.review.AiReviewService aiReview,
+                             ExtractionCheckpointStore checkpoints,
+                             @org.springframework.beans.factory.annotation.Value("${kg.extraction.max-batches:" + DEFAULT_MAX_BATCHES + "}")
+                             int maxBatches) {
+        this.maxBatches = Math.max(1, maxBatches);
         this.jdbc = jdbc;
         this.llmProfileService = llmProfileService;
         this.llmClient = llmClient;
@@ -83,6 +97,7 @@ public class ExtractionService {
         this.transactionTemplate = transactionTemplate;
         this.organization = organization;
         this.aiReview = aiReview;
+        this.checkpoints = checkpoints;
     }
 
     // ---------------------------------------------------------------- 恢复入口
@@ -101,10 +116,22 @@ public class ExtractionService {
             throw new ApiException(409, ErrorCodes.CONFLICT,
                     "该任务已有候选结果等待审核；如需重新抽取请明确使用 force 参数");
         }
-        if (countChunks(job.documentId()) == 0) {
-            throw new ApiException(422, ErrorCodes.DOCUMENT_NO_EXTRACTABLE_TEXT,
-                    "文档没有可抽取的文本片段，请先完成解析或检查文档内容");
+        if (force) {
+            // 明确要求重抽：断点成果作废，否则「重抽」会静默复用旧批次
+            checkpoints.deleteAll(jobId);
         }
+        if (countChunks(job.documentId()) == 0) {
+            // 与摄取的收尾归因一致：图片未识别 ≠ 资料本身没有文字
+            throw com.knowledgegraph.ingestion.OcrGaps.zeroChunkFailure(
+                    countUnitsByStatus(job.documentId(), "OCR_SKIPPED") + countUnitsByStatus(job.documentId(), "NEEDS_OCR"),
+                    countUnitsByStatus(job.documentId(), "OCR_FAILED"), null);
+        }
+    }
+
+    private long countUnitsByStatus(long documentId, String status) {
+        Long value = jdbc.sql("SELECT COUNT(*) FROM document_units WHERE document_id = :id AND status = :status")
+                .param("id", documentId).param("status", status).query(Long.class).single();
+        return value == null ? 0 : value;
     }
 
     /** 处理中心「提取知识」：同步校验通过后异步执行，前端轮询任务进度。 */
@@ -149,25 +176,84 @@ public class ExtractionService {
                 Math.max(120, configured.timeoutSeconds()), Math.min(8192, configured.maxTokens()), configured.temperature(), false);
 
         List<List<ChunkRow>> batches = buildBatches(chunks);
-        jdbc.sql("UPDATE ingestion_jobs SET processed_units = 0, total_units = :total WHERE id = :id")
-                .param("total", batches.size()).param("id", jobId).update();
         String documentName = loadDocumentName(documentId);
 
-        // 批内校验后的原始候选：全部批次成功后才写库，失败不留半成品
+        // 断点续跑：指纹未变的批次直接复用已落库成果，只有缺失批次才调模型
+        Map<Integer, NormalizedExtraction> staged = reuseStagedBatches(jobId, batches);
+        List<Integer> pending = new ArrayList<>();
+        for (int index = 1; index <= batches.size(); index++) {
+            if (!staged.containsKey(index)) {
+                pending.add(index);
+            }
+        }
+        int alreadyStaged = staged.size();
+        jdbc.sql("""
+                        UPDATE ingestion_jobs SET processed_units = :done, total_units = :total,
+                              progress = LEAST(94, 80 + :done * 14 / :total)
+                        WHERE id = :id
+                        """)
+                .param("done", alreadyStaged).param("total", batches.size()).param("id", jobId).update();
+
+        // 批次并行执行（最多 BATCH_CONCURRENCY 路）：结果按批序处理，保证候选键与进度可复现
+        java.util.concurrent.ExecutorService batchPool =
+                java.util.concurrent.Executors.newFixedThreadPool(Math.min(BATCH_CONCURRENCY, Math.max(1, pending.size())));
+        Map<Integer, java.util.concurrent.CompletableFuture<BatchOutcome>> futures = new LinkedHashMap<>();
+        try {
+            for (int index : pending) {
+                final int batchIndex = index;
+                final List<ChunkRow> batch = batches.get(batchIndex - 1);
+                final Set<Long> batchChunkIds = new LinkedHashSet<>();
+                for (ChunkRow chunk : batch) {
+                    batchChunkIds.add(chunk.id());
+                }
+                final String signature = ExtractionCheckpointStore.signature(batchContents(batch));
+                final List<Long> batchChunkIdList = batch.stream().map(ChunkRow::id).toList();
+                futures.put(batchIndex, java.util.concurrent.CompletableFuture.supplyAsync(() -> {
+                    try {
+                        NormalizedExtraction parsed = extractBatch(model,
+                                buildBatchPrompt(documentName, batchIndex, batches.size(), batch), batchChunkIds,
+                                () -> isCancelled(jobId), batchIndex, batches.size());
+                        // 增量落库：本批成果立即持久化。此后任何一批失败、任务被取消或进程中断，
+                        // 重试都只需补齐没落库的批次，不再重复消耗模型调用。
+                        checkpoints.save(jobId, batchIndex, signature, batchChunkIdList, canonicalJson(parsed),
+                                parsed.entities().size(), parsed.relations().size(), model.model());
+                        return new BatchOutcome(batchIndex, parsed, null);
+                    } catch (RuntimeException ex) {
+                        return new BatchOutcome(batchIndex, null, ex);
+                    }
+                }, batchPool));
+            }
+        } finally {
+            batchPool.shutdown();
+        }
+
+        // 批内校验后的原始候选：全部批次齐备后才写候选，失败不留半成品
         List<NormalizedEntity> accumulatedEntities = new ArrayList<>();
         List<NormalizedRelation> accumulatedRelations = new ArrayList<>();
+        int done = alreadyStaged;
         for (int i = 0; i < batches.size(); i++) {
-            if (isCancelled(jobId)) {
-                throw new ApiException(409, ErrorCodes.CONFLICT, "任务已取消");
+            NormalizedExtraction parsed = staged.get(i + 1);
+            if (parsed == null) {
+                if (isCancelled(jobId)) {
+                    futures.values().forEach(f -> f.cancel(true));
+                    throw new ApiException(409, ErrorCodes.CONFLICT, "任务已取消");
+                }
+                BatchOutcome outcome = futures.get(i + 1).join();
+                if (outcome.error() != null) {
+                    futures.values().forEach(f -> f.cancel(true));
+                    throw outcome.error() instanceof ApiException api ? api
+                            : new ApiException(500, ErrorCodes.INTERNAL_ERROR, String.valueOf(outcome.error().getMessage()));
+                }
+                parsed = outcome.extraction();
+                done++;
+                int progress = Math.min(80 + done * 14 / batches.size(), 94);
+                jdbc.sql("UPDATE ingestion_jobs SET progress = :p, processed_units = :done, total_units = :total WHERE id = :id")
+                        .param("p", progress)
+                        .param("done", done)
+                        .param("total", batches.size())
+                        .param("id", jobId)
+                        .update();
             }
-            List<ChunkRow> batch = batches.get(i);
-            Set<Long> batchChunkIds = new LinkedHashSet<>();
-            for (ChunkRow chunk : batch) {
-                batchChunkIds.add(chunk.id());
-            }
-            NormalizedExtraction parsed = extractBatch(model,
-                    buildBatchPrompt(documentName, i + 1, batches.size(), batch), batchChunkIds,
-                    () -> isCancelled(jobId), i + 1, batches.size());
             // 模型各批可重复使用 entity_1；改为任务内唯一键，防止不同主题错误归到同一候选。
             Set<String> usedKeys = new LinkedHashSet<>();
             accumulatedEntities.forEach(e -> usedKeys.add(e.tempKey()));
@@ -184,13 +270,6 @@ public class ExtractionService {
                 accumulatedRelations.add(new NormalizedRelation(batchKeys.get(relation.sourceTempKey()),
                         batchKeys.get(relation.targetTempKey()), relation.relationType(), relation.confidence(), relation.evidenceChunkIds()));
             }
-            int progress = Math.min(80 + (i + 1) * 14 / batches.size(), 94);
-            jdbc.sql("UPDATE ingestion_jobs SET progress = :p, processed_units = :done, total_units = :total WHERE id = :id")
-                    .param("p", progress)
-                    .param("done", i + 1)
-                    .param("total", batches.size())
-                    .param("id", jobId)
-                    .update();
         }
 
         DeduplicatedCandidates candidates = deduplicate(accumulatedEntities, accumulatedRelations);
@@ -227,6 +306,11 @@ public class ExtractionService {
     }
 
     private List<List<ChunkRow>> buildBatches(List<ChunkRow> chunks) {
+        return buildBatches(chunks, maxBatches);
+    }
+
+    /** 按字符预算与条数上限分批；超过批次上限时给出实际需求量与可调项。 */
+    static List<List<ChunkRow>> buildBatches(List<ChunkRow> chunks, int batchLimit) {
         List<List<ChunkRow>> batches = new ArrayList<>();
         List<ChunkRow> current = new ArrayList<>();
         int chars = 0;
@@ -243,9 +327,10 @@ public class ExtractionService {
         if (!current.isEmpty()) {
             batches.add(current);
         }
-        if (batches.size() > MAX_BATCHES) {
+        if (batches.size() > batchLimit) {
             throw new ApiException(413, ErrorCodes.PAYLOAD_TOO_LARGE,
-                    "文档文本过大（超过 " + MAX_BATCHES + " 个抽取批次），请拆分后重新上传");
+                    "文档需要约 " + batches.size() + " 个抽取批次，超过上限 " + batchLimit
+                            + "；请拆分资料后重试，或在配置中调高 kg.extraction.max-batches");
         }
         return batches;
     }
@@ -261,6 +346,107 @@ public class ExtractionService {
         }
         sb.append("请按系统指令输出本批的实体与关系 JSON。");
         return sb.toString();
+    }
+
+    // ---------------------------------------------------------------- 断点续跑
+
+    /**
+     * 复用已落库的批次成果：指纹（批次内片段内容与顺序）一致才复用。
+     * 指纹不一致说明资料被重新解析/重新分段，旧成果作废删除，该批重新抽取。
+     */
+    private Map<Integer, NormalizedExtraction> reuseStagedBatches(long jobId, List<List<ChunkRow>> batches) {
+        Map<Integer, ExtractionCheckpointStore.StoredBatch> stored = checkpoints.load(jobId);
+        // 批次计划变短时清掉多余的旧批次
+        checkpoints.deleteBeyond(jobId, batches.size());
+        Map<Integer, NormalizedExtraction> reused = new LinkedHashMap<>();
+        for (int i = 0; i < batches.size(); i++) {
+            ExtractionCheckpointStore.StoredBatch row = stored.get(i + 1);
+            if (row == null) {
+                continue;
+            }
+            NormalizedExtraction extraction = reuseBatch(row, batches.get(i));
+            if (extraction == null) {
+                checkpoints.delete(jobId, i + 1);
+            } else {
+                reused.put(i + 1, extraction);
+            }
+        }
+        return reused;
+    }
+
+    /**
+     * 还原一批断点成果；不可用时返回 null，由调用方重新抽取该批。
+     * 证据编号按位置映射到本次的真实 chunkId（重新解析后编号会变，但指纹相同即内容相同）。
+     */
+    private NormalizedExtraction reuseBatch(ExtractionCheckpointStore.StoredBatch row, List<ChunkRow> batch) {
+        if (!row.signature().equals(ExtractionCheckpointStore.signature(batchContents(batch)))
+                || row.chunkIds().size() != batch.size()) {
+            return null;
+        }
+        Map<Long, Long> remap = new LinkedHashMap<>();
+        for (int i = 0; i < batch.size(); i++) {
+            remap.put(row.chunkIds().get(i), batch.get(i).id());
+        }
+        Set<Long> validChunkIds = new LinkedHashSet<>(remap.values());
+        try {
+            com.fasterxml.jackson.databind.JsonNode root = objectMapper.readTree(row.payloadJson());
+            for (String field : List.of("entities", "relations")) {
+                for (com.fasterxml.jackson.databind.JsonNode item : root.path(field)) {
+                    if (!(item instanceof com.fasterxml.jackson.databind.node.ObjectNode node)) {
+                        return null;
+                    }
+                    com.fasterxml.jackson.databind.node.ArrayNode evidence = objectMapper.createArrayNode();
+                    for (com.fasterxml.jackson.databind.JsonNode id : node.path("evidenceChunkIds")) {
+                        Long mapped = id.canConvertToLong() ? remap.get(id.longValue()) : null;
+                        if (mapped == null) {
+                            return null; // 证据无法对应到本次片段：宁可重抽，也不留下错误证据
+                        }
+                        evidence.add(mapped);
+                    }
+                    node.set("evidenceChunkIds", evidence);
+                }
+            }
+            // 复用同样走一遍校验，断点数据与模型输出按同一不可信输入处理
+            return ExtractionPayloadParser.parse(objectMapper, objectMapper.writeValueAsString(root), validChunkIds);
+        } catch (Exception ex) {
+            return null;
+        }
+    }
+
+    /** 规范化抽取结果的持久化形式：字段与模型输出结构一致，复用时可直接再过一遍校验。 */
+    private String canonicalJson(NormalizedExtraction extraction) {
+        com.fasterxml.jackson.databind.node.ObjectNode root = objectMapper.createObjectNode();
+        var entities = root.putArray("entities");
+        for (NormalizedEntity entity : extraction.entities()) {
+            var node = entities.addObject();
+            node.put("tempKey", entity.tempKey());
+            node.put("name", entity.name());
+            if (entity.nameEn() != null) {
+                node.put("nameEn", entity.nameEn());
+            }
+            var aliases = node.putArray("aliases");
+            entity.aliases().forEach(aliases::add);
+            node.put("nodeType", entity.nodeType());
+            node.put("definition", entity.definition());
+            node.put("confidence", entity.confidence());
+            var evidence = node.putArray("evidenceChunkIds");
+            entity.evidenceChunkIds().forEach(evidence::add);
+        }
+        var relations = root.putArray("relations");
+        for (NormalizedRelation relation : extraction.relations()) {
+            var node = relations.addObject();
+            node.put("sourceTempKey", relation.sourceTempKey());
+            node.put("targetTempKey", relation.targetTempKey());
+            node.put("relationType", relation.relationType());
+            node.put("confidence", relation.confidence());
+            var evidence = node.putArray("evidenceChunkIds");
+            relation.evidenceChunkIds().forEach(evidence::add);
+        }
+        return root.toString();
+    }
+
+    private static List<String> batchContents(List<ChunkRow> batch) {
+        return batch.stream().map(ChunkRow::content).toList();
     }
 
     // ---------------------------------------------------------------- 去重与匹配
@@ -502,6 +688,8 @@ public class ExtractionService {
                     .param("now", LocalDateTime.now()).param("id", jobId).update();
             jdbc.sql("UPDATE documents SET status = 'AWAITING_REVIEW' WHERE id = :id")
                     .param("id", documentId).update();
+            // 候选已就绪，断点数据使命完成：留在库里会让下一次「明确重抽」静默复用旧批次
+            checkpoints.deleteAll(jobId);
         });
     }
 
@@ -541,6 +729,10 @@ public class ExtractionService {
     // ---------------------------------------------------------------- 内部结构
 
     record JobRow(long id, long documentId, String status, String stage) {
+    }
+
+    /** 单批执行结果（含失败原因），供并行批次按序收集。 */
+    private record BatchOutcome(int index, NormalizedExtraction extraction, RuntimeException error) {
     }
 
     record ChunkRow(long id, String content) {

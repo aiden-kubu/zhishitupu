@@ -67,10 +67,13 @@ public final class ExtractionPayloadParser {
             throw badResponse("模型输出不是 JSON 对象");
         }
 
-        List<NormalizedEntity> entities = parseEntities(root.path("entities"), validChunkIds);
-        if (entities.isEmpty()) {
-            throw badResponse("模型未返回任何实体候选");
+        JsonNode entitiesNode = root.path("entities");
+        if (!entitiesNode.isArray()) {
+            throw badResponse("模型输出缺少 entities 数组");
         }
+        // 允许「本批没有实体」：附录、索引、目录、纯图表页确实可能不含知识点，
+        // 此前把它当错误会让整本资料在最后一两批失败、前功尽弃。
+        List<NormalizedEntity> entities = parseEntities(entitiesNode, validChunkIds);
         Set<String> knownTempKeys = new LinkedHashSet<>();
         for (NormalizedEntity entity : entities) {
             knownTempKeys.add(entity.tempKey());

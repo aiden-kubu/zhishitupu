@@ -32,7 +32,7 @@ CREATE TABLE IF NOT EXISTS document_units (
     source_locator VARCHAR(255) NOT NULL COMMENT '页码 / 幻灯片号 / 图片文件名',
     extracted_text MEDIUMTEXT NULL,
     ocr_used TINYINT(1) NOT NULL DEFAULT 0,
-    status VARCHAR(24) NOT NULL DEFAULT 'PENDING' COMMENT 'PENDING/READY/NEEDS_OCR/OCR_OK/NO_OCR',
+    status VARCHAR(24) NOT NULL DEFAULT 'PENDING' COMMENT 'PENDING/READY/NEEDS_OCR/OCR_OK/OCR_SKIPPED（无视觉模型通道，可配置后重试）/OCR_FAILED（识别尝试失败）/NO_OCR（该单元本来无文字）',
     created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     UNIQUE KEY uk_document_units_order (document_id, unit_index),
     KEY idx_document_units_document (document_id),

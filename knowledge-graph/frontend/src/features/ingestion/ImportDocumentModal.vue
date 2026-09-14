@@ -74,9 +74,9 @@
           </summary>
           <ul class="mt-3 space-y-2">
             <li>PDF：支持文字与扫描页；PPT / PPTX：识别文字与备注。</li>
-            <li>照片 ZIP：仅放入 JPG、PNG 或 WebP 图片，按文件名排序。</li>
+            <li>ZIP：可放入 JPG/PNG/WebP 图片或 PDF；图片按文件名排序，PDF 按页解析。</li>
             <li>
-              单文件最大 200MB；ZIP 最多 500 张图片，解压后不超过 1GB。不支持 RAR、7z 或加密压缩包。
+              单文件最大 200MB；ZIP 最多 500 个条目，解压后不超过 1GB。不支持 RAR、7z 或加密压缩包。
             </li>
             <li>扫描页与照片需要支持图片识别的模型。</li>
           </ul>
@@ -158,7 +158,7 @@ async function loadLibraries() {
   loadingLibraries.value = true
   try {
     libraries.value = await libraryApi.list()
-  } catch (error) {
+  } catch {
     libraries.value = [] // 自动识别不依赖已有知识库列表
   } finally {
     loadingLibraries.value = false

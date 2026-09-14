@@ -167,11 +167,12 @@
                   <p class="break-words text-sm font-medium text-gray-800 dark:text-white/90">{{ doc.title || doc.originalName }}</p>
                   <p class="mt-0.5 text-xs text-gray-400">
                     {{ doc.originalName }} · {{ doc.extension.toUpperCase() }} · {{ formatSize(doc.sizeBytes) }} ·
-                    更新 {{ shortTime(doc.updatedAt || doc.createdAt) }}
+                    <template v-if="doc.updatedAt">更新 {{ shortTime(doc.updatedAt) }}</template>
+                    <template v-else>创建 {{ shortTime(doc.createdAt) }}</template>
                   </p>
                   <div class="mt-1.5 flex flex-wrap items-center gap-1.5">
                     <Badge :color="lifecycleColor(doc.lifecycleStatus)" size="sm">{{ lifecycleLabel(doc.lifecycleStatus) }}</Badge>
-                    <Badge v-if="doc.verification?.hash" color="light" size="sm" title="上传时已做 SHA-256 完整性校验">哈希已校验</Badge>
+                    <Badge v-if="doc.verification?.hash" color="light" size="sm" title="上传时计算并记录 SHA-256（用于标识与去重）">哈希已记录</Badge>
                     <Badge
                       v-if="doc.verification?.aiReview"
                       :color="doc.verification.aiReview.rejected === 0 ? 'success' : 'warning'"
@@ -565,8 +566,25 @@ async function toggleNodes(library: LibraryDto) {
     expandedLibraryId.value = null
     return
   }
+  closeDocumentsPanel() // 全局互斥：知识面板与资料面板同时最多展开一个
   expandedLibraryId.value = library.id
   await loadNodes(library)
+}
+
+/** 关闭资料面板并清理其临时状态，避免隐藏状态残留 */
+function closeDocumentsPanel() {
+  documentsLibraryId.value = null
+  documents.value = []
+  docsLoading.value = false
+  docsError.value = null
+}
+
+/** 关闭知识面板并清理其临时状态 */
+function closeNodesPanel() {
+  expandedLibraryId.value = null
+  libraryNodes.value = []
+  nodesLoading.value = false
+  nodesError.value = null
 }
 
 async function loadNodes(library: LibraryDto) {
@@ -590,6 +608,7 @@ async function toggleDocuments(library: LibraryDto) {
     documentsLibraryId.value = null
     return
   }
+  closeNodesPanel() // 全局互斥：资料面板与知识面板同时最多展开一个
   documentsLibraryId.value = library.id
   await loadDocuments(library)
 }
@@ -621,25 +640,44 @@ function openDocEditor(doc: DocumentDto) {
 }
 
 async function saveDocEditor() {
-  if (!docEditor.value || savingDoc.value) return
+  // 进入即快照：await 期间用户可取消弹窗（docEditor 变 null），后续一律使用局部快照
+  const editor = docEditor.value
+  if (!editor || savingDoc.value) return
   savingDoc.value = true
   docFormError.value = null
   try {
-    let updated = await ingestionApi.updateDocumentMetadata(docEditor.value.doc.id, {
-      title: docEditor.value.form.title.trim(),
-      lifecycleStatus: (docEditor.value.form.lifecycleStatus ?? 'active') as 'active' | 'archived' | 'outdated',
+    const originalHumanChecked = editor.doc.verification?.human?.checked ?? false
+    // 第一步：标题与生命周期
+    const metadataUpdated = await ingestionApi.updateDocumentMetadata(editor.doc.id, {
+      title: editor.form.title.trim(),
+      lifecycleStatus: (editor.form.lifecycleStatus ?? 'active') as 'active' | 'archived' | 'outdated',
     })
-    if (docEditor.value.humanChecked && !docEditor.value.doc.verification?.human?.checked) {
-      updated = await ingestionApi.setDocumentVerification(docEditor.value.doc.id, {
-        humanChecked: true,
-        note: '编辑资料时标记人工校对',
-      })
+    // 元数据成功立即同步列表：第二步失败时已保存内容也不丢失
+    replaceDocument(metadataUpdated)
+    // 第二步：人工校对仅在状态变化时提交；取消时不携带人工校对 note
+    try {
+      if (editor.humanChecked !== originalHumanChecked) {
+        const verificationUpdated = await ingestionApi.setDocumentVerification(editor.doc.id, {
+          humanChecked: editor.humanChecked,
+          note: editor.humanChecked ? '编辑资料时标记人工校对' : undefined,
+        })
+        replaceDocument(verificationUpdated)
+      }
+    } catch (verificationErr) {
+      // 部分成功：标题与生命周期已保存，保留弹窗与当前勾选值供重试
+      if (docEditor.value === editor) {
+        const reason = verificationErr instanceof ApiError ? `：${verificationErr.message}` : ''
+        docFormError.value = `标题和生命周期已保存，但人工校对状态保存失败${reason}`
+      }
+      return
     }
-    const index = documents.value.findIndex((d) => d.id === updated.id)
-    if (index >= 0) documents.value[index] = updated
-    docEditor.value = null
+    // 两步全部成功：关闭仍在显示的原编辑弹窗
+    if (docEditor.value === editor) docEditor.value = null
   } catch (err) {
-    docFormError.value = err instanceof ApiError ? err.message : '保存失败，请重试'
+    // 第一步（元数据）失败：整体保存失败
+    if (docEditor.value === editor) {
+      docFormError.value = err instanceof ApiError ? err.message : '保存失败，请重试'
+    }
   } finally {
     savingDoc.value = false
   }
@@ -672,7 +710,8 @@ function replaceDocument(updated: DocumentDto) {
 }
 
 function gotoNode(node: GraphNodeDto) {
-  void router.push({ path: '/', query: { node: String(node.id), depth: '1', mode: 'local' } })
+  // 定位具体节点固定聚焦一层（GR02）
+  void router.push({ path: '/', query: { node: String(node.id), depth: '1', mode: 'focus' } })
 }
 
 onMounted(loadAll)

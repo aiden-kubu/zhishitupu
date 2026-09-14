@@ -203,6 +203,8 @@ export interface ProcessingJobDto {
   /** 已解析但尚无候选结果的旧任务可发起「提取知识」 */
   extractable?: boolean
   candidateCount?: number
+  /** 已增量落库的抽取批次数：失败/取消后重试只补齐缺失批次 */
+  stagedBatches?: number
 }
 
 export interface PageDto<T> {
@@ -239,9 +241,9 @@ export interface DocumentTagDto {
   source: 'human' | 'ai'
 }
 
-/** 文档可信度汇总（verification_json） */
+/** 文档可信度汇总（verification_json）。hash 新数据为 recordedAt（仅记录 SHA-256，不做比对），兼容旧 checkedAt/matched 字段 */
 export interface DocumentVerificationDto {
-  hash?: { sha256: string; checkedAt: string; matched?: boolean }
+  hash?: { sha256: string; recordedAt?: string; checkedAt?: string; matched?: boolean }
   aiReview?: { total: number; approved: number; rejected: number; model: string; reviewedAt: string }
   human?: { checked: boolean; note?: string; checkedAt: string }
 }
@@ -262,7 +264,8 @@ export interface DocumentDto {
   lifecycleStatus?: 'active' | 'archived' | 'outdated' | null
   tags: DocumentTagDto[]
   verification?: DocumentVerificationDto | null
-  updatedAt?: string
+  /** 元数据行真实更新时间；存量资料无元数据行时为 null */
+  updatedAt?: string | null
 }
 
 /** 节点类型（§11.1 首批值） */

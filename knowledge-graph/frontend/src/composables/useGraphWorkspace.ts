@@ -17,7 +17,7 @@ export function useGraphWorkspace() {
   const mode = ref<WorkspaceMode>('global')
   // 3D 依赖 3d-force-graph，需用户确认后于阶段 C 启用（§20）
   const renderMode = ref<RenderMode>('2d')
-  const depth = ref<1 | 2>(1)
+  // 模式决定固定深度：局部=2 层，聚焦=1 层（GR02）
   const libraryId = ref<number | null>(null)
 
   const subgraph = ref<SubgraphDto | null>(null)
@@ -57,13 +57,14 @@ export function useGraphWorkspace() {
     }
   }
 
-  async function focusNode(nodeId: number, targetDepth: 1 | 2 = depth.value) {
+  async function focusNode(nodeId: number, targetDepth: 1 | 2) {
     loading.value = true
     error.value = null
     try {
       subgraph.value = await graphApi.getNeighbors(nodeId, targetDepth, 500)
-      depth.value = targetDepth
-      mode.value = targetDepth === 2 ? 'local' : mode.value === 'focus' ? 'focus' : 'local'
+      mode.value = targetDepth === 2 ? 'local' : 'focus'
+      // 邻域加载成功后对齐选中节点到实际中心，避免上次子图的选中残留
+      selectedNodeId.value = subgraph.value.centerNodeId ?? nodeId
     } catch (err) {
       subgraph.value = null
       selectedNodeId.value = null
@@ -87,39 +88,29 @@ export function useGraphWorkspace() {
     void router.push({ path: '/', query: { node: String(nodeId), depth: '2', mode: 'local' } })
   }
 
-  /** 搜索命中（含顶部搜索与同名选择） */
-  function focusFromSearch(nodeId: number, targetDepth: 1 | 2 = 1) {
+  /** 搜索命中（含顶部搜索与同名选择）：定位具体节点，固定聚焦一层 */
+  function focusFromSearch(nodeId: number) {
     void router.push({
       path: '/',
-      query: { node: String(nodeId), depth: String(targetDepth), mode: 'local' },
+      query: { node: String(nodeId), depth: '1', mode: 'focus' },
     })
   }
 
   function setMode(next: WorkspaceMode) {
-    mode.value = next
-    const currentId = subgraph.value?.centerNodeId
     if (next === 'global') {
+      mode.value = next
       void router.push({ path: '/' })
       return
     }
-    if (currentId) {
-      const targetDepth: 1 | 2 = next === 'local' ? depth.value : 1
-      void router.push({
-        path: '/',
-        query: { node: String(currentId), depth: String(targetDepth), mode: next },
-      })
-    }
-  }
-
-  function setDepth(next: 1 | 2) {
-    const currentId = subgraph.value?.centerNodeId
-    depth.value = next
-    if (currentId && mode.value !== 'global') {
-      void router.push({
-        path: '/',
-        query: { node: String(currentId), depth: String(next), mode: mode.value },
-      })
-    }
+    // 目标节点规则：选中节点优先，无选中才用当前子图中心；两者皆无则保持当前有效视图
+    const targetNodeId = selectedNodeId.value ?? subgraph.value?.centerNodeId
+    if (!targetNodeId) return
+    // 模式决定固定深度：局部恒为 2 层，聚焦恒为 1 层（GR02）
+    mode.value = next
+    void router.push({
+      path: '/',
+      query: { node: String(targetNodeId), depth: next === 'local' ? '2' : '1', mode: next },
+    })
   }
 
   function setRenderMode(next: RenderMode) {
@@ -130,19 +121,27 @@ export function useGraphWorkspace() {
     void router.push({ path: '/' })
   }
 
-  /** 根据 URL query 加载对应视图（首次进入与路由变化时调用） */
+  /** 根据 URL query 加载对应视图（首次进入与路由变化时调用）；深度由模式固定，冲突/缺失时先规范化 URL */
   async function applyRouteQuery() {
     const nodeParam = Number(route.query.node)
-    if (Number.isFinite(nodeParam) && nodeParam > 0) {
-      const queryMode = String(route.query.mode ?? 'local')
-      mode.value = queryMode === 'focus' ? 'focus' : 'local'
-      const queryDepth = Number(route.query.depth ?? 1)
-      depth.value = queryDepth === 2 ? 2 : 1
-      await focusNode(nodeParam, depth.value)
-    } else {
+    if (!Number.isFinite(nodeParam) || nodeParam <= 0) {
       mode.value = 'global'
       await loadOverview()
+      return
     }
+    const queryMode = String(route.query.mode ?? 'local')
+    const normalizedMode: WorkspaceMode = queryMode === 'focus' ? 'focus' : 'local'
+    const fixedDepth: 1 | 2 = normalizedMode === 'local' ? 2 : 1
+    if (queryMode !== normalizedMode || String(route.query.depth ?? '') !== String(fixedDepth)) {
+      // 规范化 URL 后结束本次解析，由路由 watcher 重新触发，避免同一邻域请求两次
+      void router.replace({
+        path: '/',
+        query: { node: String(nodeParam), depth: String(fixedDepth), mode: normalizedMode },
+      })
+      return
+    }
+    mode.value = normalizedMode
+    await focusNode(nodeParam, fixedDepth)
   }
 
   watch(
@@ -158,7 +157,6 @@ export function useGraphWorkspace() {
   return {
     mode,
     renderMode,
-    depth,
     libraryId,
     subgraph,
     loading,
@@ -175,7 +173,6 @@ export function useGraphWorkspace() {
     expandNode,
     focusFromSearch,
     setMode,
-    setDepth,
     setRenderMode,
     resetView,
     applyRouteQuery,

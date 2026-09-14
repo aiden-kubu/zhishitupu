@@ -56,10 +56,33 @@ class ChatServiceContextTest {
     @Test
     void systemPromptContainsContextUntrustedDataRuleAndFixedSentence() {
         String prompt = ChatService.buildSystemPrompt(tcpNode(), tcpNeighborhood());
-        assertTrue(prompt.contains("<knowledge_context>"));
+        assertTrue(prompt.contains("<graph_context>"));
+        assertTrue(prompt.contains("<source_context>"));
         assertTrue(prompt.contains("当前节点：TCP"));
         assertTrue(prompt.contains("不可信"), "必须把知识上下文声明为不可信资料（§14.2）");
         assertTrue(prompt.contains(ChatService.INSUFFICIENT_EVIDENCE_SENTENCE));
+    }
+
+    /**
+     * 2026-09-14 用户决策：拒答只针对「主题无关」；主题相关但教材没写到的部分，
+     * 必须由模型用自己的知识讲解与举例，不得因为没有现成答案就拒答。
+     */
+    @Test
+    void systemPromptRequiresGroundedExtensionForRelatedTopics() {
+        String prompt = ChatService.buildSystemPrompt(tcpNode(), tcpNeighborhood());
+        assertTrue(prompt.contains("无关"), "必须说明只有主题无关才拒答");
+        assertTrue(prompt.contains("举例"), "必须明确允许并要求举例");
+        assertTrue(prompt.contains("不要因为资料里没有现成答案或现成例子就拒绝回答"),
+                "必须显式禁止「因为资料没有就直接拒答」");
+    }
+
+    /** 资料事实与模型补充必须分层：补充内容不得挂引用，也不得声称来自资料。 */
+    @Test
+    void systemPromptKeepsCitationDisciplineForModelSuppliedContent() {
+        String prompt = ChatService.buildSystemPrompt(tcpNode(), tcpNeighborhood());
+        assertTrue(prompt.contains("不得标注 [编号]"), "模型补充内容不得挂引用");
+        assertTrue(prompt.contains("不得声称来自资料"), "模型补充内容不得冒充资料原文");
+        assertTrue(prompt.contains("不得虚构编号"), "资料事实的引用编号不得编造");
     }
 
     @Test

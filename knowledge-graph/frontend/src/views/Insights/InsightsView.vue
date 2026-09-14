@@ -371,7 +371,8 @@ const showAllIsolated = ref(false)
 const formatNumber = (value: number) => new Intl.NumberFormat('zh-CN').format(value)
 const graphLink = (id: number) => ({
   path: '/',
-  query: { node: String(id), depth: '1', mode: 'local' },
+  // 定位具体节点固定聚焦一层（GR02）
+  query: { node: String(id), depth: '1', mode: 'focus' },
 })
 const kpis = computed(() => [
   { label: '知识节点', value: summary.value?.nodeCount ?? 0, unit: '个', icon: BoxCubeIcon },

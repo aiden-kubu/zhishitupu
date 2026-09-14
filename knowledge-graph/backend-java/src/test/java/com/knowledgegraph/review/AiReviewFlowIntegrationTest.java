@@ -89,6 +89,20 @@ class AiReviewFlowIntegrationTest {
         service.reviewAndImport(job); assertEquals("FAILED",status()); assertEquals(0,nodes());
         assertEquals("PENDING",jdbc.sql("SELECT review_status FROM entity_candidates WHERE id=:id").param("id",entity1).query(String.class).single());
     }
+    /** 断点续跑：复审结论已落库的项目在重跑时不再送审，模型调用数不增加。 */
+    @Test void resumeReusesStoredAuditsAndDoesNotCallModelAgain() {
+        doThrow(new IllegalStateException("simulated DB failure")).when(review).commit(job);
+        service.reviewAndImport(job);
+        assertEquals("FAILED",status()); assertEquals(0,nodes());
+        verify(llm,times(1)).complete(any(),anyList());
+        assertEquals(3,service.audits(job).size());
+
+        doCallRealMethod().when(review).commit(job);
+        service.reviewAndImport(job);
+
+        assertEquals("COMPLETED",status()); assertEquals(2,nodes());
+        verify(llm,times(1)).complete(any(),anyList());
+    }
     @Test void cancellationAndConcurrentStartCannotImport() throws Exception {
         var entered = new CountDownLatch(1); var release = new CountDownLatch(1);
         doAnswer(c -> { entered.countDown(); assertTrue(release.await(10,TimeUnit.SECONDS)); return answer(c.getArgument(1),false); }).when(llm).complete(any(),anyList());

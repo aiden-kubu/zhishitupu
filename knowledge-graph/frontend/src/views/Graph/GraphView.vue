@@ -10,12 +10,10 @@
             :mode="mode"
             :panel-open="panelOpen"
             :render-mode="renderMode"
-            :depth="depth"
             :node-count="subgraph?.nodes.length ?? 0"
             :edge-count="subgraph?.edges.length ?? 0"
             :truncated="subgraph?.truncated ?? false"
             @update:mode="setMode"
-            @update:depth="setDepth"
             @update:render-mode="setRenderMode"
             @reset="resetView"
             @toggle-panel="openAiPanel"
@@ -160,7 +158,6 @@ import { useGraphWorkspace } from '@/composables/useGraphWorkspace'
 const {
   mode,
   renderMode,
-  depth,
   subgraph,
   loading,
   error,
@@ -172,13 +169,12 @@ const {
   selectNode,
   expandNode,
   setMode,
-  setDepth,
   setRenderMode,
   resetView,
   applyRouteQuery,
 } = useGraphWorkspace()
 
-const panelOpen = ref(true)
+const panelOpen = ref(false) // 默认折叠：打开即为空对话（2026-09-14 无历史决策）
 const mobilePanelOpen = ref(false)
 const detailNodeId = ref<number | null>(null)
 const notice3d = ref<string | null>(null)

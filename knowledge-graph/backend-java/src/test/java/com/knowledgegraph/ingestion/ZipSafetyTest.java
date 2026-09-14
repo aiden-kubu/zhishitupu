@@ -43,29 +43,48 @@ class ZipSafetyTest {
     void rejectsPathTraversalEntry() {
         byte[] malicious = zipOf("../evil.txt", "p1.jpg");
         ApiException ex = assertThrows(ApiException.class,
-                () -> zipSafety.safeExtractImages(malicious, tempDir));
+                () -> zipSafety.safeExtractEntries(malicious, tempDir));
         assertTrue(ex.getMessage().contains("路径穿越"));
     }
 
     @Test
-    void rejectsNonImageEntries() {
+    void rejectsUnsupportedEntries() {
         byte[] archive = zipOf("page1.png", "page2.txt");
         ApiException ex = assertThrows(ApiException.class,
-                () -> zipSafety.safeExtractImages(archive, tempDir));
+                () -> zipSafety.safeExtractEntries(archive, tempDir));
         assertTrue(ex.getMessage().contains("仅支持"));
     }
 
     @Test
     void rejectsEmptyArchive() {
         ApiException ex = assertThrows(ApiException.class,
-                () -> zipSafety.safeExtractImages(new byte[0], tempDir));
+                () -> zipSafety.safeExtractEntries(new byte[0], tempDir));
         assertTrue(ex.getMessage().contains("没有找到") || ex.getMessage().contains("解压失败"));
+    }
+
+    @Test
+    void allowsPdfEntriesAlongsideImages() throws Exception {
+        // 用户反馈：ZIP 内的 PDF 曾被判为非法条目
+        byte[] archive = zipOf("book/dsacpp-3rd-edn.pdf", "book/cover.png");
+        zipSafety.validateStructure(archive); // 上传预扫必须放行
+        List<ZipSafety.ExtractedEntry> entries = zipSafety.safeExtractEntries(archive, tempDir);
+        assertEquals(2, entries.size());
+        assertEquals("book/cover.png", entries.get(0).entryName());
+        assertEquals("book/dsacpp-3rd-edn.pdf", entries.get(1).entryName());
+    }
+
+    @Test
+    void stillRejectsOtherDocumentTypes() {
+        ApiException ex = assertThrows(ApiException.class,
+                () -> zipSafety.validateStructure(zipOf("notes.docx")));
+        assertTrue(ex.getMessage().contains("仅支持"));
+        assertTrue(ex.getMessage().contains("PDF"));
     }
 
     @Test
     void extractsImagesInNaturalOrder() throws Exception {
         byte[] archive = zipOf("p10.jpg", "p2.jpg", "p1.jpg", "cover.png");
-        List<ZipSafety.ExtractedImage> images = zipSafety.safeExtractImages(archive, tempDir);
+        List<ZipSafety.ExtractedEntry> images = zipSafety.safeExtractEntries(archive, tempDir);
         assertEquals(4, images.size());
         assertEquals("cover.png", images.get(0).entryName());
         assertEquals("p1.jpg", images.get(1).entryName());
