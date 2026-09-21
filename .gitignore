@@ -23,5 +23,3 @@ Thumbs.db
 **/acceptance/
 *.har
 .local/
-/database/extracted/
-/数据结构与算法（JAVA语言版）.pdf
