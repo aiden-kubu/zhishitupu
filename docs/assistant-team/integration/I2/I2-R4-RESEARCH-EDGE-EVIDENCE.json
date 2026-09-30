@@ -1,0 +1,323 @@
+{
+  "stage": "I2-R4-RESEARCH-EDGE-QUERY",
+  "preparedBy": "controller",
+  "state": "prepared_not_dispatched",
+  "sourceRun": "Real-20260929T104824880",
+  "historyResults": {
+    "offline198": "passed",
+    "real44": "43pass/1error",
+    "quality": "Q01-Q10 and fixed performance samples passed; not the failed domain"
+  },
+  "observedFailure": [
+    {
+      "class": "com.knowledgegraph.assistant.i2.I2JdbcBaselineTest",
+      "name": "researchEdgesKeepDirectionAndBothEndpointScope",
+      "seconds": "1.566",
+      "error": "PreparedStatementCallback; uncategorized SQLException for SQL [SELECT e.id,e.source_node_id,e.target_node_id,e.relation_type,e.status,e.updated_at,e.properties_json,\nEXISTS(SELECT 1 FROM edge_evidence ee JOIN document_chunks ec ON ec.id=ee.chunk_id\n       JOIN document_units eu ON eu.id=ec.unit_id JOIN documents ed ON ed.id=eu.document_id\n       LEFT JOIN document_metadata em ON em.document_id=ed.id\n       WHERE ee.edge_id=e.id AND ed.status='COMPLETED' AND eu.status IN ('READY','OCR_OK')\n         AND (em.lifecycle_status IS NULL OR em.lifecycle_status='active')\n AND (ed.library_id IN (?) OR EXISTS (SELECT 1 FROM document_topic_assignments a WHERE a.document_id=ed.id AND a.library_id IN (?))) AND ed.id IN (?, ?)) AS has_source FROM knowledge_edges e JOIN knowledge_nodes s ON s.id=e.source_node_id JOIN knowledge_nodes t ON t.id=e.target_node_id WHERE e.source_node_id=? AND EXISTS (SELECT 1 FROM library_nodes ln WHERE ln.node_id=s.id AND ln.library_id IN (?)) AND EXISTS (SELECT 1 FROM node_evidence ne JOIN document_chunks nc ON nc.id=ne.chunk_id JOIN document_units nu ON nu.id=nc.unit_id JOIN documents nd ON nd.id=nu.document_id LEFT JOIN document_metadata nm ON nm.document_id=nd.id WHERE ne.node_id=s.id AND nd.id IN (?, ?) AND nd.status='COMPLETED' AND nu.status IN ('READY','OCR_OK') AND (nm.lifecycle_status IS NULL OR nm.lifecycle_status='active') AND (nd.library_id IN (?) OR EXISTS (SELECT 1 FROM document_topic_assignments a WHERE a.document_id=nd.id AND a.library_id IN (?))) AND nd.id IN (?, ?)) AND EXISTS (SELECT 1 FROM library_nodes ln WHERE ln.node_id=t.id AND ln.library_id IN (?)) AND EXISTS (SELECT 1 FROM node_evidence ne JOIN document_chunks nc ON nc.id=ne.chunk_id JOIN document_units nu ON nu.id=nc.unit_id JOIN documents nd ON nd.id=nu.document_id LEFT JOIN document_metadata nm ON nm.document_id=nd.id WHERE ne.node_id=t.id AND nd.id IN (?, ?) AND nd.status='COMPLETED' AND nu.status IN ('READY','OCR_OK') AND (nm.lifecycle_status IS NULL OR nm.lifecycle_status='active') AND (nd.library_id IN (?) OR EXISTS (SELECT 1 FROM document_topic_assignments a WHERE a.document_id=nd.id AND a.library_id IN (?))) AND nd.id IN (?, ?)) AND EXISTS (SELECT 1 FROM edge_evidence ee JOIN document_chunks ec ON ec.id=ee.chunk_id JOIN document_units eu ON eu.id=ec.unit_id JOIN documents ed ON ed.id=eu.document_id LEFT JOIN document_metadata em ON em.document_id=ed.id WHERE ee.edge_id=e.id AND ed.id IN (?, ?) AND ed.status='COMPLETED' AND eu.status IN ('READY','OCR_OK') AND (em.lifecycle_status IS NULL OR em.lifecycle_status='active') AND (ed.library_id IN (?) OR EXISTS (SELECT 1 FROM document_topic_assignments a WHERE a.document_id=ed.id AND a.library_id IN (?))) AND ed.id IN (?, ?)) ORDER BY e.id LIMIT ?]; SQL state [HY000]; error code [3024]; Query execution was interrupted, maximum statement execution time exceeded",
+      "failure": ""
+    }
+  ],
+  "call": {
+    "method": "research.outgoingEdges",
+    "libraryIds": [
+      7101
+    ],
+    "documentIds": [
+      7201,
+      7202
+    ],
+    "nodeIds": [],
+    "nodeId": 7702,
+    "limit": 10,
+    "maxRows": 11,
+    "expected": "empty items",
+    "errorCode": 3024,
+    "sqlState": "HY000"
+  },
+  "evidenceGaps": [
+    "No real research EXPLAIN collected",
+    "No rerun; 1.566s is JUnit method total, not isolated SQL duration",
+    "Following outgoingEdges(AB,7701,10) and incidentEdges(AB,7701,10) assertions not reached",
+    "Do not use old quality LIST EXPLAIN to infer research plan",
+    "Schema migration files are offline references, not freshly queried SHOW CREATE"
+  ],
+  "originalEvidence": [
+    {
+      "normalizedSha256": "946260844ccec31fa02091a14ee44e0a895b702a7d1b1d4baa8b425606959557",
+      "path": "D:\\知识图谱\\docs\\assistant-team\\integration\\I2\\R3\\evidence\\Real-20260929T104824880\\Base-RESULT.json",
+      "bytes": 12459,
+      "rawSha256": "e9efa94d329c65920a5076b3156c84425fec143fc853513839a74181551ed7fc"
+    },
+    {
+      "normalizedSha256": "3cb6e5b85c8b3a5c61a8872c59c685cd70a936e5059f61d678d16512059dbe10",
+      "path": "D:\\知识图谱\\docs\\assistant-team\\integration\\I2\\R3\\evidence\\Real-20260929T104824880\\Base-MAVEN.log",
+      "bytes": 10981,
+      "rawSha256": "a7452c992387019d3a470309bb55d8ff6020bcd6157fe7c9ec9330e0856c3ac5"
+    },
+    {
+      "normalizedSha256": "47f69ae82b8a7a5f361c814c0e5a0c317524f45be744d51cb264f0dd18f12e54",
+      "path": "D:\\知识图谱\\docs\\assistant-team\\integration\\I2\\R3\\evidence\\Real-20260929T104824880\\IDENTITY.json",
+      "bytes": 2874,
+      "rawSha256": "02c34018f2149caa4bb85085aedc00b26589dec7a609796257cd202697f1fff9"
+    },
+    {
+      "normalizedSha256": "540f8b38f62ee40c238d30006ef7c80a595026b2f61813d6e4b71bb86f847a30",
+      "path": "D:\\知识图谱\\docs\\assistant-team\\integration\\I2\\R3\\evidence\\Real-20260929T104824880\\RUN.json",
+      "bytes": 264,
+      "rawSha256": "3809054a17bb656e1be156047eaf781efa8f971fa429a86645c8e8e732c7ba6b"
+    },
+    {
+      "normalizedSha256": "bf8a91c08c16b8ba33624e0493d39183bbfab99d2eb0cb3f418f64ce04b3d626",
+      "path": "D:\\知识图谱\\docs\\assistant-team\\integration\\I2\\R3\\evidence\\Real-20260929T104824880\\SHUTDOWN.json",
+      "bytes": 145,
+      "rawSha256": "0c01de53c0c0b9d7d0f332ae50e1fa1cd28b5c1bec63c45107414821dc08d950"
+    },
+    {
+      "normalizedSha256": "64e96f90c265badf4bed93f922b3eec2b0c7c839fb7f56c4a30743785702043d",
+      "path": "D:\\知识图谱\\docs\\assistant-team\\integration\\I2\\R3\\evidence\\Real-20260929T104824880\\I2-R3_Base-BEFORE.json",
+      "bytes": 8902,
+      "rawSha256": "a27af05b9075e140886276502cced6bab936a2430b709af453e27c3b5c83a8f0"
+    },
+    {
+      "normalizedSha256": "202dcef0bf9f0171c3894a813caaf927ec33694d57052805822388b049695a9b",
+      "path": "D:\\知识图谱\\docs\\assistant-team\\integration\\I2\\R3\\evidence\\Real-20260929T104824880\\Base-ZERO-WRITE.json",
+      "bytes": 365,
+      "rawSha256": "beda4ecedfd5bef2e9dcec8d7ab077f1bd33b72ceb9cf1ee71e0b8bd9db73d31"
+    }
+  ],
+  "xmlReferences": [
+    {
+      "class": "com.knowledgegraph.assistant.i2.I2JdbcBaselineTest",
+      "xmlPath": "D:\\知识图谱\\backend-java\\target\\surefire-reports\\TEST-com.knowledgegraph.assistant.i2.I2JdbcBaselineTest-Real-20260929T104824880-Base.xml",
+      "xmlRawSha256": "3d260d7d118fff75f7a540bb79a1212a0489d118c1be17d052e8a6458a3a6fe7"
+    },
+    {
+      "class": "com.knowledgegraph.assistant.i2.I2ReadOnlyPrivilegeTest",
+      "xmlPath": "D:\\知识图谱\\backend-java\\target\\surefire-reports\\TEST-com.knowledgegraph.assistant.i2.I2ReadOnlyPrivilegeTest-Real-20260929T104824880-Base.xml",
+      "xmlRawSha256": "3b61496954afc46ac175438f1d1cfa7e743abffbfadd42eeb2313fbf26b240be"
+    }
+  ],
+  "referenceFiles": [
+    {
+      "bytes": 13857,
+      "file": "backend-java/src/test/java/com/knowledgegraph/assistant/i2/I2JdbcBaselineTest.java",
+      "rawSha256": "747f23576d633708403c0dfaf1e133dcb0ea74d90509603f245598a1c7b49b56"
+    },
+    {
+      "bytes": 6217,
+      "file": "backend-java/src/test/java/com/knowledgegraph/assistant/i2/I2MySqlSupport.java",
+      "rawSha256": "eb518e6c7b884595bd868764f3686e5f002bea07266fcaa9851f4df31200f70c"
+    },
+    {
+      "bytes": 6715,
+      "file": "docs/assistant-team/references/03-research-W1-DEPENDENCIES.json",
+      "rawSha256": "9d275447171c023123befcc46695ab34b3ec5a4516f1554dce4796cab29bbd61"
+    },
+    {
+      "bytes": 2507,
+      "file": "docs/assistant-team/integration/I2/I2-FIXTURE-MAPPING.json",
+      "rawSha256": "64e1ef10f4409a42dc0ddcf1b34541db5be7b484c8cf04c6c921edc88aeb2822"
+    },
+    {
+      "bytes": 26385,
+      "file": "docs/assistant-team/integration/I2/I2-FIXTURE.sql",
+      "rawSha256": "f2401d9bbe1833d8610d3c65080f17f845a5528b800fed10a8fa0b54dc523be1"
+    },
+    {
+      "bytes": 414,
+      "file": "docs/assistant-team/integration/I2/I2-SCALE-FIXTURE.json",
+      "rawSha256": "14ad75816d167a11b52b4370c386adfa31903619ef8323877a5746f850fd7048"
+    },
+    {
+      "bytes": 10061,
+      "file": "backend-java/src/main/resources/db/migration/V1__schema.sql",
+      "rawSha256": "2d87550e9a5fac27fcea76be825d8182e87dfb12c7a9dc530e629a29fecf3554"
+    },
+    {
+      "bytes": 1041,
+      "file": "backend-java/src/main/resources/db/migration/V6__auto_organization.sql",
+      "rawSha256": "9128312a2507238723af98d049c56245b92dfb1170a89f94e4b89300da7017e7"
+    },
+    {
+      "bytes": 3018,
+      "file": "backend-java/src/main/resources/db/migration/V7__document_metadata.sql",
+      "rawSha256": "6b2f24a890526f1fe6def34565d9372763e084ddff626cd38b17492adbbc33b8"
+    },
+    {
+      "bytes": 936,
+      "file": "backend-java/src/main/resources/db/migration/V9__document_understanding.sql",
+      "rawSha256": "593fd112c0a541dadb6771352d35132dfdf578c64c991741018f127cf19ca5b7"
+    }
+  ],
+  "researchPreimages": [
+    {
+      "file": "backend-java/src/main/java/com/knowledgegraph/assistant/research/JdbcResearchReadRepository.java",
+      "owner": {
+        "normalizedSha256": "b922ec24fc397fd772524524c34c6837a3f044bff4bd18efcdd23c37ae67612f",
+        "path": "D:\\知识图谱-worktrees\\assistant-03-research\\backend-java\\src\\main\\java\\com\\knowledgegraph\\assistant\\research\\JdbcResearchReadRepository.java",
+        "bytes": 14742,
+        "rawSha256": "b922ec24fc397fd772524524c34c6837a3f044bff4bd18efcdd23c37ae67612f"
+      },
+      "main": {
+        "normalizedSha256": "b922ec24fc397fd772524524c34c6837a3f044bff4bd18efcdd23c37ae67612f",
+        "path": "D:\\知识图谱\\backend-java\\src\\main\\java\\com\\knowledgegraph\\assistant\\research\\JdbcResearchReadRepository.java",
+        "bytes": 14742,
+        "rawSha256": "b922ec24fc397fd772524524c34c6837a3f044bff4bd18efcdd23c37ae67612f"
+      }
+    },
+    {
+      "file": "backend-java/src/main/java/com/knowledgegraph/assistant/research/ResearchAgentToolProvider.java",
+      "owner": {
+        "normalizedSha256": "65c53ea2ec0238a126126131896bdb4e6fe48727c1976fc6acc27cea548cf219",
+        "path": "D:\\知识图谱-worktrees\\assistant-03-research\\backend-java\\src\\main\\java\\com\\knowledgegraph\\assistant\\research\\ResearchAgentToolProvider.java",
+        "bytes": 29869,
+        "rawSha256": "65c53ea2ec0238a126126131896bdb4e6fe48727c1976fc6acc27cea548cf219"
+      },
+      "main": {
+        "normalizedSha256": "65c53ea2ec0238a126126131896bdb4e6fe48727c1976fc6acc27cea548cf219",
+        "path": "D:\\知识图谱\\backend-java\\src\\main\\java\\com\\knowledgegraph\\assistant\\research\\ResearchAgentToolProvider.java",
+        "bytes": 29869,
+        "rawSha256": "65c53ea2ec0238a126126131896bdb4e6fe48727c1976fc6acc27cea548cf219"
+      }
+    },
+    {
+      "file": "backend-java/src/main/java/com/knowledgegraph/assistant/research/ResearchArtifacts.java",
+      "owner": {
+        "normalizedSha256": "41d2e1f34da841e0ec8e3c530aa222d2d9c1bbdcf01173d9791a8aa206d54772",
+        "path": "D:\\知识图谱-worktrees\\assistant-03-research\\backend-java\\src\\main\\java\\com\\knowledgegraph\\assistant\\research\\ResearchArtifacts.java",
+        "bytes": 16034,
+        "rawSha256": "41d2e1f34da841e0ec8e3c530aa222d2d9c1bbdcf01173d9791a8aa206d54772"
+      },
+      "main": {
+        "normalizedSha256": "41d2e1f34da841e0ec8e3c530aa222d2d9c1bbdcf01173d9791a8aa206d54772",
+        "path": "D:\\知识图谱\\backend-java\\src\\main\\java\\com\\knowledgegraph\\assistant\\research\\ResearchArtifacts.java",
+        "bytes": 16034,
+        "rawSha256": "41d2e1f34da841e0ec8e3c530aa222d2d9c1bbdcf01173d9791a8aa206d54772"
+      }
+    },
+    {
+      "file": "backend-java/src/main/java/com/knowledgegraph/assistant/research/ResearchDraftValidator.java",
+      "owner": {
+        "normalizedSha256": "7763871dacf07b4ba24d8f23779a371373661c15dc03ff1807b7672adf2a61b5",
+        "path": "D:\\知识图谱-worktrees\\assistant-03-research\\backend-java\\src\\main\\java\\com\\knowledgegraph\\assistant\\research\\ResearchDraftValidator.java",
+        "bytes": 4304,
+        "rawSha256": "7763871dacf07b4ba24d8f23779a371373661c15dc03ff1807b7672adf2a61b5"
+      },
+      "main": {
+        "normalizedSha256": "7763871dacf07b4ba24d8f23779a371373661c15dc03ff1807b7672adf2a61b5",
+        "path": "D:\\知识图谱\\backend-java\\src\\main\\java\\com\\knowledgegraph\\assistant\\research\\ResearchDraftValidator.java",
+        "bytes": 4304,
+        "rawSha256": "7763871dacf07b4ba24d8f23779a371373661c15dc03ff1807b7672adf2a61b5"
+      }
+    },
+    {
+      "file": "backend-java/src/main/java/com/knowledgegraph/assistant/research/ResearchEvidence.java",
+      "owner": {
+        "normalizedSha256": "ae72850989b05a7396330f835e9754e5b416b6d532089067c65d3161647feca5",
+        "path": "D:\\知识图谱-worktrees\\assistant-03-research\\backend-java\\src\\main\\java\\com\\knowledgegraph\\assistant\\research\\ResearchEvidence.java",
+        "bytes": 3268,
+        "rawSha256": "ae72850989b05a7396330f835e9754e5b416b6d532089067c65d3161647feca5"
+      },
+      "main": {
+        "normalizedSha256": "ae72850989b05a7396330f835e9754e5b416b6d532089067c65d3161647feca5",
+        "path": "D:\\知识图谱\\backend-java\\src\\main\\java\\com\\knowledgegraph\\assistant\\research\\ResearchEvidence.java",
+        "bytes": 3268,
+        "rawSha256": "ae72850989b05a7396330f835e9754e5b416b6d532089067c65d3161647feca5"
+      }
+    },
+    {
+      "file": "backend-java/src/main/java/com/knowledgegraph/assistant/research/ResearchReadRepository.java",
+      "owner": {
+        "normalizedSha256": "8f47484f79cdfcc170ed1a64a3c883da20a1e9d94791bbc37286d04db77f2338",
+        "path": "D:\\知识图谱-worktrees\\assistant-03-research\\backend-java\\src\\main\\java\\com\\knowledgegraph\\assistant\\research\\ResearchReadRepository.java",
+        "bytes": 2646,
+        "rawSha256": "8f47484f79cdfcc170ed1a64a3c883da20a1e9d94791bbc37286d04db77f2338"
+      },
+      "main": {
+        "normalizedSha256": "8f47484f79cdfcc170ed1a64a3c883da20a1e9d94791bbc37286d04db77f2338",
+        "path": "D:\\知识图谱\\backend-java\\src\\main\\java\\com\\knowledgegraph\\assistant\\research\\ResearchReadRepository.java",
+        "bytes": 2646,
+        "rawSha256": "8f47484f79cdfcc170ed1a64a3c883da20a1e9d94791bbc37286d04db77f2338"
+      }
+    },
+    {
+      "file": "backend-java/src/test/java/com/knowledgegraph/assistant/research/JdbcResearchReadRepositoryTest.java",
+      "owner": {
+        "normalizedSha256": "1b7c80d568cd0e75b982427c10c404b90f608ea8dee83daf4b92843a131277ce",
+        "path": "D:\\知识图谱-worktrees\\assistant-03-research\\backend-java\\src\\test\\java\\com\\knowledgegraph\\assistant\\research\\JdbcResearchReadRepositoryTest.java",
+        "bytes": 9162,
+        "rawSha256": "1b7c80d568cd0e75b982427c10c404b90f608ea8dee83daf4b92843a131277ce"
+      },
+      "main": {
+        "normalizedSha256": "1b7c80d568cd0e75b982427c10c404b90f608ea8dee83daf4b92843a131277ce",
+        "path": "D:\\知识图谱\\backend-java\\src\\test\\java\\com\\knowledgegraph\\assistant\\research\\JdbcResearchReadRepositoryTest.java",
+        "bytes": 9162,
+        "rawSha256": "1b7c80d568cd0e75b982427c10c404b90f608ea8dee83daf4b92843a131277ce"
+      }
+    },
+    {
+      "file": "backend-java/src/test/java/com/knowledgegraph/assistant/research/ResearchAgentToolProviderTest.java",
+      "owner": {
+        "normalizedSha256": "dbe049de45f0257477b05935f90619a919b55fddd550e202717f3c40028f30ec",
+        "path": "D:\\知识图谱-worktrees\\assistant-03-research\\backend-java\\src\\test\\java\\com\\knowledgegraph\\assistant\\research\\ResearchAgentToolProviderTest.java",
+        "bytes": 16078,
+        "rawSha256": "dbe049de45f0257477b05935f90619a919b55fddd550e202717f3c40028f30ec"
+      },
+      "main": {
+        "normalizedSha256": "dbe049de45f0257477b05935f90619a919b55fddd550e202717f3c40028f30ec",
+        "path": "D:\\知识图谱\\backend-java\\src\\test\\java\\com\\knowledgegraph\\assistant\\research\\ResearchAgentToolProviderTest.java",
+        "bytes": 16078,
+        "rawSha256": "dbe049de45f0257477b05935f90619a919b55fddd550e202717f3c40028f30ec"
+      }
+    },
+    {
+      "file": "backend-java/src/test/java/com/knowledgegraph/assistant/research/ResearchComparisonTest.java",
+      "owner": {
+        "normalizedSha256": "6f2df4ad7c2dbde2832106f0b1fe82344d631102944343909957ae31fd7d552a",
+        "path": "D:\\知识图谱-worktrees\\assistant-03-research\\backend-java\\src\\test\\java\\com\\knowledgegraph\\assistant\\research\\ResearchComparisonTest.java",
+        "bytes": 20869,
+        "rawSha256": "6f2df4ad7c2dbde2832106f0b1fe82344d631102944343909957ae31fd7d552a"
+      },
+      "main": {
+        "normalizedSha256": "6f2df4ad7c2dbde2832106f0b1fe82344d631102944343909957ae31fd7d552a",
+        "path": "D:\\知识图谱\\backend-java\\src\\test\\java\\com\\knowledgegraph\\assistant\\research\\ResearchComparisonTest.java",
+        "bytes": 20869,
+        "rawSha256": "6f2df4ad7c2dbde2832106f0b1fe82344d631102944343909957ae31fd7d552a"
+      }
+    },
+    {
+      "file": "backend-java/src/test/java/com/knowledgegraph/assistant/research/ResearchDraftValidatorTest.java",
+      "owner": {
+        "normalizedSha256": "e9c2316cd982f2ec4ccfb0f96fee0d693cdfffdca4d58f980e7b44c983a7fb93",
+        "path": "D:\\知识图谱-worktrees\\assistant-03-research\\backend-java\\src\\test\\java\\com\\knowledgegraph\\assistant\\research\\ResearchDraftValidatorTest.java",
+        "bytes": 3704,
+        "rawSha256": "e9c2316cd982f2ec4ccfb0f96fee0d693cdfffdca4d58f980e7b44c983a7fb93"
+      },
+      "main": {
+        "normalizedSha256": "e9c2316cd982f2ec4ccfb0f96fee0d693cdfffdca4d58f980e7b44c983a7fb93",
+        "path": "D:\\知识图谱\\backend-java\\src\\test\\java\\com\\knowledgegraph\\assistant\\research\\ResearchDraftValidatorTest.java",
+        "bytes": 3704,
+        "rawSha256": "e9c2316cd982f2ec4ccfb0f96fee0d693cdfffdca4d58f980e7b44c983a7fb93"
+      }
+    }
+  ],
+  "newPaths": [
+    {
+      "occupied": false,
+      "path": "D:\\知识图谱-worktrees\\assistant-03-research\\backend-java\\src\\test\\java\\com\\knowledgegraph\\assistant\\research\\JdbcResearchEdgeQueryPerformanceRegressionTest.java"
+    },
+    {
+      "occupied": false,
+      "path": "D:\\知识图谱-worktrees\\assistant-03-research\\docs\\assistant-team\\reports\\03-research-I2-R4.md"
+    },
+    {
+      "occupied": false,
+      "path": "D:\\知识图谱-worktrees\\assistant-03-research\\docs\\assistant-team\\reports\\I2-R4"
+    }
+  ],
+  "ownerWorktree": "D:/知识图谱-worktrees/assistant-03-research",
+  "expectedBranch": "codex/assistant-03-research",
+  "expectedHead": "bcd3b60ea4e6e18daad53f31787028a0f69bc6cf",
+  "normalization": "UTF-8, CRLF->LF, preserve trailing newlines, no trim",
+  "provenance": "R3 real test run by previous controller. This task prepared by controller. No03 development/test/DB run this turn; no06 desktop receipt yet."
+}

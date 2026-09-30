@@ -1,0 +1,129 @@
+{
+  "executionRound": 1,
+  "rawXmlArchived": false,
+  "suites": [
+    {
+      "class": "com.knowledgegraph.assistant.quality.JdbcQualityInsightRankingRegressionTest",
+      "xmlRawSha256": "8c67832359c6227317f5272da3040d74c033ca5aa5f9210d1bf3699542910e45",
+      "xmlPath": "D:\\知识图谱\\backend-java\\target\\surefire-reports\\TEST-com.knowledgegraph.assistant.quality.JdbcQualityInsightRankingRegressionTest-Offline-20260929T104719641-Ranking.xml",
+      "failures": 0,
+      "errors": 0,
+      "cases": [
+        {
+          "name": "rankingAggregatesScopedEndpointsInsteadOfCountingEdgesForEachNode",
+          "error": "",
+          "seconds": "0.336",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.quality.JdbcQualityInsightRankingRegressionTest"
+        },
+        {
+          "name": "selfLoopContributesSourceOnceAndIsExcludedOnlyFromTargetBranch",
+          "error": "",
+          "seconds": "0.017",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.quality.JdbcQualityInsightRankingRegressionTest"
+        },
+        {
+          "name": "rankingJdbcFailureIsNotConvertedIntoSuccessfulEmptyInsight",
+          "error": "",
+          "seconds": "0.026",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.quality.JdbcQualityInsightRankingRegressionTest"
+        },
+        {
+          "name": "unsupportedDimensionsStillRejectBeforeAnySql(Scope)[1]",
+          "error": "",
+          "seconds": "0.02",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.quality.JdbcQualityInsightRankingRegressionTest"
+        },
+        {
+          "name": "unsupportedDimensionsStillRejectBeforeAnySql(Scope)[2]",
+          "error": "",
+          "seconds": "0.002",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.quality.JdbcQualityInsightRankingRegressionTest"
+        },
+        {
+          "name": "unsupportedDimensionsStillRejectBeforeAnySql(Scope)[3]",
+          "error": "",
+          "seconds": "0.001",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.quality.JdbcQualityInsightRankingRegressionTest"
+        },
+        {
+          "name": "unsupportedDimensionsStillRejectBeforeAnySql(Scope)[4]",
+          "error": "",
+          "seconds": "0.002",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.quality.JdbcQualityInsightRankingRegressionTest"
+        },
+        {
+          "name": "emptyRankingStaysEmptyWithoutFabricatedNode",
+          "error": "",
+          "seconds": "0.011",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.quality.JdbcQualityInsightRankingRegressionTest"
+        },
+        {
+          "name": "onlyFinalRankLimitIsBoundAndTiesUseAscendingNumericId",
+          "error": "",
+          "seconds": "0.009",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.quality.JdbcQualityInsightRankingRegressionTest"
+        },
+        {
+          "name": "reverseAndDifferentTypeEdgesKeepRowMultiplicity",
+          "error": "",
+          "seconds": "0.01",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.quality.JdbcQualityInsightRankingRegressionTest"
+        },
+        {
+          "name": "selectedLibrariesKeepExistsMembershipAndBothVisibleActiveEndpoints",
+          "error": "",
+          "seconds": "0.008",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.quality.JdbcQualityInsightRankingRegressionTest"
+        },
+        {
+          "name": "nonRankingQueriesAndTheirLimitsKeepFrozenShape",
+          "error": "",
+          "seconds": "0.01",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.quality.JdbcQualityInsightRankingRegressionTest"
+        },
+        {
+          "name": "projectRankingDoesNotInventLibraryParametersOrRestrictions",
+          "error": "",
+          "seconds": "0.007",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.quality.JdbcQualityInsightRankingRegressionTest"
+        },
+        {
+          "name": "zeroDegreeNodesRemainInOuterLeftJoinWithZeroValue",
+          "error": "",
+          "seconds": "0.008",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.quality.JdbcQualityInsightRankingRegressionTest"
+        },
+        {
+          "name": "actualRowMapperPreservesLongIdsLongDegreesNamesAndZeroDegree",
+          "error": "",
+          "seconds": "0.154",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.quality.JdbcQualityInsightRankingRegressionTest"
+        }
+      ],
+      "skipped": 0,
+      "tests": 15
+    }
+  ],
+  "uniqueTestCases": 15,
+  "exitCode": 0,
+  "records": [],
+  "suite": "Ranking",
+  "uniqueMethodDefinitions": 12,
+  "reportSuffix": "Offline-20260929T104719641-Ranking",
+  "startedAt": "2026-09-29T10:47:43.0456001+08:00"
+}

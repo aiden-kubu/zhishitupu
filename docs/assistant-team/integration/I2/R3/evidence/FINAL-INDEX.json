@@ -1,0 +1,632 @@
+{
+  "stage": "I2-R3",
+  "createdAt": "2026-09-29",
+  "runIds": [
+    "Offline-20260929T104719641",
+    "Real-20260929T104824880"
+  ],
+  "status": "batch_not_all_green_owner_acceptance_pending",
+  "selfExcluded": true,
+  "files": [
+    {
+      "path": "D:\\知识图谱\\docs\\assistant-team\\integration\\I2\\R3\\Invoke-R3Tests.ps1",
+      "rawSha256": "c2b757b0576f5d884221116218c2e3b072c3cd330d9687b9e09ce1d8031f62ff",
+      "bytes": 1804
+    },
+    {
+      "path": "D:\\知识图谱\\docs\\assistant-team\\integration\\I2\\R3\\Invoke-R3Verification.ps1",
+      "rawSha256": "0084f7647e11f70b2991292ae7de8a1867251c302c1e887e5f231aa1e4aebf18",
+      "bytes": 17685
+    },
+    {
+      "path": "D:\\知识图谱\\docs\\assistant-team\\integration\\I2\\R3\\R3-OVERLAY.json",
+      "rawSha256": "89a34cc3f6bb3a4414a46440ad0ca09c816ea070c5db431257cd0a9950203048",
+      "bytes": 2982
+    },
+    {
+      "path": "D:\\知识图谱\\docs\\assistant-team\\integration\\I2\\R3\\R3-PACKAGE.json",
+      "rawSha256": "564108799b128673268f57c604a615dddf818ddd008ed91f7d001a44d5edc03e",
+      "bytes": 3279
+    },
+    {
+      "path": "D:\\知识图谱\\docs\\assistant-team\\integration\\I2\\R3\\R3-PLAN.md",
+      "rawSha256": "83fa99c606be44e4d40478d087eb859f4dbfada85c527b6262973141a824ce75",
+      "bytes": 4771
+    },
+    {
+      "path": "D:\\知识图谱\\docs\\assistant-team\\integration\\I2\\R3\\R3-PROTECTION-BEFORE.json",
+      "rawSha256": "f470f12055468e7218850391571833e552f6a8f4239a7d491e804f2c540f2a58",
+      "bytes": 123295
+    },
+    {
+      "path": "D:\\知识图谱\\docs\\assistant-team\\integration\\I2\\R3\\R3-REPORT.md",
+      "rawSha256": "7a55fa59a6e5fed253e2912bc2718b10fdcde8cc4a1203bb5d144fd580d48361",
+      "bytes": 19085
+    },
+    {
+      "path": "D:\\知识图谱\\docs\\assistant-team\\integration\\I2\\R3\\Verify-R3Baseline.ps1",
+      "rawSha256": "db6d2d851ddaa3bec6706a22fdd5f8a721e9c9126b2574c8bd5242bedaa9d421",
+      "bytes": 6025
+    },
+    {
+      "path": "D:\\知识图谱\\docs\\assistant-team\\integration\\I2\\R3\\archive\\02-quality-I2-R3.md",
+      "rawSha256": "946488684ff71c46a662ce98ca3b17195b461b64797751db2cedd0eb4d3d5403",
+      "bytes": 14376
+    },
+    {
+      "path": "D:\\知识图谱\\docs\\assistant-team\\integration\\I2\\R3\\archive\\JdbcQualityInsightIsolatedCountRegressionTest.java.before.txt",
+      "rawSha256": "1fcb245eaac857476c7a8bb6c4d854f6bfea649d347079291029bb88fca10c66",
+      "bytes": 8325
+    },
+    {
+      "path": "D:\\知识图谱\\docs\\assistant-team\\integration\\I2\\R3\\archive\\JdbcQualityInsightRankingRegressionTest.java.before.txt",
+      "rawSha256": "454ad390e192749f41c5759ba55b7e4915ce203296ced09def72bc4aabcc25d6",
+      "bytes": 12444
+    },
+    {
+      "path": "D:\\知识图谱\\docs\\assistant-team\\integration\\I2\\R3\\archive\\JdbcQualityReadRepository.java.before.txt",
+      "rawSha256": "c977e453d407aa150404c8f5acecddb6a9dfd63ae27692acb4e057840a3bcc15",
+      "bytes": 15063
+    },
+    {
+      "path": "D:\\知识图谱\\docs\\assistant-team\\integration\\I2\\R3\\archive\\offline-results.json",
+      "rawSha256": "6b70776b308e8d538c4d9115741c3acc478d268293f7cefb1809a638d38eb886",
+      "bytes": 5304
+    },
+    {
+      "path": "D:\\知识图谱\\docs\\assistant-team\\integration\\I2\\R3\\evidence\\FINAL-BASELINE-CHECK.json",
+      "rawSha256": "f7db6645cae071577062e5d2bd068edb43397c39e22349ed8c20d8d1b3eedc6e",
+      "bytes": 6366
+    },
+    {
+      "path": "D:\\知识图谱\\docs\\assistant-team\\integration\\I2\\R3\\evidence\\POSTRUN-SUMMARY.json",
+      "rawSha256": "0fee139af2d088b417f2c4fa5e4831f7661ee1f2c944597b3a5513afbce538b6",
+      "bytes": 27731
+    },
+    {
+      "path": "D:\\知识图谱\\docs\\assistant-team\\integration\\I2\\R3\\evidence\\XML-TRANSCRIPTION-CHECK.json",
+      "rawSha256": "5a58702f7ddaa284a6df818dc38f19d94ac75be9a606234cc1b6641a3d7ba3dc",
+      "bytes": 7834
+    },
+    {
+      "path": "D:\\知识图谱\\docs\\assistant-team\\integration\\I2\\R3\\evidence\\Offline-20260929T104719641\\BASELINE-AFTER.json",
+      "rawSha256": "6e841c28834b5b8b1cacd504ab4eb6fd1cb896e204e4951aaa4f5fa7e783deb1",
+      "bytes": 1954
+    },
+    {
+      "path": "D:\\知识图谱\\docs\\assistant-team\\integration\\I2\\R3\\evidence\\Offline-20260929T104719641\\BASELINE-BEFORE.json",
+      "rawSha256": "c9f7ffba5e5394738c56d3730356c714f422cf91b3e232b7d204826b173a3abe",
+      "bytes": 1428
+    },
+    {
+      "path": "D:\\知识图谱\\docs\\assistant-team\\integration\\I2\\R3\\evidence\\Offline-20260929T104719641\\IsolatedCount-MAVEN.log",
+      "rawSha256": "1df2bb01b477a4141a66232f90586fc6d97b99566ffd26c40bb7fae4524a3985",
+      "bytes": 2147
+    },
+    {
+      "path": "D:\\知识图谱\\docs\\assistant-team\\integration\\I2\\R3\\evidence\\Offline-20260929T104719641\\IsolatedCount-RESULT.json",
+      "rawSha256": "3d13797466a3488267d319b2fb10a41106acaa30e0206a22bc58dd6a015780ff",
+      "bytes": 3664
+    },
+    {
+      "path": "D:\\知识图谱\\docs\\assistant-team\\integration\\I2\\R3\\evidence\\Offline-20260929T104719641\\Original-MAVEN.log",
+      "rawSha256": "7da3f3c07e031db85c2e79b41bbc87ca182f5d9a7a079f3c7522ce8a095b5cf5",
+      "bytes": 6990
+    },
+    {
+      "path": "D:\\知识图谱\\docs\\assistant-team\\integration\\I2\\R3\\evidence\\Offline-20260929T104719641\\Original-RESULT.json",
+      "rawSha256": "8f64a387f6f6be8356c086511b55b1c82a0f2b52f0924059102bfed4bab3fc83",
+      "bytes": 50886
+    },
+    {
+      "path": "D:\\知识图谱\\docs\\assistant-team\\integration\\I2\\R3\\evidence\\Offline-20260929T104719641\\Ranking-MAVEN.log",
+      "rawSha256": "411e509b27672d6ddd557be537cfec701e90f1bcbeae14bad5dd55b3e4e2ec8b",
+      "bytes": 2135
+    },
+    {
+      "path": "D:\\知识图谱\\docs\\assistant-team\\integration\\I2\\R3\\evidence\\Offline-20260929T104719641\\Ranking-RESULT.json",
+      "rawSha256": "096775c649731b26aaf21aee57b74fb8c38de354fc401efcace16610cec0b7f8",
+      "bytes": 5025
+    },
+    {
+      "path": "D:\\知识图谱\\docs\\assistant-team\\integration\\I2\\R3\\evidence\\Offline-20260929T104719641\\RUN.json",
+      "rawSha256": "b761aded09191486317328b08d10326057e58c17bca8e544970041714f360a47",
+      "bytes": 217
+    },
+    {
+      "path": "D:\\知识图谱\\docs\\assistant-team\\integration\\I2\\R3\\evidence\\Offline-20260929T104719641\\WholeRegression-MAVEN.log",
+      "rawSha256": "727046d0f2fdf09e8fc68dbfea74adeb04b310d9ddc7f22c3ee1ee6e0563bd0b",
+      "bytes": 2143
+    },
+    {
+      "path": "D:\\知识图谱\\docs\\assistant-team\\integration\\I2\\R3\\evidence\\Offline-20260929T104719641\\WholeRegression-RESULT.json",
+      "rawSha256": "40e32fb93e824b1bd6c35845f5fa8a3f14fcb84c1e6209d66ceaebd6516d8b96",
+      "bytes": 6326
+    },
+    {
+      "path": "D:\\知识图谱\\docs\\assistant-team\\integration\\I2\\R3\\evidence\\Real-20260929T104824880\\Base-MAVEN.log",
+      "rawSha256": "a7452c992387019d3a470309bb55d8ff6020bcd6157fe7c9ec9330e0856c3ac5",
+      "bytes": 10981
+    },
+    {
+      "path": "D:\\知识图谱\\docs\\assistant-team\\integration\\I2\\R3\\evidence\\Real-20260929T104824880\\Base-RESULT.json",
+      "rawSha256": "e9efa94d329c65920a5076b3156c84425fec143fc853513839a74181551ed7fc",
+      "bytes": 12459
+    },
+    {
+      "path": "D:\\知识图谱\\docs\\assistant-team\\integration\\I2\\R3\\evidence\\Real-20260929T104824880\\Base-ZERO-WRITE.json",
+      "rawSha256": "beda4ecedfd5bef2e9dcec8d7ab077f1bd33b72ceb9cf1ee71e0b8bd9db73d31",
+      "bytes": 365
+    },
+    {
+      "path": "D:\\知识图谱\\docs\\assistant-team\\integration\\I2\\R3\\evidence\\Real-20260929T104824880\\BASELINE-AFTER.json",
+      "rawSha256": "9085e7acef91a96e5086ae4ef567e5d21d9b32416aeb78d7acb25c84131d14b8",
+      "bytes": 6034
+    },
+    {
+      "path": "D:\\知识图谱\\docs\\assistant-team\\integration\\I2\\R3\\evidence\\Real-20260929T104824880\\BASELINE-BEFORE.json",
+      "rawSha256": "35ec1caea8ab078fe56e06c445e39d1d1002bc1217dc9c50c8f6a3018656e7db",
+      "bytes": 2147
+    },
+    {
+      "path": "D:\\知识图谱\\docs\\assistant-team\\integration\\I2\\R3\\evidence\\Real-20260929T104824880\\Budget-MAVEN.log",
+      "rawSha256": "220acd9d1a5f0c560647ecddd7fabf0392c88931a89ca8ea24655b285ba0ab19",
+      "bytes": 2302
+    },
+    {
+      "path": "D:\\知识图谱\\docs\\assistant-team\\integration\\I2\\R3\\evidence\\Real-20260929T104824880\\Budget-RESULT.json",
+      "rawSha256": "8323514a3ee9229872367dda87ab9e8e94d0ddfab0cc53bea6143683a367d265",
+      "bytes": 1482
+    },
+    {
+      "path": "D:\\知识图谱\\docs\\assistant-team\\integration\\I2\\R3\\evidence\\Real-20260929T104824880\\Budget-ZERO-WRITE.json",
+      "rawSha256": "73b60b0191c8f9453289900004b47a240d810e67eb6127e538ca3230ebb97113",
+      "bytes": 366
+    },
+    {
+      "path": "D:\\知识图谱\\docs\\assistant-team\\integration\\I2\\R3\\evidence\\Real-20260929T104824880\\CountPlan-MAVEN.log",
+      "rawSha256": "afd9a81451261598055529e31d551366a3524162704394218b305b5c68711f18",
+      "bytes": 19555
+    },
+    {
+      "path": "D:\\知识图谱\\docs\\assistant-team\\integration\\I2\\R3\\evidence\\Real-20260929T104824880\\CountPlan-RESULT.json",
+      "rawSha256": "49031cbab7fa16b5da5fb769d7125e5a2d5a4d1132de9a98e6ba18e1c9d97a91",
+      "bytes": 43657
+    },
+    {
+      "path": "D:\\知识图谱\\docs\\assistant-team\\integration\\I2\\R3\\evidence\\Real-20260929T104824880\\CountPlan-ZERO-WRITE.json",
+      "rawSha256": "1a5b65885784d444ce1c8c505d6b60578c95385474b2e0cf2a8f460e03cb3f82",
+      "bytes": 369
+    },
+    {
+      "path": "D:\\知识图谱\\docs\\assistant-team\\integration\\I2\\R3\\evidence\\Real-20260929T104824880\\FAILURE.json",
+      "rawSha256": "590e77bcf74a1238a870368320b7ae3be9fcaec7dd2b753cd5f9b7c1c10bf634",
+      "bytes": 165
+    },
+    {
+      "path": "D:\\知识图谱\\docs\\assistant-team\\integration\\I2\\R3\\evidence\\Real-20260929T104824880\\I2-R3_Base-AFTER.json",
+      "rawSha256": "119e7e1873c2aafa8b534958c5a461d85a4465616be7ca8fac2fa184c879d63b",
+      "bytes": 8901
+    },
+    {
+      "path": "D:\\知识图谱\\docs\\assistant-team\\integration\\I2\\R3\\evidence\\Real-20260929T104824880\\I2-R3_Base-BEFORE.json",
+      "rawSha256": "a27af05b9075e140886276502cced6bab936a2430b709af453e27c3b5c83a8f0",
+      "bytes": 8902
+    },
+    {
+      "path": "D:\\知识图谱\\docs\\assistant-team\\integration\\I2\\R3\\evidence\\Real-20260929T104824880\\I2-R3_Budget-AFTER.json",
+      "rawSha256": "00b17cafe48a002d1bf1d12557cbdb62f52241558cf1fdce2505b3edb4ee13f6",
+      "bytes": 8901
+    },
+    {
+      "path": "D:\\知识图谱\\docs\\assistant-team\\integration\\I2\\R3\\evidence\\Real-20260929T104824880\\I2-R3_Budget-BEFORE.json",
+      "rawSha256": "a9d60a9dae8cd009a17b57fc0f9678197206bad6630d514cb0f96677ee0a0f73",
+      "bytes": 8902
+    },
+    {
+      "path": "D:\\知识图谱\\docs\\assistant-team\\integration\\I2\\R3\\evidence\\Real-20260929T104824880\\I2-R3_CountPlan-AFTER.json",
+      "rawSha256": "b990170f58307b4a863ece058d27e0e6469ad4ced2def81f37ee2246892a3565",
+      "bytes": 8901
+    },
+    {
+      "path": "D:\\知识图谱\\docs\\assistant-team\\integration\\I2\\R3\\evidence\\Real-20260929T104824880\\I2-R3_CountPlan-BEFORE.json",
+      "rawSha256": "990dd7d614aaebb325b26f06bd6a5ba61dbc293ab73ca6b339755c49d75c1913",
+      "bytes": 8902
+    },
+    {
+      "path": "D:\\知识图谱\\docs\\assistant-team\\integration\\I2\\R3\\evidence\\Real-20260929T104824880\\I2-R3_ENTRY-BEFORE.json",
+      "rawSha256": "b62acb0e8dedc470b9ae799380df50d81f7f5fe980c6e43b6dc5117edfd1d393",
+      "bytes": 8902
+    },
+    {
+      "path": "D:\\知识图谱\\docs\\assistant-team\\integration\\I2\\R3\\evidence\\Real-20260929T104824880\\I2-R3_LegacyWindow-AFTER.json",
+      "rawSha256": "827337bfd01f4f1b52cfc6fa1119d7c935b09b809f93e1dc9de6815aa2f366db",
+      "bytes": 8901
+    },
+    {
+      "path": "D:\\知识图谱\\docs\\assistant-team\\integration\\I2\\R3\\evidence\\Real-20260929T104824880\\I2-R3_LegacyWindow-BEFORE.json",
+      "rawSha256": "04ccaaf3a4c170c35f9e4be5ff10b86e12cb4466bb2364cad67467edf7f74799",
+      "bytes": 8902
+    },
+    {
+      "path": "D:\\知识图谱\\docs\\assistant-team\\integration\\I2\\R3\\evidence\\Real-20260929T104824880\\I2-R3_Matrix-AFTER.json",
+      "rawSha256": "9d27dcc9a2225dba19b84a2db3f6babc2fe08e78e69d5d77fced1db045d6fb5a",
+      "bytes": 8901
+    },
+    {
+      "path": "D:\\知识图谱\\docs\\assistant-team\\integration\\I2\\R3\\evidence\\Real-20260929T104824880\\I2-R3_Matrix-BEFORE.json",
+      "rawSha256": "2d4753c396be87eddb9d3d4126a92c989e4dde46d4dc4d55cafc522154082a41",
+      "bytes": 8902
+    },
+    {
+      "path": "D:\\知识图谱\\docs\\assistant-team\\integration\\I2\\R3\\evidence\\Real-20260929T104824880\\I2-R3_Performance-AFTER.json",
+      "rawSha256": "a0585cc4eaabcfb927f453b9519ee42fa65790b8f2b4b512a2ff28d6aceb0e52",
+      "bytes": 8901
+    },
+    {
+      "path": "D:\\知识图谱\\docs\\assistant-team\\integration\\I2\\R3\\evidence\\Real-20260929T104824880\\I2-R3_Performance-BEFORE.json",
+      "rawSha256": "32549d4994b6efcfe643399b1cce1cc1789c73d6dccd091aea3701810ed30a59",
+      "bytes": 8902
+    },
+    {
+      "path": "D:\\知识图谱\\docs\\assistant-team\\integration\\I2\\R3\\evidence\\Real-20260929T104824880\\I2-R3_Plan-AFTER.json",
+      "rawSha256": "f1e2efdb7afa6957cd010c1916743aca0d389e7ed6f5b927d59acf12cfaf2894",
+      "bytes": 8901
+    },
+    {
+      "path": "D:\\知识图谱\\docs\\assistant-team\\integration\\I2\\R3\\evidence\\Real-20260929T104824880\\I2-R3_Plan-BEFORE.json",
+      "rawSha256": "dda695f1b01b3b06b342354ff98f590e21e6cf664d8ea0a008cb4bc7206796eb",
+      "bytes": 8902
+    },
+    {
+      "path": "D:\\知识图谱\\docs\\assistant-team\\integration\\I2\\R3\\evidence\\Real-20260929T104824880\\I2-R3_Semantics-AFTER.json",
+      "rawSha256": "f4f0c399eb6446eec706dcc20b365e9f6e3d60cd6ede46a963dbd8c3dfd61692",
+      "bytes": 8901
+    },
+    {
+      "path": "D:\\知识图谱\\docs\\assistant-team\\integration\\I2\\R3\\evidence\\Real-20260929T104824880\\I2-R3_Semantics-BEFORE.json",
+      "rawSha256": "403fe6393f6a836e135594c3a85e5d8d0fe53ef216b9c2de0385568e5f0465c0",
+      "bytes": 8902
+    },
+    {
+      "path": "D:\\知识图谱\\docs\\assistant-team\\integration\\I2\\R3\\evidence\\Real-20260929T104824880\\IDENTITY.json",
+      "rawSha256": "02c34018f2149caa4bb85085aedc00b26589dec7a609796257cd202697f1fff9",
+      "bytes": 2874
+    },
+    {
+      "path": "D:\\知识图谱\\docs\\assistant-team\\integration\\I2\\R3\\evidence\\Real-20260929T104824880\\LegacyWindow-MAVEN.log",
+      "rawSha256": "4a773b81d8eed1e83c37abf7e979e228bb0d6447824ae64ece499d4d5bad3652",
+      "bytes": 2096
+    },
+    {
+      "path": "D:\\知识图谱\\docs\\assistant-team\\integration\\I2\\R3\\evidence\\Real-20260929T104824880\\LegacyWindow-RESULT.json",
+      "rawSha256": "dbca17852dc099d1a337340ce892515c015a2dbfaf68568c9303fc8d0b3ac5c1",
+      "bytes": 996
+    },
+    {
+      "path": "D:\\知识图谱\\docs\\assistant-team\\integration\\I2\\R3\\evidence\\Real-20260929T104824880\\LegacyWindow-ZERO-WRITE.json",
+      "rawSha256": "39a3566c5ebec489c5b7d695fdea711d400228e349b5743f7f28af3934930b6e",
+      "bytes": 372
+    },
+    {
+      "path": "D:\\知识图谱\\docs\\assistant-team\\integration\\I2\\R3\\evidence\\Real-20260929T104824880\\Matrix-MAVEN.log",
+      "rawSha256": "5afc10e80977e9ddcc5a5aafa04192c46255e028d1c0fef7928739aadc460749",
+      "bytes": 399021
+    },
+    {
+      "path": "D:\\知识图谱\\docs\\assistant-team\\integration\\I2\\R3\\evidence\\Real-20260929T104824880\\Matrix-RESULT.json",
+      "rawSha256": "1de6632b72463629da5c6b5ce7a7dd928850498b832d6f759302bce6fbac774d",
+      "bytes": 1104782
+    },
+    {
+      "path": "D:\\知识图谱\\docs\\assistant-team\\integration\\I2\\R3\\evidence\\Real-20260929T104824880\\Matrix-ZERO-WRITE.json",
+      "rawSha256": "ed9fe43b954f2bbfdd4a636a5c0604b7bc70c926df994872f567b8fb9fa08dfd",
+      "bytes": 366
+    },
+    {
+      "path": "D:\\知识图谱\\docs\\assistant-team\\integration\\I2\\R3\\evidence\\Real-20260929T104824880\\Performance-MAVEN.log",
+      "rawSha256": "b913665b1612111fb731dd24ec7de9590c97958ba598a86db8e15c529cdc0737",
+      "bytes": 6610
+    },
+    {
+      "path": "D:\\知识图谱\\docs\\assistant-team\\integration\\I2\\R3\\evidence\\Real-20260929T104824880\\Performance-RESULT.json",
+      "rawSha256": "a1771211513a4e47e898a4d017ffa4a8f15363a04b6058714fc17d695351f460",
+      "bytes": 8389
+    },
+    {
+      "path": "D:\\知识图谱\\docs\\assistant-team\\integration\\I2\\R3\\evidence\\Real-20260929T104824880\\Performance-ZERO-WRITE.json",
+      "rawSha256": "456f9b872bb5c4d81507a2ef30eb16a2fbfa30ee63105ac6a6b8919d27bb6b36",
+      "bytes": 371
+    },
+    {
+      "path": "D:\\知识图谱\\docs\\assistant-team\\integration\\I2\\R3\\evidence\\Real-20260929T104824880\\Plan-MAVEN.log",
+      "rawSha256": "232cf0fd17025ad4fe386e82e5a910f89c65de46db14370770de751b0a4b684d",
+      "bytes": 10655
+    },
+    {
+      "path": "D:\\知识图谱\\docs\\assistant-team\\integration\\I2\\R3\\evidence\\Real-20260929T104824880\\Plan-RESULT.json",
+      "rawSha256": "35d204185cdce0fd00bebc5565d05109968a136018f20d4423474ff351ec8506",
+      "bytes": 30222
+    },
+    {
+      "path": "D:\\知识图谱\\docs\\assistant-team\\integration\\I2\\R3\\evidence\\Real-20260929T104824880\\Plan-ZERO-WRITE.json",
+      "rawSha256": "d2fd11fc1351c7744ac59a22ada39c40e278a3df0b5e384f7307f60f13059ccf",
+      "bytes": 364
+    },
+    {
+      "path": "D:\\知识图谱\\docs\\assistant-team\\integration\\I2\\R3\\evidence\\Real-20260929T104824880\\RETAINED-DATA.json",
+      "rawSha256": "175ce8221fed3874cd9f0700f0b5346eefd972520475d8462fa7fce80ea38ba9",
+      "bytes": 169
+    },
+    {
+      "path": "D:\\知识图谱\\docs\\assistant-team\\integration\\I2\\R3\\evidence\\Real-20260929T104824880\\RUN.json",
+      "rawSha256": "3809054a17bb656e1be156047eaf781efa8f971fa429a86645c8e8e732c7ba6b",
+      "bytes": 264
+    },
+    {
+      "path": "D:\\知识图谱\\docs\\assistant-team\\integration\\I2\\R3\\evidence\\Real-20260929T104824880\\Semantics-MAVEN.log",
+      "rawSha256": "bb07a1be93f339a54b4b06d37745d4d243e0a1a88587f6abef568d138f39a060",
+      "bytes": 4880
+    },
+    {
+      "path": "D:\\知识图谱\\docs\\assistant-team\\integration\\I2\\R3\\evidence\\Real-20260929T104824880\\Semantics-RESULT.json",
+      "rawSha256": "7451c9278c5c0cfdeada36ec1d7ec21fa8a1e1abeff2008299c8ed6eb2bdaf48",
+      "bytes": 8081
+    },
+    {
+      "path": "D:\\知识图谱\\docs\\assistant-team\\integration\\I2\\R3\\evidence\\Real-20260929T104824880\\Semantics-ZERO-WRITE.json",
+      "rawSha256": "f26f99051b417658206ff8de42de5584f54589681c1c3f2bafe15b656a9af4af",
+      "bytes": 369
+    },
+    {
+      "path": "D:\\知识图谱\\docs\\assistant-team\\integration\\I2\\R3\\evidence\\Real-20260929T104824880\\server-stderr.log",
+      "rawSha256": "78fa6028bc5a456f3ee2598cc78a1aca5b92bae264cd6f8eb05d5a527833c77d",
+      "bytes": 1780
+    },
+    {
+      "path": "D:\\知识图谱\\docs\\assistant-team\\integration\\I2\\R3\\evidence\\Real-20260929T104824880\\server-stdout.log",
+      "rawSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "D:\\知识图谱\\docs\\assistant-team\\integration\\I2\\R3\\evidence\\Real-20260929T104824880\\SHUTDOWN.json",
+      "rawSha256": "0c01de53c0c0b9d7d0f332ae50e1fa1cd28b5c1bec63c45107414821dc08d950",
+      "bytes": 145
+    }
+  ],
+  "externalXml": [
+    {
+      "round": 1,
+      "suite": "IsolatedCount",
+      "path": "D:\\知识图谱\\backend-java\\target\\surefire-reports\\TEST-com.knowledgegraph.assistant.quality.JdbcQualityInsightIsolatedCountRegressionTest-Offline-20260929T104719641-IsolatedCount.xml",
+      "rawSha256": "dd00e14e8c922a8fb30aee4b232ab8d67cd910d04346947ab66e6c1750180285",
+      "bytes": 26735
+    },
+    {
+      "round": 1,
+      "suite": "Original",
+      "path": "D:\\知识图谱\\backend-java\\target\\surefire-reports\\TEST-com.knowledgegraph.assistant.runtime.AssistantRuntimeTest-Offline-20260929T104719641-Original.xml",
+      "rawSha256": "5a83a2c39f0c2f6231d8c940b427c91736dfb98f7ace3c61834d527f5a4a40d6",
+      "bytes": 29804
+    },
+    {
+      "round": 1,
+      "suite": "Original",
+      "path": "D:\\知识图谱\\backend-java\\target\\surefire-reports\\TEST-com.knowledgegraph.assistant.runtime.DecisionParserTest-Offline-20260929T104719641-Original.xml",
+      "rawSha256": "32a0c645299b842e374a26b7c4f1833ed6dad21d8c4dbdbf12f1d0a2b0b596d9",
+      "bytes": 27632
+    },
+    {
+      "round": 1,
+      "suite": "Original",
+      "path": "D:\\知识图谱\\backend-java\\target\\surefire-reports\\TEST-com.knowledgegraph.assistant.ingestion.IngestionAgentToolProviderTest-Offline-20260929T104719641-Original.xml",
+      "rawSha256": "5c2bd351fe1ba853999b7bd89b189d93a23a7c539a6b65e202d38d5e42e92e7a",
+      "bytes": 27464
+    },
+    {
+      "round": 1,
+      "suite": "Original",
+      "path": "D:\\知识图谱\\backend-java\\target\\surefire-reports\\TEST-com.knowledgegraph.assistant.ingestion.JdbcIngestionReadRepositoryTest-Offline-20260929T104719641-Original.xml",
+      "rawSha256": "6c8cbd5d9a4c71f00ea2bfe8a88f27fd2980c25f669b91f183cb6d87eeeade77",
+      "bytes": 26115
+    },
+    {
+      "round": 1,
+      "suite": "Original",
+      "path": "D:\\知识图谱\\backend-java\\target\\surefire-reports\\TEST-com.knowledgegraph.assistant.quality.QualityAgentToolProviderTest-Offline-20260929T104719641-Original.xml",
+      "rawSha256": "11ff05342b82f6133542790a33d0086ef38020b9d1e34d334e58c84359be8484",
+      "bytes": 27932
+    },
+    {
+      "round": 1,
+      "suite": "Original",
+      "path": "D:\\知识图谱\\backend-java\\target\\surefire-reports\\TEST-com.knowledgegraph.assistant.quality.QualityEvidenceVerifierTest-Offline-20260929T104719641-Original.xml",
+      "rawSha256": "dd4703150706a2bb43d00126296f80503e3fc429a0a69b90ffe0053ce7df1ef0",
+      "bytes": 26336
+    },
+    {
+      "round": 1,
+      "suite": "Original",
+      "path": "D:\\知识图谱\\backend-java\\target\\surefire-reports\\TEST-com.knowledgegraph.assistant.quality.JdbcQualityReadRepositoryTest-Offline-20260929T104719641-Original.xml",
+      "rawSha256": "f126232204599d142cde2e1dcc5e79715db223a2fe63efef110b167759fc6af3",
+      "bytes": 26090
+    },
+    {
+      "round": 1,
+      "suite": "Original",
+      "path": "D:\\知识图谱\\backend-java\\target\\surefire-reports\\TEST-com.knowledgegraph.assistant.research.ResearchAgentToolProviderTest-Offline-20260929T104719641-Original.xml",
+      "rawSha256": "620d2108662d970b948d7db0d66b6bb964fb0c97644c5423ab39b2563281cfe2",
+      "bytes": 26553
+    },
+    {
+      "round": 1,
+      "suite": "Original",
+      "path": "D:\\知识图谱\\backend-java\\target\\surefire-reports\\TEST-com.knowledgegraph.assistant.research.JdbcResearchReadRepositoryTest-Offline-20260929T104719641-Original.xml",
+      "rawSha256": "93aaf6a8d05a487b8c85159059054d76fc6e06a229ea67129e9f8d5e760dcabd",
+      "bytes": 26271
+    },
+    {
+      "round": 1,
+      "suite": "Original",
+      "path": "D:\\知识图谱\\backend-java\\target\\surefire-reports\\TEST-com.knowledgegraph.assistant.research.ResearchComparisonTest-Offline-20260929T104719641-Original.xml",
+      "rawSha256": "b1caaf214db618adece05c953b5369640fdd5b1cf18310baa4a34fa114b6f91e",
+      "bytes": 27053
+    },
+    {
+      "round": 1,
+      "suite": "Original",
+      "path": "D:\\知识图谱\\backend-java\\target\\surefire-reports\\TEST-com.knowledgegraph.assistant.research.ResearchDraftValidatorTest-Offline-20260929T104719641-Original.xml",
+      "rawSha256": "4c966a64089625284e6b6383f0bd612ee79521a8df764848575c458fbfd1bce6",
+      "bytes": 25723
+    },
+    {
+      "round": 1,
+      "suite": "Original",
+      "path": "D:\\知识图谱\\backend-java\\target\\surefire-reports\\TEST-com.knowledgegraph.assistant.learning.LearningAgentToolProviderTest-Offline-20260929T104719641-Original.xml",
+      "rawSha256": "1ca3096667b1bfacbeb6039ef78128a8dff3539059019605296f35cfe67e90cf",
+      "bytes": 27127
+    },
+    {
+      "round": 1,
+      "suite": "Original",
+      "path": "D:\\知识图谱\\backend-java\\target\\surefire-reports\\TEST-com.knowledgegraph.assistant.learning.JdbcLearningReadRepositoryTest-Offline-20260929T104719641-Original.xml",
+      "rawSha256": "87189eb8278a1d908371be967f055c2f95e6146ffa53f07850886a86d241390f",
+      "bytes": 25909
+    },
+    {
+      "round": 1,
+      "suite": "Original",
+      "path": "D:\\知识图谱\\backend-java\\target\\surefire-reports\\TEST-com.knowledgegraph.assistant.learning.LearningArtifactHandoffTest-Offline-20260929T104719641-Original.xml",
+      "rawSha256": "1e934d50a9e98105f2edec3696e20d521b27faa74af55e0d95ac3295b7dadb3f",
+      "bytes": 26843
+    },
+    {
+      "round": 1,
+      "suite": "Original",
+      "path": "D:\\知识图谱\\backend-java\\target\\surefire-reports\\TEST-com.knowledgegraph.assistant.learning.LearningDraftValidatorTest-Offline-20260929T104719641-Original.xml",
+      "rawSha256": "c6e20c7b2af692390a1b203becccb10d0a69ed7a57bdaebc925a903fa2d94192",
+      "bytes": 26223
+    },
+    {
+      "round": 1,
+      "suite": "Original",
+      "path": "D:\\知识图谱\\backend-java\\target\\surefire-reports\\TEST-com.knowledgegraph.assistant.assessment.AssessmentAgentToolProviderTest-Offline-20260929T104719641-Original.xml",
+      "rawSha256": "c5dc5a0296fa9f5170e6127c49f5fc397a06010c6310e1252e2e5a5c22a63dba",
+      "bytes": 27163
+    },
+    {
+      "round": 1,
+      "suite": "Original",
+      "path": "D:\\知识图谱\\backend-java\\target\\surefire-reports\\TEST-com.knowledgegraph.assistant.assessment.JdbcAssessmentReadRepositoryTest-Offline-20260929T104719641-Original.xml",
+      "rawSha256": "514497bdf704485862300176b74a461228b25d0cff8f6dd52588fdda50228481",
+      "bytes": 25914
+    },
+    {
+      "round": 1,
+      "suite": "Original",
+      "path": "D:\\知识图谱\\backend-java\\target\\surefire-reports\\TEST-com.knowledgegraph.assistant.assessment.AssessmentArtifactHandoffTest-Offline-20260929T104719641-Original.xml",
+      "rawSha256": "e4ccf079148b435d5fda7f276d4c2976bba078ed3fb488db5e0e2cc047b96d1f",
+      "bytes": 25792
+    },
+    {
+      "round": 1,
+      "suite": "Original",
+      "path": "D:\\知识图谱\\backend-java\\target\\surefire-reports\\TEST-com.knowledgegraph.assistant.assessment.AssessmentDraftValidatorTest-Offline-20260929T104719641-Original.xml",
+      "rawSha256": "523d8b221f01e1bb009d3d826bb649c87008034eb0fcd8e58529417da2e22a9e",
+      "bytes": 26256
+    },
+    {
+      "round": 1,
+      "suite": "Ranking",
+      "path": "D:\\知识图谱\\backend-java\\target\\surefire-reports\\TEST-com.knowledgegraph.assistant.quality.JdbcQualityInsightRankingRegressionTest-Offline-20260929T104719641-Ranking.xml",
+      "rawSha256": "8c67832359c6227317f5272da3040d74c033ca5aa5f9210d1bf3699542910e45",
+      "bytes": 27594
+    },
+    {
+      "round": 1,
+      "suite": "WholeRegression",
+      "path": "D:\\知识图谱\\backend-java\\target\\surefire-reports\\TEST-com.knowledgegraph.assistant.quality.JdbcQualityInsightPerformanceRegressionTest-Offline-20260929T104719641-WholeRegression.xml",
+      "rawSha256": "51184072b4111371328c79131ce88b84930e20b4cdfda193392a4b05e189b05f",
+      "bytes": 28480
+    },
+    {
+      "round": 1,
+      "suite": "Base",
+      "path": "D:\\知识图谱\\backend-java\\target\\surefire-reports\\TEST-com.knowledgegraph.assistant.i2.I2JdbcBaselineTest-Real-20260929T104824880-Base.xml",
+      "rawSha256": "3d260d7d118fff75f7a540bb79a1212a0489d118c1be17d052e8a6458a3a6fe7",
+      "bytes": 36065
+    },
+    {
+      "round": 1,
+      "suite": "Base",
+      "path": "D:\\知识图谱\\backend-java\\target\\surefire-reports\\TEST-com.knowledgegraph.assistant.i2.I2ReadOnlyPrivilegeTest-Real-20260929T104824880-Base.xml",
+      "rawSha256": "3b61496954afc46ac175438f1d1cfa7e743abffbfadd42eeb2313fbf26b240be",
+      "bytes": 26668
+    },
+    {
+      "round": 1,
+      "suite": "Budget",
+      "path": "D:\\知识图谱\\backend-java\\target\\surefire-reports\\TEST-com.knowledgegraph.assistant.i2.I2QueryBudgetTest-Real-20260929T104824880-Budget.xml",
+      "rawSha256": "5abd2a473aed954066d0211fa06f6e5aa10db8cdb51f6702f1ca836dc65c8f9a",
+      "bytes": 25802
+    },
+    {
+      "round": 1,
+      "suite": "CountPlan",
+      "path": "D:\\知识图谱\\backend-java\\target\\surefire-reports\\TEST-com.knowledgegraph.assistant.i2.I2QualityIsolatedCountTest-Real-20260929T104824880-CountPlan.xml",
+      "rawSha256": "4cb5ef31ef0571d0176386a1c2f88d50f7c486b30b59f94bdd11ae0eb38e8303",
+      "bytes": 42574
+    },
+    {
+      "round": 1,
+      "suite": "LegacyWindow",
+      "path": "D:\\知识图谱\\backend-java\\target\\surefire-reports\\TEST-com.knowledgegraph.assistant.i2.I2ScaleQueryTest-Real-20260929T104824880-LegacyWindow.xml",
+      "rawSha256": "39ee200e77f694a58731dbf5277719bf7c362d9cc17bf3e389250b69ca881a95",
+      "bytes": 25231
+    },
+    {
+      "round": 1,
+      "suite": "Matrix",
+      "path": "D:\\知识图谱\\backend-java\\target\\surefire-reports\\TEST-com.knowledgegraph.assistant.i2.I2QualityInsightWholeTest-Real-20260929T104824880-Matrix.xml",
+      "rawSha256": "2aeab498867625e121ed93dcc0990a0ae6093708dae669e470c11169f3f7b9ef",
+      "bytes": 421845
+    },
+    {
+      "round": 1,
+      "suite": "Performance",
+      "path": "D:\\知识图谱\\backend-java\\target\\surefire-reports\\TEST-com.knowledgegraph.assistant.i2.I2QualityInsightRankingTest-Real-20260929T104824880-Performance.xml",
+      "rawSha256": "a650e31af4a476d4e3b4b3512cffcbe641cefa25b9cb17b05514d41dd05fe547",
+      "bytes": 29767
+    },
+    {
+      "round": 1,
+      "suite": "Plan",
+      "path": "D:\\知识图谱\\backend-java\\target\\surefire-reports\\TEST-com.knowledgegraph.assistant.i2.I2QualityInsightRankingTest-Real-20260929T104824880-Plan.xml",
+      "rawSha256": "c16844e70bad6b25847370a10c09b1080d85287e5f43f651073767b35fe3b46d",
+      "bytes": 33639
+    },
+    {
+      "round": 1,
+      "suite": "Semantics",
+      "path": "D:\\知识图谱\\backend-java\\target\\surefire-reports\\TEST-com.knowledgegraph.assistant.i2.I2QualityInsightRankingTest-Real-20260929T104824880-Semantics.xml",
+      "rawSha256": "2169a39113e898803e8e18c5bba8f629605ed3ebb3c426239c7ede8652559c1a",
+      "bytes": 28022
+    }
+  ],
+  "externalGeneralLog": {
+    "path": "D:\\知识图谱-i2-env\\mysql-general.log",
+    "rawSha256": "7f7b1d3ff8375bf16ce499869e89436437da4f2470394ca920a1d70ca051e56a",
+    "bytes": 8476184
+  },
+  "xmlPreservationNote": "Original per-round XML files remain in local target; pinned without copying credentials/system properties into archive",
+  "generalLogNote": "Cumulative local log; final raw hash pinned after graceful shutdown; individual window hashes are earlier snapshots",
+  "recordedTestResults": {
+    "offlinePassed": 198,
+    "offlineCases": 198,
+    "realPassed": 43,
+    "realCases": 44,
+    "realErrors": 1,
+    "reruns": 0
+  },
+  "noAutomaticNextStage": true
+}

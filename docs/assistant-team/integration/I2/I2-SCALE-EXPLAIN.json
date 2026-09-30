@@ -1,0 +1,264 @@
+{
+  "identity": {
+    "port": 33078,
+    "uuid": "8c6cfcb3-ba49-11f1-bf64-005056c00001",
+    "datadir": "D:\\kg-i2-env\\mysql-data\\",
+    "version": "8.4.11",
+    "currentUser": "root@localhost",
+    "sharedMemory": 1,
+    "partialRevokes": 1,
+    "sharedMemoryName": "KG_I2_33078_8c6cfcb3"
+  },
+  "query": "WITH visible_nodes AS (SELECT n.id,n.canonical_name,n.node_type FROM knowledge_nodes n WHERE 1=1 AND EXISTS (SELECT 1 FROM library_nodes ln WHERE ln.node_id=n.id AND ln.library_id IN (7901))), visible_edges AS (SELECT e.id,e.source_node_id,e.target_node_id FROM knowledge_edges e JOIN visible_nodes s ON s.id=e.source_node_id JOIN visible_nodes t ON t.id=e.target_node_id WHERE e.status='active') SELECT n.id,n.canonical_name,n.node_type,(SELECT COUNT(*) FROM visible_edges e WHERE e.source_node_id=n.id OR e.target_node_id=n.id) AS degree FROM visible_nodes n ORDER BY degree DESC,n.id LIMIT 10",
+  "kind": "read_only_explain_not_query_execution_or_optimization",
+  "jsonPlan": {
+    "query_block": {
+      "select_id": 1,
+      "cost_info": {
+        "query_cost": "25.00"
+      },
+      "ordering_operation": {
+        "using_temporary_table": true,
+        "using_filesort": true,
+        "nested_loop": [
+          {
+            "table": {
+              "table_name": "n",
+              "access_type": "ALL",
+              "possible_keys": [
+                "PRIMARY"
+              ],
+              "rows_examined_per_scan": 20,
+              "rows_produced_per_join": 20,
+              "filtered": "100.00",
+              "cost_info": {
+                "read_cost": "1.00",
+                "eval_cost": "2.00",
+                "prefix_cost": "3.00",
+                "data_read_per_join": "35K"
+              },
+              "used_columns": [
+                "id",
+                "canonical_name",
+                "node_type"
+              ]
+            }
+          },
+          {
+            "table": {
+              "table_name": "ln",
+              "access_type": "eq_ref",
+              "possible_keys": [
+                "PRIMARY",
+                "idx_library_nodes_node"
+              ],
+              "key": "PRIMARY",
+              "used_key_parts": [
+                "library_id",
+                "node_id"
+              ],
+              "key_length": "16",
+              "ref": [
+                "const",
+                "kg_assistant_i2_20260927_r01.n.id"
+              ],
+              "rows_examined_per_scan": 1,
+              "rows_produced_per_join": 20,
+              "filtered": "100.00",
+              "using_index": true,
+              "cost_info": {
+                "read_cost": "20.00",
+                "eval_cost": "2.00",
+                "prefix_cost": "25.00",
+                "data_read_per_join": "16K"
+              },
+              "used_columns": [
+                "library_id",
+                "node_id"
+              ]
+            }
+          }
+        ],
+        "select_list_subqueries": [
+          {
+            "dependent": true,
+            "cacheable": false,
+            "query_block": {
+              "select_id": 2,
+              "cost_info": {
+                "query_cost": "73.59"
+              },
+              "nested_loop": [
+                {
+                  "table": {
+                    "table_name": "n",
+                    "access_type": "index",
+                    "possible_keys": [
+                      "PRIMARY"
+                    ],
+                    "key": "idx_nodes_type",
+                    "used_key_parts": [
+                      "node_type"
+                    ],
+                    "key_length": "82",
+                    "rows_examined_per_scan": 20,
+                    "rows_produced_per_join": 20,
+                    "filtered": "100.00",
+                    "using_index": true,
+                    "cost_info": {
+                      "read_cost": "1.00",
+                      "eval_cost": "2.00",
+                      "prefix_cost": "3.00",
+                      "data_read_per_join": "35K"
+                    },
+                    "used_columns": [
+                      "id"
+                    ]
+                  }
+                },
+                {
+                  "table": {
+                    "table_name": "e",
+                    "access_type": "ref",
+                    "possible_keys": [
+                      "uk_edges_source_target_relation",
+                      "idx_edges_target"
+                    ],
+                    "key": "idx_edges_target",
+                    "used_key_parts": [
+                      "target_node_id"
+                    ],
+                    "key_length": "8",
+                    "ref": [
+                      "kg_assistant_i2_20260927_r01.n.id"
+                    ],
+                    "rows_examined_per_scan": 2,
+                    "rows_produced_per_join": 5,
+                    "filtered": "10.00",
+                    "cost_info": {
+                      "read_cost": "51.57",
+                      "eval_cost": "0.52",
+                      "prefix_cost": "59.73",
+                      "data_read_per_join": "2K"
+                    },
+                    "used_columns": [
+                      "source_node_id",
+                      "target_node_id",
+                      "status"
+                    ],
+                    "attached_condition": "((`kg_assistant_i2_20260927_r01`.`e`.`status` = 'active') and ((`kg_assistant_i2_20260927_r01`.`e`.`source_node_id` = `kg_assistant_i2_20260927_r01`.`n`.`id`) or (`kg_assistant_i2_20260927_r01`.`e`.`target_node_id` = `kg_assistant_i2_20260927_r01`.`n`.`id`)))"
+                  }
+                },
+                {
+                  "table": {
+                    "table_name": "n",
+                    "access_type": "eq_ref",
+                    "possible_keys": [
+                      "PRIMARY"
+                    ],
+                    "key": "PRIMARY",
+                    "used_key_parts": [
+                      "id"
+                    ],
+                    "key_length": "8",
+                    "ref": [
+                      "kg_assistant_i2_20260927_r01.e.source_node_id"
+                    ],
+                    "rows_examined_per_scan": 1,
+                    "rows_produced_per_join": 5,
+                    "filtered": "100.00",
+                    "using_index": true,
+                    "cost_info": {
+                      "read_cost": "5.16",
+                      "eval_cost": "0.52",
+                      "prefix_cost": "65.40",
+                      "data_read_per_join": "9K"
+                    },
+                    "used_columns": [
+                      "id"
+                    ]
+                  }
+                },
+                {
+                  "table": {
+                    "table_name": "ln",
+                    "access_type": "eq_ref",
+                    "possible_keys": [
+                      "PRIMARY",
+                      "idx_library_nodes_node"
+                    ],
+                    "key": "PRIMARY",
+                    "used_key_parts": [
+                      "library_id",
+                      "node_id"
+                    ],
+                    "key_length": "16",
+                    "ref": [
+                      "const",
+                      "kg_assistant_i2_20260927_r01.e.source_node_id"
+                    ],
+                    "rows_examined_per_scan": 1,
+                    "rows_produced_per_join": 5,
+                    "filtered": "100.00",
+                    "using_index": true,
+                    "cost_info": {
+                      "read_cost": "3.58",
+                      "eval_cost": "0.52",
+                      "prefix_cost": "69.50",
+                      "data_read_per_join": "4K"
+                    },
+                    "used_columns": [
+                      "library_id",
+                      "node_id"
+                    ]
+                  }
+                },
+                {
+                  "table": {
+                    "table_name": "ln",
+                    "access_type": "eq_ref",
+                    "possible_keys": [
+                      "PRIMARY",
+                      "idx_library_nodes_node"
+                    ],
+                    "key": "PRIMARY",
+                    "used_key_parts": [
+                      "library_id",
+                      "node_id"
+                    ],
+                    "key_length": "16",
+                    "ref": [
+                      "const",
+                      "kg_assistant_i2_20260927_r01.n.id"
+                    ],
+                    "rows_examined_per_scan": 1,
+                    "rows_produced_per_join": 5,
+                    "filtered": "100.00",
+                    "using_index": true,
+                    "cost_info": {
+                      "read_cost": "3.58",
+                      "eval_cost": "0.52",
+                      "prefix_cost": "73.59",
+                      "data_read_per_join": "4K"
+                    },
+                    "used_columns": [
+                      "library_id",
+                      "node_id"
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  },
+  "readerUsed": true,
+  "schemaChanged": false,
+  "tabularPlan": "1\tPRIMARY\tn\tNULL\tALL\tPRIMARY\tNULL\tNULL\tNULL\t20\t100.00\tUsing temporary; Using filesort\r\n1\tPRIMARY\tln\tNULL\teq_ref\tPRIMARY,idx_library_nodes_node\tPRIMARY\t16\tconst,kg_assistant_i2_20260927_r01.n.id\t1\t100.00\tUsing index\r\n2\tDEPENDENT SUBQUERY\tn\tNULL\tindex\tPRIMARY\tidx_nodes_type\t82\tNULL\t20\t100.00\tUsing index\r\n2\tDEPENDENT SUBQUERY\te\tNULL\tref\tuk_edges_source_target_relation,idx_edges_target\tidx_edges_target\t8\tkg_assistant_i2_20260927_r01.n.id\t2\t10.00\tUsing where\r\n2\tDEPENDENT SUBQUERY\tn\tNULL\teq_ref\tPRIMARY\tPRIMARY\t8\tkg_assistant_i2_20260927_r01.e.source_node_id\t1\t100.00\tUsing index\r\n2\tDEPENDENT SUBQUERY\tln\tNULL\teq_ref\tPRIMARY,idx_library_nodes_node\tPRIMARY\t16\tconst,kg_assistant_i2_20260927_r01.e.source_node_id\t1\t100.00\tUsing index\r\n2\tDEPENDENT SUBQUERY\tln\tNULL\teq_ref\tPRIMARY,idx_library_nodes_node\tPRIMARY\t16\tconst,kg_assistant_i2_20260927_r01.n.id\t1\t100.00\tUsing index",
+  "indexes": "knowledge_edges\t0\tPRIMARY\t1\tid\tA\t27435\tNULL\tNULL\t\tBTREE\t\t\tYES\tNULL\r\nknowledge_edges\t0\tuk_edges_source_target_relation\t1\tsource_node_id\tA\t10571\tNULL\tNULL\t\tBTREE\t\t\tYES\tNULL\r\nknowledge_edges\t0\tuk_edges_source_target_relation\t2\ttarget_node_id\tA\t27435\tNULL\tNULL\t\tBTREE\t\t\tYES\tNULL\r\nknowledge_edges\t0\tuk_edges_source_target_relation\t3\trelation_type\tA\t27435\tNULL\tNULL\t\tBTREE\t\t\tYES\tNULL\r\nknowledge_edges\t1\tidx_edges_target\t1\ttarget_node_id\tA\t10640\tNULL\tNULL\t\tBTREE\t\t\tYES\tNULL\r\nlibrary_nodes\t0\tPRIMARY\t1\tlibrary_id\tA\t3\tNULL\tNULL\t\tBTREE\t\t\tYES\tNULL\r\nlibrary_nodes\t0\tPRIMARY\t2\tnode_id\tA\t10005\tNULL\tNULL\t\tBTREE\t\t\tYES\tNULL\r\nlibrary_nodes\t1\tidx_library_nodes_node\t1\tnode_id\tA\t10005\tNULL\tNULL\t\tBTREE\t\t\tYES\tNULL",
+  "frozenCodeChanged": false,
+  "stage": "I2",
+  "analyzeExecuted": false
+}

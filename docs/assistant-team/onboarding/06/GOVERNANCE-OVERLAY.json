@@ -1,0 +1,42 @@
+{
+  "stage": "06-ONBOARDING-GOVERNANCE",
+  "date": "2026-09-29",
+  "authority": "Owner accepted06 plan and authorized creation/read-only onboarding; prepare original03 R4 task; no tests or DB operations",
+  "actualEditor": "controller",
+  "changes": [
+    {
+      "file": "AGENTS.md",
+      "oldRawSha256": "14fa02e499c72ba2c34d8f390397db0b7c0cba8627a60edd384253da86f4390d",
+      "newRawSha256": "300a3473bcf24143f96f1f6e9331f4905ceef0f827b02446bca5fe965c12697d",
+      "archive": "archive/AGENTS.md.before.txt",
+      "reason": "Transfer integration execution to06; controller plans/reviews; preserve historical facts"
+    },
+    {
+      "file": "docs/assistant-team/COORDINATION.md",
+      "oldRawSha256": "64137deb39b37ed9ad7d217e58afb84810c402ed0397eeca4440761c8482dc9a",
+      "newRawSha256": "a664cab30dbf03da37eba95e8f7632edfbae410b0833ec58a24c3b14e8428da5",
+      "archive": "archive/docs__assistant-team__COORDINATION.md.before.txt",
+      "reason": "Transfer integration execution to06; controller plans/reviews; preserve historical facts"
+    },
+    {
+      "file": "docs/assistant-team/CONTROLLER-RULES.md",
+      "oldRawSha256": "8f299f708c6b7b5e98f8ae0cd27ba419d8fd02c72d554f18cb03378348bc32d7",
+      "newRawSha256": "98e9d6dfc5cc2da68886466816c3d3826a3e986cfa9af4fa6852d3f31891a678",
+      "archive": "archive/docs__assistant-team__CONTROLLER-RULES.md.before.txt",
+      "reason": "Transfer integration execution to06; controller plans/reviews; preserve historical facts"
+    },
+    {
+      "file": "docs/assistant-team/REGISTRY.md",
+      "oldRawSha256": "3200e0627fd936c7bdcb11a284e709e8bdd1b8ad1646f3ef62e5ef02bce439b0",
+      "newRawSha256": "d638bc69be29dd863e8ef2b2ae9c31f968f52581c770fda037458efd29ed5b5e",
+      "archive": "archive/docs__assistant-team__REGISTRY.md.before.txt",
+      "reason": "Transfer integration execution to06; controller plans/reviews; preserve historical facts"
+    }
+  ],
+  "historicalExpectedHashesUntouched": true,
+  "doesNotAuthorizeRunningOldGuards": true,
+  "notes": [
+    "Old R3 guard rejects these explicit governance changes/new paths; next authorized06 execution must add a new protected overlay, not rewrite old expected hashes.",
+    "New06 worktree contains base Git checkout plus own AGENTS only, not full executable R3 mirror."
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "queryIndex": 10,
+  "historicalResultHash": "39c4ecc886eac1dc6bc81bc5eef510372a7f607c3ef7bd78961da4b6f30dd59b",
+  "explainSql": "EXPLAIN FORMAT=JSON WITH visible_nodes AS (SELECT n.id,n.canonical_name,n.node_type FROM knowledge_nodes n WHERE 1=1), visible_edges AS (SELECT e.id,e.source_node_id,e.target_node_id FROM knowledge_edges e JOIN visible_nodes s ON s.id=e.source_node_id JOIN visible_nodes t ON t.id=e.target_node_id WHERE e.status='active') SELECT n.id,n.canonical_name,n.node_type,0 FROM visible_nodes n WHERE NOT EXISTS (SELECT 1 FROM visible_edges e WHERE e.source_node_id=n.id OR e.target_node_id=n.id) ORDER BY n.id LIMIT ?",
+  "historicalResult": "D:\\知识图谱\\docs\\assistant-team\\integration\\I2\\R2\\evidence\\Real-20260929T001613649\\Semantics-RESULT.json",
+  "connector": "C:/Users/liulele/.m2/repository/com/mysql/mysql-connector-j/9.7.0/mysql-connector-j-9.7.0.jar",
+  "analyze": false,
+  "historicalError": "PreparedStatementCallback; uncategorized SQLException for SQL [WITH visible_nodes AS (SELECT n.id,n.canonical_name,n.node_type FROM knowledge_nodes n WHERE 1=1), visible_edges AS (SELECT e.id,e.source_node_id,e.target_node_id FROM knowledge_edges e JOIN visible_nodes s ON s.id=e.source_node_id JOIN visible_nodes t ON t.id=e.target_node_id WHERE e.status='active') SELECT n.id,n.canonical_name,n.node_type,0 FROM visible_nodes n WHERE NOT EXISTS (SELECT 1 FROM visible_edges e WHERE e.source_node_id=n.id OR e.target_node_id=n.id) ORDER BY n.id LIMIT ?]; SQL state [HY000]; error code [3024]; Query execution was interrupted, maximum statement execution time exceeded",
+  "historicalCase": "realSemanticMatrixAndProjectOracle",
+  "scope": "PROJECT",
+  "businessQueryReplayed": false,
+  "queryTimeoutSeconds": 2,
+  "jdbcSql": "WITH visible_nodes AS (SELECT n.id,n.canonical_name,n.node_type FROM knowledge_nodes n WHERE 1=1), visible_edges AS (SELECT e.id,e.source_node_id,e.target_node_id FROM knowledge_edges e JOIN visible_nodes s ON s.id=e.source_node_id JOIN visible_nodes t ON t.id=e.target_node_id WHERE e.status='active') SELECT n.id,n.canonical_name,n.node_type,0 FROM visible_nodes n WHERE NOT EXISTS (SELECT 1 FROM visible_edges e WHERE e.source_node_id=n.id OR e.target_node_id=n.id) ORDER BY n.id LIMIT ?",
+  "parameters": [
+    {
+      "index": 1,
+      "value": 10,
+      "type": "int"
+    }
+  ],
+  "socketTimeoutMs": 4000,
+  "connectTimeoutMs": 3000,
+  "connectorRawSha256": "0353648eaa1c91e0f4020c959abf756bc866ffd583df22ae6b6f6e0cbd43eb44",
+  "sessionMaxExecutionMs": 1500
+}

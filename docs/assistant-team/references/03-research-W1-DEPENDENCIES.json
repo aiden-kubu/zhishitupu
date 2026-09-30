@@ -1,0 +1,122 @@
+{
+  "preparedAt": "2026-09-24",
+  "stage": "03-research-W1",
+  "status": "prepared_for_read_only_receipt_check_not_dispatched",
+  "targetRoot": "D:/知识图谱-worktrees/assistant-03-research",
+  "normalization": "UTF-8 text; CRLF -> LF; preserve trailing newlines",
+  "notes": [
+    "All listed files are read-only to task 03.",
+    "01 and 02 W1 stage deliveries were confirmed by the project owner; this does not mean production integration is accepted.",
+    "File snapshot only; no desktop/model-state claims and no automatic dispatch."
+  ],
+  "files": [
+    {
+      "file": "backend-java/src/main/java/com/knowledgegraph/assistant/contract/AssistantContracts.java",
+      "source": "D:/知识图谱/backend-java/src/main/java/com/knowledgegraph/assistant/contract/AssistantContracts.java",
+      "owner": "root",
+      "normalizedSha256": "9ad6cc545c5306e4a875280537428f1c6d9426e175bc7264189ef3893c6bee19"
+    },
+    {
+      "file": "backend-java/src/main/java/com/knowledgegraph/assistant/runtime/AgentRunner.java",
+      "source": "D:/知识图谱/backend-java/src/main/java/com/knowledgegraph/assistant/runtime/AgentRunner.java",
+      "owner": "root",
+      "normalizedSha256": "20dc1c2260f9c44f724437f3c74855d09133a23f44fffe7046f919b7a0c4d0ab"
+    },
+    {
+      "file": "backend-java/src/main/java/com/knowledgegraph/assistant/runtime/AssistantRuntime.java",
+      "source": "D:/知识图谱/backend-java/src/main/java/com/knowledgegraph/assistant/runtime/AssistantRuntime.java",
+      "owner": "root",
+      "normalizedSha256": "2980b98c0a7d0ca1d5f3475aadb7166369b3e822b7f60baa2d9c86ac694f1f90"
+    },
+    {
+      "file": "backend-java/src/main/java/com/knowledgegraph/assistant/runtime/DecisionParser.java",
+      "source": "D:/知识图谱/backend-java/src/main/java/com/knowledgegraph/assistant/runtime/DecisionParser.java",
+      "owner": "root",
+      "normalizedSha256": "f29bf1fb1c7e59f183d9a142bed234b933cb61a26f7c9433dd8af5712f476eb3"
+    },
+    {
+      "file": "backend-java/src/main/java/com/knowledgegraph/assistant/runtime/DecisionProvider.java",
+      "source": "D:/知识图谱/backend-java/src/main/java/com/knowledgegraph/assistant/runtime/DecisionProvider.java",
+      "owner": "root",
+      "normalizedSha256": "a09142a528df6366b3448f3258e4b8f1b3e709b3e7b7c76c96ca7259f7f846dc"
+    },
+    {
+      "file": "backend-java/src/main/java/com/knowledgegraph/assistant/runtime/ProposalValidator.java",
+      "source": "D:/知识图谱/backend-java/src/main/java/com/knowledgegraph/assistant/runtime/ProposalValidator.java",
+      "owner": "root",
+      "normalizedSha256": "c9446b396438c468d36cbf563393576f369a4833c4237be1e87233a6a71ea30a"
+    },
+    {
+      "file": "backend-java/src/main/java/com/knowledgegraph/assistant/runtime/RunBudget.java",
+      "source": "D:/知识图谱/backend-java/src/main/java/com/knowledgegraph/assistant/runtime/RunBudget.java",
+      "owner": "root",
+      "normalizedSha256": "c0ccbc5df9d03ac5b79a6ada53b6f74f8378a98055a282b9793cbe2d476747c9"
+    },
+    {
+      "file": "backend-java/src/main/java/com/knowledgegraph/assistant/tool/AssistantTool.java",
+      "source": "D:/知识图谱/backend-java/src/main/java/com/knowledgegraph/assistant/tool/AssistantTool.java",
+      "owner": "root",
+      "normalizedSha256": "206ff5e055bcb8e0357d0a4800e04372cbe57ba011e3d4ad2e493541423dde64"
+    },
+    {
+      "file": "backend-java/src/main/java/com/knowledgegraph/assistant/tool/ToolRegistry.java",
+      "source": "D:/知识图谱/backend-java/src/main/java/com/knowledgegraph/assistant/tool/ToolRegistry.java",
+      "owner": "root",
+      "normalizedSha256": "c1df65d6649652da50d893add7db5065eb6a1900155a0cfeaca3d34cfe10a41c"
+    },
+    {
+      "file": "backend-java/src/test/java/com/knowledgegraph/assistant/runtime/AssistantRuntimeTest.java",
+      "source": "D:/知识图谱/backend-java/src/test/java/com/knowledgegraph/assistant/runtime/AssistantRuntimeTest.java",
+      "owner": "root",
+      "normalizedSha256": "c050179d9e55f1427860f8c154a41ef6e230121d51bca10520c4ef18c9b0c808"
+    },
+    {
+      "file": "backend-java/src/test/java/com/knowledgegraph/assistant/runtime/DecisionParserTest.java",
+      "source": "D:/知识图谱/backend-java/src/test/java/com/knowledgegraph/assistant/runtime/DecisionParserTest.java",
+      "owner": "root",
+      "normalizedSha256": "323f4668eedb8a86f18e76c5d48188e28bb299d540f1aa8fbaffd6091b02acd0"
+    },
+    {
+      "file": "docs/assistant-team/W1-CORE.md",
+      "source": "D:/知识图谱/docs/assistant-team/W1-CORE.md",
+      "owner": "root",
+      "normalizedSha256": "2b85f77ae625071194aa457b6f6f3a92561bb6617d06ed391b28704f3f240d2e"
+    },
+    {
+      "file": "docs/assistant-team/W0-REVIEW.md",
+      "source": "D:/知识图谱/docs/assistant-team/W0-REVIEW.md",
+      "owner": "root",
+      "normalizedSha256": "8623f9713297150dddda7017e4416fc45f72e09cf9e7542bf87a9ff7edd93fb5"
+    },
+    {
+      "file": "backend-java/src/main/java/com/knowledgegraph/assistant/source/SourceLocator.java",
+      "source": "D:/知识图谱-worktrees/assistant-01-ingestion/backend-java/src/main/java/com/knowledgegraph/assistant/source/SourceLocator.java",
+      "owner": "01-ingestion",
+      "normalizedSha256": "3beef2917ad840293217b6930e8d649d1f3568f8465a8e48efbde137e862127b"
+    },
+    {
+      "file": "backend-java/src/main/java/com/knowledgegraph/assistant/source/JdbcSourceLocator.java",
+      "source": "D:/知识图谱-worktrees/assistant-01-ingestion/backend-java/src/main/java/com/knowledgegraph/assistant/source/JdbcSourceLocator.java",
+      "owner": "01-ingestion",
+      "normalizedSha256": "0e2cec0cbcdbc28f45cf504955df1c22c4bd64ebd45197fa6c419fa9491dda53"
+    },
+    {
+      "file": "docs/assistant-team/references/01-ingestion-W1.md",
+      "source": "D:/知识图谱-worktrees/assistant-01-ingestion/docs/assistant-team/reports/01-ingestion-W1.md",
+      "owner": "01-ingestion",
+      "normalizedSha256": "326ab1f238034d9295a0920f9cb0606363091a6b55548ff8b018eba07c200a85"
+    },
+    {
+      "file": "backend-java/src/main/java/com/knowledgegraph/assistant/quality/QualityArtifactReader.java",
+      "source": "D:/知识图谱-worktrees/assistant-02-quality/backend-java/src/main/java/com/knowledgegraph/assistant/quality/QualityArtifactReader.java",
+      "owner": "02-quality",
+      "normalizedSha256": "003bfd2225d5e26fd5b954d3aec7acd340c288085e36140451a129276145c84a"
+    },
+    {
+      "file": "docs/assistant-team/references/02-quality-W1.md",
+      "source": "D:/知识图谱-worktrees/assistant-02-quality/docs/assistant-team/reports/02-quality-W1.md",
+      "owner": "02-quality",
+      "normalizedSha256": "eecf290e1f27efc7c061126670598cbab22142af2ef02e9574784a48261fe25c"
+    }
+  ]
+}

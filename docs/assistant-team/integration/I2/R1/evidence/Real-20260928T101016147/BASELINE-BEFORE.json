@@ -1,0 +1,29 @@
+{
+  "checkedAt": "2026-09-28T10:10:16.1429603+08:00",
+  "priorFiles": 577,
+  "approvedExistingChanges": 1,
+  "otherPriorFilesUnchanged": 576,
+  "baselineWithOverlay": 62,
+  "duplicateCopies": 98,
+  "frozenEntries": 105,
+  "packageChecked": true,
+  "extraFiles": [
+    "backend-java/src/test/java/com/knowledgegraph/assistant/i2/I2QualityInsightRankingTest.java",
+    "backend-java/src/test/java/com/knowledgegraph/assistant/quality/JdbcQualityInsightRankingRegressionTest.java",
+    "docs/assistant-team/integration/I2/R1/Invoke-R1Tests.ps1",
+    "docs/assistant-team/integration/I2/R1/Invoke-R1Verification.ps1",
+    "docs/assistant-team/integration/I2/R1/R1-FIXTURE.sql",
+    "docs/assistant-team/integration/I2/R1/R1-OVERLAY.json",
+    "docs/assistant-team/integration/I2/R1/R1-PACKAGE.json",
+    "docs/assistant-team/integration/I2/R1/R1-PLAN.md",
+    "docs/assistant-team/integration/I2/R1/R1-PROTECTION-BEFORE.json",
+    "docs/assistant-team/integration/I2/R1/Verify-R1Baseline.ps1",
+    "docs/assistant-team/integration/I2/R1/archive/02-quality-I2-R1.md",
+    "docs/assistant-team/integration/I2/R1/archive/JdbcQualityReadRepository.java.before.txt",
+    "docs/assistant-team/integration/I2/R1/evidence/Offline-20260928T100912110/BASELINE-AFTER.json",
+    "docs/assistant-team/integration/I2/R1/evidence/Offline-20260928T100912110/BASELINE-BEFORE.json",
+    "docs/assistant-team/integration/I2/R1/evidence/Offline-20260928T100912110/Original-RESULT.json",
+    "docs/assistant-team/integration/I2/R1/evidence/Offline-20260928T100912110/RUN.json",
+    "docs/assistant-team/integration/I2/R1/evidence/Offline-20260928T100912110/Ranking-RESULT.json"
+  ]
+}

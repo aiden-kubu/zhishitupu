@@ -1,0 +1,6 @@
+{
+  "noAutomaticNextGroup": true,
+  "message": "R2 Semantics failed; stop without changing another SQL or budget",
+  "stoppedAt": "2026-09-29T00:17:47.1835981+08:00",
+  "phase": "Real"
+}

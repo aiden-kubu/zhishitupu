@@ -1,0 +1,9 @@
+{
+  "loaderLocked": true,
+  "frozenSqlChanged": false,
+  "kind": "I2_loader_fixture_optimizer_statistics_maintenance_not_business_write",
+  "timeoutChanged": false,
+  "before": "auto_document_imports\t0\r\nbootstrap_flags\t0\r\nchat_messages\t0\r\nchat_sessions\t0\r\ndocument_analyses\t0\r\ndocument_chunks\t0\r\ndocument_metadata\t0\r\ndocument_tags\t0\r\ndocument_topic_assignments\t0\r\ndocument_units\t0\r\ndocuments\t0\r\nedge_evidence\t0\r\nedges\t0\r\nentity_candidates\t0\r\nextraction_batch_results\t0\r\nextraction_plan_versions\t0\r\ni2_privilege_canary\t0\r\ningestion_jobs\t0\r\nknowledge_edges\t0\r\nknowledge_libraries\t0\r\nknowledge_nodes\t2\r\nlearning_assessment_attempts\t0\r\nlearning_path_steps\t0\r\nlearning_paths\t0\r\nlibrary_aliases\t0\r\nlibrary_nodes\t2\r\nllm_profiles\t0\r\nnode_aliases\t0\r\nnode_evidence\t0\r\nnodes\t0\r\norganization_checkpoints\t0\r\norganization_mutex\t0\r\nrelation_candidates\t0\r\nsystem_settings\t0",
+  "indexChanged": false,
+  "analyzeOutput": "kg_assistant_i2_20260927_r01.knowledge_nodes\tanalyze\tstatus\tOK\r\nkg_assistant_i2_20260927_r01.knowledge_edges\tanalyze\tstatus\tOK\r\nkg_assistant_i2_20260927_r01.library_nodes\tanalyze\tstatus\tOK\r\nkg_assistant_i2_20260927_r01.node_aliases\tanalyze\tstatus\tOK\r\nkg_assistant_i2_20260927_r01.node_evidence\tanalyze\tstatus\tOK\r\nkg_assistant_i2_20260927_r01.edge_evidence\tanalyze\tstatus\tOK\r\nkg_assistant_i2_20260927_r01.documents\tanalyze\tstatus\tOK\r\nkg_assistant_i2_20260927_r01.document_units\tanalyze\tstatus\tOK\r\nkg_assistant_i2_20260927_r01.document_chunks\tanalyze\tstatus\tOK\r\nkg_assistant_i2_20260927_r01.document_metadata\tanalyze\tstatus\tOK\r\nkg_assistant_i2_20260927_r01.document_topic_assignments\tanalyze\tstatus\tOK\r\nkg_assistant_i2_20260927_r01.entity_candidates\tanalyze\tstatus\tOK\r\nkg_assistant_i2_20260927_r01.relation_candidates\tanalyze\tstatus\tOK\r\nkg_assistant_i2_20260927_r01.ingestion_jobs\tanalyze\tstatus\tOK"
+}

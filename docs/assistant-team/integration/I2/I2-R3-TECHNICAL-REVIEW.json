@@ -1,0 +1,766 @@
+{
+  "stage": "I2-R3-controller-incremental-review",
+  "date": "2026-09-29",
+  "conclusion": "No offline blocking issue found within reviewed delta; not a real MySQL performance pass, no reception or project acceptance.",
+  "ownerDelivery": [
+    {
+      "file": "backend-java/src/main/java/com/knowledgegraph/assistant/quality/JdbcQualityReadRepository.java",
+      "hash": "6a17642e64bbfdb5f0d3bffa13ad9cde4ddbe6384e3b2d5f1a2e592a4db0d740"
+    },
+    {
+      "file": "backend-java/src/test/java/com/knowledgegraph/assistant/quality/JdbcQualityReadRepositoryTest.java",
+      "hash": "c99ac56054eee8f01d20aa3cac9f9f11be3c3a663d5aaeb5919bb5c956b9dabc"
+    },
+    {
+      "file": "backend-java/src/test/java/com/knowledgegraph/assistant/quality/JdbcQualityInsightRankingRegressionTest.java",
+      "hash": "8c6c40ff5fc28254f7226a4013d45b04fe67972557de11814af51952eb2c9ced"
+    },
+    {
+      "file": "backend-java/src/test/java/com/knowledgegraph/assistant/quality/JdbcQualityInsightIsolatedCountRegressionTest.java",
+      "hash": "10f46f136fc13a1ff7cf50f4e90c3ac0e9c0ffb74a7577619f1558eadddbfff9"
+    },
+    {
+      "file": "backend-java/src/test/java/com/knowledgegraph/assistant/quality/JdbcQualityInsightPerformanceRegressionTest.java",
+      "hash": "5bcdee1ee353d22b6770242bf8683d502dc77f4bdb2a8e1b789306c523c3724f"
+    }
+  ],
+  "mainPreimages": [
+    {
+      "file": "backend-java/src/main/java/com/knowledgegraph/assistant/quality/JdbcQualityReadRepository.java",
+      "hash": "c977e453d407aa150404c8f5acecddb6a9dfd63ae27692acb4e057840a3bcc15"
+    },
+    {
+      "file": "backend-java/src/test/java/com/knowledgegraph/assistant/quality/JdbcQualityReadRepositoryTest.java",
+      "hash": "c99ac56054eee8f01d20aa3cac9f9f11be3c3a663d5aaeb5919bb5c956b9dabc"
+    },
+    {
+      "file": "backend-java/src/test/java/com/knowledgegraph/assistant/quality/JdbcQualityInsightRankingRegressionTest.java",
+      "hash": "454ad390e192749f41c5759ba55b7e4915ce203296ced09def72bc4aabcc25d6"
+    },
+    {
+      "file": "backend-java/src/test/java/com/knowledgegraph/assistant/quality/JdbcQualityInsightIsolatedCountRegressionTest.java",
+      "hash": "1fcb245eaac857476c7a8bb6c4d854f6bfea649d347079291029bb88fca10c66"
+    }
+  ],
+  "qualityDirectoryCompared": [
+    {
+      "main": "c977e453d407aa150404c8f5acecddb6a9dfd63ae27692acb4e057840a3bcc15",
+      "owner": "6a17642e64bbfdb5f0d3bffa13ad9cde4ddbe6384e3b2d5f1a2e592a4db0d740",
+      "file": "backend-java/src/main/java/com/knowledgegraph/assistant/quality/JdbcQualityReadRepository.java"
+    },
+    {
+      "main": "541ffd4f031cdc695a82dcaa29a3c91bf96733fa7b6ff32e3abc4e538a83cbb2",
+      "owner": "541ffd4f031cdc695a82dcaa29a3c91bf96733fa7b6ff32e3abc4e538a83cbb2",
+      "file": "backend-java/src/main/java/com/knowledgegraph/assistant/quality/QualityAgentToolProvider.java"
+    },
+    {
+      "main": "003bfd2225d5e26fd5b954d3aec7acd340c288085e36140451a129276145c84a",
+      "owner": "003bfd2225d5e26fd5b954d3aec7acd340c288085e36140451a129276145c84a",
+      "file": "backend-java/src/main/java/com/knowledgegraph/assistant/quality/QualityArtifactReader.java"
+    },
+    {
+      "main": "fb081b24933d14f293c0dc54c55d23286ac462e1587ccf907f9b2d12457d4f27",
+      "owner": "fb081b24933d14f293c0dc54c55d23286ac462e1587ccf907f9b2d12457d4f27",
+      "file": "backend-java/src/main/java/com/knowledgegraph/assistant/quality/QualityEvidenceVerifier.java"
+    },
+    {
+      "main": "04714f9741bacd10a14c4c8b6ce5a6c4cbf3b868eb70a2e3a7f39f3e35c48d20",
+      "owner": "04714f9741bacd10a14c4c8b6ce5a6c4cbf3b868eb70a2e3a7f39f3e35c48d20",
+      "file": "backend-java/src/main/java/com/knowledgegraph/assistant/quality/QualityReadRepository.java"
+    },
+    {
+      "main": "1fcb245eaac857476c7a8bb6c4d854f6bfea649d347079291029bb88fca10c66",
+      "owner": "10f46f136fc13a1ff7cf50f4e90c3ac0e9c0ffb74a7577619f1558eadddbfff9",
+      "file": "backend-java/src/test/java/com/knowledgegraph/assistant/quality/JdbcQualityInsightIsolatedCountRegressionTest.java"
+    },
+    {
+      "main": null,
+      "owner": "5bcdee1ee353d22b6770242bf8683d502dc77f4bdb2a8e1b789306c523c3724f",
+      "file": "backend-java/src/test/java/com/knowledgegraph/assistant/quality/JdbcQualityInsightPerformanceRegressionTest.java"
+    },
+    {
+      "main": "454ad390e192749f41c5759ba55b7e4915ce203296ced09def72bc4aabcc25d6",
+      "owner": "8c6c40ff5fc28254f7226a4013d45b04fe67972557de11814af51952eb2c9ced",
+      "file": "backend-java/src/test/java/com/knowledgegraph/assistant/quality/JdbcQualityInsightRankingRegressionTest.java"
+    },
+    {
+      "main": "c99ac56054eee8f01d20aa3cac9f9f11be3c3a663d5aaeb5919bb5c956b9dabc",
+      "owner": "c99ac56054eee8f01d20aa3cac9f9f11be3c3a663d5aaeb5919bb5c956b9dabc",
+      "file": "backend-java/src/test/java/com/knowledgegraph/assistant/quality/JdbcQualityReadRepositoryTest.java"
+    },
+    {
+      "main": "d8540b83fb61906fe5460d81391e99ad0ee872cd180e1fffb0db2bda1ccbb6d2",
+      "owner": "d8540b83fb61906fe5460d81391e99ad0ee872cd180e1fffb0db2bda1ccbb6d2",
+      "file": "backend-java/src/test/java/com/knowledgegraph/assistant/quality/QualityAgentToolProviderTest.java"
+    },
+    {
+      "main": "bc2ba87cd4296e500a1674a1111cc7be594c774c44fce3174ec378ab97d5c2f2",
+      "owner": "bc2ba87cd4296e500a1674a1111cc7be594c774c44fce3174ec378ab97d5c2f2",
+      "file": "backend-java/src/test/java/com/knowledgegraph/assistant/quality/QualityEvidenceVerifierTest.java"
+    }
+  ],
+  "qualityDirectoryFileCount": 11,
+  "ownerReportRawSha256": "946488684ff71c46a662ce98ca3b17195b461b64797751db2cedd0eb4d3d5403",
+  "ownerIndexRawSha256": "6b70776b308e8d538c4d9115741c3acc478d268293f7cefb1809a638d38eb886",
+  "ownerRuns": [
+    {
+      "suffix": "i2r3-original-01",
+      "xmlFiles": [
+        {
+          "path": "D:\\知识图谱-worktrees\\assistant-02-quality\\backend-java\\target\\surefire-reports\\TEST-com.knowledgegraph.assistant.quality.JdbcQualityReadRepositoryTest-i2r3-original-01.xml",
+          "rawSha256": "834a69d001efd0bf5fbeb0011eff4705242a299eca822b8f578fecac552bc138",
+          "tests": 4,
+          "errors": 0,
+          "failures": 0,
+          "skipped": 0
+        },
+        {
+          "path": "D:\\知识图谱-worktrees\\assistant-02-quality\\backend-java\\target\\surefire-reports\\TEST-com.knowledgegraph.assistant.quality.QualityAgentToolProviderTest-i2r3-original-01.xml",
+          "rawSha256": "377e9d60c966175988505dfbbc942d522e3c7b1970008cae36b5dcc455997d97",
+          "tests": 15,
+          "errors": 0,
+          "failures": 0,
+          "skipped": 0
+        },
+        {
+          "path": "D:\\知识图谱-worktrees\\assistant-02-quality\\backend-java\\target\\surefire-reports\\TEST-com.knowledgegraph.assistant.quality.QualityEvidenceVerifierTest-i2r3-original-01.xml",
+          "rawSha256": "51ef646858ff4396fdd54fba3eee036ee2a3e21754c41d29b95754eb227cb1ae",
+          "tests": 6,
+          "errors": 0,
+          "failures": 0,
+          "skipped": 0
+        },
+        {
+          "path": "D:\\知识图谱-worktrees\\assistant-02-quality\\backend-java\\target\\surefire-reports\\TEST-com.knowledgegraph.assistant.runtime.AssistantRuntimeTest-i2r3-original-01.xml",
+          "rawSha256": "d5deb66b7ae729491c77cbe4cafdd7a11ceaa559d3170232ec80d1c4df66042b",
+          "tests": 28,
+          "errors": 0,
+          "failures": 0,
+          "skipped": 0
+        },
+        {
+          "path": "D:\\知识图谱-worktrees\\assistant-02-quality\\backend-java\\target\\surefire-reports\\TEST-com.knowledgegraph.assistant.runtime.DecisionParserTest-i2r3-original-01.xml",
+          "rawSha256": "6fe8aac16e2fe8bb92ed28c64c4465505cf7a9f61ec55fb67053191837f971f5",
+          "tests": 15,
+          "errors": 0,
+          "failures": 0,
+          "skipped": 0
+        }
+      ],
+      "expandedCases": 68,
+      "methodDefinitions": 59,
+      "errors": 0,
+      "failures": 0,
+      "skipped": 0,
+      "errorCases": []
+    },
+    {
+      "suffix": "i2r3-ranking-01",
+      "xmlFiles": [
+        {
+          "path": "D:\\知识图谱-worktrees\\assistant-02-quality\\backend-java\\target\\surefire-reports\\TEST-com.knowledgegraph.assistant.quality.JdbcQualityInsightRankingRegressionTest-i2r3-ranking-01.xml",
+          "rawSha256": "b815709d77a40f60d860b1ebabd1b2d1905a63c62d98e2cab427f0e2e5207df9",
+          "tests": 15,
+          "errors": 0,
+          "failures": 0,
+          "skipped": 0
+        }
+      ],
+      "expandedCases": 15,
+      "methodDefinitions": 12,
+      "errors": 0,
+      "failures": 0,
+      "skipped": 0,
+      "errorCases": []
+    },
+    {
+      "suffix": "i2r3-count-01",
+      "xmlFiles": [
+        {
+          "path": "D:\\知识图谱-worktrees\\assistant-02-quality\\backend-java\\target\\surefire-reports\\TEST-com.knowledgegraph.assistant.quality.JdbcQualityInsightIsolatedCountRegressionTest-i2r3-count-01.xml",
+          "rawSha256": "fe0ec6367d9a65e9e94f3f5960f7d0fb890a04156d46363fd40045d9af2f47a5",
+          "tests": 10,
+          "errors": 0,
+          "failures": 0,
+          "skipped": 0
+        }
+      ],
+      "expandedCases": 10,
+      "methodDefinitions": 7,
+      "errors": 0,
+      "failures": 0,
+      "skipped": 0,
+      "errorCases": []
+    },
+    {
+      "suffix": "i2r3-whole-01",
+      "xmlFiles": [
+        {
+          "path": "D:\\知识图谱-worktrees\\assistant-02-quality\\backend-java\\target\\surefire-reports\\TEST-com.knowledgegraph.assistant.quality.JdbcQualityInsightPerformanceRegressionTest-i2r3-whole-01.xml",
+          "rawSha256": "6df8804ce25ba7a5eadc1044f3188dc9c0a9301aa3008a75b5e64c3a8b5903c1",
+          "tests": 17,
+          "errors": 1,
+          "failures": 0,
+          "skipped": 0
+        }
+      ],
+      "expandedCases": 17,
+      "methodDefinitions": 6,
+      "errors": 1,
+      "failures": 0,
+      "skipped": 0,
+      "errorCases": [
+        {
+          "failure": "",
+          "name": "unsupportedScopesStillFailBeforeAnySql(Scope)",
+          "class": "com.knowledgegraph.assistant.quality.JdbcQualityInsightPerformanceRegressionTest(i2r3-whole-01)",
+          "error": "Scope must be explicit"
+        }
+      ]
+    },
+    {
+      "suffix": "i2r3-whole-02",
+      "xmlFiles": [
+        {
+          "path": "D:\\知识图谱-worktrees\\assistant-02-quality\\backend-java\\target\\surefire-reports\\TEST-com.knowledgegraph.assistant.quality.JdbcQualityInsightPerformanceRegressionTest-i2r3-whole-02.xml",
+          "rawSha256": "4441c9d1735c237b84bc43c46995c9a495fe585a6a82b79352694bbf74b37b42",
+          "tests": 19,
+          "errors": 0,
+          "failures": 0,
+          "skipped": 0
+        }
+      ],
+      "expandedCases": 19,
+      "methodDefinitions": 6,
+      "errors": 0,
+      "failures": 0,
+      "skipped": 0,
+      "errorCases": []
+    }
+  ],
+  "ownerFinalUniqueExpandedCases": 112,
+  "ownerFinalUniqueMethodDefinitions": 84,
+  "controller": {
+    "actor": "controller",
+    "workdir": "D:/知识图谱-worktrees/assistant-02-quality/backend-java",
+    "command": ".\\mvnw.cmd -o '-Dtest=JdbcQualityReadRepositoryTest,JdbcQualityInsightRankingRegressionTest,JdbcQualityInsightIsolatedCountRegressionTest,JdbcQualityInsightPerformanceRegressionTest' '-Dsurefire.reportNameSuffix=controller-i2r3-review-1790648257203' test",
+    "startedAt": "2026-09-29T02:17:37.203Z",
+    "exitCode": 0,
+    "executionRounds": 1,
+    "reruns": 0,
+    "uniqueExpandedCases": 48,
+    "uniqueMethodDefinitions": 29,
+    "suites": [
+      {
+        "class": "JdbcQualityReadRepositoryTest",
+        "path": "D:\\知识图谱-worktrees\\assistant-02-quality\\backend-java\\target\\surefire-reports\\TEST-com.knowledgegraph.assistant.quality.JdbcQualityReadRepositoryTest-controller-i2r3-review-1790648257203.xml",
+        "rawSha256": "847fff6ff22faea955524e672cd3ca68fcce1c32c7fb98bd280eccef88c9605b",
+        "failures": 0,
+        "skipped": 0,
+        "tests": 4,
+        "cases": [
+          {
+            "error": "",
+            "failure": "",
+            "seconds": "0.027",
+            "name": "candidateScopeIsBoundBeforeBothCountAndPageLimit",
+            "class": "com.knowledgegraph.assistant.quality.JdbcQualityReadRepositoryTest"
+          },
+          {
+            "error": "",
+            "failure": "",
+            "seconds": "0.002",
+            "name": "snapshotHashMetadataRequiresRealDocumentOwnershipAndSelectedScope",
+            "class": "com.knowledgegraph.assistant.quality.JdbcQualityReadRepositoryTest"
+          },
+          {
+            "error": "",
+            "failure": "",
+            "seconds": "0.004",
+            "name": "insightUsesDistinctVisibleNodesAndTwoVisibleEndpointsForActiveEdges",
+            "class": "com.knowledgegraph.assistant.quality.JdbcQualityReadRepositoryTest"
+          },
+          {
+            "error": "",
+            "failure": "",
+            "seconds": "0.002",
+            "name": "unsupportedInsightDimensionsAreRejectedBeforeAnySql",
+            "class": "com.knowledgegraph.assistant.quality.JdbcQualityReadRepositoryTest"
+          }
+        ],
+        "methodDefinitions": 4,
+        "errors": 0
+      },
+      {
+        "class": "JdbcQualityInsightRankingRegressionTest",
+        "path": "D:\\知识图谱-worktrees\\assistant-02-quality\\backend-java\\target\\surefire-reports\\TEST-com.knowledgegraph.assistant.quality.JdbcQualityInsightRankingRegressionTest-controller-i2r3-review-1790648257203.xml",
+        "rawSha256": "0237ddd71b62f3926868d01830d215877d192de01c4a69857bcbcf29d34dbcd2",
+        "failures": 0,
+        "skipped": 0,
+        "tests": 15,
+        "cases": [
+          {
+            "error": "",
+            "failure": "",
+            "seconds": "0.013",
+            "name": "rankingAggregatesScopedEndpointsInsteadOfCountingEdgesForEachNode",
+            "class": "com.knowledgegraph.assistant.quality.JdbcQualityInsightRankingRegressionTest"
+          },
+          {
+            "error": "",
+            "failure": "",
+            "seconds": "0.004",
+            "name": "selfLoopContributesSourceOnceAndIsExcludedOnlyFromTargetBranch",
+            "class": "com.knowledgegraph.assistant.quality.JdbcQualityInsightRankingRegressionTest"
+          },
+          {
+            "error": "",
+            "failure": "",
+            "seconds": "0.011",
+            "name": "rankingJdbcFailureIsNotConvertedIntoSuccessfulEmptyInsight",
+            "class": "com.knowledgegraph.assistant.quality.JdbcQualityInsightRankingRegressionTest"
+          },
+          {
+            "error": "",
+            "failure": "",
+            "seconds": "0.003",
+            "name": "unsupportedDimensionsStillRejectBeforeAnySql(Scope)[1]",
+            "class": "com.knowledgegraph.assistant.quality.JdbcQualityInsightRankingRegressionTest"
+          },
+          {
+            "error": "",
+            "failure": "",
+            "seconds": "0.002",
+            "name": "unsupportedDimensionsStillRejectBeforeAnySql(Scope)[2]",
+            "class": "com.knowledgegraph.assistant.quality.JdbcQualityInsightRankingRegressionTest"
+          },
+          {
+            "error": "",
+            "failure": "",
+            "seconds": "0.001",
+            "name": "unsupportedDimensionsStillRejectBeforeAnySql(Scope)[3]",
+            "class": "com.knowledgegraph.assistant.quality.JdbcQualityInsightRankingRegressionTest"
+          },
+          {
+            "error": "",
+            "failure": "",
+            "seconds": "0.003",
+            "name": "unsupportedDimensionsStillRejectBeforeAnySql(Scope)[4]",
+            "class": "com.knowledgegraph.assistant.quality.JdbcQualityInsightRankingRegressionTest"
+          },
+          {
+            "error": "",
+            "failure": "",
+            "seconds": "0.004",
+            "name": "emptyRankingStaysEmptyWithoutFabricatedNode",
+            "class": "com.knowledgegraph.assistant.quality.JdbcQualityInsightRankingRegressionTest"
+          },
+          {
+            "error": "",
+            "failure": "",
+            "seconds": "0.003",
+            "name": "onlyFinalRankLimitIsBoundAndTiesUseAscendingNumericId",
+            "class": "com.knowledgegraph.assistant.quality.JdbcQualityInsightRankingRegressionTest"
+          },
+          {
+            "error": "",
+            "failure": "",
+            "seconds": "0.003",
+            "name": "reverseAndDifferentTypeEdgesKeepRowMultiplicity",
+            "class": "com.knowledgegraph.assistant.quality.JdbcQualityInsightRankingRegressionTest"
+          },
+          {
+            "error": "",
+            "failure": "",
+            "seconds": "0.004",
+            "name": "selectedLibrariesKeepExistsMembershipAndBothVisibleActiveEndpoints",
+            "class": "com.knowledgegraph.assistant.quality.JdbcQualityInsightRankingRegressionTest"
+          },
+          {
+            "error": "",
+            "failure": "",
+            "seconds": "0.006",
+            "name": "nonRankingQueriesAndTheirLimitsKeepFrozenShape",
+            "class": "com.knowledgegraph.assistant.quality.JdbcQualityInsightRankingRegressionTest"
+          },
+          {
+            "error": "",
+            "failure": "",
+            "seconds": "0.004",
+            "name": "projectRankingDoesNotInventLibraryParametersOrRestrictions",
+            "class": "com.knowledgegraph.assistant.quality.JdbcQualityInsightRankingRegressionTest"
+          },
+          {
+            "error": "",
+            "failure": "",
+            "seconds": "0.005",
+            "name": "zeroDegreeNodesRemainInOuterLeftJoinWithZeroValue",
+            "class": "com.knowledgegraph.assistant.quality.JdbcQualityInsightRankingRegressionTest"
+          },
+          {
+            "error": "",
+            "failure": "",
+            "seconds": "0.007",
+            "name": "actualRowMapperPreservesLongIdsLongDegreesNamesAndZeroDegree",
+            "class": "com.knowledgegraph.assistant.quality.JdbcQualityInsightRankingRegressionTest"
+          }
+        ],
+        "methodDefinitions": 12,
+        "errors": 0
+      },
+      {
+        "class": "JdbcQualityInsightIsolatedCountRegressionTest",
+        "path": "D:\\知识图谱-worktrees\\assistant-02-quality\\backend-java\\target\\surefire-reports\\TEST-com.knowledgegraph.assistant.quality.JdbcQualityInsightIsolatedCountRegressionTest-controller-i2r3-review-1790648257203.xml",
+        "rawSha256": "f5bca3abc65c6273b3656384ded953294457c054f71b5ca6eeccbb6ad983cc30",
+        "failures": 0,
+        "skipped": 0,
+        "tests": 10,
+        "cases": [
+          {
+            "error": "",
+            "failure": "",
+            "seconds": "0.31",
+            "name": "countReadsLongResultIndependentOfTruncatedList",
+            "class": "com.knowledgegraph.assistant.quality.JdbcQualityInsightIsolatedCountRegressionTest"
+          },
+          {
+            "error": "",
+            "failure": "",
+            "seconds": "0.024",
+            "name": "countFailurePropagatesBeforeTheListQuery",
+            "class": "com.knowledgegraph.assistant.quality.JdbcQualityInsightIsolatedCountRegressionTest"
+          },
+          {
+            "error": "",
+            "failure": "",
+            "seconds": "0.014",
+            "name": "emptyResultMapsZeroWithoutInventingRows",
+            "class": "com.knowledgegraph.assistant.quality.JdbcQualityInsightIsolatedCountRegressionTest"
+          },
+          {
+            "error": "",
+            "failure": "",
+            "seconds": "0.026",
+            "name": "selectedLibraryUnionIsScopedBeforeCountingAndKeepsLargeBoundIds",
+            "class": "com.knowledgegraph.assistant.quality.JdbcQualityInsightIsolatedCountRegressionTest"
+          },
+          {
+            "error": "",
+            "failure": "",
+            "seconds": "0.011",
+            "name": "ninthCountRemainsUnboundedAndTenthListKeepsItsOwnLimit",
+            "class": "com.knowledgegraph.assistant.quality.JdbcQualityInsightIsolatedCountRegressionTest"
+          },
+          {
+            "error": "",
+            "failure": "",
+            "seconds": "0.018",
+            "name": "unsupportedDimensionsStillRejectBeforeJdbc(Scope)[1]",
+            "class": "com.knowledgegraph.assistant.quality.JdbcQualityInsightIsolatedCountRegressionTest"
+          },
+          {
+            "error": "",
+            "failure": "",
+            "seconds": "0.002",
+            "name": "unsupportedDimensionsStillRejectBeforeJdbc(Scope)[2]",
+            "class": "com.knowledgegraph.assistant.quality.JdbcQualityInsightIsolatedCountRegressionTest"
+          },
+          {
+            "error": "",
+            "failure": "",
+            "seconds": "0.001",
+            "name": "unsupportedDimensionsStillRejectBeforeJdbc(Scope)[3]",
+            "class": "com.knowledgegraph.assistant.quality.JdbcQualityInsightIsolatedCountRegressionTest"
+          },
+          {
+            "error": "",
+            "failure": "",
+            "seconds": "0.001",
+            "name": "unsupportedDimensionsStillRejectBeforeJdbc(Scope)[4]",
+            "class": "com.knowledgegraph.assistant.quality.JdbcQualityInsightIsolatedCountRegressionTest"
+          },
+          {
+            "error": "",
+            "failure": "",
+            "seconds": "0.008",
+            "name": "countAggregatesScopedIncidentNodesBeforeOneAntiJoin",
+            "class": "com.knowledgegraph.assistant.quality.JdbcQualityInsightIsolatedCountRegressionTest"
+          }
+        ],
+        "methodDefinitions": 7,
+        "errors": 0
+      },
+      {
+        "class": "JdbcQualityInsightPerformanceRegressionTest",
+        "path": "D:\\知识图谱-worktrees\\assistant-02-quality\\backend-java\\target\\surefire-reports\\TEST-com.knowledgegraph.assistant.quality.JdbcQualityInsightPerformanceRegressionTest-controller-i2r3-review-1790648257203.xml",
+        "rawSha256": "9764c628355893febefecd9f5a58e8dbc9141ba941d51702513820384c5c05ca",
+        "failures": 0,
+        "skipped": 0,
+        "tests": 19,
+        "cases": [
+          {
+            "error": "",
+            "failure": "",
+            "seconds": "0.166",
+            "name": "allTenQueryResponsibilitiesAndLongResultsRemainSeparate",
+            "class": "com.knowledgegraph.assistant.quality.JdbcQualityInsightPerformanceRegressionTest"
+          },
+          {
+            "error": "",
+            "failure": "",
+            "seconds": "0.002",
+            "name": "unsupportedScopesStillFailBeforeAnySql(Scope)[1]",
+            "class": "com.knowledgegraph.assistant.quality.JdbcQualityInsightPerformanceRegressionTest"
+          },
+          {
+            "error": "",
+            "failure": "",
+            "seconds": "0.001",
+            "name": "unsupportedScopesStillFailBeforeAnySql(Scope)[2]",
+            "class": "com.knowledgegraph.assistant.quality.JdbcQualityInsightPerformanceRegressionTest"
+          },
+          {
+            "error": "",
+            "failure": "",
+            "seconds": "0.001",
+            "name": "unsupportedScopesStillFailBeforeAnySql(Scope)[3]",
+            "class": "com.knowledgegraph.assistant.quality.JdbcQualityInsightPerformanceRegressionTest"
+          },
+          {
+            "error": "",
+            "failure": "",
+            "seconds": "0.006",
+            "name": "isolatedListAggregatesVisibleActiveEndpointsBeforeAntiJoin",
+            "class": "com.knowledgegraph.assistant.quality.JdbcQualityInsightPerformanceRegressionTest"
+          },
+          {
+            "error": "",
+            "failure": "",
+            "seconds": "0.005",
+            "name": "jdbcFailureAtAnyQueryPropagatesWithoutRunningLaterQueries(int)[1]",
+            "class": "com.knowledgegraph.assistant.quality.JdbcQualityInsightPerformanceRegressionTest"
+          },
+          {
+            "error": "",
+            "failure": "",
+            "seconds": "0.002",
+            "name": "jdbcFailureAtAnyQueryPropagatesWithoutRunningLaterQueries(int)[2]",
+            "class": "com.knowledgegraph.assistant.quality.JdbcQualityInsightPerformanceRegressionTest"
+          },
+          {
+            "error": "",
+            "failure": "",
+            "seconds": "0.002",
+            "name": "jdbcFailureAtAnyQueryPropagatesWithoutRunningLaterQueries(int)[3]",
+            "class": "com.knowledgegraph.assistant.quality.JdbcQualityInsightPerformanceRegressionTest"
+          },
+          {
+            "error": "",
+            "failure": "",
+            "seconds": "0.003",
+            "name": "jdbcFailureAtAnyQueryPropagatesWithoutRunningLaterQueries(int)[4]",
+            "class": "com.knowledgegraph.assistant.quality.JdbcQualityInsightPerformanceRegressionTest"
+          },
+          {
+            "error": "",
+            "failure": "",
+            "seconds": "0.003",
+            "name": "jdbcFailureAtAnyQueryPropagatesWithoutRunningLaterQueries(int)[5]",
+            "class": "com.knowledgegraph.assistant.quality.JdbcQualityInsightPerformanceRegressionTest"
+          },
+          {
+            "error": "",
+            "failure": "",
+            "seconds": "0.003",
+            "name": "jdbcFailureAtAnyQueryPropagatesWithoutRunningLaterQueries(int)[6]",
+            "class": "com.knowledgegraph.assistant.quality.JdbcQualityInsightPerformanceRegressionTest"
+          },
+          {
+            "error": "",
+            "failure": "",
+            "seconds": "0.003",
+            "name": "jdbcFailureAtAnyQueryPropagatesWithoutRunningLaterQueries(int)[7]",
+            "class": "com.knowledgegraph.assistant.quality.JdbcQualityInsightPerformanceRegressionTest"
+          },
+          {
+            "error": "",
+            "failure": "",
+            "seconds": "0.004",
+            "name": "jdbcFailureAtAnyQueryPropagatesWithoutRunningLaterQueries(int)[8]",
+            "class": "com.knowledgegraph.assistant.quality.JdbcQualityInsightPerformanceRegressionTest"
+          },
+          {
+            "error": "",
+            "failure": "",
+            "seconds": "0.004",
+            "name": "jdbcFailureAtAnyQueryPropagatesWithoutRunningLaterQueries(int)[9]",
+            "class": "com.knowledgegraph.assistant.quality.JdbcQualityInsightPerformanceRegressionTest"
+          },
+          {
+            "error": "",
+            "failure": "",
+            "seconds": "0.005",
+            "name": "jdbcFailureAtAnyQueryPropagatesWithoutRunningLaterQueries(int)[10]",
+            "class": "com.knowledgegraph.assistant.quality.JdbcQualityInsightPerformanceRegressionTest"
+          },
+          {
+            "error": "",
+            "failure": "",
+            "seconds": "0.005",
+            "name": "displayLimitsDoNotRestrictTheIsolatedTotal(int)[1]",
+            "class": "com.knowledgegraph.assistant.quality.JdbcQualityInsightPerformanceRegressionTest"
+          },
+          {
+            "error": "",
+            "failure": "",
+            "seconds": "0.004",
+            "name": "displayLimitsDoNotRestrictTheIsolatedTotal(int)[2]",
+            "class": "com.knowledgegraph.assistant.quality.JdbcQualityInsightPerformanceRegressionTest"
+          },
+          {
+            "error": "",
+            "failure": "",
+            "seconds": "0.004",
+            "name": "displayLimitsDoNotRestrictTheIsolatedTotal(int)[3]",
+            "class": "com.knowledgegraph.assistant.quality.JdbcQualityInsightPerformanceRegressionTest"
+          },
+          {
+            "error": "",
+            "failure": "",
+            "seconds": "0.005",
+            "name": "selectedScopeIsBoundBeforeEveryAggregateSortAndLimit",
+            "class": "com.knowledgegraph.assistant.quality.JdbcQualityInsightPerformanceRegressionTest"
+          }
+        ],
+        "methodDefinitions": 6,
+        "errors": 0
+      }
+    ],
+    "environmentCredentialsClearedForTestProcess": true,
+    "noMySqlAuthorizationInTestProcess": true,
+    "xmlRawArchived": false
+  },
+  "afterChecks": {
+    "ownerHistoricalXml": [
+      {
+        "path": "D:\\知识图谱-worktrees\\assistant-02-quality\\backend-java\\target\\surefire-reports\\TEST-com.knowledgegraph.assistant.quality.JdbcQualityReadRepositoryTest-i2r3-original-01.xml",
+        "rawSha256": "834a69d001efd0bf5fbeb0011eff4705242a299eca822b8f578fecac552bc138"
+      },
+      {
+        "path": "D:\\知识图谱-worktrees\\assistant-02-quality\\backend-java\\target\\surefire-reports\\TEST-com.knowledgegraph.assistant.quality.QualityAgentToolProviderTest-i2r3-original-01.xml",
+        "rawSha256": "377e9d60c966175988505dfbbc942d522e3c7b1970008cae36b5dcc455997d97"
+      },
+      {
+        "path": "D:\\知识图谱-worktrees\\assistant-02-quality\\backend-java\\target\\surefire-reports\\TEST-com.knowledgegraph.assistant.quality.QualityEvidenceVerifierTest-i2r3-original-01.xml",
+        "rawSha256": "51ef646858ff4396fdd54fba3eee036ee2a3e21754c41d29b95754eb227cb1ae"
+      },
+      {
+        "path": "D:\\知识图谱-worktrees\\assistant-02-quality\\backend-java\\target\\surefire-reports\\TEST-com.knowledgegraph.assistant.runtime.AssistantRuntimeTest-i2r3-original-01.xml",
+        "rawSha256": "d5deb66b7ae729491c77cbe4cafdd7a11ceaa559d3170232ec80d1c4df66042b"
+      },
+      {
+        "path": "D:\\知识图谱-worktrees\\assistant-02-quality\\backend-java\\target\\surefire-reports\\TEST-com.knowledgegraph.assistant.runtime.DecisionParserTest-i2r3-original-01.xml",
+        "rawSha256": "6fe8aac16e2fe8bb92ed28c64c4465505cf7a9f61ec55fb67053191837f971f5"
+      },
+      {
+        "path": "D:\\知识图谱-worktrees\\assistant-02-quality\\backend-java\\target\\surefire-reports\\TEST-com.knowledgegraph.assistant.quality.JdbcQualityInsightRankingRegressionTest-i2r3-ranking-01.xml",
+        "rawSha256": "b815709d77a40f60d860b1ebabd1b2d1905a63c62d98e2cab427f0e2e5207df9"
+      },
+      {
+        "path": "D:\\知识图谱-worktrees\\assistant-02-quality\\backend-java\\target\\surefire-reports\\TEST-com.knowledgegraph.assistant.quality.JdbcQualityInsightIsolatedCountRegressionTest-i2r3-count-01.xml",
+        "rawSha256": "fe0ec6367d9a65e9e94f3f5960f7d0fb890a04156d46363fd40045d9af2f47a5"
+      },
+      {
+        "path": "D:\\知识图谱-worktrees\\assistant-02-quality\\backend-java\\target\\surefire-reports\\TEST-com.knowledgegraph.assistant.quality.JdbcQualityInsightPerformanceRegressionTest-i2r3-whole-01.xml",
+        "rawSha256": "6df8804ce25ba7a5eadc1044f3188dc9c0a9301aa3008a75b5e64c3a8b5903c1"
+      },
+      {
+        "path": "D:\\知识图谱-worktrees\\assistant-02-quality\\backend-java\\target\\surefire-reports\\TEST-com.knowledgegraph.assistant.quality.JdbcQualityInsightPerformanceRegressionTest-i2r3-whole-02.xml",
+        "rawSha256": "4441c9d1735c237b84bc43c46995c9a495fe585a6a82b79352694bbf74b37b42"
+      }
+    ],
+    "ownerQualityFiles": [
+      {
+        "hash": "6a17642e64bbfdb5f0d3bffa13ad9cde4ddbe6384e3b2d5f1a2e592a4db0d740",
+        "file": "backend-java/src/main/java/com/knowledgegraph/assistant/quality/JdbcQualityReadRepository.java"
+      },
+      {
+        "hash": "541ffd4f031cdc695a82dcaa29a3c91bf96733fa7b6ff32e3abc4e538a83cbb2",
+        "file": "backend-java/src/main/java/com/knowledgegraph/assistant/quality/QualityAgentToolProvider.java"
+      },
+      {
+        "hash": "003bfd2225d5e26fd5b954d3aec7acd340c288085e36140451a129276145c84a",
+        "file": "backend-java/src/main/java/com/knowledgegraph/assistant/quality/QualityArtifactReader.java"
+      },
+      {
+        "hash": "fb081b24933d14f293c0dc54c55d23286ac462e1587ccf907f9b2d12457d4f27",
+        "file": "backend-java/src/main/java/com/knowledgegraph/assistant/quality/QualityEvidenceVerifier.java"
+      },
+      {
+        "hash": "04714f9741bacd10a14c4c8b6ce5a6c4cbf3b868eb70a2e3a7f39f3e35c48d20",
+        "file": "backend-java/src/main/java/com/knowledgegraph/assistant/quality/QualityReadRepository.java"
+      },
+      {
+        "hash": "10f46f136fc13a1ff7cf50f4e90c3ac0e9c0ffb74a7577619f1558eadddbfff9",
+        "file": "backend-java/src/test/java/com/knowledgegraph/assistant/quality/JdbcQualityInsightIsolatedCountRegressionTest.java"
+      },
+      {
+        "hash": "5bcdee1ee353d22b6770242bf8683d502dc77f4bdb2a8e1b789306c523c3724f",
+        "file": "backend-java/src/test/java/com/knowledgegraph/assistant/quality/JdbcQualityInsightPerformanceRegressionTest.java"
+      },
+      {
+        "hash": "8c6c40ff5fc28254f7226a4013d45b04fe67972557de11814af51952eb2c9ced",
+        "file": "backend-java/src/test/java/com/knowledgegraph/assistant/quality/JdbcQualityInsightRankingRegressionTest.java"
+      },
+      {
+        "hash": "c99ac56054eee8f01d20aa3cac9f9f11be3c3a663d5aaeb5919bb5c956b9dabc",
+        "file": "backend-java/src/test/java/com/knowledgegraph/assistant/quality/JdbcQualityReadRepositoryTest.java"
+      },
+      {
+        "hash": "d8540b83fb61906fe5460d81391e99ad0ee872cd180e1fffb0db2bda1ccbb6d2",
+        "file": "backend-java/src/test/java/com/knowledgegraph/assistant/quality/QualityAgentToolProviderTest.java"
+      },
+      {
+        "hash": "bc2ba87cd4296e500a1674a1111cc7be594c774c44fce3174ec378ab97d5c2f2",
+        "file": "backend-java/src/test/java/com/knowledgegraph/assistant/quality/QualityEvidenceVerifierTest.java"
+      }
+    ],
+    "mainPreimages": [
+      {
+        "hash": "c977e453d407aa150404c8f5acecddb6a9dfd63ae27692acb4e057840a3bcc15",
+        "file": "backend-java/src/main/java/com/knowledgegraph/assistant/quality/JdbcQualityReadRepository.java"
+      },
+      {
+        "hash": "c99ac56054eee8f01d20aa3cac9f9f11be3c3a663d5aaeb5919bb5c956b9dabc",
+        "file": "backend-java/src/test/java/com/knowledgegraph/assistant/quality/JdbcQualityReadRepositoryTest.java"
+      },
+      {
+        "hash": "454ad390e192749f41c5759ba55b7e4915ce203296ced09def72bc4aabcc25d6",
+        "file": "backend-java/src/test/java/com/knowledgegraph/assistant/quality/JdbcQualityInsightRankingRegressionTest.java"
+      },
+      {
+        "hash": "1fcb245eaac857476c7a8bb6c4d854f6bfea649d347079291029bb88fca10c66",
+        "file": "backend-java/src/test/java/com/knowledgegraph/assistant/quality/JdbcQualityInsightIsolatedCountRegressionTest.java"
+      }
+    ],
+    "mainNewTestAbsent": true,
+    "deliveryDocsUnchanged": true
+  },
+  "scopeLimits": {
+    "noWholeWorktreeAuthorshipAudit": true,
+    "unmodifiedW1Dependencies": "Existing 16/16 conclusion reused, not recomputed in this incremental review",
+    "noDomainEdits": true,
+    "noMainReception": true,
+    "noDatabaseConnections": true,
+    "noNewSubtask": true,
+    "noRealPerformanceClaim": true
+  },
+  "model": {
+    "requiredDomain": "GPT-6 Sol / High",
+    "userDesktopConfirmation": "Reported by user in delivery receipt",
+    "independentModelVerified": false,
+    "independentReasoningLevelVerified": false,
+    "controllerActualModelVerified": false
+  },
+  "nextPhase": "Await owner authorization for one-batch controlled reception/main regression/original isolated MySQL whole-insight verification. No automatic I2 remainder/I3/W2."
+}

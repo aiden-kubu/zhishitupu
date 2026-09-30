@@ -1,0 +1,131 @@
+{
+  "files": [
+    {
+      "rawSha256": "aa181823f5049fd1e71f670b6072addb1e443165875926763632897747ae2c8e",
+      "file": "docs/assistant-team/integration/I2/R2/evidence/ExplainList-20260929T003614228/BASELINE-AFTER.json"
+    },
+    {
+      "rawSha256": "9a41d1758ec08ec868511f3ae4ebb1923f31be4808b09b313a739982a1b8dd29",
+      "file": "docs/assistant-team/integration/I2/R2/evidence/ExplainList-20260929T003614228/BASELINE-BEFORE.json"
+    },
+    {
+      "rawSha256": "d4232c8c805db3272c90fbc887778fc1380537d6b4140716dc5dd52f7716c530",
+      "file": "docs/assistant-team/integration/I2/R2/evidence/ExplainList-20260929T003614228/DIAGNOSTIC-OUTPUT.json"
+    },
+    {
+      "rawSha256": "b4646bbdbbf4340f81f46384c9a4a9a537b8ddb045f4ec73234bf0d431371ce8",
+      "file": "docs/assistant-team/integration/I2/R2/evidence/ExplainList-20260929T003614228/FAILURE.json"
+    },
+    {
+      "rawSha256": "9fb6423de41cb0995e7c8fa43bc5e2b6ac8d968bc4aed2a97a64df333ea011d2",
+      "file": "docs/assistant-team/integration/I2/R2/evidence/ExplainList-20260929T003614228/I2-R2_LIST_EXPLAIN-AFTER.json"
+    },
+    {
+      "rawSha256": "14fc0bfd2f85dad6cdccdeed2f84b4f7804664113507f6d63a34ec4c921b46b6",
+      "file": "docs/assistant-team/integration/I2/R2/evidence/ExplainList-20260929T003614228/I2-R2_LIST_EXPLAIN-BEFORE.json"
+    },
+    {
+      "rawSha256": "d656b832850a128035e1baec30bba865a1c8e2a5a59f37e42cbec1b87c2ca69f",
+      "file": "docs/assistant-team/integration/I2/R2/evidence/ExplainList-20260929T003614228/IDENTITY.json"
+    },
+    {
+      "rawSha256": "cce011ce3fae8a8c5105910a4414d58f83ca5d81f688ac86139dd1c6f6856d7a",
+      "file": "docs/assistant-team/integration/I2/R2/evidence/ExplainList-20260929T003614228/RETAINED-DATA.json"
+    },
+    {
+      "rawSha256": "1e0245a1411b278cc1fd2826427fdb1886d48de9f789d7f5a6f662b2b548521e",
+      "file": "docs/assistant-team/integration/I2/R2/evidence/ExplainList-20260929T003614228/RUN.json"
+    },
+    {
+      "rawSha256": "22dd00413934e6f11b5135a4845307b9115a9b7cf061dc62fc026ae4fd6fb57b",
+      "file": "docs/assistant-team/integration/I2/R2/evidence/ExplainList-20260929T003614228/server-stderr.log"
+    },
+    {
+      "rawSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "file": "docs/assistant-team/integration/I2/R2/evidence/ExplainList-20260929T003614228/server-stdout.log"
+    },
+    {
+      "rawSha256": "a7715172e5b7aa40920caf1021c7daac2a5abc1c854e3af3d9a782464954a100",
+      "file": "docs/assistant-team/integration/I2/R2/evidence/ExplainList-20260929T003614228/SHUTDOWN.json"
+    },
+    {
+      "rawSha256": "0b9d06af0900ebaef990be20d744e56e9bdc3e25da324ee5ef375dcc308b5019",
+      "file": "docs/assistant-team/integration/I2/R2/evidence/ExplainList-20260929T003614228/TARGET.json"
+    },
+    {
+      "rawSha256": "6b58b69d7b13a8790f3fee3827d7f8b8f589370e18b7a81d1a7a405c66e36004",
+      "file": "docs/assistant-team/integration/I2/R2/evidence/ExplainList-20260929T003614228/ZERO-WRITE.json"
+    },
+    {
+      "rawSha256": "8612259719dd10f7f48d04ec8823b7adcdc4c66f3c8462609716025a24d0430a",
+      "file": "docs/assistant-team/integration/I2/R2/evidence/ExplainList-20260929T003739745/BASELINE-AFTER.json"
+    },
+    {
+      "rawSha256": "c9cf6b3cac156832ea0a931b8cf9ce71b56f731180c42ee886b8e2128bc6a47e",
+      "file": "docs/assistant-team/integration/I2/R2/evidence/ExplainList-20260929T003739745/BASELINE-BEFORE.json"
+    },
+    {
+      "rawSha256": "cf0c480d2b93285ab0813411a4b3bd8ffa97d49228c11b6c8f3bf54af5e16544",
+      "file": "docs/assistant-team/integration/I2/R2/evidence/ExplainList-20260929T003739745/DIAGNOSTIC-OUTPUT.json"
+    },
+    {
+      "rawSha256": "56e3dedc012e4e036b439fd411f15e75577d1ca3720d9103b80b8d9ec86f8734",
+      "file": "docs/assistant-team/integration/I2/R2/evidence/ExplainList-20260929T003739745/EXPLAIN-RAW.json"
+    },
+    {
+      "rawSha256": "01eb843127517f3e55b1ffa6e58b690428bc5b44a31b18a1cc78f67fbfc27f81",
+      "file": "docs/assistant-team/integration/I2/R2/evidence/ExplainList-20260929T003739745/EXPLAIN.json"
+    },
+    {
+      "rawSha256": "06c31fef11794fbb57e11f2adf7c8e5ee4f8d908a58363f4f79699cf692f4859",
+      "file": "docs/assistant-team/integration/I2/R2/evidence/ExplainList-20260929T003739745/I2-R2_LIST_EXPLAIN-AFTER.json"
+    },
+    {
+      "rawSha256": "0a6ca59cc5c04ac2757d320ea107fb7d2d5c1c0d783d55313872312af229740d",
+      "file": "docs/assistant-team/integration/I2/R2/evidence/ExplainList-20260929T003739745/I2-R2_LIST_EXPLAIN-BEFORE.json"
+    },
+    {
+      "rawSha256": "b17aa834f556fd3cf73cfe48791a427d0a2448fd73619affa8e7f3e8fb37b84c",
+      "file": "docs/assistant-team/integration/I2/R2/evidence/ExplainList-20260929T003739745/IDENTITY.json"
+    },
+    {
+      "rawSha256": "d0bc6513cecbbd8e7dd8d48fca6bdb966811f95cb9113ffd018cc3689f7009df",
+      "file": "docs/assistant-team/integration/I2/R2/evidence/ExplainList-20260929T003739745/LIST-EXPLAIN-DIAGNOSIS.md"
+    },
+    {
+      "rawSha256": "ecb15bdfa360fa5b1031bb3554b22b98cbb9aac8f15f4eafdd85be6300c800ce",
+      "file": "docs/assistant-team/integration/I2/R2/evidence/ExplainList-20260929T003739745/RETAINED-DATA.json"
+    },
+    {
+      "rawSha256": "cdbf115b09cd7f30770cd53fec6c2c586215d00b3a7d59eb30e124af3e7e47b3",
+      "file": "docs/assistant-team/integration/I2/R2/evidence/ExplainList-20260929T003739745/RUN.json"
+    },
+    {
+      "rawSha256": "8565695228d633f4af7860c7b3d60c771ab8a18f8efd83354533e4e8930e2712",
+      "file": "docs/assistant-team/integration/I2/R2/evidence/ExplainList-20260929T003739745/server-stderr.log"
+    },
+    {
+      "rawSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "file": "docs/assistant-team/integration/I2/R2/evidence/ExplainList-20260929T003739745/server-stdout.log"
+    },
+    {
+      "rawSha256": "e3f27922790a2a1dc0f61e4593c7b034775c2277b778994303c832c769a62140",
+      "file": "docs/assistant-team/integration/I2/R2/evidence/ExplainList-20260929T003739745/SHUTDOWN.json"
+    },
+    {
+      "rawSha256": "b66ce7bece8339b9740caf19f206ef2691132489e254579be4d51617d1557013",
+      "file": "docs/assistant-team/integration/I2/R2/evidence/ExplainList-20260929T003739745/TARGET.json"
+    },
+    {
+      "rawSha256": "e0b3997bf2487d3f0e2097901bb65a16955fa25eac2f2d39aaf3ace81a36773b",
+      "file": "docs/assistant-team/integration/I2/R2/evidence/ExplainList-20260929T003739745/ZERO-WRITE.json"
+    }
+  ],
+  "existingEvidenceModified": false,
+  "linksChecked": 14,
+  "readme": "Includes initial diagnostic driver-loading failure, successful one-shot EXPLAIN and both graceful shutdown records; no source or fixture modifications.",
+  "actualListExecutions": 0,
+  "projectSourceModified": false,
+  "missingLinks": [],
+  "actualExplainExecutions": 1
+}

@@ -1,0 +1,19 @@
+{
+  "countsTsv": "6\t4\t5\t5\t3\t1\t2\t2",
+  "phase": "base_fixture_loaded",
+  "stage": "I2",
+  "constraintsDisabled": false,
+  "identity": {
+    "port": 33078,
+    "uuid": "8c6cfcb3-ba49-11f1-bf64-005056c00001",
+    "datadir": "D:\\kg-i2-env\\mysql-data\\",
+    "version": "8.4.11",
+    "currentUser": "root@localhost",
+    "sharedMemory": 1,
+    "partialRevokes": 1,
+    "sharedMemoryName": "KG_I2_33078_8c6cfcb3"
+  },
+  "loaderLocked": true,
+  "checkedAt": "2026-09-27T16:33:47.6896656+08:00",
+  "fixtureSqlSha256": "f2401d9bbe1833d8610d3c65080f17f845a5528b800fed10a8fa0b54dc523be1"
+}

@@ -1,0 +1,12 @@
+{
+  "suite": "Semantics",
+  "binlogPositionEqual": true,
+  "testProcessOnlyReaderCredential": true,
+  "loaderLockedAfter": "Y",
+  "activeReaderQueriesAfter": 0,
+  "dataAndSchemaEqual": true,
+  "generalLogRawSha256": "0dbad9efb63d0c7460c4889267bd0b051fd976bed9a7bbc8c96fcab58aa7128f",
+  "tableCount": 34,
+  "testSucceeded": false,
+  "loaderLockedBefore": "Y"
+}

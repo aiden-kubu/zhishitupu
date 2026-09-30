@@ -1,0 +1,81 @@
+{
+  "kind": "I2-R4-D2 audited diagnostic batch handoff; not a domain patch or database execution authorization",
+  "recordedOn": "2026-09-29",
+  "runId": "R4D2Explain-20260929T175548167",
+  "recipient": "original desktop 03 research",
+  "diagnosticTemplateAuthor": "original desktop 03 research",
+  "diagnosticImplementationAndRuntimeExecutor": "original desktop 06 integration-test",
+  "reviewer": "controller; reuse completed read-only incremental review, no rerun",
+  "historicalExpectedHashesUntouched": true,
+  "fullBatchMode": "reference intact original batch through pinned INDEX; no selective replacement of failures",
+  "runRoot": "D:/知识图谱-worktrees/assistant-06-integration-test/docs/assistant-team/integration/I2/R4-D2-EXPLAIN/evidence/R4D2Explain-20260929T175548167",
+  "index": {
+    "file": "INDEX.json",
+    "bytes": 12837,
+    "rawSha256": "8e7e52769f8975f94450ae91b8aa44976a97cba960730e52ae56d09532834a35",
+    "indexedPublicFiles": 28,
+    "externalXmlFiles": 3
+  },
+  "report": {
+    "path": "D:/知识图谱-worktrees/assistant-06-integration-test/docs/assistant-team/reports/06-integration-I2-R4-D2-explain.md",
+    "bytes": 10937,
+    "rawSha256": "8322668c0787df6f441f27e906e2de892c9ca7eb0601be0e5f7ee751b91d9c3a"
+  },
+  "template": {
+    "path": "D:/知识图谱-worktrees/assistant-03-research/docs/assistant-team/reports/I2-R4/D2-DIAGNOSTIC-TEMPLATES.json",
+    "runCopyFile": "D2-DIAGNOSTIC-TEMPLATES.json",
+    "bytes": 39285,
+    "rawSha256": "531988319b3aed79a8bcd3f5c9088f4bc7f11273573553bb8a183af309c68d01"
+  },
+  "recipientReportPreimage": {
+    "path": "D:/知识图谱-worktrees/assistant-03-research/docs/assistant-team/reports/03-research-I2-R4.md",
+    "bytes": 13338,
+    "rawSha256": "38c7594ef9edae9a561e53524ba47c9675b3c847f74d0a9016f8c9581ec59b5c",
+    "rule": "append new work without rewriting prior diagnosis, authorship or outcomes"
+  },
+  "domainPreimages": {
+    "normalization": "UTF-8 decode, CRLF to LF, preserve trailing newline, no trim",
+    "roots": ["D:/知识图谱", "D:/知识图谱-worktrees/assistant-03-research"],
+    "files": [
+      {
+        "relativePath": "backend-java/src/main/java/com/knowledgegraph/assistant/research/JdbcResearchReadRepository.java",
+        "normalizedSha256": "b922ec24fc397fd772524524c34c6837a3f044bff4bd18efcdd23c37ae67612f"
+      },
+      {
+        "relativePath": "backend-java/src/test/java/com/knowledgegraph/assistant/research/JdbcResearchReadRepositoryTest.java",
+        "normalizedSha256": "1b7c80d568cd0e75b982427c10c404b90f608ea8dee83daf4b92843a131277ce"
+      }
+    ]
+  },
+  "results": [
+    {
+      "case": "P1", "file": "P1.json", "bytes": 13814,
+      "rawSha256": "821f8781d0f73f12bc77e11f26f142e7cd8bbb66bdff22268f3bce426371641d",
+      "executeCount": 1, "status": "explain_error", "sqlState": "HY000", "vendorCode": 3024,
+      "planObtained": false, "elapsedMs": 1610, "bindingCount": 22
+    },
+    {
+      "case": "P2", "file": "P2.json", "bytes": 50282,
+      "rawSha256": "18fed4a17c688f1606e6f1787666c385457e72b651e24f0714b53a37ac81b26b",
+      "executeCount": 1, "status": "plan_captured", "planObtained": true,
+      "elapsedMs": 79, "bindingCount": 16
+    },
+    {
+      "case": "P3", "file": "P3.json", "bytes": 32274,
+      "rawSha256": "9d9eb3b68631ef7e2d587ecd5c36b61c461fa58f4843cbf111a8dbc23510068b",
+      "executeCount": 1, "status": "plan_captured", "planObtained": true,
+      "elapsedMs": 53, "bindingCount": 10
+    }
+  ],
+  "unchangedPriorEvidence": {
+    "overlayPath": "D:/知识图谱/docs/assistant-team/integration/I2/I2-R4-03-EXPLAIN-EVIDENCE-OVERLAY.json",
+    "runId": "R4Explain-20260929T164517990",
+    "indexRawSha256": "cb57d0fa2d7c2e0c39ac758119d31e958ac06e2920b99f3cc2362f65023cd5d2",
+    "rule": "reuse prior review; compare only newly relevant SQL or plan portions"
+  },
+  "budgets": {"connectMs": 3000, "socketMs": 4000, "statementSeconds": 2, "sessionMaxExecutionTimeMs": 1500},
+  "reviewedWindow": {"tables": 34, "dataDdlUnchanged": true, "sameStartupBinlogUnchanged": true, "loaderLocked": true, "targetBusinessSelectCount": 0, "normalShutdownRecorded": true},
+  "recipientAccess": "read-only public evidence references; no credentials, restricted archives, runner execution or database access",
+  "authority": {"resumeOriginalR4": true, "newDiagnosticBatchApproved": false, "newDatabaseEvidenceRequiresOwnerApproval": true, "indexMigrationContractPermissionChangesRequireOwnerApproval": true},
+  "model": {"required": "GPT-6 Sol / High", "userDesktopConfirmedOn": "2026-09-29", "independentlyVerified": false}
+}

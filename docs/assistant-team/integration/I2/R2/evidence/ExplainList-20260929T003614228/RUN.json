@@ -1,0 +1,11 @@
+{
+  "noChildTask": true,
+  "failure": "One-shot EXPLAIN diagnostic failed; inspect retained output, do not retry",
+  "noListExecution": true,
+  "noAnalyze": true,
+  "success": false,
+  "finishedAt": "2026-09-29T00:36:44.2376174+08:00",
+  "noRepair": true,
+  "diagnosticAttempted": true,
+  "runId": "ExplainList-20260929T003614228"
+}

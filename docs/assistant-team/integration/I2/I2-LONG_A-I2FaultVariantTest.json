@@ -1,0 +1,17 @@
+{
+  "tests": 1,
+  "class": "I2FaultVariantTest",
+  "case": "LONG_A",
+  "skipped": 0,
+  "failures": 0,
+  "errors": 0,
+  "rawXmlSha256": "e9847fd0fba487223b2c155b72d0bcc60f45a8a1f921e3ea35a20197e948a055",
+  "cases": [
+    {
+      "seconds": "0.321",
+      "name": "selectedDatabaseVariant",
+      "error": "",
+      "failure": ""
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "uniqueTestCases": 3,
+  "startedAt": "2026-09-29T10:51:00.8429588+08:00",
+  "rawXmlArchived": false,
+  "executionRound": 1,
+  "uniqueMethodDefinitions": 3,
+  "records": [],
+  "exitCode": 0,
+  "suites": [
+    {
+      "cases": [
+        {
+          "class": "com.knowledgegraph.assistant.i2.I2QueryBudgetTest",
+          "name": "smallFixtureSingleAndFourConcurrentReadBudgets",
+          "seconds": "3.545",
+          "error": "",
+          "failure": ""
+        },
+        {
+          "class": "com.knowledgegraph.assistant.i2.I2QueryBudgetTest",
+          "name": "jdbcTimeoutInterruptsServerQuery",
+          "seconds": "1.035",
+          "error": "",
+          "failure": ""
+        },
+        {
+          "class": "com.knowledgegraph.assistant.i2.I2QueryBudgetTest",
+          "name": "serverTimeoutReallyCancelsStatementAndKeepsConnectionUsable",
+          "seconds": "0.25",
+          "error": "",
+          "failure": ""
+        }
+      ],
+      "class": "com.knowledgegraph.assistant.i2.I2QueryBudgetTest",
+      "tests": 3,
+      "skipped": 0,
+      "xmlRawSha256": "5abd2a473aed954066d0211fa06f6e5aa10db8cdb51f6702f1ca836dc65c8f9a",
+      "failures": 0,
+      "errors": 0,
+      "xmlPath": "D:\\知识图谱\\backend-java\\target\\surefire-reports\\TEST-com.knowledgegraph.assistant.i2.I2QueryBudgetTest-Real-20260929T104824880-Budget.xml"
+    }
+  ],
+  "suite": "Budget",
+  "reportSuffix": "Real-20260929T104824880-Budget"
+}

@@ -1,0 +1,37 @@
+{
+  "sqlRawSha256": "d2a72adcb368908cbdafa2ef51de42a47a2bf92dcc85086ef41d0c31a40ad8f2",
+  "maintenanceOutsideReaderWindow": true,
+  "original7901NotReloaded": true,
+  "loaderLockedAfter": "Y",
+  "constraintsDisabled": false,
+  "delta": [
+    {
+      "ddlChanged": true,
+      "table": "knowledge_edges",
+      "rowsAfter": 30011,
+      "rowsBefore": 30003,
+      "dataChanged": true
+    },
+    {
+      "ddlChanged": true,
+      "table": "knowledge_libraries",
+      "rowsAfter": 7,
+      "rowsBefore": 3,
+      "dataChanged": true
+    },
+    {
+      "ddlChanged": true,
+      "table": "knowledge_nodes",
+      "rowsAfter": 10011,
+      "rowsBefore": 10005,
+      "dataChanged": true
+    },
+    {
+      "ddlChanged": false,
+      "table": "library_nodes",
+      "rowsAfter": 10012,
+      "rowsBefore": 10005,
+      "dataChanged": true
+    }
+  ]
+}

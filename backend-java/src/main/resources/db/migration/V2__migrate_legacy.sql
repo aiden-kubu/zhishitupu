@@ -12,6 +12,30 @@
 --   e. 旧 edges -> knowledge_edges(source_node_id, target_node_id, relation_type, weight, status='active')。
 -- =====================================================================
 
+-- 新安装环境没有旧 PHP 表时，迁移脚本仍需可以正常执行。
+-- 保留已有旧表不做改动；仅在表缺失时创建空兼容表，使后续 SELECT 安全执行，
+-- 随后的 V3 会向新的 knowledge_* 表写入最小演示图谱。
+CREATE TABLE IF NOT EXISTS nodes (
+  id          BIGINT       NOT NULL AUTO_INCREMENT,
+  name        VARCHAR(200) NOT NULL,
+  name_en     VARCHAR(200) NULL,
+  type        VARCHAR(20)  NOT NULL DEFAULT 'other',
+  definition  TEXT         NULL,
+  scene       VARCHAR(200) NULL,
+  status      TINYINT      NOT NULL DEFAULT 1,
+  course_id   BIGINT       NULL,
+  PRIMARY KEY (id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+CREATE TABLE IF NOT EXISTS edges (
+  id          BIGINT       NOT NULL AUTO_INCREMENT,
+  source_id   BIGINT       NOT NULL,
+  target_id   BIGINT       NOT NULL,
+  relation    VARCHAR(100) NOT NULL,
+  weight      DOUBLE       NOT NULL DEFAULT 1.0,
+  PRIMARY KEY (id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
 -- a. 课程节点 -> 知识库
 INSERT INTO knowledge_libraries (id, name, type, description, status)
 SELECT n.id, n.name, 'course', n.definition, 'active'

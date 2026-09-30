@@ -1,0 +1,274 @@
+{
+  "shapeAndNonStringValuesEqual": true,
+  "consoleResult": "D:\\知识图谱\\docs\\assistant-team\\integration\\I2\\R3\\evidence\\Real-20260929T104824880\\Matrix-RESULT.json",
+  "correctedIsolatedNodes": [
+    {
+      "id": 7703,
+      "name": "异常停用节点",
+      "type": "concept",
+      "degree": 0
+    },
+    {
+      "id": 7705,
+      "name": "孤立节点",
+      "type": "concept",
+      "degree": 0
+    },
+    {
+      "id": 900006,
+      "name": "I2R1 j",
+      "type": "concept",
+      "degree": 0
+    }
+  ],
+  "recordCount": 221,
+  "differentStringLeaves": [
+    {
+      "path": "records/0/value/insight/isolated/0/name",
+      "console": "�쳣ͣ�ýڵ�",
+      "xml": "异常停用节点"
+    },
+    {
+      "path": "records/0/value/insight/isolated/1/name",
+      "console": "�����ڵ�",
+      "xml": "孤立节点"
+    },
+    {
+      "path": "records/20/value/actual/0/1",
+      "console": "�쳣ͣ�ýڵ�",
+      "xml": "异常停用节点"
+    },
+    {
+      "path": "records/20/value/actual/1/1",
+      "console": "�����ڵ�",
+      "xml": "孤立节点"
+    },
+    {
+      "path": "records/20/value/expected/0/1",
+      "console": "�쳣ͣ�ýڵ�",
+      "xml": "异常停用节点"
+    },
+    {
+      "path": "records/20/value/expected/1/1",
+      "console": "�����ڵ�",
+      "xml": "孤立节点"
+    },
+    {
+      "path": "records/21/value/actual/isolated/0/name",
+      "console": "�쳣ͣ�ýڵ�",
+      "xml": "异常停用节点"
+    },
+    {
+      "path": "records/21/value/actual/isolated/1/name",
+      "console": "�����ڵ�",
+      "xml": "孤立节点"
+    },
+    {
+      "path": "records/21/value/expected/isolated/0/name",
+      "console": "�쳣ͣ�ýڵ�",
+      "xml": "异常停用节点"
+    },
+    {
+      "path": "records/21/value/expected/isolated/1/name",
+      "console": "�����ڵ�",
+      "xml": "孤立节点"
+    },
+    {
+      "path": "records/154/value/insight/isolated/0/name",
+      "console": "�쳣ͣ�ýڵ�",
+      "xml": "异常停用节点"
+    },
+    {
+      "path": "records/154/value/insight/isolated/1/name",
+      "console": "�����ڵ�",
+      "xml": "孤立节点"
+    },
+    {
+      "path": "records/154/value/insight/topDegree/0/name",
+      "console": "�ڵ��",
+      "xml": "节点甲"
+    },
+    {
+      "path": "records/154/value/insight/topDegree/1/name",
+      "console": "�ڵ���",
+      "xml": "节点乙"
+    },
+    {
+      "path": "records/154/value/insight/topDegree/2/name",
+      "console": "�쳣ͣ�ýڵ�",
+      "xml": "异常停用节点"
+    },
+    {
+      "path": "records/154/value/insight/topDegree/3/name",
+      "console": "�����ڵ�",
+      "xml": "孤立节点"
+    },
+    {
+      "path": "records/170/value/actual/0/1",
+      "console": "�ڵ��",
+      "xml": "节点甲"
+    },
+    {
+      "path": "records/170/value/actual/1/1",
+      "console": "�ڵ���",
+      "xml": "节点乙"
+    },
+    {
+      "path": "records/170/value/actual/2/1",
+      "console": "�쳣ͣ�ýڵ�",
+      "xml": "异常停用节点"
+    },
+    {
+      "path": "records/170/value/actual/3/1",
+      "console": "�����ڵ�",
+      "xml": "孤立节点"
+    },
+    {
+      "path": "records/170/value/expected/0/1",
+      "console": "�ڵ��",
+      "xml": "节点甲"
+    },
+    {
+      "path": "records/170/value/expected/1/1",
+      "console": "�ڵ���",
+      "xml": "节点乙"
+    },
+    {
+      "path": "records/170/value/expected/2/1",
+      "console": "�쳣ͣ�ýڵ�",
+      "xml": "异常停用节点"
+    },
+    {
+      "path": "records/170/value/expected/3/1",
+      "console": "�����ڵ�",
+      "xml": "孤立节点"
+    },
+    {
+      "path": "records/174/value/actual/0/1",
+      "console": "�쳣ͣ�ýڵ�",
+      "xml": "异常停用节点"
+    },
+    {
+      "path": "records/174/value/actual/1/1",
+      "console": "�����ڵ�",
+      "xml": "孤立节点"
+    },
+    {
+      "path": "records/174/value/expected/0/1",
+      "console": "�쳣ͣ�ýڵ�",
+      "xml": "异常停用节点"
+    },
+    {
+      "path": "records/174/value/expected/1/1",
+      "console": "�����ڵ�",
+      "xml": "孤立节点"
+    },
+    {
+      "path": "records/175/value/actual/isolated/0/name",
+      "console": "�쳣ͣ�ýڵ�",
+      "xml": "异常停用节点"
+    },
+    {
+      "path": "records/175/value/actual/isolated/1/name",
+      "console": "�����ڵ�",
+      "xml": "孤立节点"
+    },
+    {
+      "path": "records/175/value/actual/topDegree/0/name",
+      "console": "�ڵ��",
+      "xml": "节点甲"
+    },
+    {
+      "path": "records/175/value/actual/topDegree/1/name",
+      "console": "�ڵ���",
+      "xml": "节点乙"
+    },
+    {
+      "path": "records/175/value/actual/topDegree/2/name",
+      "console": "�쳣ͣ�ýڵ�",
+      "xml": "异常停用节点"
+    },
+    {
+      "path": "records/175/value/actual/topDegree/3/name",
+      "console": "�����ڵ�",
+      "xml": "孤立节点"
+    },
+    {
+      "path": "records/175/value/expected/isolated/0/name",
+      "console": "�쳣ͣ�ýڵ�",
+      "xml": "异常停用节点"
+    },
+    {
+      "path": "records/175/value/expected/isolated/1/name",
+      "console": "�����ڵ�",
+      "xml": "孤立节点"
+    },
+    {
+      "path": "records/175/value/expected/topDegree/0/name",
+      "console": "�ڵ��",
+      "xml": "节点甲"
+    },
+    {
+      "path": "records/175/value/expected/topDegree/1/name",
+      "console": "�ڵ���",
+      "xml": "节点乙"
+    },
+    {
+      "path": "records/175/value/expected/topDegree/2/name",
+      "console": "�쳣ͣ�ýڵ�",
+      "xml": "异常停用节点"
+    },
+    {
+      "path": "records/175/value/expected/topDegree/3/name",
+      "console": "�����ڵ�",
+      "xml": "孤立节点"
+    },
+    {
+      "path": "records/176/value/insight/isolated/0/name",
+      "console": "�쳣ͣ�ýڵ�",
+      "xml": "异常停用节点"
+    },
+    {
+      "path": "records/196/value/actual/0/1",
+      "console": "�쳣ͣ�ýڵ�",
+      "xml": "异常停用节点"
+    },
+    {
+      "path": "records/196/value/expected/0/1",
+      "console": "�쳣ͣ�ýڵ�",
+      "xml": "异常停用节点"
+    },
+    {
+      "path": "records/197/value/actual/isolated/0/name",
+      "console": "�쳣ͣ�ýڵ�",
+      "xml": "异常停用节点"
+    },
+    {
+      "path": "records/197/value/expected/isolated/0/name",
+      "console": "�쳣ͣ�ýڵ�",
+      "xml": "异常停用节点"
+    }
+  ],
+  "sourceXml": "D:\\知识图谱\\backend-java\\target\\surefire-reports\\TEST-com.knowledgegraph.assistant.i2.I2QualityInsightWholeTest-Real-20260929T104824880-Matrix.xml",
+  "uniquePairs": [
+    {
+      "console": "�쳣ͣ�ýڵ�",
+      "xml": "异常停用节点"
+    },
+    {
+      "console": "�����ڵ�",
+      "xml": "孤立节点"
+    },
+    {
+      "console": "�ڵ��",
+      "xml": "节点甲"
+    },
+    {
+      "console": "�ڵ���",
+      "xml": "节点乙"
+    }
+  ],
+  "sourceXmlRawSha256": "2aeab498867625e121ed93dcc0990a0ae6093708dae669e470c11169f3f7b9ef",
+  "consoleRawSha256": "1de6632b72463629da5c6b5ce7a7dd928850498b832d6f759302bce6fbac774d",
+  "explanation": "Maven/JVM file.encoding=GBK; console transcript contains damaged Chinese node names. Immutable Surefire UTF-8 XML contains intact Chinese with zero U+FFFD in Matrix system-out. Compared all 221 records; only 45 string leaves for four node names differ. Numeric results, IDs, timings, plans and record shapes match. Original log/RESULT not overwritten; use source XML for Chinese names. This is post-run evidence extraction, not a rerun."
+}

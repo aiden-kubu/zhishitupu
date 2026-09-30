@@ -1,0 +1,157 @@
+{
+  "executionRound": 1,
+  "rawXmlArchived": false,
+  "suites": [
+    {
+      "class": "com.knowledgegraph.assistant.quality.JdbcQualityInsightPerformanceRegressionTest",
+      "xmlRawSha256": "51184072b4111371328c79131ce88b84930e20b4cdfda193392a4b05e189b05f",
+      "xmlPath": "D:\\知识图谱\\backend-java\\target\\surefire-reports\\TEST-com.knowledgegraph.assistant.quality.JdbcQualityInsightPerformanceRegressionTest-Offline-20260929T104719641-WholeRegression.xml",
+      "failures": 0,
+      "errors": 0,
+      "cases": [
+        {
+          "name": "allTenQueryResponsibilitiesAndLongResultsRemainSeparate",
+          "error": "",
+          "seconds": "0.494",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.quality.JdbcQualityInsightPerformanceRegressionTest"
+        },
+        {
+          "name": "unsupportedScopesStillFailBeforeAnySql(Scope)[1]",
+          "error": "",
+          "seconds": "0.015",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.quality.JdbcQualityInsightPerformanceRegressionTest"
+        },
+        {
+          "name": "unsupportedScopesStillFailBeforeAnySql(Scope)[2]",
+          "error": "",
+          "seconds": "0.004",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.quality.JdbcQualityInsightPerformanceRegressionTest"
+        },
+        {
+          "name": "unsupportedScopesStillFailBeforeAnySql(Scope)[3]",
+          "error": "",
+          "seconds": "0.002",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.quality.JdbcQualityInsightPerformanceRegressionTest"
+        },
+        {
+          "name": "isolatedListAggregatesVisibleActiveEndpointsBeforeAntiJoin",
+          "error": "",
+          "seconds": "0.021",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.quality.JdbcQualityInsightPerformanceRegressionTest"
+        },
+        {
+          "name": "jdbcFailureAtAnyQueryPropagatesWithoutRunningLaterQueries(int)[1]",
+          "error": "",
+          "seconds": "0.007",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.quality.JdbcQualityInsightPerformanceRegressionTest"
+        },
+        {
+          "name": "jdbcFailureAtAnyQueryPropagatesWithoutRunningLaterQueries(int)[2]",
+          "error": "",
+          "seconds": "0.004",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.quality.JdbcQualityInsightPerformanceRegressionTest"
+        },
+        {
+          "name": "jdbcFailureAtAnyQueryPropagatesWithoutRunningLaterQueries(int)[3]",
+          "error": "",
+          "seconds": "0.004",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.quality.JdbcQualityInsightPerformanceRegressionTest"
+        },
+        {
+          "name": "jdbcFailureAtAnyQueryPropagatesWithoutRunningLaterQueries(int)[4]",
+          "error": "",
+          "seconds": "0.004",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.quality.JdbcQualityInsightPerformanceRegressionTest"
+        },
+        {
+          "name": "jdbcFailureAtAnyQueryPropagatesWithoutRunningLaterQueries(int)[5]",
+          "error": "",
+          "seconds": "0.005",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.quality.JdbcQualityInsightPerformanceRegressionTest"
+        },
+        {
+          "name": "jdbcFailureAtAnyQueryPropagatesWithoutRunningLaterQueries(int)[6]",
+          "error": "",
+          "seconds": "0.004",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.quality.JdbcQualityInsightPerformanceRegressionTest"
+        },
+        {
+          "name": "jdbcFailureAtAnyQueryPropagatesWithoutRunningLaterQueries(int)[7]",
+          "error": "",
+          "seconds": "0.006",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.quality.JdbcQualityInsightPerformanceRegressionTest"
+        },
+        {
+          "name": "jdbcFailureAtAnyQueryPropagatesWithoutRunningLaterQueries(int)[8]",
+          "error": "",
+          "seconds": "0.009",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.quality.JdbcQualityInsightPerformanceRegressionTest"
+        },
+        {
+          "name": "jdbcFailureAtAnyQueryPropagatesWithoutRunningLaterQueries(int)[9]",
+          "error": "",
+          "seconds": "0.006",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.quality.JdbcQualityInsightPerformanceRegressionTest"
+        },
+        {
+          "name": "jdbcFailureAtAnyQueryPropagatesWithoutRunningLaterQueries(int)[10]",
+          "error": "",
+          "seconds": "0.005",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.quality.JdbcQualityInsightPerformanceRegressionTest"
+        },
+        {
+          "name": "displayLimitsDoNotRestrictTheIsolatedTotal(int)[1]",
+          "error": "",
+          "seconds": "0.007",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.quality.JdbcQualityInsightPerformanceRegressionTest"
+        },
+        {
+          "name": "displayLimitsDoNotRestrictTheIsolatedTotal(int)[2]",
+          "error": "",
+          "seconds": "0.004",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.quality.JdbcQualityInsightPerformanceRegressionTest"
+        },
+        {
+          "name": "displayLimitsDoNotRestrictTheIsolatedTotal(int)[3]",
+          "error": "",
+          "seconds": "0.004",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.quality.JdbcQualityInsightPerformanceRegressionTest"
+        },
+        {
+          "name": "selectedScopeIsBoundBeforeEveryAggregateSortAndLimit",
+          "error": "",
+          "seconds": "0.006",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.quality.JdbcQualityInsightPerformanceRegressionTest"
+        }
+      ],
+      "skipped": 0,
+      "tests": 19
+    }
+  ],
+  "uniqueTestCases": 19,
+  "exitCode": 0,
+  "records": [],
+  "suite": "WholeRegression",
+  "uniqueMethodDefinitions": 6,
+  "reportSuffix": "Offline-20260929T104719641-WholeRegression",
+  "startedAt": "2026-09-29T10:47:57.2394953+08:00"
+}

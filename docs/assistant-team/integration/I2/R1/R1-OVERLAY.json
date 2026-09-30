@@ -1,0 +1,30 @@
+{
+  "stage": "I2-R1",
+  "scope": "owner-approved ranking SQL only; no other production implementation changes",
+  "approval": "2026-09-28 user approved controlled collection plus original isolated MySQL revalidation; no I3/W2",
+  "normalization": "UTF-8; CRLF -> LF; preserve trailing newlines",
+  "changes": [
+    {
+      "file": "backend-java/src/main/java/com/knowledgegraph/assistant/quality/JdbcQualityReadRepository.java",
+      "owner": "D:/知识图谱-worktrees/assistant-02-quality/backend-java/src/main/java/com/knowledgegraph/assistant/quality/JdbcQualityReadRepository.java",
+      "oldNormalizedSha256": "cc2c7aa2e5a401fd6f1c3dbc05d631be563e0dad9551f7f70de7be0ab17ebee6",
+      "newNormalizedSha256": "fde4199bef96385ea87a3a0bfd671f170edd2501de1a2dab7adc8481b2757e52",
+      "oldRawSha256": "cc2c7aa2e5a401fd6f1c3dbc05d631be563e0dad9551f7f70de7be0ab17ebee6",
+      "newRawSha256": "fde4199bef96385ea87a3a0bfd671f170edd2501de1a2dab7adc8481b2757e52",
+      "archive": "archive/JdbcQualityReadRepository.java.before.txt",
+      "reason": "Eliminate per-node correlated degree COUNT; preserve scope and edge multiplicity."
+    }
+  ],
+  "additions": [
+    {
+      "file": "backend-java/src/test/java/com/knowledgegraph/assistant/quality/JdbcQualityInsightRankingRegressionTest.java",
+      "normalizedSha256": "78d6e56c7ca07cdbf574ae2437fff94cfbf9fd6b94ce9582e15daf0cbbbc8100",
+      "origin": "accepted original 02 offline patch"
+    },
+    {
+      "file": "backend-java/src/test/java/com/knowledgegraph/assistant/i2/I2QualityInsightRankingTest.java",
+      "origin": "R1-only real JDBC validation; pinned in R1-PACKAGE.json before execution"
+    }
+  ],
+  "historicalManifestsUnchanged": true
+}

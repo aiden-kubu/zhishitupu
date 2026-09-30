@@ -1,0 +1,99 @@
+{
+  "class": "I2JdbcBaselineTest",
+  "cases": [
+    {
+      "seconds": "0.181",
+      "name": "jobsDerivedFlagsAndFailureAreRealSql"
+    },
+    {
+      "seconds": "0.08",
+      "name": "ingestionLibrariesAndMetadata"
+    },
+    {
+      "seconds": "0.111",
+      "name": "qualityJobsCandidatesPaginationAndAiState"
+    },
+    {
+      "seconds": "0.083",
+      "name": "researchRetrievalFiltersArchivedAndOutsideBeforeLimit"
+    },
+    {
+      "seconds": "0.094",
+      "name": "multiLibraryToolHidesOutsidePrimaryId"
+    },
+    {
+      "seconds": "0.093",
+      "name": "qualitySnapshotReturnsCurrentSourceHashes"
+    },
+    {
+      "seconds": "0.098",
+      "name": "documentFilePresenceMetadataAndMultiLibrary"
+    },
+    {
+      "seconds": "0.08",
+      "name": "qualityInsightUsesScopedActiveEdges"
+    },
+    {
+      "seconds": "0.051",
+      "name": "researchEdgesKeepDirectionAndBothEndpointScope"
+    },
+    {
+      "seconds": "0.367",
+      "name": "formalUnavailableAndLegacyNeverBecomeValid"
+    },
+    {
+      "seconds": "0.054",
+      "name": "missingRowsReturnEmptyWithoutBroadeningScope"
+    },
+    {
+      "seconds": "0.072",
+      "name": "sourceUnitPagingTruncationAndUtf8Hashes"
+    },
+    {
+      "seconds": "0.287",
+      "name": "learningPathFingerprintHighIdsAndScope"
+    },
+    {
+      "seconds": "0.064",
+      "name": "qualitySourceMetadataAndGraphMatches"
+    },
+    {
+      "seconds": "0.201",
+      "name": "learningGraphAndLinksAreScoped"
+    },
+    {
+      "seconds": "0.089",
+      "name": "researchScopedSearchAliasesAndNoSqlInjection"
+    },
+    {
+      "seconds": "0.089",
+      "name": "researchNodeDimensionsAndSourceAvailability"
+    },
+    {
+      "seconds": "0.032",
+      "name": "legacyHistoryCursorNullStepAndActualOwner"
+    },
+    {
+      "seconds": "0.131",
+      "name": "ingestionDocumentsFilterBeforePaging"
+    },
+    {
+      "seconds": "0.07",
+      "name": "readSourceRejectsStaleHashArchivedAndWrongOwner"
+    },
+    {
+      "seconds": "0.521",
+      "name": "assessmentContextAndRepeatedHighIdBaseline"
+    },
+    {
+      "seconds": "0.018",
+      "name": "sourceOwnershipAndUnsupportedNodeScope"
+    }
+  ],
+  "rawXmlSha256": "e9c7be7af747aa3619f63aee196166bcf25ba506ff86c0fb3983c8a759ee8f4f",
+  "case": "BASE",
+  "errors": 0,
+  "skipped": 0,
+  "tests": 22,
+  "failures": 0
+}

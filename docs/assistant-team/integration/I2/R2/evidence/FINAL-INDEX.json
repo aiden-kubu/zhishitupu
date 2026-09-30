@@ -1,0 +1,321 @@
+{
+  "offline": [
+    {
+      "suite": "Original",
+      "uniqueMethodDefinitions": 145,
+      "uniqueTestCases": 154,
+      "executionRound": 1,
+      "exitCode": 0
+    },
+    {
+      "suite": "Ranking",
+      "uniqueMethodDefinitions": 12,
+      "uniqueTestCases": 15,
+      "executionRound": 1,
+      "exitCode": 0
+    },
+    {
+      "suite": "IsolatedCount",
+      "uniqueMethodDefinitions": 7,
+      "uniqueTestCases": 10,
+      "executionRound": 1,
+      "exitCode": 0
+    }
+  ],
+  "activePortListeners": [],
+  "evidence": [
+    {
+      "bytes": 1656,
+      "rawSha256": "55569095ac026bad61675fb88a990e6027317cf2ea3712804159fc0efad456d9",
+      "file": "docs/assistant-team/integration/I2/R2/evidence/Offline-20260929T001520530/BASELINE-AFTER.json"
+    },
+    {
+      "bytes": 1240,
+      "rawSha256": "e6ad971cfd722c299c98720283264c62c2c75b2a521705e55f66424e5482aa9f",
+      "file": "docs/assistant-team/integration/I2/R2/evidence/Offline-20260929T001520530/BASELINE-BEFORE.json"
+    },
+    {
+      "bytes": 2147,
+      "rawSha256": "ba03820d0f4fb048b6acf60fe78a8940b24b8cd2a0712ccd194ebc62e07d1658",
+      "file": "docs/assistant-team/integration/I2/R2/evidence/Offline-20260929T001520530/IsolatedCount-MAVEN.log"
+    },
+    {
+      "bytes": 3662,
+      "rawSha256": "f50174b578d9bba5d64beb6e09dd38779bf58feb6f7c1a6345e572b2f29c1ff3",
+      "file": "docs/assistant-team/integration/I2/R2/evidence/Offline-20260929T001520530/IsolatedCount-RESULT.json"
+    },
+    {
+      "bytes": 6990,
+      "rawSha256": "bbac30b60eed6859e1591eec57731bd620021257fc00778f0e690626b0dd7dbe",
+      "file": "docs/assistant-team/integration/I2/R2/evidence/Offline-20260929T001520530/Original-MAVEN.log"
+    },
+    {
+      "bytes": 50893,
+      "rawSha256": "6d8e80d9127ff59c1387eb5726cf9accaf2551c326208eb27b0968ccb5de1334",
+      "file": "docs/assistant-team/integration/I2/R2/evidence/Offline-20260929T001520530/Original-RESULT.json"
+    },
+    {
+      "bytes": 2135,
+      "rawSha256": "eb252fadacb9446ec785d844f944029ebc0a22cb609fdec5c4d2ed37deb10004",
+      "file": "docs/assistant-team/integration/I2/R2/evidence/Offline-20260929T001520530/Ranking-MAVEN.log"
+    },
+    {
+      "bytes": 5026,
+      "rawSha256": "ab18195ec37e64e9fb73961c2655b71a341dfd50a590d304cedc23729e5bc042",
+      "file": "docs/assistant-team/integration/I2/R2/evidence/Offline-20260929T001520530/Ranking-RESULT.json"
+    },
+    {
+      "bytes": 194,
+      "rawSha256": "d66e267532272e0f1fc9df394a9d775cc696a431196d5caafd00f02252ba6f6b",
+      "file": "docs/assistant-team/integration/I2/R2/evidence/Offline-20260929T001520530/RUN.json"
+    },
+    {
+      "bytes": 3665,
+      "rawSha256": "13230b19ef562c1a192d102049b8c620ddc7302f9c306692c73f1fb54838cd6e",
+      "file": "docs/assistant-team/integration/I2/R2/evidence/Real-20260929T001613649/BASELINE-AFTER.json"
+    },
+    {
+      "bytes": 1849,
+      "rawSha256": "df14a43b3e058f137f847f66e3cc48742cc642f442782fc8a13531c01bbfdf22",
+      "file": "docs/assistant-team/integration/I2/R2/evidence/Real-20260929T001613649/BASELINE-BEFORE.json"
+    },
+    {
+      "bytes": 19555,
+      "rawSha256": "364a7fa34c5370d6e33fcb59c504716a1e5141c65babaea893df20d17da5918c",
+      "file": "docs/assistant-team/integration/I2/R2/evidence/Real-20260929T001613649/CountPlan-MAVEN.log"
+    },
+    {
+      "bytes": 43657,
+      "rawSha256": "4b891164d54c0e92e22966d32a3b58e47cb8b59984be9b9af0af1ff01db7ce80",
+      "file": "docs/assistant-team/integration/I2/R2/evidence/Real-20260929T001613649/CountPlan-RESULT.json"
+    },
+    {
+      "bytes": 369,
+      "rawSha256": "07ee1e89f65cfbaa89018e80fb353278f4a21f530d62dbb87cce413ef99a3924",
+      "file": "docs/assistant-team/integration/I2/R2/evidence/Real-20260929T001613649/CountPlan-ZERO-WRITE.json"
+    },
+    {
+      "bytes": 191,
+      "rawSha256": "232b6fca92955df79cd78ab8079b969eae7cbb57c426b7e02118cff20b760624",
+      "file": "docs/assistant-team/integration/I2/R2/evidence/Real-20260929T001613649/FAILURE.json"
+    },
+    {
+      "bytes": 8901,
+      "rawSha256": "42a026416054c572b2067ddc49f67be69acdbe23f060e3dedc19bf5e406b7f6a",
+      "file": "docs/assistant-team/integration/I2/R2/evidence/Real-20260929T001613649/I2-R2_CountPlan-AFTER.json"
+    },
+    {
+      "bytes": 8902,
+      "rawSha256": "f2a69548e18ad37c3b9ef80ab5f4aafc123be0462a062deae16c152af0462e73",
+      "file": "docs/assistant-team/integration/I2/R2/evidence/Real-20260929T001613649/I2-R2_CountPlan-BEFORE.json"
+    },
+    {
+      "bytes": 8902,
+      "rawSha256": "d84f146ea7b1f75238be36b98090c0b52abb6bb64524d6b2154cdc29b4d3f891",
+      "file": "docs/assistant-team/integration/I2/R2/evidence/Real-20260929T001613649/I2-R2_ENTRY-BEFORE.json"
+    },
+    {
+      "bytes": 8901,
+      "rawSha256": "2954cdd0489e0c07d9cdb7e0b6dee0631923cf1e41fc766d7100ae8a95f9b676",
+      "file": "docs/assistant-team/integration/I2/R2/evidence/Real-20260929T001613649/I2-R2_Plan-AFTER.json"
+    },
+    {
+      "bytes": 8902,
+      "rawSha256": "5901abdbe49658a118153b560571c316a1037f967d9969dcddac2f6e94905da4",
+      "file": "docs/assistant-team/integration/I2/R2/evidence/Real-20260929T001613649/I2-R2_Plan-BEFORE.json"
+    },
+    {
+      "bytes": 8901,
+      "rawSha256": "d0e609d37b00da53d86636ed18d2bee0f0a044c79481d77f6b8c043598e6e799",
+      "file": "docs/assistant-team/integration/I2/R2/evidence/Real-20260929T001613649/I2-R2_Semantics-AFTER.json"
+    },
+    {
+      "bytes": 8902,
+      "rawSha256": "b61cc06d7eef092c1ac5f4f248be976e798eef07027b2c7ea0cc5a492668efbb",
+      "file": "docs/assistant-team/integration/I2/R2/evidence/Real-20260929T001613649/I2-R2_Semantics-BEFORE.json"
+    },
+    {
+      "bytes": 2874,
+      "rawSha256": "813aa14bc769126d6e0efcb56a3a6125ea3e382e119de3cf0265711d39d0dbf6",
+      "file": "docs/assistant-team/integration/I2/R2/evidence/Real-20260929T001613649/IDENTITY.json"
+    },
+    {
+      "bytes": 10655,
+      "rawSha256": "4eba3ca3ac492f089e0cf5548c2e2184c94deb52a7ffd1473b72a0eca67f1289",
+      "file": "docs/assistant-team/integration/I2/R2/evidence/Real-20260929T001613649/Plan-MAVEN.log"
+    },
+    {
+      "bytes": 30223,
+      "rawSha256": "98717953757e34f11480ee511df0610cfb6b1aeb8a155c09d67a5523a1705db0",
+      "file": "docs/assistant-team/integration/I2/R2/evidence/Real-20260929T001613649/Plan-RESULT.json"
+    },
+    {
+      "bytes": 364,
+      "rawSha256": "edc9dad90bee232efe9c760763cac051ec307616a45ee1f3b47d40927fa02d11",
+      "file": "docs/assistant-team/integration/I2/R2/evidence/Real-20260929T001613649/Plan-ZERO-WRITE.json"
+    },
+    {
+      "bytes": 169,
+      "rawSha256": "4c958f6dc99515a4a2b2b665ea6530f699125f33912db507e4de66b7f945de23",
+      "file": "docs/assistant-team/integration/I2/R2/evidence/Real-20260929T001613649/RETAINED-DATA.json"
+    },
+    {
+      "bytes": 251,
+      "rawSha256": "ed40c52e1c957d7c7509e5ee761c8c0b94e4a1cfa406f3869529b50b15affe4c",
+      "file": "docs/assistant-team/integration/I2/R2/evidence/Real-20260929T001613649/RUN.json"
+    },
+    {
+      "bytes": 8536,
+      "rawSha256": "c804eabdf0e23ed8c41c0cf25018a938eac1a3a6bc57ae4a8969b0883a16d4f2",
+      "file": "docs/assistant-team/integration/I2/R2/evidence/Real-20260929T001613649/Semantics-MAVEN.log"
+    },
+    {
+      "bytes": 6918,
+      "rawSha256": "39c4ecc886eac1dc6bc81bc5eef510372a7f607c3ef7bd78961da4b6f30dd59b",
+      "file": "docs/assistant-team/integration/I2/R2/evidence/Real-20260929T001613649/Semantics-RESULT.json"
+    },
+    {
+      "bytes": 370,
+      "rawSha256": "685816e1eabb9afc2ebada6254f1f70e02e119994925bbcd04ebd0dba4676cc1",
+      "file": "docs/assistant-team/integration/I2/R2/evidence/Real-20260929T001613649/Semantics-ZERO-WRITE.json"
+    },
+    {
+      "bytes": 1780,
+      "rawSha256": "2dedafb471036bd32b045ba52467ed0950710d179fcb38e52c75fcb2c9987724",
+      "file": "docs/assistant-team/integration/I2/R2/evidence/Real-20260929T001613649/server-stderr.log"
+    },
+    {
+      "bytes": 0,
+      "rawSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "file": "docs/assistant-team/integration/I2/R2/evidence/Real-20260929T001613649/server-stdout.log"
+    },
+    {
+      "bytes": 145,
+      "rawSha256": "5af53806a4e111746d14d9507be5d06980aa2c861af02f581690dbaaaf37c53a",
+      "file": "docs/assistant-team/integration/I2/R2/evidence/Real-20260929T001613649/SHUTDOWN.json"
+    }
+  ],
+  "real": [
+    {
+      "suite": "CountPlan",
+      "uniqueMethodDefinitions": 1,
+      "uniqueTestCases": 1,
+      "executionRound": 1,
+      "exitCode": 0
+    },
+    {
+      "suite": "Plan",
+      "uniqueMethodDefinitions": 1,
+      "uniqueTestCases": 1,
+      "executionRound": 1,
+      "exitCode": 0
+    },
+    {
+      "suite": "Semantics",
+      "uniqueMethodDefinitions": 1,
+      "uniqueTestCases": 1,
+      "executionRound": 1,
+      "exitCode": 1
+    }
+  ],
+  "rawXml": [
+    {
+      "path": "D:\\知识图谱\\backend-java\\target\\surefire-reports\\TEST-com.knowledgegraph.assistant.runtime.AssistantRuntimeTest-Offline-20260929T001520530-Original.xml",
+      "hashMatches": true
+    },
+    {
+      "path": "D:\\知识图谱\\backend-java\\target\\surefire-reports\\TEST-com.knowledgegraph.assistant.runtime.DecisionParserTest-Offline-20260929T001520530-Original.xml",
+      "hashMatches": true
+    },
+    {
+      "path": "D:\\知识图谱\\backend-java\\target\\surefire-reports\\TEST-com.knowledgegraph.assistant.ingestion.IngestionAgentToolProviderTest-Offline-20260929T001520530-Original.xml",
+      "hashMatches": true
+    },
+    {
+      "path": "D:\\知识图谱\\backend-java\\target\\surefire-reports\\TEST-com.knowledgegraph.assistant.ingestion.JdbcIngestionReadRepositoryTest-Offline-20260929T001520530-Original.xml",
+      "hashMatches": true
+    },
+    {
+      "path": "D:\\知识图谱\\backend-java\\target\\surefire-reports\\TEST-com.knowledgegraph.assistant.quality.QualityAgentToolProviderTest-Offline-20260929T001520530-Original.xml",
+      "hashMatches": true
+    },
+    {
+      "path": "D:\\知识图谱\\backend-java\\target\\surefire-reports\\TEST-com.knowledgegraph.assistant.quality.QualityEvidenceVerifierTest-Offline-20260929T001520530-Original.xml",
+      "hashMatches": true
+    },
+    {
+      "path": "D:\\知识图谱\\backend-java\\target\\surefire-reports\\TEST-com.knowledgegraph.assistant.quality.JdbcQualityReadRepositoryTest-Offline-20260929T001520530-Original.xml",
+      "hashMatches": true
+    },
+    {
+      "path": "D:\\知识图谱\\backend-java\\target\\surefire-reports\\TEST-com.knowledgegraph.assistant.research.ResearchAgentToolProviderTest-Offline-20260929T001520530-Original.xml",
+      "hashMatches": true
+    },
+    {
+      "path": "D:\\知识图谱\\backend-java\\target\\surefire-reports\\TEST-com.knowledgegraph.assistant.research.JdbcResearchReadRepositoryTest-Offline-20260929T001520530-Original.xml",
+      "hashMatches": true
+    },
+    {
+      "path": "D:\\知识图谱\\backend-java\\target\\surefire-reports\\TEST-com.knowledgegraph.assistant.research.ResearchComparisonTest-Offline-20260929T001520530-Original.xml",
+      "hashMatches": true
+    },
+    {
+      "path": "D:\\知识图谱\\backend-java\\target\\surefire-reports\\TEST-com.knowledgegraph.assistant.research.ResearchDraftValidatorTest-Offline-20260929T001520530-Original.xml",
+      "hashMatches": true
+    },
+    {
+      "path": "D:\\知识图谱\\backend-java\\target\\surefire-reports\\TEST-com.knowledgegraph.assistant.learning.LearningAgentToolProviderTest-Offline-20260929T001520530-Original.xml",
+      "hashMatches": true
+    },
+    {
+      "path": "D:\\知识图谱\\backend-java\\target\\surefire-reports\\TEST-com.knowledgegraph.assistant.learning.JdbcLearningReadRepositoryTest-Offline-20260929T001520530-Original.xml",
+      "hashMatches": true
+    },
+    {
+      "path": "D:\\知识图谱\\backend-java\\target\\surefire-reports\\TEST-com.knowledgegraph.assistant.learning.LearningArtifactHandoffTest-Offline-20260929T001520530-Original.xml",
+      "hashMatches": true
+    },
+    {
+      "path": "D:\\知识图谱\\backend-java\\target\\surefire-reports\\TEST-com.knowledgegraph.assistant.learning.LearningDraftValidatorTest-Offline-20260929T001520530-Original.xml",
+      "hashMatches": true
+    },
+    {
+      "path": "D:\\知识图谱\\backend-java\\target\\surefire-reports\\TEST-com.knowledgegraph.assistant.assessment.AssessmentAgentToolProviderTest-Offline-20260929T001520530-Original.xml",
+      "hashMatches": true
+    },
+    {
+      "path": "D:\\知识图谱\\backend-java\\target\\surefire-reports\\TEST-com.knowledgegraph.assistant.assessment.JdbcAssessmentReadRepositoryTest-Offline-20260929T001520530-Original.xml",
+      "hashMatches": true
+    },
+    {
+      "path": "D:\\知识图谱\\backend-java\\target\\surefire-reports\\TEST-com.knowledgegraph.assistant.assessment.AssessmentArtifactHandoffTest-Offline-20260929T001520530-Original.xml",
+      "hashMatches": true
+    },
+    {
+      "path": "D:\\知识图谱\\backend-java\\target\\surefire-reports\\TEST-com.knowledgegraph.assistant.assessment.AssessmentDraftValidatorTest-Offline-20260929T001520530-Original.xml",
+      "hashMatches": true
+    },
+    {
+      "path": "D:\\知识图谱\\backend-java\\target\\surefire-reports\\TEST-com.knowledgegraph.assistant.quality.JdbcQualityInsightRankingRegressionTest-Offline-20260929T001520530-Ranking.xml",
+      "hashMatches": true
+    },
+    {
+      "path": "D:\\知识图谱\\backend-java\\target\\surefire-reports\\TEST-com.knowledgegraph.assistant.quality.JdbcQualityInsightIsolatedCountRegressionTest-Offline-20260929T001520530-IsolatedCount.xml",
+      "hashMatches": true
+    },
+    {
+      "path": "D:\\知识图谱\\backend-java\\target\\surefire-reports\\TEST-com.knowledgegraph.assistant.i2.I2QualityIsolatedCountTest-Real-20260929T001613649-CountPlan.xml",
+      "hashMatches": true
+    },
+    {
+      "path": "D:\\知识图谱\\backend-java\\target\\surefire-reports\\TEST-com.knowledgegraph.assistant.i2.I2QualityInsightRankingTest-Real-20260929T001613649-Plan.xml",
+      "hashMatches": true
+    },
+    {
+      "path": "D:\\知识图谱\\backend-java\\target\\surefire-reports\\TEST-com.knowledgegraph.assistant.i2.I2QualityInsightRankingTest-Real-20260929T001613649-Semantics.xml",
+      "hashMatches": true
+    }
+  ],
+  "readme": "All runs retained, including failure. No business or performance rerun. Unique XML left in target with hashes and sanitized summaries; raw XML not copied into repository. Log files may be git-ignored but remain at named paths.",
+  "capturedAt": "2026-09-28T16:18:47.835Z"
+}

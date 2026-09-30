@@ -1,0 +1,4 @@
+{
+  "message": "One-shot EXPLAIN diagnostic failed; inspect retained output, do not retry",
+  "automaticRetry": false
+}

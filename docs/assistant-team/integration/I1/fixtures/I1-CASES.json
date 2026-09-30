@@ -1,0 +1,366 @@
+{
+  "schemaVersion": "I1-acceptance-cases-v1",
+  "fixture": "I1-FIXTURES.json",
+  "cases": [
+    {
+      "id": "S01",
+      "technicalStage": "I2",
+      "websiteStage": "I6",
+      "scope": "LIB_A",
+      "page": "知识库 / 资料 A、B",
+      "action": "查看资料与原文",
+      "expected": "A/B COMPLETED；来源按 documentId/chunkId/hash 定位；观察时间与来源状态可见，不推断语义正确。",
+      "status": "prepared_not_executed_as_this_catalog"
+    },
+    {
+      "id": "S02",
+      "technicalStage": "I2",
+      "websiteStage": "I6",
+      "scope": "LIB_A",
+      "page": "处理中心 / 失败资料 7203",
+      "action": "查看恢复评估",
+      "expected": "not_recoverable、executionAllowed=false；说明文件缺失，零启动、重试、模型调用。",
+      "status": "prepared_not_executed_as_this_catalog"
+    },
+    {
+      "id": "S03",
+      "technicalStage": "I2",
+      "websiteStage": "I6",
+      "scope": "DOC_AB",
+      "page": "知识库 / 归档或范围外资料",
+      "action": "尝试打开 7204/7205 原文",
+      "expected": "不得当作当前正式来源，范围外详情不泄漏；失败不自动改用全库检索。",
+      "status": "prepared_not_executed_as_this_catalog"
+    },
+    {
+      "id": "S04",
+      "technicalStage": "I2",
+      "websiteStage": "I6",
+      "scope": "LIB_A",
+      "page": "知识库 / 多库资料 7206",
+      "action": "查看可见归属",
+      "expected": "7101 可见，范围外主库 ID 7102 不出现在资料详情；可见不等于可处理。",
+      "status": "prepared_not_executed_as_this_catalog"
+    },
+    {
+      "id": "S05",
+      "technicalStage": "I2",
+      "websiteStage": "I6",
+      "scope": "LIB_A",
+      "page": "知识库 / 资料列表",
+      "action": "每页一条，翻页",
+      "expected": "分页总数/本页范围明确；任一单页不冒充整个范围覆盖。",
+      "status": "prepared_not_executed_as_this_catalog"
+    },
+    {
+      "id": "S06",
+      "technicalStage": "I2",
+      "websiteStage": "I5",
+      "scope": "DOC_A",
+      "page": "智能助手 / 引用卡",
+      "action": "应用 V_HASH_CHANGED 后点原引用",
+      "expected": "提示陈旧或不可用；不把新内容算成旧证据，不伪造定位。",
+      "status": "prepared_not_executed_as_this_catalog"
+    },
+    {
+      "id": "S07",
+      "technicalStage": "I2",
+      "websiteStage": "I5",
+      "scope": "NODE_A",
+      "page": "智能助手 / 节点取证",
+      "action": "限定节点 7701 后要求重读原文",
+      "expected": "按冻结限制返回 NODE_SCOPE_UNSUPPORTED 或明确缺口；不得删除 nodeIds 扩大授权。",
+      "status": "prepared_not_executed_as_this_catalog"
+    },
+    {
+      "id": "S08",
+      "technicalStage": "I2",
+      "websiteStage": "I6",
+      "scope": "LIB_A",
+      "page": "质量治理 / 任务 7501",
+      "action": "查看候选 7601",
+      "expected": "两个 hash 可取证；候选、AI判断、人工决定 unavailable、实际单候选入库 unknown 分开。",
+      "status": "prepared_not_executed_as_this_catalog"
+    },
+    {
+      "id": "S09",
+      "technicalStage": "I2",
+      "websiteStage": "I6",
+      "scope": "LIB_A",
+      "page": "质量治理 / 候选来源",
+      "action": "7601 仅核对 7401，再核对全部",
+      "expected": "单条时本次请求完整但候选证据未全覆盖/PARTIAL；两条均当前后才候选完整；semanticSupport=not_evaluated。",
+      "status": "prepared_not_executed_as_this_catalog"
+    },
+    {
+      "id": "S10",
+      "technicalStage": "I2",
+      "websiteStage": "I6",
+      "scope": "LIB_A",
+      "page": "质量治理 / 数据洞察",
+      "action": "查看节点、边、孤立点与截断",
+      "expected": "范围内全部状态节点=4，active且双端可见边=1，孤立节点=2；归档/节点状态口径明示，不能与研究截取图混作全库统计。",
+      "status": "prepared_not_executed_as_this_catalog"
+    },
+    {
+      "id": "S11",
+      "technicalStage": "I2",
+      "websiteStage": "I5",
+      "scope": "LIB_A",
+      "page": "图谱工作台 / 搜索节点甲",
+      "action": "搜索同名节点",
+      "expected": "返回 7701，不混入范围外同名 7704；无结果和查询失败区分。",
+      "status": "prepared_not_executed_as_this_catalog"
+    },
+    {
+      "id": "S12",
+      "technicalStage": "I2",
+      "websiteStage": "I5",
+      "scope": "DOC_AB",
+      "page": "图谱工作台 / 路径",
+      "action": "分别查 7701→7702 与 7702→7701",
+      "expected": "前者真实边 7801；后者在此固定样本无有向路径，不将邻接关系当作反向路径。",
+      "status": "prepared_not_executed_as_this_catalog"
+    },
+    {
+      "id": "S13",
+      "technicalStage": "I2",
+      "websiteStage": "I5",
+      "scope": "LIB_A",
+      "page": "图谱工作台 / 节点状态",
+      "action": "查看 7703、7705 及关联边",
+      "expected": "停用与孤立/无来源如实显示；7802 若返回标 inactive；7803 越界不出现。",
+      "status": "prepared_not_executed_as_this_catalog"
+    },
+    {
+      "id": "S14",
+      "technicalStage": "I2",
+      "websiteStage": "I5",
+      "scope": "DOC_AB",
+      "page": "智能助手 / A/B 取证",
+      "action": "应用 V_LONG_A，maxChars=200/maxSources=2；再 maxSources=1",
+      "expected": "两份资料预留配额；条数不足时明确未覆盖资料、partial；截取段落不得标全文读完。",
+      "status": "prepared_not_executed_as_this_catalog"
+    },
+    {
+      "id": "S15",
+      "technicalStage": "I3",
+      "websiteStage": "I5",
+      "scope": "DOC_AB",
+      "page": "智能助手 / A/B 协作",
+      "action": "A、B 独立研究后比较",
+      "expected": "直接依赖成果和关键重读来源可追溯；比较为结构化并列，winner 不凭空生成，语义支持未评估。",
+      "status": "prepared_not_executed_as_this_catalog"
+    },
+    {
+      "id": "S16",
+      "technicalStage": "I3",
+      "websiteStage": "I5",
+      "scope": "DOC_AB",
+      "page": "智能助手 / 任务状态",
+      "action": "应用 V_B_FAILED",
+      "expected": "A 保留；B 失败原因明确；比较阻断；页面不能显示整个协作成功。",
+      "status": "prepared_not_executed_as_this_catalog"
+    },
+    {
+      "id": "S17",
+      "technicalStage": "I3",
+      "websiteStage": "I5",
+      "scope": "DOC_AB",
+      "page": "智能助手 / 部分完成",
+      "action": "应用 V_PARTIAL",
+      "expected": "允许 partial 的下游保留已产出内容并继承缺口；不允许的依赖不运行。",
+      "status": "prepared_not_executed_as_this_catalog"
+    },
+    {
+      "id": "S18",
+      "technicalStage": "I3",
+      "websiteStage": "I6",
+      "scope": "DOC_AB",
+      "page": "学习路径 / 可信素材",
+      "action": "比较成果→02检查部分claim→04整理",
+      "expected": "部分已查结果保留；请求完整和原成果未全覆盖分开；不同范围引用同一三元组只计一次物理证据。",
+      "status": "prepared_not_executed_as_this_catalog"
+    },
+    {
+      "id": "S19",
+      "technicalStage": "I3",
+      "websiteStage": "I5",
+      "scope": "DOC_AB",
+      "page": "智能助手 / 权限拒绝",
+      "action": "应用 V_FORGED_HOST；篡改 run、consumer、artifactId",
+      "expected": "拒绝或不可用；不得看到他人/非直接依赖成果。角色/范围来自宿主，不来自模型或前端自报。",
+      "status": "prepared_not_executed_as_this_catalog"
+    },
+    {
+      "id": "S20",
+      "technicalStage": "I2",
+      "websiteStage": "I6",
+      "scope": "LIB_A",
+      "page": "学习路径 / 当前路径",
+      "action": "打开路径 1000",
+      "expected": "显示 8101 current、8102 locked、旧 visitedAt/90分标记；只读不保存、不进阶，v2非正式修订。",
+      "status": "prepared_not_executed_as_this_catalog"
+    },
+    {
+      "id": "S21",
+      "technicalStage": "I3",
+      "websiteStage": "I6",
+      "scope": "DOC_AB",
+      "page": "学习路径 / 草稿差异",
+      "action": "读取研究/质量素材，整理两步草稿",
+      "expected": "实际当前路径与未保存草稿分栏，显示增删改和基线；不调用旧 save、visited、complete。",
+      "status": "prepared_not_executed_as_this_catalog"
+    },
+    {
+      "id": "S22",
+      "technicalStage": "I3",
+      "websiteStage": "I6",
+      "scope": "DOC_AB",
+      "page": "学习路径 / 讲解练习",
+      "action": "生成分层讲解与两道非正式练习；模拟可信历史工具 ERROR 后继续",
+      "expected": "事实/模型说明分层；失败历史可见且不提供证据；合法练习可继续但保持缺口，不计正式分。",
+      "status": "prepared_not_executed_as_this_catalog"
+    },
+    {
+      "id": "S23",
+      "technicalStage": "I2",
+      "websiteStage": "I6",
+      "scope": "LIB_A",
+      "page": "智能测评 / 准备条件",
+      "action": "查看当前路径、阶段、正式服务状态",
+      "expected": "当前 8101 可整理候选；formalAvailable=false；正式开始/提交/评分不可用。",
+      "status": "prepared_not_executed_as_this_catalog"
+    },
+    {
+      "id": "S24",
+      "technicalStage": "I2",
+      "websiteStage": "I6",
+      "scope": "LIB_A",
+      "page": "智能测评 / 旧记录",
+      "action": "limit=1 翻阅 9102→9101",
+      "expected": "legacy_unverified；9101 归属 unknown；分页 coverage 正确；90/100分不成为正式通过/弱项/掌握度。",
+      "status": "prepared_not_executed_as_this_catalog"
+    },
+    {
+      "id": "S25",
+      "technicalStage": "I2",
+      "websiteStage": "I6",
+      "scope": "LIB_A",
+      "page": "智能测评 / 有效结果",
+      "action": "打开有效结果和正式弱项",
+      "expected": "有效结果/正式弱项为空并说明服务未接入，不能显示零分或已掌握。",
+      "status": "prepared_not_executed_as_this_catalog"
+    },
+    {
+      "id": "S26",
+      "technicalStage": "I3",
+      "websiteStage": "I6",
+      "scope": "LIB_A",
+      "page": "智能测评 / 测评候选",
+      "action": "可信 04练习→05 重读阶段/来源→两道候选",
+      "expected": "unexecuted_draft；参考答案仅草稿；无正式试卷、答题会话、判分或进阶。",
+      "status": "prepared_not_executed_as_this_catalog"
+    },
+    {
+      "id": "S27",
+      "technicalStage": "I2",
+      "websiteStage": "I6",
+      "scope": "LIB_A",
+      "page": "学习/测评 / 陈旧状态",
+      "action": "应用 V_PATH_CHANGED",
+      "expected": "拒绝陈旧路径/指纹；提供刷新提示，不覆盖当前路径。",
+      "status": "prepared_not_executed_as_this_catalog"
+    },
+    {
+      "id": "S28",
+      "technicalStage": "I2",
+      "websiteStage": "I6",
+      "scope": "LIB_A",
+      "page": "智能测评 / 异常阶段",
+      "action": "分别 V_MULTI_CURRENT、V_INACTIVE_CURRENT",
+      "expected": "multiple_current_steps 或 current_node_unavailable；draftReady=false；不自动修库。",
+      "status": "prepared_not_executed_as_this_catalog"
+    },
+    {
+      "id": "S29",
+      "technicalStage": "I1",
+      "websiteStage": "不单独依赖页面",
+      "scope": "LIB_A",
+      "page": "离线回归 / 高ID",
+      "action": "V_HIGH_ID_EQUAL 与 V_BAD_STEP_OWNER",
+      "expected": "同数值独立 Long 合法；错误或缺失实际阶段归属仍拒绝。已有05回归覆盖；本样本编目不冒充新增执行。",
+      "status": "prepared_not_executed_as_this_catalog"
+    },
+    {
+      "id": "S30",
+      "technicalStage": "I3",
+      "websiteStage": "I5",
+      "scope": "DOC_AB",
+      "page": "智能助手 / 运行生命周期",
+      "action": "取消、超时、异常工具；刷新或服务重启",
+      "expected": "终态/缺口如实保留；内存结果丢失时说明不可恢复，不显示持久历史；取消不承诺逆转外部已执行动作。",
+      "status": "prepared_not_executed_as_this_catalog"
+    },
+    {
+      "id": "S31",
+      "technicalStage": "I3",
+      "websiteStage": "I5",
+      "scope": "DOC_AB",
+      "page": "智能助手 / 授权范围",
+      "action": "合法用户选 A/B；越权账号/无权文档尝试查询",
+      "expected": "后端拒绝越权；范围在查询前约束；未选范围不自动全库；不展示模型凭据。",
+      "status": "prepared_not_executed_as_this_catalog"
+    },
+    {
+      "id": "S32",
+      "technicalStage": "I4",
+      "websiteStage": "I5",
+      "scope": "DOC_AB",
+      "page": "智能助手 / 真实模型",
+      "action": "正常输出、非法工具名/参数、超限、拒答/超时",
+      "expected": "合法调用通过封闭 schema；异常可见且受预算约束；只有读工具/草稿可调用，不凭模型文本宣称成功。",
+      "status": "prepared_not_executed_as_this_catalog"
+    },
+    {
+      "id": "S33",
+      "technicalStage": "I6",
+      "websiteStage": "I6",
+      "scope": "LIB_A",
+      "page": "学习路径 / 缓存隔离",
+      "action": "V_LEGACY_CACHE；刷新并点击去图谱",
+      "expected": "无 PUT path、POST visited/complete/assessment；后端事实与旧缓存不混用。",
+      "status": "prepared_not_executed_as_this_catalog"
+    },
+    {
+      "id": "S34",
+      "technicalStage": "I6",
+      "websiteStage": "I6",
+      "scope": "LIB_A",
+      "page": "智能测评 / 只读结果",
+      "action": "查看旧高分、参考答案并尝试继续",
+      "expected": "无“当前阶段已完成”的正式暗示；无旧 recordAssessment；刷新路径仍 unchanged。",
+      "status": "prepared_not_executed_as_this_catalog"
+    },
+    {
+      "id": "S35",
+      "technicalStage": "I5",
+      "websiteStage": "I5",
+      "scope": "DOC_AB",
+      "page": "图谱工作台 / 扩展草稿",
+      "action": "查看虚线草稿节点并操作搜索栏/节点抽屉",
+      "expected": "草稿与真实图分层；无 ai-expand、创建/编辑/删除节点边请求；真实节点/边数量不变。",
+      "status": "prepared_not_executed_as_this_catalog"
+    },
+    {
+      "id": "S36",
+      "technicalStage": "I7",
+      "websiteStage": "I7",
+      "scope": "DOC_AB",
+      "page": "完整只读流程",
+      "action": "资料→研究→质量→学习→测评候选；重刷关键业务页面",
+      "expected": "全程证据可回读、状态可解释；关键业务表前后校验不变；失败/partial/无权限覆盖；最终验收由负责人签认。",
+      "status": "prepared_not_executed_as_this_catalog"
+    }
+  ]
+}

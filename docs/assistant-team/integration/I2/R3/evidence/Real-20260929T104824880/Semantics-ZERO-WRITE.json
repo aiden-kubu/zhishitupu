@@ -1,0 +1,12 @@
+{
+  "testProcessOnlyReaderCredential": true,
+  "activeReaderQueriesAfter": 0,
+  "testSucceeded": true,
+  "binlogPositionEqual": true,
+  "generalLogRawSha256": "d251d35968df702470d858bbcd84a4694a64371b7d5d26206aee8b1ac9c15ceb",
+  "tableCount": 34,
+  "loaderLockedBefore": "Y",
+  "loaderLockedAfter": "Y",
+  "suite": "Semantics",
+  "dataAndSchemaEqual": true
+}

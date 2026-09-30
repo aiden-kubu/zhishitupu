@@ -1,0 +1,1278 @@
+{
+  "rawXmlArchived": false,
+  "uniqueTestCases": 154,
+  "records": [],
+  "suite": "Original",
+  "suites": [
+    {
+      "tests": 28,
+      "class": "com.knowledgegraph.assistant.runtime.AssistantRuntimeTest",
+      "skipped": 0,
+      "failures": 0,
+      "cases": [
+        {
+          "failure": "",
+          "seconds": "0.012",
+          "name": "completionPolicyRejectsSkippingRequiredWork",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.runtime.AssistantRuntimeTest"
+        },
+        {
+          "failure": "",
+          "seconds": "0.011",
+          "name": "queueSaturationSettlesRejectedTasksWithoutHangingTheRun",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.runtime.AssistantRuntimeTest"
+        },
+        {
+          "failure": "",
+          "seconds": "0.005",
+          "name": "domainValidatorRejectsOutOfScopeDraftAndValidatedDraftStillCannotExecute",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.runtime.AssistantRuntimeTest"
+        },
+        {
+          "failure": "",
+          "seconds": "0.013",
+          "name": "failureBlocksDependentsButPreservesIndependentResult",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.runtime.AssistantRuntimeTest"
+        },
+        {
+          "failure": "",
+          "seconds": "0.012",
+          "name": "repairCanRecoverMalformedDecisionWithoutExecutingFreeText",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.runtime.AssistantRuntimeTest"
+        },
+        {
+          "failure": "",
+          "seconds": "0.002",
+          "name": "lateModelResultCannotCompleteAfterDeadline",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.runtime.AssistantRuntimeTest"
+        },
+        {
+          "failure": "",
+          "seconds": "0.001",
+          "name": "scopeCollectionsAreImmutableAndSelectedDimensionsCannotBeWidened",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.runtime.AssistantRuntimeTest"
+        },
+        {
+          "failure": "",
+          "seconds": "0.004",
+          "name": "pendingRunsAreBoundedAndCancellationReleasesCapacity",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.runtime.AssistantRuntimeTest"
+        },
+        {
+          "failure": "",
+          "seconds": "0.005",
+          "name": "rejectsCyclesDuplicateIdsUnknownDependenciesAndUnauthorizedScopesBeforeAnyModelCall",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.runtime.AssistantRuntimeTest"
+        },
+        {
+          "failure": "",
+          "seconds": "0.004",
+          "name": "cancellationDoesNotDiscardAlreadyCompletedSiblingArtifact",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.runtime.AssistantRuntimeTest"
+        },
+        {
+          "failure": "",
+          "seconds": "0.005",
+          "name": "globalCallBudgetIsAtomicAcrossIndependentTasks",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.runtime.AssistantRuntimeTest"
+        },
+        {
+          "failure": "",
+          "seconds": "0.003",
+          "name": "sourceIdCannotBeReboundToDifferentEvidence",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.runtime.AssistantRuntimeTest"
+        },
+        {
+          "failure": "",
+          "seconds": "0.002",
+          "name": "unknownToolIsNotExecutedAndCannotBeHiddenBySuccess",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.runtime.AssistantRuntimeTest"
+        },
+        {
+          "failure": "",
+          "seconds": "0.033",
+          "name": "cancellationRacingFinalResultHasOneConsistentOutcome",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.runtime.AssistantRuntimeTest"
+        },
+        {
+          "failure": "",
+          "seconds": "0.003",
+          "name": "partialToolResultsRetainLimitations",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.runtime.AssistantRuntimeTest"
+        },
+        {
+          "failure": "",
+          "seconds": "0.003",
+          "name": "perTaskToolBudgetStopsRepeatedToolRequests",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.runtime.AssistantRuntimeTest"
+        },
+        {
+          "failure": "",
+          "seconds": "0.003",
+          "name": "rejectsWriteToolsAndRolePermissionMismatch",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.runtime.AssistantRuntimeTest"
+        },
+        {
+          "failure": "",
+          "seconds": "0.002",
+          "name": "aPureDraftNeverClaimsObservedProjectCoverage",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.runtime.AssistantRuntimeTest"
+        },
+        {
+          "failure": "",
+          "seconds": "0.004",
+          "name": "independentResearchAgentsExchangeOnlyExplicitArtifactsThenHandOffToLearning",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.runtime.AssistantRuntimeTest"
+        },
+        {
+          "failure": "",
+          "seconds": "0.002",
+          "name": "actionProposalsDefaultToDeniedUntilDomainValidationIsRegistered",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.runtime.AssistantRuntimeTest"
+        },
+        {
+          "failure": "",
+          "seconds": "0.001",
+          "name": "fabricatedEvidenceFailsAfterOneRepair",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.runtime.AssistantRuntimeTest"
+        },
+        {
+          "failure": "",
+          "seconds": "0.002",
+          "name": "authorizedScopeIsNotReportedAsObservedCoverage",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.runtime.AssistantRuntimeTest"
+        },
+        {
+          "failure": "",
+          "seconds": "0.002",
+          "name": "partialDependenciesRequireOptInAndCannotBecomeUnqualifiedSuccess",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.runtime.AssistantRuntimeTest"
+        },
+        {
+          "failure": "",
+          "seconds": "0.003",
+          "name": "cancellationWaitsForInflightProviderAndPreventsNextToolOrDependent",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.runtime.AssistantRuntimeTest"
+        },
+        {
+          "failure": "",
+          "seconds": "0.002",
+          "name": "closeSettlesQueuedTasksAndRejectsNewRuns",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.runtime.AssistantRuntimeTest"
+        },
+        {
+          "failure": "",
+          "seconds": "0.002",
+          "name": "needsInputBlocksDependentsAndSurfacesRunState",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.runtime.AssistantRuntimeTest"
+        },
+        {
+          "failure": "",
+          "seconds": "0.01",
+          "name": "argumentValidationExpiryPreventsStartingTheTool",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.runtime.AssistantRuntimeTest"
+        },
+        {
+          "failure": "",
+          "seconds": "0.003",
+          "name": "resultOutsideFixedScopeIsRejectedAndCannotSupplyEvidence",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.runtime.AssistantRuntimeTest"
+        }
+      ],
+      "xmlRawSha256": "5fcb29fc1a7c4edc94a7343f665d7fb603c38ced6739b25016678a074a0fab58",
+      "errors": 0
+    },
+    {
+      "tests": 15,
+      "class": "com.knowledgegraph.assistant.runtime.DecisionParserTest",
+      "skipped": 0,
+      "failures": 0,
+      "cases": [
+        {
+          "failure": "",
+          "seconds": "0.002",
+          "name": "proposalsCannotEnableExecution",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.runtime.DecisionParserTest"
+        },
+        {
+          "failure": "",
+          "seconds": "0.007",
+          "name": "boundsPayloadAndNesting",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.runtime.DecisionParserTest"
+        },
+        {
+          "failure": "",
+          "seconds": "0.002",
+          "name": "toolFailureCannotCarryEvidenceOrContradictorySuccessStatus",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.runtime.DecisionParserTest"
+        },
+        {
+          "failure": "",
+          "seconds": "0.016",
+          "name": "rejectsAmbiguousOrUnrecognizedProtocol(String)[1]",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.runtime.DecisionParserTest"
+        },
+        {
+          "failure": "",
+          "seconds": "0.002",
+          "name": "rejectsAmbiguousOrUnrecognizedProtocol(String)[2]",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.runtime.DecisionParserTest"
+        },
+        {
+          "failure": "",
+          "seconds": "0.001",
+          "name": "rejectsAmbiguousOrUnrecognizedProtocol(String)[3]",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.runtime.DecisionParserTest"
+        },
+        {
+          "failure": "",
+          "seconds": "0.0",
+          "name": "rejectsAmbiguousOrUnrecognizedProtocol(String)[4]",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.runtime.DecisionParserTest"
+        },
+        {
+          "failure": "",
+          "seconds": "0.001",
+          "name": "rejectsAmbiguousOrUnrecognizedProtocol(String)[5]",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.runtime.DecisionParserTest"
+        },
+        {
+          "failure": "",
+          "seconds": "0.001",
+          "name": "rejectsAmbiguousOrUnrecognizedProtocol(String)[6]",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.runtime.DecisionParserTest"
+        },
+        {
+          "failure": "",
+          "seconds": "0.0",
+          "name": "rejectsAmbiguousOrUnrecognizedProtocol(String)[7]",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.runtime.DecisionParserTest"
+        },
+        {
+          "failure": "",
+          "seconds": "0.0",
+          "name": "rejectsAmbiguousOrUnrecognizedProtocol(String)[8]",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.runtime.DecisionParserTest"
+        },
+        {
+          "failure": "",
+          "seconds": "0.001",
+          "name": "rejectsAmbiguousOrUnrecognizedProtocol(String)[9]",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.runtime.DecisionParserTest"
+        },
+        {
+          "failure": "",
+          "seconds": "0.001",
+          "name": "rejectsAmbiguousOrUnrecognizedProtocol(String)[10]",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.runtime.DecisionParserTest"
+        },
+        {
+          "failure": "",
+          "seconds": "0.002",
+          "name": "parsesFiniteToolAndCompletionDecisions",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.runtime.DecisionParserTest"
+        },
+        {
+          "failure": "",
+          "seconds": "0.108",
+          "name": "wireArtifactSeparatesAuthorizationObservationAndExecution",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.runtime.DecisionParserTest"
+        }
+      ],
+      "xmlRawSha256": "0df017a4e9a5296e705d6a8a821d80f09f50acf3b97561f6e95be9a4aec71d65",
+      "errors": 0
+    },
+    {
+      "tests": 12,
+      "class": "com.knowledgegraph.assistant.ingestion.IngestionAgentToolProviderTest",
+      "skipped": 0,
+      "failures": 0,
+      "cases": [
+        {
+          "failure": "",
+          "seconds": "0.038",
+          "name": "jobErrorsAreRedactedAndOrganizationCountsAreNotCalledNodes",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.ingestion.IngestionAgentToolProviderTest"
+        },
+        {
+          "failure": "",
+          "seconds": "0.022",
+          "name": "proposalValidatorRejectsWrongScopeAndAllowsOnlyUnexecutedDrafts",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.ingestion.IngestionAgentToolProviderTest"
+        },
+        {
+          "failure": "",
+          "seconds": "0.005",
+          "name": "selectedScopeVerifiesAllDimensionsAndNeverFallsBackToProject",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.ingestion.IngestionAgentToolProviderTest"
+        },
+        {
+          "failure": "",
+          "seconds": "0.008",
+          "name": "paginationAndArgumentWhitelistAreEnforcedBeforeRepositoryCall",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.ingestion.IngestionAgentToolProviderTest"
+        },
+        {
+          "failure": "",
+          "seconds": "0.003",
+          "name": "emptyProjectAndImportPreparationAreReadOnly",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.ingestion.IngestionAgentToolProviderTest"
+        },
+        {
+          "failure": "",
+          "seconds": "0.004",
+          "name": "everyToolPublishesItsRealArgumentSchema",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.ingestion.IngestionAgentToolProviderTest"
+        },
+        {
+          "failure": "",
+          "seconds": "0.005",
+          "name": "runnerCallsRealAdapterWithIsolatedFakeRepository",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.ingestion.IngestionAgentToolProviderTest"
+        },
+        {
+          "failure": "",
+          "seconds": "0.002",
+          "name": "proposalImpactRejectsNegationEvenWhenItContainsTheRequiredKeywords",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.ingestion.IngestionAgentToolProviderTest"
+        },
+        {
+          "failure": "",
+          "seconds": "0.002",
+          "name": "multiLibraryDocumentDoesNotRevealPrimaryLibraryOutsideSelectedScope",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.ingestion.IngestionAgentToolProviderTest"
+        },
+        {
+          "failure": "",
+          "seconds": "0.001",
+          "name": "lastPageIsNotMisreportedAsFullCoverage",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.ingestion.IngestionAgentToolProviderTest"
+        },
+        {
+          "failure": "",
+          "seconds": "0.011",
+          "name": "sourceUsesRealChunkIdAndRejectsStaleHashOrWrongUnit",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.ingestion.IngestionAgentToolProviderTest"
+        },
+        {
+          "failure": "",
+          "seconds": "0.016",
+          "name": "recoveryStateMatrixDisclosesTheFullChainAndDoesNotCallWrites",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.ingestion.IngestionAgentToolProviderTest"
+        }
+      ],
+      "xmlRawSha256": "9af21882ffa597f28eb1d4676d07fc151ba78ff2a7d86db3256d0d3747e1b5cf",
+      "errors": 0
+    },
+    {
+      "tests": 4,
+      "class": "com.knowledgegraph.assistant.ingestion.JdbcIngestionReadRepositoryTest",
+      "skipped": 0,
+      "failures": 0,
+      "cases": [
+        {
+          "failure": "",
+          "seconds": "0.097",
+          "name": "organizationFiltersSelectedDestinationsBeforeLimit",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.ingestion.JdbcIngestionReadRepositoryTest"
+        },
+        {
+          "failure": "",
+          "seconds": "0.014",
+          "name": "listQueriesBindBothSelectedDimensionsBeforeLimitAndBoundOffset",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.ingestion.JdbcIngestionReadRepositoryTest"
+        },
+        {
+          "failure": "",
+          "seconds": "0.01",
+          "name": "stableChunkReadMapsRealIdAndHashAndBindsDocumentOwnership",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.ingestion.JdbcIngestionReadRepositoryTest"
+        },
+        {
+          "failure": "",
+          "seconds": "0.008",
+          "name": "documentAndJobListsApplyLibraryMembershipAndDocumentScopeBeforePaging",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.ingestion.JdbcIngestionReadRepositoryTest"
+        }
+      ],
+      "xmlRawSha256": "46ae94663ea318d8a0e9c7117ac535e3219ce65422cbf8fa0960b3c37ac5772e",
+      "errors": 0
+    },
+    {
+      "tests": 15,
+      "class": "com.knowledgegraph.assistant.quality.QualityAgentToolProviderTest",
+      "skipped": 0,
+      "failures": 0,
+      "cases": [
+        {
+          "failure": "",
+          "seconds": "0.034",
+          "name": "relationMatchChecksBothEndpointsAndDirectionAndLastPageIsPartial",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.quality.QualityAgentToolProviderTest"
+        },
+        {
+          "failure": "",
+          "seconds": "0.01",
+          "name": "directDependencyReferencesAreReReadButSemanticSupportIsNotAsserted",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.quality.QualityAgentToolProviderTest"
+        },
+        {
+          "failure": "",
+          "seconds": "0.002",
+          "name": "candidateSourcesNeverUpgradeStaleOrForgedReferences",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.quality.QualityAgentToolProviderTest"
+        },
+        {
+          "failure": "",
+          "seconds": "0.002",
+          "name": "truncatedSourceRemainsPartialAndNeverClaimsFullCoverage",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.quality.QualityAgentToolProviderTest"
+        },
+        {
+          "failure": "",
+          "seconds": "0.001",
+          "name": "unknownClaimAndForgedPointerCannotBecomeVerifiedEvidence",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.quality.QualityAgentToolProviderTest"
+        },
+        {
+          "failure": "",
+          "seconds": "0.006",
+          "name": "snapshotSuppliesOwnedHashForNormalSourceReadWithoutCallerPreloadingIt",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.quality.QualityAgentToolProviderTest"
+        },
+        {
+          "failure": "",
+          "seconds": "0.006",
+          "name": "oversizedResultFailsWithinSharedDataBudget",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.quality.QualityAgentToolProviderTest"
+        },
+        {
+          "failure": "",
+          "seconds": "0.003",
+          "name": "reviewDoesNotRevealWrongDocumentEvidenceIds",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.quality.QualityAgentToolProviderTest"
+        },
+        {
+          "failure": "",
+          "seconds": "0.005",
+          "name": "fakeRunnerCanCallQualityToolWithoutAnyWriteOrReceipt",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.quality.QualityAgentToolProviderTest"
+        },
+        {
+          "failure": "",
+          "seconds": "0.002",
+          "name": "readingOneOfTwoCandidateSourcesCoversRequestButNotCandidate",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.quality.QualityAgentToolProviderTest"
+        },
+        {
+          "failure": "",
+          "seconds": "0.006",
+          "name": "partialQualityToolDowngradesRunnerCompletion",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.quality.QualityAgentToolProviderTest"
+        },
+        {
+          "failure": "",
+          "seconds": "0.005",
+          "name": "fourToolsHaveRealSchemasAndRejectExtraFieldsAndUnsupportedScopes",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.quality.QualityAgentToolProviderTest"
+        },
+        {
+          "failure": "",
+          "seconds": "0.004",
+          "name": "reviewSeparatesFourStatesAndDoesNotInferPerCandidateImport",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.quality.QualityAgentToolProviderTest"
+        },
+        {
+          "failure": "",
+          "seconds": "0.001",
+          "name": "readingAllCandidateSourcesReportsFullCandidateCoverage",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.quality.QualityAgentToolProviderTest"
+        },
+        {
+          "failure": "",
+          "seconds": "0.004",
+          "name": "insightUsesHostScopeAndReportsCoverageWithoutInventingTrend",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.quality.QualityAgentToolProviderTest"
+        }
+      ],
+      "xmlRawSha256": "f52b53a0c02f5d57b137f0caefae758931369d99185511bb9ca0bdc114fc59a5",
+      "errors": 0
+    },
+    {
+      "tests": 6,
+      "class": "com.knowledgegraph.assistant.quality.QualityEvidenceVerifierTest",
+      "skipped": 0,
+      "failures": 0,
+      "cases": [
+        {
+          "failure": "",
+          "seconds": "0.001",
+          "name": "fullReadUsesRealUnitAndHashButTruncatedTextRemainsPartial",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.quality.QualityEvidenceVerifierTest"
+        },
+        {
+          "failure": "",
+          "seconds": "0.001",
+          "name": "locatorMustReturnTheRequestedRealChunkId",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.quality.QualityEvidenceVerifierTest"
+        },
+        {
+          "failure": "",
+          "seconds": "0.001",
+          "name": "unitMetadataMustBelongToSameDocument",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.quality.QualityEvidenceVerifierTest"
+        },
+        {
+          "failure": "",
+          "seconds": "0.001",
+          "name": "missingChunkCannotBecomeEvidence",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.quality.QualityEvidenceVerifierTest"
+        },
+        {
+          "failure": "",
+          "seconds": "0.0",
+          "name": "staleHashCannotBePassedAsCurrentEvidence",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.quality.QualityEvidenceVerifierTest"
+        },
+        {
+          "failure": "",
+          "seconds": "0.001",
+          "name": "checksOwnerBeforeReadingAndNeverReturnsAnotherDocumentsContent",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.quality.QualityEvidenceVerifierTest"
+        }
+      ],
+      "xmlRawSha256": "5e89a094fdb40c6844dd1e1b28732e4ea61984c3ebaf224268dc6f50047a8319",
+      "errors": 0
+    },
+    {
+      "tests": 4,
+      "class": "com.knowledgegraph.assistant.quality.JdbcQualityReadRepositoryTest",
+      "skipped": 0,
+      "failures": 0,
+      "cases": [
+        {
+          "failure": "",
+          "seconds": "0.014",
+          "name": "candidateScopeIsBoundBeforeBothCountAndPageLimit",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.quality.JdbcQualityReadRepositoryTest"
+        },
+        {
+          "failure": "",
+          "seconds": "0.001",
+          "name": "snapshotHashMetadataRequiresRealDocumentOwnershipAndSelectedScope",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.quality.JdbcQualityReadRepositoryTest"
+        },
+        {
+          "failure": "",
+          "seconds": "0.013",
+          "name": "insightUsesDistinctVisibleNodesAndTwoVisibleEndpointsForActiveEdges",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.quality.JdbcQualityReadRepositoryTest"
+        },
+        {
+          "failure": "",
+          "seconds": "0.002",
+          "name": "unsupportedInsightDimensionsAreRejectedBeforeAnySql",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.quality.JdbcQualityReadRepositoryTest"
+        }
+      ],
+      "xmlRawSha256": "3d2fabda86fcd0d5eff1ab58a9ff178d378fbdee126542aff2f070ae8c834668",
+      "errors": 0
+    },
+    {
+      "tests": 7,
+      "class": "com.knowledgegraph.assistant.research.ResearchAgentToolProviderTest",
+      "skipped": 0,
+      "failures": 0,
+      "cases": [
+        {
+          "failure": "",
+          "seconds": "0.042",
+          "name": "graphKeepsIncomingOutgoingDirectionAndDirectedPath",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.research.ResearchAgentToolProviderTest"
+        },
+        {
+          "failure": "",
+          "seconds": "0.013",
+          "name": "insufficientSourceSlotsReportUncoveredDocumentWithoutBorrowingScope",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.research.ResearchAgentToolProviderTest"
+        },
+        {
+          "failure": "",
+          "seconds": "0.002",
+          "name": "sevenToolsHaveRoleEffectsAndClosedSchemas",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.research.ResearchAgentToolProviderTest"
+        },
+        {
+          "failure": "",
+          "seconds": "0.003",
+          "name": "draftUsesOnlyLocalIdsAndNeverSaves",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.research.ResearchAgentToolProviderTest"
+        },
+        {
+          "failure": "",
+          "seconds": "0.001",
+          "name": "sourceStatusAndNodeScopeFailClosed",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.research.ResearchAgentToolProviderTest"
+        },
+        {
+          "failure": "",
+          "seconds": "0.003",
+          "name": "retrievalProvidesRealHashForImmediateRereadAndStableEvidence",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.research.ResearchAgentToolProviderTest"
+        },
+        {
+          "failure": "",
+          "seconds": "0.002",
+          "name": "longABBodiesReceiveReservedCharacterSharesAndStableExcerpts",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.research.ResearchAgentToolProviderTest"
+        }
+      ],
+      "xmlRawSha256": "3d4316e2b2adace4ec6c81de656a419d503dafac529197c72033d4625fc50f3e",
+      "errors": 0
+    },
+    {
+      "tests": 5,
+      "class": "com.knowledgegraph.assistant.research.JdbcResearchReadRepositoryTest",
+      "skipped": 0,
+      "failures": 0,
+      "cases": [
+        {
+          "failure": "",
+          "seconds": "0.01",
+          "name": "sourceMetadataUsesExactIdsAndActualMapperFields",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.research.JdbcResearchReadRepositoryTest"
+        },
+        {
+          "failure": "",
+          "seconds": "0.005",
+          "name": "matchingDocumentsFiltersLibraryAndDocumentBeforeLimitWithBoundTerms",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.research.JdbcResearchReadRepositoryTest"
+        },
+        {
+          "failure": "",
+          "seconds": "0.021",
+          "name": "nodeMapperExposesWhitelistedReviewAndScopedSourceFlag",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.research.JdbcResearchReadRepositoryTest"
+        },
+        {
+          "failure": "",
+          "seconds": "0.002",
+          "name": "formalAvailabilityRejectsAllNonFormalStatesAndNodeScopeFailsClosed",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.research.JdbcResearchReadRepositoryTest"
+        },
+        {
+          "failure": "",
+          "seconds": "0.009",
+          "name": "edgeQueryChecksBothEndpointsAndRealEvidenceBeforeLimit",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.research.JdbcResearchReadRepositoryTest"
+        }
+      ],
+      "xmlRawSha256": "376cb88b706af30db9c6235dfd05491ed356859f3cdec71a7e5a8d3a04131fd1",
+      "errors": 0
+    },
+    {
+      "tests": 10,
+      "class": "com.knowledgegraph.assistant.research.ResearchComparisonTest",
+      "skipped": 0,
+      "failures": 0,
+      "cases": [
+        {
+          "failure": "",
+          "seconds": "0.006",
+          "name": "runnerMergesSingleDocumentSourceWithABRereadWithoutScopeCollision",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.research.ResearchComparisonTest"
+        },
+        {
+          "failure": "",
+          "seconds": "0.007",
+          "name": "qualityHandoffCreatesTenByTwoBatchesAndDefersOversizedClaim",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.research.ResearchComparisonTest"
+        },
+        {
+          "failure": "",
+          "seconds": "0.005",
+          "name": "comparisonRejectsMissingDuplicateAndNonDirectInputs",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.research.ResearchComparisonTest"
+        },
+        {
+          "failure": "",
+          "seconds": "0.002",
+          "name": "failedAStillPreservesBAndBlocksComparison",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.research.ResearchComparisonTest"
+        },
+        {
+          "failure": "",
+          "seconds": "0.004",
+          "name": "comparisonRereadsBothOriginalSourcesAndNeverClaimsSemanticWinner",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.research.ResearchComparisonTest"
+        },
+        {
+          "failure": "",
+          "seconds": "0.001",
+          "name": "partialAndStaleSourcePreserveGap",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.research.ResearchComparisonTest"
+        },
+        {
+          "failure": "",
+          "seconds": "0.003",
+          "name": "runnerStillRejectsSameIdWithChangedContentAndRetainsFirstEvidence",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.research.ResearchComparisonTest"
+        },
+        {
+          "failure": "",
+          "seconds": "0.007",
+          "name": "runnerMergesSharedNodeAndEdgeFromIndependentDocumentScopes",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.research.ResearchComparisonTest"
+        },
+        {
+          "failure": "",
+          "seconds": "0.003",
+          "name": "isolatedRuntimeRunsABIndependentlyThenPassesOnlyDirectArtifacts",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.research.ResearchComparisonTest"
+        },
+        {
+          "failure": "",
+          "seconds": "0.002",
+          "name": "qualityHandoffRejectsFabricatedOrCrossDocumentSourceAndRetainsOverLimitClaims",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.research.ResearchComparisonTest"
+        }
+      ],
+      "xmlRawSha256": "d1c8f5a1af00f232f66cb172407cd2ad2943f7cecb9e4dcdb0e9d2a277ac6c18",
+      "errors": 0
+    },
+    {
+      "tests": 2,
+      "class": "com.knowledgegraph.assistant.research.ResearchDraftValidatorTest",
+      "skipped": 0,
+      "failures": 0,
+      "cases": [
+        {
+          "failure": "",
+          "seconds": "0.001",
+          "name": "validatesLocalAndExistingEndpointsWithoutWriting",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.research.ResearchDraftValidatorTest"
+        },
+        {
+          "failure": "",
+          "seconds": "0.001",
+          "name": "rejectsOutOfScopeLibraryForgedIdAndUnknownEndpoint",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.research.ResearchDraftValidatorTest"
+        }
+      ],
+      "xmlRawSha256": "7c19877f0073f7c4ccc26dc877dc6800c2c0a155ce7387fc7703d6bd61b91e4c",
+      "errors": 0
+    },
+    {
+      "tests": 10,
+      "class": "com.knowledgegraph.assistant.learning.LearningAgentToolProviderTest",
+      "skipped": 0,
+      "failures": 0,
+      "cases": [
+        {
+          "failure": "",
+          "seconds": "0.006",
+          "name": "eightClosedRoleSpecificToolsAndNoWrites",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.learning.LearningAgentToolProviderTest"
+        },
+        {
+          "failure": "",
+          "seconds": "0.005",
+          "name": "emptyPathAndFormalAssessmentAreDistinctFromOldScores",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.learning.LearningAgentToolProviderTest"
+        },
+        {
+          "failure": "",
+          "seconds": "0.057",
+          "name": "learningInputsExposeOriginalClaimsAndCapturedQualityWithoutSemanticUpgrade",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.learning.LearningAgentToolProviderTest"
+        },
+        {
+          "failure": "",
+          "seconds": "0.024",
+          "name": "trustedPointerRereadsExactFormalChunkAndRejectsChangedHash",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.learning.LearningAgentToolProviderTest"
+        },
+        {
+          "failure": "",
+          "seconds": "0.011",
+          "name": "graphIsBoundedDirectionalAndNotPrerequisiteProof",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.learning.LearningAgentToolProviderTest"
+        },
+        {
+          "failure": "",
+          "seconds": "0.007",
+          "name": "runnerKeepsFailedEvidenceReadButAllowsLaterInformalPractice",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.learning.LearningAgentToolProviderTest"
+        },
+        {
+          "failure": "",
+          "seconds": "0.001",
+          "name": "sourceRereadRequiresHostPointerAndRejectsNodeScope",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.learning.LearningAgentToolProviderTest"
+        },
+        {
+          "failure": "",
+          "seconds": "0.013",
+          "name": "actualRunnerProducesPathDiffExplanationAndTwoInformalQuestions",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.learning.LearningAgentToolProviderTest"
+        },
+        {
+          "failure": "",
+          "seconds": "0.017",
+          "name": "runnerMergesDirectResearchSourceAndLearningRereadWithoutChangingOriginalRef",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.learning.LearningAgentToolProviderTest"
+        },
+        {
+          "failure": "",
+          "seconds": "0.003",
+          "name": "subsetQualityReadReturnsPartialWithExplicitUncoveredClaim",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.learning.LearningAgentToolProviderTest"
+        }
+      ],
+      "xmlRawSha256": "df975e35d886002e0250ccd2682a12396a22bc81a00a169586caeb402787babf",
+      "errors": 0
+    },
+    {
+      "tests": 3,
+      "class": "com.knowledgegraph.assistant.learning.JdbcLearningReadRepositoryTest",
+      "skipped": 0,
+      "failures": 0,
+      "cases": [
+        {
+          "failure": "",
+          "seconds": "0.031",
+          "name": "actualPathAndStepMapperFingerprintChangesWithStepStatus",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.learning.JdbcLearningReadRepositoryTest"
+        },
+        {
+          "failure": "",
+          "seconds": "0.003",
+          "name": "nodeSourceLinkRequiresExactTripleAndFormalStates",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.learning.JdbcLearningReadRepositoryTest"
+        },
+        {
+          "failure": "",
+          "seconds": "0.003",
+          "name": "graphFiltersAllDimensionsBeforeLimitAndBindsParameters",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.learning.JdbcLearningReadRepositoryTest"
+        }
+      ],
+      "xmlRawSha256": "1848f653cfcd8fceca7fe68098644d671df31ace531dd170475f319e15e649a7",
+      "errors": 0
+    },
+    {
+      "tests": 8,
+      "class": "com.knowledgegraph.assistant.learning.LearningArtifactHandoffTest",
+      "skipped": 0,
+      "failures": 0,
+      "cases": [
+        {
+          "failure": "",
+          "seconds": "0.005",
+          "name": "comparisonKeepsUncheckedClaimsSeparateFromActuallyCheckedSources",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.learning.LearningArtifactHandoffTest"
+        },
+        {
+          "failure": "",
+          "seconds": "0.003",
+          "name": "failedObservationIsRecordedWithoutBecomingEvidenceButForgedObservationStillRejects",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.learning.LearningArtifactHandoffTest"
+        },
+        {
+          "failure": "",
+          "seconds": "0.002",
+          "name": "rejectsNonDirectMaterialAndForgedQualityClaimOrHash",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.learning.LearningArtifactHandoffTest"
+        },
+        {
+          "failure": "",
+          "seconds": "0.001",
+          "name": "disjointQualityBatchesCoverWholeArtifactWithoutConflatingRequestCoverage",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.learning.LearningArtifactHandoffTest"
+        },
+        {
+          "failure": "",
+          "seconds": "0.002",
+          "name": "directResearchAndCapturedQualityObservationRemainPartialAndSemanticUnknown",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.learning.LearningArtifactHandoffTest"
+        },
+        {
+          "failure": "",
+          "seconds": "0.001",
+          "name": "completeSingleClaimRequestDoesNotClaimWholeArtifactCoverage",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.learning.LearningArtifactHandoffTest"
+        },
+        {
+          "failure": "",
+          "seconds": "0.0",
+          "name": "samePhysicalSourceDifferentScopeCountsOnceButDifferentDocumentDoesNotCollapse",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.learning.LearningArtifactHandoffTest"
+        },
+        {
+          "failure": "",
+          "seconds": "0.004",
+          "name": "duplicateUnknownAndFalselyCompleteQualityChecksStillReject",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.learning.LearningArtifactHandoffTest"
+        }
+      ],
+      "xmlRawSha256": "c1c8a41c226ba2791d563b1d110aef0229b93254a5f7b125bbf550b498acb2e0",
+      "errors": 0
+    },
+    {
+      "tests": 5,
+      "class": "com.knowledgegraph.assistant.learning.LearningDraftValidatorTest",
+      "skipped": 0,
+      "failures": 0,
+      "cases": [
+        {
+          "failure": "",
+          "seconds": "0.004",
+          "name": "rejectsOutOfScopeInactiveAndInventedFormalFields",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.learning.LearningDraftValidatorTest"
+        },
+        {
+          "failure": "",
+          "seconds": "0.003",
+          "name": "inactiveNodeCannotBeUsedForExplanationOrPractice",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.learning.LearningDraftValidatorTest"
+        },
+        {
+          "failure": "",
+          "seconds": "0.002",
+          "name": "layeredExplanationAndTwoInformalQuestionsCannotClaimGrades",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.learning.LearningDraftValidatorTest"
+        },
+        {
+          "failure": "",
+          "seconds": "0.0",
+          "name": "newDraftHasRealNodesOnlyLocalIdsAndNoWriteReceipt",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.learning.LearningDraftValidatorTest"
+        },
+        {
+          "failure": "",
+          "seconds": "0.001",
+          "name": "adjustRequiresFreshBaselineAndDeterministicCompletionImpact",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.learning.LearningDraftValidatorTest"
+        }
+      ],
+      "xmlRawSha256": "dff9dee0c900e643e7cb7f3959fc65d519b3012421e7a2d7c919004c883b857c",
+      "errors": 0
+    },
+    {
+      "tests": 10,
+      "class": "com.knowledgegraph.assistant.assessment.AssessmentAgentToolProviderTest",
+      "skipped": 0,
+      "failures": 0,
+      "cases": [
+        {
+          "failure": "",
+          "seconds": "1.203",
+          "name": "staleBaselineAndStepOwnershipRejectWithoutRebinding",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.assessment.AssessmentAgentToolProviderTest"
+        },
+        {
+          "failure": "",
+          "seconds": "0.039",
+          "name": "currentStageIsRealButLegacyScoreCannotPassAndNoCurrentIsSeparate",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.assessment.AssessmentAgentToolProviderTest"
+        },
+        {
+          "failure": "",
+          "seconds": "0.016",
+          "name": "malformedLegacyTotalsStayUnverifiedAndCannotCreateFormalWeakness",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.assessment.AssessmentAgentToolProviderTest"
+        },
+        {
+          "failure": "",
+          "seconds": "0.014",
+          "name": "largeIdRealStepOwnershipAcceptsIndependentEqualNumericIds",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.assessment.AssessmentAgentToolProviderTest"
+        },
+        {
+          "failure": "",
+          "seconds": "0.005",
+          "name": "multipleCurrentInvalidStatusAndMidReadChangeAreNotDraftReady",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.assessment.AssessmentAgentToolProviderTest"
+        },
+        {
+          "failure": "",
+          "seconds": "0.004",
+          "name": "historyIsPagedLegacyOnlyAndUnknownStepRemainsUnknown",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.assessment.AssessmentAgentToolProviderTest"
+        },
+        {
+          "failure": "",
+          "seconds": "0.023",
+          "name": "largeIdEmptyHistoryAcceptsIndependentEqualPathSnapshots",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.assessment.AssessmentAgentToolProviderTest"
+        },
+        {
+          "failure": "",
+          "seconds": "0.01",
+          "name": "fourClosedRoleBoundToolsRejectFormalFieldsAndWrongRole",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.assessment.AssessmentAgentToolProviderTest"
+        },
+        {
+          "failure": "",
+          "seconds": "0.003",
+          "name": "largeIdStillRejectsDifferentPathFingerprintAndForeignOrMissingStepOwner",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.assessment.AssessmentAgentToolProviderTest"
+        },
+        {
+          "failure": "",
+          "seconds": "0.002",
+          "name": "staleDuringHistoryAndForeignStepReject",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.assessment.AssessmentAgentToolProviderTest"
+        }
+      ],
+      "xmlRawSha256": "ef06f4967cf21a5caf32cb612f97ae439a534e66044d388a8c100feb0ee28c3b",
+      "errors": 0
+    },
+    {
+      "tests": 3,
+      "class": "com.knowledgegraph.assistant.assessment.JdbcAssessmentReadRepositoryTest",
+      "skipped": 0,
+      "failures": 0,
+      "cases": [
+        {
+          "failure": "",
+          "seconds": "0.254",
+          "name": "actualMapperPreservesNullableStepAndClientTotals",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.assessment.JdbcAssessmentReadRepositoryTest"
+        },
+        {
+          "failure": "",
+          "seconds": "0.003",
+          "name": "filtersAllScopeDimensionsPathStepAndCursorBeforeLimit",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.assessment.JdbcAssessmentReadRepositoryTest"
+        },
+        {
+          "failure": "",
+          "seconds": "0.001",
+          "name": "limitPlusOneSignalsMoreWithoutLeakingExtraRow",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.assessment.JdbcAssessmentReadRepositoryTest"
+        }
+      ],
+      "xmlRawSha256": "218fc6ab1cfb7a3a10c5ea520bd5baaeda2c9690fe2e37aa051698b13d1b2eb4",
+      "errors": 0
+    },
+    {
+      "tests": 2,
+      "class": "com.knowledgegraph.assistant.assessment.AssessmentArtifactHandoffTest",
+      "skipped": 0,
+      "failures": 0,
+      "cases": [
+        {
+          "failure": "",
+          "seconds": "0.272",
+          "name": "actualRunnerHandsOriginalInformalPracticeToTwoUnexecutedAssessmentQuestions",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.assessment.AssessmentArtifactHandoffTest"
+        },
+        {
+          "failure": "",
+          "seconds": "0.005",
+          "name": "trustedFailureRetainsReasonWithoutEvidenceAndLaterIndependentPracticeSurvives",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.assessment.AssessmentArtifactHandoffTest"
+        }
+      ],
+      "xmlRawSha256": "eb2c8dfd3a2ce4a423ca584c38596cb1bb4cee5604c0862c5ebd10282cbf495f",
+      "errors": 0
+    },
+    {
+      "tests": 5,
+      "class": "com.knowledgegraph.assistant.assessment.AssessmentDraftValidatorTest",
+      "skipped": 0,
+      "failures": 0,
+      "cases": [
+        {
+          "failure": "",
+          "seconds": "0.003",
+          "name": "malformedQuestionAndFormalFieldsRejectBeforeReads",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.assessment.AssessmentDraftValidatorTest"
+        },
+        {
+          "failure": "",
+          "seconds": "0.015",
+          "name": "draftRejectsStepChangeAndUnlinkedOriginalSource",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.assessment.AssessmentDraftValidatorTest"
+        },
+        {
+          "failure": "",
+          "seconds": "0.006",
+          "name": "originalDirectSourceIsRereadByExactTripleButForgedIdRejects",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.assessment.AssessmentDraftValidatorTest"
+        },
+        {
+          "failure": "",
+          "seconds": "0.003",
+          "name": "sourceLessCandidateIsExplicitlyUnexecutedAndPartialWithNoWrite",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.assessment.AssessmentDraftValidatorTest"
+        },
+        {
+          "failure": "",
+          "seconds": "0.005",
+          "name": "staleSourceNodeScopeAndPathBaselineCannotBecomeEvidence",
+          "error": "",
+          "class": "com.knowledgegraph.assistant.assessment.AssessmentDraftValidatorTest"
+        }
+      ],
+      "xmlRawSha256": "af40685a592ad7e7fd79bcbf10fd552946d747da97eb58ac4ee62e4727260c82",
+      "errors": 0
+    }
+  ],
+  "startedAt": "2026-09-28T10:09:12.2649229+08:00",
+  "exitCode": 0
+}

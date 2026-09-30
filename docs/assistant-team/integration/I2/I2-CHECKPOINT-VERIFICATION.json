@@ -1,0 +1,507 @@
+{
+  "baselineFilesMatched": 62,
+  "unexpectedNewPaths": [],
+  "regressionSuites": [
+    {
+      "class": "com.knowledgegraph.assistant.runtime.AssistantRuntimeTest",
+      "lastWriteTime": "2026-09-27T21:25:02.9326162+08:00",
+      "xmlSha256": "e6297517a2c22be95d429e362804ab7c4ccba66bd0ae271ad8a031e6a2a986c1",
+      "tests": 28
+    },
+    {
+      "class": "com.knowledgegraph.assistant.runtime.DecisionParserTest",
+      "lastWriteTime": "2026-09-27T21:25:03.2283800+08:00",
+      "xmlSha256": "e0f5509422511977ec7cc7fc8dc65f920f78e49ec155be991a49b6b6a592e582",
+      "tests": 15
+    },
+    {
+      "class": "com.knowledgegraph.assistant.ingestion.IngestionAgentToolProviderTest",
+      "lastWriteTime": "2026-09-27T21:25:01.8351674+08:00",
+      "xmlSha256": "2bfa9438f75656a87bd3b4374ceff812de09d2450db5e8d383d47376b361af1b",
+      "tests": 12
+    },
+    {
+      "class": "com.knowledgegraph.assistant.ingestion.JdbcIngestionReadRepositoryTest",
+      "lastWriteTime": "2026-09-27T21:25:01.9644887+08:00",
+      "xmlSha256": "655dac3f4e605bb18d709ad00c88b8259243d0a1a0e0c12423018c8cbe9fecbd",
+      "tests": 4
+    },
+    {
+      "class": "com.knowledgegraph.assistant.quality.QualityAgentToolProviderTest",
+      "lastWriteTime": "2026-09-27T21:25:02.5052010+08:00",
+      "xmlSha256": "3f03fe260b6284f7067d38214e8979273d8c83ffa93868abf0e495907e18e7a0",
+      "tests": 15
+    },
+    {
+      "class": "com.knowledgegraph.assistant.quality.QualityEvidenceVerifierTest",
+      "lastWriteTime": "2026-09-27T21:25:02.5128463+08:00",
+      "xmlSha256": "9876d786487713dc817263080423bb0377c1916d403a6ac95cdf74cccd1eaa19",
+      "tests": 6
+    },
+    {
+      "class": "com.knowledgegraph.assistant.quality.JdbcQualityReadRepositoryTest",
+      "lastWriteTime": "2026-09-27T21:25:02.3267595+08:00",
+      "xmlSha256": "013b2a4337d011d8c75ce37ef218a642566bad866cc12f8f5cbe6f4ec3419275",
+      "tests": 4
+    },
+    {
+      "class": "com.knowledgegraph.assistant.research.ResearchAgentToolProviderTest",
+      "lastWriteTime": "2026-09-27T21:25:02.6593731+08:00",
+      "xmlSha256": "7668ab630d119258829cc8504813efd698a3759131b939aa44b12adb265c1bf6",
+      "tests": 7
+    },
+    {
+      "class": "com.knowledgegraph.assistant.research.JdbcResearchReadRepositoryTest",
+      "lastWriteTime": "2026-09-27T21:25:02.5715414+08:00",
+      "xmlSha256": "f44eea8a2045eac0a00a45ec10fdf014020fcab2edd7ffdd19cb69eed6458036",
+      "tests": 5
+    },
+    {
+      "class": "com.knowledgegraph.assistant.research.ResearchComparisonTest",
+      "lastWriteTime": "2026-09-27T21:25:02.7213313+08:00",
+      "xmlSha256": "1fadf1ab15aebe4830f90c95b9fb5e1296162f342fe113e06e21fe459bf4654d",
+      "tests": 10
+    },
+    {
+      "class": "com.knowledgegraph.assistant.research.ResearchDraftValidatorTest",
+      "lastWriteTime": "2026-09-27T21:25:02.7283056+08:00",
+      "xmlSha256": "ffeb57bb786096a3b3a7efeb29fc04c01d6c49cd02eb22bb3e7c0e4d5c33e334",
+      "tests": 2
+    },
+    {
+      "class": "com.knowledgegraph.assistant.learning.LearningAgentToolProviderTest",
+      "lastWriteTime": "2026-09-27T21:25:02.2260793+08:00",
+      "xmlSha256": "b256954ef30a1ea07653b8fd0f3f6d3a3d05a936680a39b2fbedba88db1faab6",
+      "tests": 10
+    },
+    {
+      "class": "com.knowledgegraph.assistant.learning.JdbcLearningReadRepositoryTest",
+      "lastWriteTime": "2026-09-27T21:25:02.0113580+08:00",
+      "xmlSha256": "f450b9bc7d77504bcaad398c94d667233621090be8bfcab9a78f24ca01314d55",
+      "tests": 3
+    },
+    {
+      "class": "com.knowledgegraph.assistant.learning.LearningArtifactHandoffTest",
+      "lastWriteTime": "2026-09-27T21:25:02.2520783+08:00",
+      "xmlSha256": "be67ebd39e8c62e86c96a8bbc1e9b4a211fe345754cd1285d8a49b31c1c612cd",
+      "tests": 8
+    },
+    {
+      "class": "com.knowledgegraph.assistant.learning.LearningDraftValidatorTest",
+      "lastWriteTime": "2026-09-27T21:25:02.2711309+08:00",
+      "xmlSha256": "e1a26cd047d4fcc19364fa669ce6b4def65de855b9a32a7d231111ca2038bf71",
+      "tests": 5
+    },
+    {
+      "class": "com.knowledgegraph.assistant.assessment.AssessmentAgentToolProviderTest",
+      "lastWriteTime": "2026-09-27T21:25:00.8760102+08:00",
+      "xmlSha256": "d7c9eeb9318c8004a56f8ed1029a186996b6852f2d586ce8a443a397597d4ead",
+      "tests": 10
+    },
+    {
+      "class": "com.knowledgegraph.assistant.assessment.JdbcAssessmentReadRepositoryTest",
+      "lastWriteTime": "2026-09-27T21:25:01.6056868+08:00",
+      "xmlSha256": "5d945c410a5a0296d68f56ffe9a0422a4864a61b9dc1809c08e9528ba59c3025",
+      "tests": 3
+    },
+    {
+      "class": "com.knowledgegraph.assistant.assessment.AssessmentArtifactHandoffTest",
+      "lastWriteTime": "2026-09-27T21:25:01.2403680+08:00",
+      "xmlSha256": "008556f8f073473beb59509ff7c40e31d95d250776327dafe63eda7b7f2d54a5",
+      "tests": 2
+    },
+    {
+      "class": "com.knowledgegraph.assistant.assessment.AssessmentDraftValidatorTest",
+      "lastWriteTime": "2026-09-27T21:25:01.2791292+08:00",
+      "xmlSha256": "0192151ea16bc729f202acb04c67c5e8ea568e00d1d7a2a91a77e4d4358cdb43",
+      "tests": 5
+    }
+  ],
+  "port33078Listeners": [],
+  "regressionTests": 154,
+  "protectedFilesMatched": 499,
+  "scriptsSyntaxChecked": 8,
+  "publicEvidencePlaintextAdminReaderHits": 0,
+  "duplicateCopiesMatched": 98,
+  "isolatedProcesses": [],
+  "status": "incomplete_performance_blocker_not_user_acceptance",
+  "newFiles": [
+    {
+      "rawSha256": "952a6a9b8a5167fcd1da8996a670630d5a417722e7b3d060a637829aba7d28f3",
+      "file": "backend-java/src/test/java/com/knowledgegraph/assistant/i2/I2FaultVariantTest.java"
+    },
+    {
+      "rawSha256": "747f23576d633708403c0dfaf1e133dcb0ea74d90509603f245598a1c7b49b56",
+      "file": "backend-java/src/test/java/com/knowledgegraph/assistant/i2/I2JdbcBaselineTest.java"
+    },
+    {
+      "rawSha256": "eb518e6c7b884595bd868764f3686e5f002bea07266fcaa9851f4df31200f70c",
+      "file": "backend-java/src/test/java/com/knowledgegraph/assistant/i2/I2MySqlSupport.java"
+    },
+    {
+      "rawSha256": "1a61284f97d59290c3d168434800dc32cd8767212dfe63bbaa1d36a8cba673ca",
+      "file": "backend-java/src/test/java/com/knowledgegraph/assistant/i2/I2QueryBudgetTest.java"
+    },
+    {
+      "rawSha256": "a03b14ec7b4130d5d11d4c7e6c7dc2a8a182f7d81e4f88a8bd0be12d05c66fdb",
+      "file": "backend-java/src/test/java/com/knowledgegraph/assistant/i2/I2ReadOnlyPrivilegeTest.java"
+    },
+    {
+      "rawSha256": "83f0b125da9aaac0f5370e7b98f5e4187b71d7d47e61226116b88e8006342875",
+      "file": "backend-java/src/test/java/com/knowledgegraph/assistant/i2/I2ScaleQueryTest.java"
+    },
+    {
+      "rawSha256": "db6b66b84b52d620e5f01a30a57864439c536eadede42b95823870288925496e",
+      "file": "docs/assistant-team/integration/I2/Build-I2Fixture.ps1"
+    },
+    {
+      "rawSha256": "59a3742539ee3c0bd7a02634a5938292bebfe6a60b8daddb27dac095e231588a",
+      "file": "docs/assistant-team/integration/I2/I2-ACCEPTED_STATE-AFTER.json"
+    },
+    {
+      "rawSha256": "7dd94717aa74b3596d4abd94f58c2d295266079139d6cf7a7f357264cb7475d2",
+      "file": "docs/assistant-team/integration/I2/I2-ACCEPTED_STATE-BEFORE.json"
+    },
+    {
+      "rawSha256": "a80f04c1c5767034aa6f800eb8f1f1cf10595969567348bdd17bb050849755f3",
+      "file": "docs/assistant-team/integration/I2/I2-ACCEPTED_STATE-I2FaultVariantTest.json"
+    },
+    {
+      "rawSha256": "4b653a9d145e2ec044ceaa6a55695f39c3cf5025cd60ba3f1e9b957c7afe3d10",
+      "file": "docs/assistant-team/integration/I2/I2-ACCEPTED_STATE-ZERO-WRITE.json"
+    },
+    {
+      "rawSha256": "f89cf3b17030c96ade0eb97a93a646659a49d16b88d8876bedd1a630dd8ae138",
+      "file": "docs/assistant-team/integration/I2/I2-ALIAS-START.json"
+    },
+    {
+      "rawSha256": "3d5c7884f6dd9695270915a004521a7be1b77a917fdf4bd417a9634b04c3cc9a",
+      "file": "docs/assistant-team/integration/I2/I2-ARCHIVE_A-AFTER.json"
+    },
+    {
+      "rawSha256": "c66fa67b12ddd70a6f7b91c18c2c1e34a213a44fe7182a25927b9f65fce837d2",
+      "file": "docs/assistant-team/integration/I2/I2-ARCHIVE_A-BEFORE.json"
+    },
+    {
+      "rawSha256": "66fd47e9ebb5232fb31f91c05f31b86b42406eeff21946117920ae325f112687",
+      "file": "docs/assistant-team/integration/I2/I2-ARCHIVE_A-I2FaultVariantTest.json"
+    },
+    {
+      "rawSha256": "283677b4127b649b14d092eb47726136a12fca092d6f06069e803483630e80f9",
+      "file": "docs/assistant-team/integration/I2/I2-ARCHIVE_A-ZERO-WRITE.json"
+    },
+    {
+      "rawSha256": "3bc18df8ca2651ad5ee782a64c08a7b428d7d625d8dcf0271974b22629ce2b24",
+      "file": "docs/assistant-team/integration/I2/I2-BASE-AFTER.json"
+    },
+    {
+      "rawSha256": "f361592d90e3ee5271a7a378d72c9fd4b422328dd97c07ed635702aea204a419",
+      "file": "docs/assistant-team/integration/I2/I2-BASE-BEFORE.json"
+    },
+    {
+      "rawSha256": "f693479b7e5c181a527450b2606a68b0e9b093cc766f082d0a71e31a98dbb0d6",
+      "file": "docs/assistant-team/integration/I2/I2-BASE-I2JdbcBaselineTest.json"
+    },
+    {
+      "rawSha256": "0c764e9f76958fffe05b116c3d27c9f0d94a2df3f450b8b80f45703e1e2838d9",
+      "file": "docs/assistant-team/integration/I2/I2-BASE-I2ReadOnlyPrivilegeTest.json"
+    },
+    {
+      "rawSha256": "2fee4e1c11084a7c964d5b89cb44765a3ffc22615a35177ac64bc79b314be6bb",
+      "file": "docs/assistant-team/integration/I2/I2-BASE-ZERO-WRITE.json"
+    },
+    {
+      "rawSha256": "09130b50c3a9bfca40c76ae19e2caa72e496560643b9bf860aad8c8467313db0",
+      "file": "docs/assistant-team/integration/I2/I2-BUDGET-AFTER.json"
+    },
+    {
+      "rawSha256": "9c5f6709764bce483521d8f1465264fcfdd2f8d880f4ba4280d05d7666dd6fa6",
+      "file": "docs/assistant-team/integration/I2/I2-BUDGET-BEFORE.json"
+    },
+    {
+      "rawSha256": "850a23e30487df4d98da05c7a99579bdf3f039b13597287e5273250417ebc04c",
+      "file": "docs/assistant-team/integration/I2/I2-BUDGET-I2QueryBudgetTest.json"
+    },
+    {
+      "rawSha256": "5b664785798bf44b47aa555ec80a2455957c4e21cc98d8fd6384c9a99ef77b4b",
+      "file": "docs/assistant-team/integration/I2/I2-BUDGET-ZERO-WRITE.json"
+    },
+    {
+      "rawSha256": "8bfbb38ba5680d02bd7651f7d9936b72db9ddfb9b89dcc7ab598bd91d188ad07",
+      "file": "docs/assistant-team/integration/I2/I2-ENVIRONMENT-BLOCK.json"
+    },
+    {
+      "rawSha256": "62782469fd7c87d69cde1c6c9c178337c7e0d015b6d8ad529d1b8d409a4ce530",
+      "file": "docs/assistant-team/integration/I2/I2-ENVIRONMENT.json"
+    },
+    {
+      "rawSha256": "183ae5957a710279f066fc4e078247ae6adc935029b31177e73ae57a5029e13d",
+      "file": "docs/assistant-team/integration/I2/I2-FIXTURE-LOAD.json"
+    },
+    {
+      "rawSha256": "64e1ef10f4409a42dc0ddcf1b34541db5be7b484c8cf04c6c921edc88aeb2822",
+      "file": "docs/assistant-team/integration/I2/I2-FIXTURE-MAPPING.json"
+    },
+    {
+      "rawSha256": "f2401d9bbe1833d8610d3c65080f17f845a5528b800fed10a8fa0b54dc523be1",
+      "file": "docs/assistant-team/integration/I2/I2-FIXTURE.sql"
+    },
+    {
+      "rawSha256": "da14ee5ec6a8de40d7a42cadde0be8b7c6fd23e7bf5a0eb385fd1bb88bd70824",
+      "file": "docs/assistant-team/integration/I2/I2-HASH_CHANGED-AFTER.json"
+    },
+    {
+      "rawSha256": "65423223993255f3c81b507e99c789ab8d4b37de584227313f85861841cccbab",
+      "file": "docs/assistant-team/integration/I2/I2-HASH_CHANGED-BEFORE.json"
+    },
+    {
+      "rawSha256": "bce65e963f9b745c48675d78583b399d677146bb699e1a70d4d1d0711925dfec",
+      "file": "docs/assistant-team/integration/I2/I2-HASH_CHANGED-I2FaultVariantTest.json"
+    },
+    {
+      "rawSha256": "105f8f5cf8659d1307430104e1ce8b8bf587a8b80b0d8d7b6e1156b5e0fe8a65",
+      "file": "docs/assistant-team/integration/I2/I2-HASH_CHANGED-ZERO-WRITE.json"
+    },
+    {
+      "rawSha256": "e9f7c9c2c383b1b47978ce572dfea5c7424031b01bc23d5bb0bad5d88184fef0",
+      "file": "docs/assistant-team/integration/I2/I2-INACTIVE_CURRENT-AFTER.json"
+    },
+    {
+      "rawSha256": "dd0d840e858693b2d0e7774103f799ef2868d37e1c2d4b2cf69829cf6d11e4e7",
+      "file": "docs/assistant-team/integration/I2/I2-INACTIVE_CURRENT-BEFORE.json"
+    },
+    {
+      "rawSha256": "fb72006035f88f85f0df0d70fd62bacc9654d235a222ba77e9e8a39869cef788",
+      "file": "docs/assistant-team/integration/I2/I2-INACTIVE_CURRENT-I2FaultVariantTest.json"
+    },
+    {
+      "rawSha256": "83eeda2760dcf374eeb26f612148973f99b94b8486ca18163139e01ee747ecd4",
+      "file": "docs/assistant-team/integration/I2/I2-INACTIVE_CURRENT-ZERO-WRITE.json"
+    },
+    {
+      "rawSha256": "e54c03bfca8959491a6a5418004bf4618c79188d24f5ba4771594ab4e4124622",
+      "file": "docs/assistant-team/integration/I2/I2-LONG_A-AFTER.json"
+    },
+    {
+      "rawSha256": "b62701afb2e4a505bc05292e0652b06c380ffa8a083e1bdb3b8ab586bcf3ba3b",
+      "file": "docs/assistant-team/integration/I2/I2-LONG_A-BEFORE.json"
+    },
+    {
+      "rawSha256": "3a4b363eab0445e9dd49771e151cfd24a11f18c90abd3fea56b731895e18a1a6",
+      "file": "docs/assistant-team/integration/I2/I2-LONG_A-I2FaultVariantTest.json"
+    },
+    {
+      "rawSha256": "5006f8ebf3c7d53ea94eadeb37e2f3020100f4a18ee39ed404787bbbee2df5f9",
+      "file": "docs/assistant-team/integration/I2/I2-LONG_A-ZERO-WRITE.json"
+    },
+    {
+      "rawSha256": "bee5836c33b76035951ff49e912c2cbe1f203d41a5c0d6d8289735fe285d5c13",
+      "file": "docs/assistant-team/integration/I2/I2-MANAGEMENT-IDENTITY.json"
+    },
+    {
+      "rawSha256": "966e432f1f5f663d46d3fa880907d38d52eeae303a215c51b20afcdfba196586",
+      "file": "docs/assistant-team/integration/I2/I2-MULTI_CURRENT-AFTER.json"
+    },
+    {
+      "rawSha256": "06d77fd469b8d484327785ce1cdea2a31750ce9bdad86c31ec12363192f066df",
+      "file": "docs/assistant-team/integration/I2/I2-MULTI_CURRENT-BEFORE.json"
+    },
+    {
+      "rawSha256": "37307ca29f519dc8fe682a0c5aca07788e52ce4e2198192f3e6e9327494e93de",
+      "file": "docs/assistant-team/integration/I2/I2-MULTI_CURRENT-I2FaultVariantTest.json"
+    },
+    {
+      "rawSha256": "15fd23165175b75e2db54237ca6ee7a5cbcb88a187c3e12c1e19b57aecb86b3c",
+      "file": "docs/assistant-team/integration/I2/I2-MULTI_CURRENT-ZERO-WRITE.json"
+    },
+    {
+      "rawSha256": "79ab76da9f3e262c824fcedb23da2b6d8438ded03d5cd73f4dad7e375c0c428d",
+      "file": "docs/assistant-team/integration/I2/I2-NO_PATH-AFTER.json"
+    },
+    {
+      "rawSha256": "2057216fa1d3b667a141305618b08642c29666429ebaa2a38c543bfeae520d60",
+      "file": "docs/assistant-team/integration/I2/I2-NO_PATH-BEFORE.json"
+    },
+    {
+      "rawSha256": "5229627bf73f0579e77396bf1cdf5e97d70e73544b239e4920cd180e68d7b427",
+      "file": "docs/assistant-team/integration/I2/I2-NO_PATH-I2FaultVariantTest.json"
+    },
+    {
+      "rawSha256": "f4367ac1b4e5225142ea7031aabfc1aef6a454e773afee5ae611577571167a3a",
+      "file": "docs/assistant-team/integration/I2/I2-NO_PATH-ZERO-WRITE.json"
+    },
+    {
+      "rawSha256": "060b001353a717f8f8ac9c7c5530dfdee4dd6bc436922bb326d9aeda7fc14aab",
+      "file": "docs/assistant-team/integration/I2/I2-PREFLIGHT.json"
+    },
+    {
+      "rawSha256": "40466c3268740b52c5034475540e05200bdb56f35f0305b78d866ea876a39721",
+      "file": "docs/assistant-team/integration/I2/I2-PROTECTION-BEFORE.json"
+    },
+    {
+      "rawSha256": "9f3f4aad10561dd610ab8d06f33238f8a939c87d1715bb24c9203664228b35da",
+      "file": "docs/assistant-team/integration/I2/I2-REPORT.md"
+    },
+    {
+      "rawSha256": "b0bb4b323e6b0f6b8f3f251bd624dec22bac0e8f25c9fdf4f6d78cc3972cf73c",
+      "file": "docs/assistant-team/integration/I2/I2-SCALE-AFTER.json"
+    },
+    {
+      "rawSha256": "908dc3c85b613058346f67ba40e1daadb9958e99bb1e79e798c19b4ecc844d01",
+      "file": "docs/assistant-team/integration/I2/I2-SCALE-BEFORE.json"
+    },
+    {
+      "rawSha256": "eacb9eebc5810d190e5b2dde083e871fb264473bb5a79bf65358f4b7ab8c29c4",
+      "file": "docs/assistant-team/integration/I2/I2-SCALE-EXPLAIN-ANALYZED.json"
+    },
+    {
+      "rawSha256": "cf60e998a1c9bc646bb06c20f018b9e25a1a1dbc137c29e6f70513b43c0fb6ca",
+      "file": "docs/assistant-team/integration/I2/I2-SCALE-EXPLAIN.json"
+    },
+    {
+      "rawSha256": "14ad75816d167a11b52b4370c386adfa31903619ef8323877a5746f850fd7048",
+      "file": "docs/assistant-team/integration/I2/I2-SCALE-FIXTURE.json"
+    },
+    {
+      "rawSha256": "48b130b8a8cfa9ec70bfbd4d5e211badb0325a33d6f9b1288de5d45654da8bb0",
+      "file": "docs/assistant-team/integration/I2/I2-SCALE-I2ScaleQueryTest.json"
+    },
+    {
+      "rawSha256": "ac5dae2cbeb318e1a381f9825fb2b6445f49b1cc2728c35562a89ee262bfd53d",
+      "file": "docs/assistant-team/integration/I2/I2-SCALE-MAINTENANCE-REVIEW.json"
+    },
+    {
+      "rawSha256": "f7929d3fa28be5d7daa7d0ba862321b86c1c0faae4e16c2811f8e417b6c30dbb",
+      "file": "docs/assistant-team/integration/I2/I2-SCALE-STATISTICS.json"
+    },
+    {
+      "rawSha256": "8beda3351f265bb39623fdb2252f1352a6c3f523b7b785c00b30e74813f5fccc",
+      "file": "docs/assistant-team/integration/I2/I2-SCALE-ZERO-WRITE.json"
+    },
+    {
+      "rawSha256": "a05e36b7f888fc2b4f3c99820b9124bea31e6e75c3a6df9aefc1de7dfd36f729",
+      "file": "docs/assistant-team/integration/I2/I2-SCALE_ANALYZED-AFTER.json"
+    },
+    {
+      "rawSha256": "4535a0ddaa8655a454a296267abfd60919553c09282ba717f1a5b9920b4792c2",
+      "file": "docs/assistant-team/integration/I2/I2-SCALE_ANALYZED-BEFORE.json"
+    },
+    {
+      "rawSha256": "00edb7e09178c9b9880fb6e3ea36bd39d116fc1d99e4f0444962eca3ebfad491",
+      "file": "docs/assistant-team/integration/I2/I2-SCALE_ANALYZED-I2ScaleQueryTest.json"
+    },
+    {
+      "rawSha256": "7c9d781d378ebd8fe5b7d43d82d075c3e1e9282d5f4544a3ff88916f90066075",
+      "file": "docs/assistant-team/integration/I2/I2-SCALE_ANALYZED-ZERO-WRITE.json"
+    },
+    {
+      "rawSha256": "ba30b5b1fe1881b47d9ded93b69946af7f0cd57edecb4a09fcbe27a5e1b60aef",
+      "file": "docs/assistant-team/integration/I2/I2-STATUS.md"
+    },
+    {
+      "rawSha256": "cb08a7c2eedef674b7072e7d1a6e84d5c46eb045f3bc8c407b592dc0d2a977b9",
+      "file": "docs/assistant-team/integration/I2/I2-VARIANTS.json"
+    },
+    {
+      "rawSha256": "d38e0d37e3022cb65f53752c27edb53c7815da95c8c2b1ae2a2a8dc6cff9e843",
+      "file": "docs/assistant-team/integration/I2/Invoke-I2BaseVerification.ps1"
+    },
+    {
+      "rawSha256": "78dfecdfadd835403e28b75f28fc129906bf2f0bd14e9143eba2836cbd093e1f",
+      "file": "docs/assistant-team/integration/I2/Invoke-I2Environment.ps1"
+    },
+    {
+      "rawSha256": "9ec393bba42642013d8c183462ce748c8d69ba8a2f1310f59e00a1fc5188cece",
+      "file": "docs/assistant-team/integration/I2/Invoke-I2Scale.ps1"
+    },
+    {
+      "rawSha256": "45b65aa376a90e089491f65e70f43dd92f101658b3b00fd382a3afcef76aa8c5",
+      "file": "docs/assistant-team/integration/I2/Invoke-I2Tests.ps1"
+    },
+    {
+      "rawSha256": "a0acf9686d1b8211af0b595615f657d0b3b39fb06fe297c443a4ed4ef705c678",
+      "file": "docs/assistant-team/integration/I2/Invoke-I2Variants.ps1"
+    },
+    {
+      "rawSha256": "ad8eccf9e100920835a711bca39aed4971ce49c73518a366cb43f0d9576d686d",
+      "file": "docs/assistant-team/integration/I2/Start-I2Server.ps1"
+    },
+    {
+      "rawSha256": "ec1632c31e47e3a1abe61927941dbde33570c28a3d86087e80bd59e391cecabf",
+      "file": "docs/assistant-team/integration/I2/Verify-I2Checkpoint.ps1"
+    }
+  ],
+  "stage": "I2",
+  "frozenEntriesMatched": 105,
+  "credentialAclCurrentUserOnly": true,
+  "zeroWriteWindows": [
+    {
+      "file": "I2-ACCEPTED_STATE-ZERO-WRITE.json",
+      "tableCount": 34,
+      "mavenExitCode": 0,
+      "passed": true
+    },
+    {
+      "file": "I2-ARCHIVE_A-ZERO-WRITE.json",
+      "tableCount": 34,
+      "mavenExitCode": 0,
+      "passed": true
+    },
+    {
+      "file": "I2-BASE-ZERO-WRITE.json",
+      "tableCount": 34,
+      "mavenExitCode": 0,
+      "passed": true
+    },
+    {
+      "file": "I2-BUDGET-ZERO-WRITE.json",
+      "tableCount": 34,
+      "mavenExitCode": 0,
+      "passed": true
+    },
+    {
+      "file": "I2-HASH_CHANGED-ZERO-WRITE.json",
+      "tableCount": 34,
+      "mavenExitCode": 0,
+      "passed": true
+    },
+    {
+      "file": "I2-INACTIVE_CURRENT-ZERO-WRITE.json",
+      "tableCount": 34,
+      "mavenExitCode": 0,
+      "passed": true
+    },
+    {
+      "file": "I2-LONG_A-ZERO-WRITE.json",
+      "tableCount": 34,
+      "mavenExitCode": 0,
+      "passed": true
+    },
+    {
+      "file": "I2-MULTI_CURRENT-ZERO-WRITE.json",
+      "tableCount": 34,
+      "mavenExitCode": 0,
+      "passed": true
+    },
+    {
+      "file": "I2-NO_PATH-ZERO-WRITE.json",
+      "tableCount": 34,
+      "mavenExitCode": 0,
+      "passed": true
+    },
+    {
+      "file": "I2-SCALE_ANALYZED-ZERO-WRITE.json",
+      "tableCount": 34,
+      "mavenExitCode": 1,
+      "passed": true
+    },
+    {
+      "file": "I2-SCALE-ZERO-WRITE.json",
+      "tableCount": 34,
+      "mavenExitCode": 1,
+      "passed": true
+    }
+  ],
+  "baseRestoredAfterVariants": true,
+  "checkedAt": "2026-09-27T21:35:52.9571884+08:00"
+}

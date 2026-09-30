@@ -1,0 +1,1300 @@
+{
+  "executionRound": 1,
+  "rawXmlArchived": false,
+  "suites": [
+    {
+      "class": "com.knowledgegraph.assistant.runtime.AssistantRuntimeTest",
+      "xmlRawSha256": "5a83a2c39f0c2f6231d8c940b427c91736dfb98f7ace3c61834d527f5a4a40d6",
+      "xmlPath": "D:\\知识图谱\\backend-java\\target\\surefire-reports\\TEST-com.knowledgegraph.assistant.runtime.AssistantRuntimeTest-Offline-20260929T104719641-Original.xml",
+      "failures": 0,
+      "errors": 0,
+      "cases": [
+        {
+          "name": "completionPolicyRejectsSkippingRequiredWork",
+          "error": "",
+          "seconds": "0.025",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.runtime.AssistantRuntimeTest"
+        },
+        {
+          "name": "queueSaturationSettlesRejectedTasksWithoutHangingTheRun",
+          "error": "",
+          "seconds": "0.019",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.runtime.AssistantRuntimeTest"
+        },
+        {
+          "name": "domainValidatorRejectsOutOfScopeDraftAndValidatedDraftStillCannotExecute",
+          "error": "",
+          "seconds": "0.007",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.runtime.AssistantRuntimeTest"
+        },
+        {
+          "name": "failureBlocksDependentsButPreservesIndependentResult",
+          "error": "",
+          "seconds": "0.018",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.runtime.AssistantRuntimeTest"
+        },
+        {
+          "name": "repairCanRecoverMalformedDecisionWithoutExecutingFreeText",
+          "error": "",
+          "seconds": "0.008",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.runtime.AssistantRuntimeTest"
+        },
+        {
+          "name": "lateModelResultCannotCompleteAfterDeadline",
+          "error": "",
+          "seconds": "0.005",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.runtime.AssistantRuntimeTest"
+        },
+        {
+          "name": "scopeCollectionsAreImmutableAndSelectedDimensionsCannotBeWidened",
+          "error": "",
+          "seconds": "0.002",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.runtime.AssistantRuntimeTest"
+        },
+        {
+          "name": "pendingRunsAreBoundedAndCancellationReleasesCapacity",
+          "error": "",
+          "seconds": "0.005",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.runtime.AssistantRuntimeTest"
+        },
+        {
+          "name": "rejectsCyclesDuplicateIdsUnknownDependenciesAndUnauthorizedScopesBeforeAnyModelCall",
+          "error": "",
+          "seconds": "0.005",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.runtime.AssistantRuntimeTest"
+        },
+        {
+          "name": "cancellationDoesNotDiscardAlreadyCompletedSiblingArtifact",
+          "error": "",
+          "seconds": "0.005",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.runtime.AssistantRuntimeTest"
+        },
+        {
+          "name": "globalCallBudgetIsAtomicAcrossIndependentTasks",
+          "error": "",
+          "seconds": "0.005",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.runtime.AssistantRuntimeTest"
+        },
+        {
+          "name": "sourceIdCannotBeReboundToDifferentEvidence",
+          "error": "",
+          "seconds": "0.004",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.runtime.AssistantRuntimeTest"
+        },
+        {
+          "name": "unknownToolIsNotExecutedAndCannotBeHiddenBySuccess",
+          "error": "",
+          "seconds": "0.004",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.runtime.AssistantRuntimeTest"
+        },
+        {
+          "name": "cancellationRacingFinalResultHasOneConsistentOutcome",
+          "error": "",
+          "seconds": "0.034",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.runtime.AssistantRuntimeTest"
+        },
+        {
+          "name": "partialToolResultsRetainLimitations",
+          "error": "",
+          "seconds": "0.003",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.runtime.AssistantRuntimeTest"
+        },
+        {
+          "name": "perTaskToolBudgetStopsRepeatedToolRequests",
+          "error": "",
+          "seconds": "0.004",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.runtime.AssistantRuntimeTest"
+        },
+        {
+          "name": "rejectsWriteToolsAndRolePermissionMismatch",
+          "error": "",
+          "seconds": "0.005",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.runtime.AssistantRuntimeTest"
+        },
+        {
+          "name": "aPureDraftNeverClaimsObservedProjectCoverage",
+          "error": "",
+          "seconds": "0.002",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.runtime.AssistantRuntimeTest"
+        },
+        {
+          "name": "independentResearchAgentsExchangeOnlyExplicitArtifactsThenHandOffToLearning",
+          "error": "",
+          "seconds": "0.006",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.runtime.AssistantRuntimeTest"
+        },
+        {
+          "name": "actionProposalsDefaultToDeniedUntilDomainValidationIsRegistered",
+          "error": "",
+          "seconds": "0.002",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.runtime.AssistantRuntimeTest"
+        },
+        {
+          "name": "fabricatedEvidenceFailsAfterOneRepair",
+          "error": "",
+          "seconds": "0.002",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.runtime.AssistantRuntimeTest"
+        },
+        {
+          "name": "authorizedScopeIsNotReportedAsObservedCoverage",
+          "error": "",
+          "seconds": "0.008",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.runtime.AssistantRuntimeTest"
+        },
+        {
+          "name": "partialDependenciesRequireOptInAndCannotBecomeUnqualifiedSuccess",
+          "error": "",
+          "seconds": "0.003",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.runtime.AssistantRuntimeTest"
+        },
+        {
+          "name": "cancellationWaitsForInflightProviderAndPreventsNextToolOrDependent",
+          "error": "",
+          "seconds": "0.004",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.runtime.AssistantRuntimeTest"
+        },
+        {
+          "name": "closeSettlesQueuedTasksAndRejectsNewRuns",
+          "error": "",
+          "seconds": "0.003",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.runtime.AssistantRuntimeTest"
+        },
+        {
+          "name": "needsInputBlocksDependentsAndSurfacesRunState",
+          "error": "",
+          "seconds": "0.002",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.runtime.AssistantRuntimeTest"
+        },
+        {
+          "name": "argumentValidationExpiryPreventsStartingTheTool",
+          "error": "",
+          "seconds": "0.006",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.runtime.AssistantRuntimeTest"
+        },
+        {
+          "name": "resultOutsideFixedScopeIsRejectedAndCannotSupplyEvidence",
+          "error": "",
+          "seconds": "0.004",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.runtime.AssistantRuntimeTest"
+        }
+      ],
+      "skipped": 0,
+      "tests": 28
+    },
+    {
+      "class": "com.knowledgegraph.assistant.runtime.DecisionParserTest",
+      "xmlRawSha256": "32a0c645299b842e374a26b7c4f1833ed6dad21d8c4dbdbf12f1d0a2b0b596d9",
+      "xmlPath": "D:\\知识图谱\\backend-java\\target\\surefire-reports\\TEST-com.knowledgegraph.assistant.runtime.DecisionParserTest-Offline-20260929T104719641-Original.xml",
+      "failures": 0,
+      "errors": 0,
+      "cases": [
+        {
+          "name": "proposalsCannotEnableExecution",
+          "error": "",
+          "seconds": "0.002",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.runtime.DecisionParserTest"
+        },
+        {
+          "name": "boundsPayloadAndNesting",
+          "error": "",
+          "seconds": "0.009",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.runtime.DecisionParserTest"
+        },
+        {
+          "name": "toolFailureCannotCarryEvidenceOrContradictorySuccessStatus",
+          "error": "",
+          "seconds": "0.003",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.runtime.DecisionParserTest"
+        },
+        {
+          "name": "rejectsAmbiguousOrUnrecognizedProtocol(String)[1]",
+          "error": "",
+          "seconds": "0.02",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.runtime.DecisionParserTest"
+        },
+        {
+          "name": "rejectsAmbiguousOrUnrecognizedProtocol(String)[2]",
+          "error": "",
+          "seconds": "0.002",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.runtime.DecisionParserTest"
+        },
+        {
+          "name": "rejectsAmbiguousOrUnrecognizedProtocol(String)[3]",
+          "error": "",
+          "seconds": "0.001",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.runtime.DecisionParserTest"
+        },
+        {
+          "name": "rejectsAmbiguousOrUnrecognizedProtocol(String)[4]",
+          "error": "",
+          "seconds": "0.001",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.runtime.DecisionParserTest"
+        },
+        {
+          "name": "rejectsAmbiguousOrUnrecognizedProtocol(String)[5]",
+          "error": "",
+          "seconds": "0.0",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.runtime.DecisionParserTest"
+        },
+        {
+          "name": "rejectsAmbiguousOrUnrecognizedProtocol(String)[6]",
+          "error": "",
+          "seconds": "0.001",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.runtime.DecisionParserTest"
+        },
+        {
+          "name": "rejectsAmbiguousOrUnrecognizedProtocol(String)[7]",
+          "error": "",
+          "seconds": "0.001",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.runtime.DecisionParserTest"
+        },
+        {
+          "name": "rejectsAmbiguousOrUnrecognizedProtocol(String)[8]",
+          "error": "",
+          "seconds": "0.001",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.runtime.DecisionParserTest"
+        },
+        {
+          "name": "rejectsAmbiguousOrUnrecognizedProtocol(String)[9]",
+          "error": "",
+          "seconds": "0.001",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.runtime.DecisionParserTest"
+        },
+        {
+          "name": "rejectsAmbiguousOrUnrecognizedProtocol(String)[10]",
+          "error": "",
+          "seconds": "0.001",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.runtime.DecisionParserTest"
+        },
+        {
+          "name": "parsesFiniteToolAndCompletionDecisions",
+          "error": "",
+          "seconds": "0.004",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.runtime.DecisionParserTest"
+        },
+        {
+          "name": "wireArtifactSeparatesAuthorizationObservationAndExecution",
+          "error": "",
+          "seconds": "0.128",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.runtime.DecisionParserTest"
+        }
+      ],
+      "skipped": 0,
+      "tests": 15
+    },
+    {
+      "class": "com.knowledgegraph.assistant.ingestion.IngestionAgentToolProviderTest",
+      "xmlRawSha256": "5c2bd351fe1ba853999b7bd89b189d93a23a7c539a6b65e202d38d5e42e92e7a",
+      "xmlPath": "D:\\知识图谱\\backend-java\\target\\surefire-reports\\TEST-com.knowledgegraph.assistant.ingestion.IngestionAgentToolProviderTest-Offline-20260929T104719641-Original.xml",
+      "failures": 0,
+      "errors": 0,
+      "cases": [
+        {
+          "name": "jobErrorsAreRedactedAndOrganizationCountsAreNotCalledNodes",
+          "error": "",
+          "seconds": "0.021",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.ingestion.IngestionAgentToolProviderTest"
+        },
+        {
+          "name": "proposalValidatorRejectsWrongScopeAndAllowsOnlyUnexecutedDrafts",
+          "error": "",
+          "seconds": "0.022",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.ingestion.IngestionAgentToolProviderTest"
+        },
+        {
+          "name": "selectedScopeVerifiesAllDimensionsAndNeverFallsBackToProject",
+          "error": "",
+          "seconds": "0.008",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.ingestion.IngestionAgentToolProviderTest"
+        },
+        {
+          "name": "paginationAndArgumentWhitelistAreEnforcedBeforeRepositoryCall",
+          "error": "",
+          "seconds": "0.009",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.ingestion.IngestionAgentToolProviderTest"
+        },
+        {
+          "name": "emptyProjectAndImportPreparationAreReadOnly",
+          "error": "",
+          "seconds": "0.005",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.ingestion.IngestionAgentToolProviderTest"
+        },
+        {
+          "name": "everyToolPublishesItsRealArgumentSchema",
+          "error": "",
+          "seconds": "0.005",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.ingestion.IngestionAgentToolProviderTest"
+        },
+        {
+          "name": "runnerCallsRealAdapterWithIsolatedFakeRepository",
+          "error": "",
+          "seconds": "0.005",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.ingestion.IngestionAgentToolProviderTest"
+        },
+        {
+          "name": "proposalImpactRejectsNegationEvenWhenItContainsTheRequiredKeywords",
+          "error": "",
+          "seconds": "0.002",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.ingestion.IngestionAgentToolProviderTest"
+        },
+        {
+          "name": "multiLibraryDocumentDoesNotRevealPrimaryLibraryOutsideSelectedScope",
+          "error": "",
+          "seconds": "0.002",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.ingestion.IngestionAgentToolProviderTest"
+        },
+        {
+          "name": "lastPageIsNotMisreportedAsFullCoverage",
+          "error": "",
+          "seconds": "0.002",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.ingestion.IngestionAgentToolProviderTest"
+        },
+        {
+          "name": "sourceUsesRealChunkIdAndRejectsStaleHashOrWrongUnit",
+          "error": "",
+          "seconds": "0.015",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.ingestion.IngestionAgentToolProviderTest"
+        },
+        {
+          "name": "recoveryStateMatrixDisclosesTheFullChainAndDoesNotCallWrites",
+          "error": "",
+          "seconds": "0.02",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.ingestion.IngestionAgentToolProviderTest"
+        }
+      ],
+      "skipped": 0,
+      "tests": 12
+    },
+    {
+      "class": "com.knowledgegraph.assistant.ingestion.JdbcIngestionReadRepositoryTest",
+      "xmlRawSha256": "6c8cbd5d9a4c71f00ea2bfe8a88f27fd2980c25f669b91f183cb6d87eeeade77",
+      "xmlPath": "D:\\知识图谱\\backend-java\\target\\surefire-reports\\TEST-com.knowledgegraph.assistant.ingestion.JdbcIngestionReadRepositoryTest-Offline-20260929T104719641-Original.xml",
+      "failures": 0,
+      "errors": 0,
+      "cases": [
+        {
+          "name": "organizationFiltersSelectedDestinationsBeforeLimit",
+          "error": "",
+          "seconds": "0.15",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.ingestion.JdbcIngestionReadRepositoryTest"
+        },
+        {
+          "name": "listQueriesBindBothSelectedDimensionsBeforeLimitAndBoundOffset",
+          "error": "",
+          "seconds": "0.017",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.ingestion.JdbcIngestionReadRepositoryTest"
+        },
+        {
+          "name": "stableChunkReadMapsRealIdAndHashAndBindsDocumentOwnership",
+          "error": "",
+          "seconds": "0.015",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.ingestion.JdbcIngestionReadRepositoryTest"
+        },
+        {
+          "name": "documentAndJobListsApplyLibraryMembershipAndDocumentScopeBeforePaging",
+          "error": "",
+          "seconds": "0.01",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.ingestion.JdbcIngestionReadRepositoryTest"
+        }
+      ],
+      "skipped": 0,
+      "tests": 4
+    },
+    {
+      "class": "com.knowledgegraph.assistant.quality.QualityAgentToolProviderTest",
+      "xmlRawSha256": "11ff05342b82f6133542790a33d0086ef38020b9d1e34d334e58c84359be8484",
+      "xmlPath": "D:\\知识图谱\\backend-java\\target\\surefire-reports\\TEST-com.knowledgegraph.assistant.quality.QualityAgentToolProviderTest-Offline-20260929T104719641-Original.xml",
+      "failures": 0,
+      "errors": 0,
+      "cases": [
+        {
+          "name": "relationMatchChecksBothEndpointsAndDirectionAndLastPageIsPartial",
+          "error": "",
+          "seconds": "0.039",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.quality.QualityAgentToolProviderTest"
+        },
+        {
+          "name": "directDependencyReferencesAreReReadButSemanticSupportIsNotAsserted",
+          "error": "",
+          "seconds": "0.015",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.quality.QualityAgentToolProviderTest"
+        },
+        {
+          "name": "candidateSourcesNeverUpgradeStaleOrForgedReferences",
+          "error": "",
+          "seconds": "0.004",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.quality.QualityAgentToolProviderTest"
+        },
+        {
+          "name": "truncatedSourceRemainsPartialAndNeverClaimsFullCoverage",
+          "error": "",
+          "seconds": "0.003",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.quality.QualityAgentToolProviderTest"
+        },
+        {
+          "name": "unknownClaimAndForgedPointerCannotBecomeVerifiedEvidence",
+          "error": "",
+          "seconds": "0.002",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.quality.QualityAgentToolProviderTest"
+        },
+        {
+          "name": "snapshotSuppliesOwnedHashForNormalSourceReadWithoutCallerPreloadingIt",
+          "error": "",
+          "seconds": "0.009",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.quality.QualityAgentToolProviderTest"
+        },
+        {
+          "name": "oversizedResultFailsWithinSharedDataBudget",
+          "error": "",
+          "seconds": "0.01",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.quality.QualityAgentToolProviderTest"
+        },
+        {
+          "name": "reviewDoesNotRevealWrongDocumentEvidenceIds",
+          "error": "",
+          "seconds": "0.004",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.quality.QualityAgentToolProviderTest"
+        },
+        {
+          "name": "fakeRunnerCanCallQualityToolWithoutAnyWriteOrReceipt",
+          "error": "",
+          "seconds": "0.006",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.quality.QualityAgentToolProviderTest"
+        },
+        {
+          "name": "readingOneOfTwoCandidateSourcesCoversRequestButNotCandidate",
+          "error": "",
+          "seconds": "0.002",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.quality.QualityAgentToolProviderTest"
+        },
+        {
+          "name": "partialQualityToolDowngradesRunnerCompletion",
+          "error": "",
+          "seconds": "0.008",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.quality.QualityAgentToolProviderTest"
+        },
+        {
+          "name": "fourToolsHaveRealSchemasAndRejectExtraFieldsAndUnsupportedScopes",
+          "error": "",
+          "seconds": "0.009",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.quality.QualityAgentToolProviderTest"
+        },
+        {
+          "name": "reviewSeparatesFourStatesAndDoesNotInferPerCandidateImport",
+          "error": "",
+          "seconds": "0.005",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.quality.QualityAgentToolProviderTest"
+        },
+        {
+          "name": "readingAllCandidateSourcesReportsFullCandidateCoverage",
+          "error": "",
+          "seconds": "0.002",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.quality.QualityAgentToolProviderTest"
+        },
+        {
+          "name": "insightUsesHostScopeAndReportsCoverageWithoutInventingTrend",
+          "error": "",
+          "seconds": "0.004",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.quality.QualityAgentToolProviderTest"
+        }
+      ],
+      "skipped": 0,
+      "tests": 15
+    },
+    {
+      "class": "com.knowledgegraph.assistant.quality.QualityEvidenceVerifierTest",
+      "xmlRawSha256": "dd4703150706a2bb43d00126296f80503e3fc429a0a69b90ffe0053ce7df1ef0",
+      "xmlPath": "D:\\知识图谱\\backend-java\\target\\surefire-reports\\TEST-com.knowledgegraph.assistant.quality.QualityEvidenceVerifierTest-Offline-20260929T104719641-Original.xml",
+      "failures": 0,
+      "errors": 0,
+      "cases": [
+        {
+          "name": "fullReadUsesRealUnitAndHashButTruncatedTextRemainsPartial",
+          "error": "",
+          "seconds": "0.001",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.quality.QualityEvidenceVerifierTest"
+        },
+        {
+          "name": "locatorMustReturnTheRequestedRealChunkId",
+          "error": "",
+          "seconds": "0.0",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.quality.QualityEvidenceVerifierTest"
+        },
+        {
+          "name": "unitMetadataMustBelongToSameDocument",
+          "error": "",
+          "seconds": "0.0",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.quality.QualityEvidenceVerifierTest"
+        },
+        {
+          "name": "missingChunkCannotBecomeEvidence",
+          "error": "",
+          "seconds": "0.001",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.quality.QualityEvidenceVerifierTest"
+        },
+        {
+          "name": "staleHashCannotBePassedAsCurrentEvidence",
+          "error": "",
+          "seconds": "0.001",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.quality.QualityEvidenceVerifierTest"
+        },
+        {
+          "name": "checksOwnerBeforeReadingAndNeverReturnsAnotherDocumentsContent",
+          "error": "",
+          "seconds": "0.001",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.quality.QualityEvidenceVerifierTest"
+        }
+      ],
+      "skipped": 0,
+      "tests": 6
+    },
+    {
+      "class": "com.knowledgegraph.assistant.quality.JdbcQualityReadRepositoryTest",
+      "xmlRawSha256": "f126232204599d142cde2e1dcc5e79715db223a2fe63efef110b167759fc6af3",
+      "xmlPath": "D:\\知识图谱\\backend-java\\target\\surefire-reports\\TEST-com.knowledgegraph.assistant.quality.JdbcQualityReadRepositoryTest-Offline-20260929T104719641-Original.xml",
+      "failures": 0,
+      "errors": 0,
+      "cases": [
+        {
+          "name": "candidateScopeIsBoundBeforeBothCountAndPageLimit",
+          "error": "",
+          "seconds": "0.023",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.quality.JdbcQualityReadRepositoryTest"
+        },
+        {
+          "name": "snapshotHashMetadataRequiresRealDocumentOwnershipAndSelectedScope",
+          "error": "",
+          "seconds": "0.002",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.quality.JdbcQualityReadRepositoryTest"
+        },
+        {
+          "name": "insightUsesDistinctVisibleNodesAndTwoVisibleEndpointsForActiveEdges",
+          "error": "",
+          "seconds": "0.024",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.quality.JdbcQualityReadRepositoryTest"
+        },
+        {
+          "name": "unsupportedInsightDimensionsAreRejectedBeforeAnySql",
+          "error": "",
+          "seconds": "0.002",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.quality.JdbcQualityReadRepositoryTest"
+        }
+      ],
+      "skipped": 0,
+      "tests": 4
+    },
+    {
+      "class": "com.knowledgegraph.assistant.research.ResearchAgentToolProviderTest",
+      "xmlRawSha256": "620d2108662d970b948d7db0d66b6bb964fb0c97644c5423ab39b2563281cfe2",
+      "xmlPath": "D:\\知识图谱\\backend-java\\target\\surefire-reports\\TEST-com.knowledgegraph.assistant.research.ResearchAgentToolProviderTest-Offline-20260929T104719641-Original.xml",
+      "failures": 0,
+      "errors": 0,
+      "cases": [
+        {
+          "name": "graphKeepsIncomingOutgoingDirectionAndDirectedPath",
+          "error": "",
+          "seconds": "0.06",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.research.ResearchAgentToolProviderTest"
+        },
+        {
+          "name": "insufficientSourceSlotsReportUncoveredDocumentWithoutBorrowingScope",
+          "error": "",
+          "seconds": "0.022",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.research.ResearchAgentToolProviderTest"
+        },
+        {
+          "name": "sevenToolsHaveRoleEffectsAndClosedSchemas",
+          "error": "",
+          "seconds": "0.004",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.research.ResearchAgentToolProviderTest"
+        },
+        {
+          "name": "draftUsesOnlyLocalIdsAndNeverSaves",
+          "error": "",
+          "seconds": "0.005",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.research.ResearchAgentToolProviderTest"
+        },
+        {
+          "name": "sourceStatusAndNodeScopeFailClosed",
+          "error": "",
+          "seconds": "0.003",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.research.ResearchAgentToolProviderTest"
+        },
+        {
+          "name": "retrievalProvidesRealHashForImmediateRereadAndStableEvidence",
+          "error": "",
+          "seconds": "0.005",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.research.ResearchAgentToolProviderTest"
+        },
+        {
+          "name": "longABBodiesReceiveReservedCharacterSharesAndStableExcerpts",
+          "error": "",
+          "seconds": "0.002",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.research.ResearchAgentToolProviderTest"
+        }
+      ],
+      "skipped": 0,
+      "tests": 7
+    },
+    {
+      "class": "com.knowledgegraph.assistant.research.JdbcResearchReadRepositoryTest",
+      "xmlRawSha256": "93aaf6a8d05a487b8c85159059054d76fc6e06a229ea67129e9f8d5e760dcabd",
+      "xmlPath": "D:\\知识图谱\\backend-java\\target\\surefire-reports\\TEST-com.knowledgegraph.assistant.research.JdbcResearchReadRepositoryTest-Offline-20260929T104719641-Original.xml",
+      "failures": 0,
+      "errors": 0,
+      "cases": [
+        {
+          "name": "sourceMetadataUsesExactIdsAndActualMapperFields",
+          "error": "",
+          "seconds": "0.009",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.research.JdbcResearchReadRepositoryTest"
+        },
+        {
+          "name": "matchingDocumentsFiltersLibraryAndDocumentBeforeLimitWithBoundTerms",
+          "error": "",
+          "seconds": "0.004",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.research.JdbcResearchReadRepositoryTest"
+        },
+        {
+          "name": "nodeMapperExposesWhitelistedReviewAndScopedSourceFlag",
+          "error": "",
+          "seconds": "0.024",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.research.JdbcResearchReadRepositoryTest"
+        },
+        {
+          "name": "formalAvailabilityRejectsAllNonFormalStatesAndNodeScopeFailsClosed",
+          "error": "",
+          "seconds": "0.002",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.research.JdbcResearchReadRepositoryTest"
+        },
+        {
+          "name": "edgeQueryChecksBothEndpointsAndRealEvidenceBeforeLimit",
+          "error": "",
+          "seconds": "0.01",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.research.JdbcResearchReadRepositoryTest"
+        }
+      ],
+      "skipped": 0,
+      "tests": 5
+    },
+    {
+      "class": "com.knowledgegraph.assistant.research.ResearchComparisonTest",
+      "xmlRawSha256": "b1caaf214db618adece05c953b5369640fdd5b1cf18310baa4a34fa114b6f91e",
+      "xmlPath": "D:\\知识图谱\\backend-java\\target\\surefire-reports\\TEST-com.knowledgegraph.assistant.research.ResearchComparisonTest-Offline-20260929T104719641-Original.xml",
+      "failures": 0,
+      "errors": 0,
+      "cases": [
+        {
+          "name": "runnerMergesSingleDocumentSourceWithABRereadWithoutScopeCollision",
+          "error": "",
+          "seconds": "0.008",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.research.ResearchComparisonTest"
+        },
+        {
+          "name": "qualityHandoffCreatesTenByTwoBatchesAndDefersOversizedClaim",
+          "error": "",
+          "seconds": "0.012",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.research.ResearchComparisonTest"
+        },
+        {
+          "name": "comparisonRejectsMissingDuplicateAndNonDirectInputs",
+          "error": "",
+          "seconds": "0.007",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.research.ResearchComparisonTest"
+        },
+        {
+          "name": "failedAStillPreservesBAndBlocksComparison",
+          "error": "",
+          "seconds": "0.003",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.research.ResearchComparisonTest"
+        },
+        {
+          "name": "comparisonRereadsBothOriginalSourcesAndNeverClaimsSemanticWinner",
+          "error": "",
+          "seconds": "0.005",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.research.ResearchComparisonTest"
+        },
+        {
+          "name": "partialAndStaleSourcePreserveGap",
+          "error": "",
+          "seconds": "0.001",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.research.ResearchComparisonTest"
+        },
+        {
+          "name": "runnerStillRejectsSameIdWithChangedContentAndRetainsFirstEvidence",
+          "error": "",
+          "seconds": "0.005",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.research.ResearchComparisonTest"
+        },
+        {
+          "name": "runnerMergesSharedNodeAndEdgeFromIndependentDocumentScopes",
+          "error": "",
+          "seconds": "0.016",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.research.ResearchComparisonTest"
+        },
+        {
+          "name": "isolatedRuntimeRunsABIndependentlyThenPassesOnlyDirectArtifacts",
+          "error": "",
+          "seconds": "0.006",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.research.ResearchComparisonTest"
+        },
+        {
+          "name": "qualityHandoffRejectsFabricatedOrCrossDocumentSourceAndRetainsOverLimitClaims",
+          "error": "",
+          "seconds": "0.005",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.research.ResearchComparisonTest"
+        }
+      ],
+      "skipped": 0,
+      "tests": 10
+    },
+    {
+      "class": "com.knowledgegraph.assistant.research.ResearchDraftValidatorTest",
+      "xmlRawSha256": "4c966a64089625284e6b6383f0bd612ee79521a8df764848575c458fbfd1bce6",
+      "xmlPath": "D:\\知识图谱\\backend-java\\target\\surefire-reports\\TEST-com.knowledgegraph.assistant.research.ResearchDraftValidatorTest-Offline-20260929T104719641-Original.xml",
+      "failures": 0,
+      "errors": 0,
+      "cases": [
+        {
+          "name": "validatesLocalAndExistingEndpointsWithoutWriting",
+          "error": "",
+          "seconds": "0.001",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.research.ResearchDraftValidatorTest"
+        },
+        {
+          "name": "rejectsOutOfScopeLibraryForgedIdAndUnknownEndpoint",
+          "error": "",
+          "seconds": "0.003",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.research.ResearchDraftValidatorTest"
+        }
+      ],
+      "skipped": 0,
+      "tests": 2
+    },
+    {
+      "class": "com.knowledgegraph.assistant.learning.LearningAgentToolProviderTest",
+      "xmlRawSha256": "1ca3096667b1bfacbeb6039ef78128a8dff3539059019605296f35cfe67e90cf",
+      "xmlPath": "D:\\知识图谱\\backend-java\\target\\surefire-reports\\TEST-com.knowledgegraph.assistant.learning.LearningAgentToolProviderTest-Offline-20260929T104719641-Original.xml",
+      "failures": 0,
+      "errors": 0,
+      "cases": [
+        {
+          "name": "eightClosedRoleSpecificToolsAndNoWrites",
+          "error": "",
+          "seconds": "0.012",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.learning.LearningAgentToolProviderTest"
+        },
+        {
+          "name": "emptyPathAndFormalAssessmentAreDistinctFromOldScores",
+          "error": "",
+          "seconds": "0.01",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.learning.LearningAgentToolProviderTest"
+        },
+        {
+          "name": "learningInputsExposeOriginalClaimsAndCapturedQualityWithoutSemanticUpgrade",
+          "error": "",
+          "seconds": "0.091",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.learning.LearningAgentToolProviderTest"
+        },
+        {
+          "name": "trustedPointerRereadsExactFormalChunkAndRejectsChangedHash",
+          "error": "",
+          "seconds": "0.039",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.learning.LearningAgentToolProviderTest"
+        },
+        {
+          "name": "graphIsBoundedDirectionalAndNotPrerequisiteProof",
+          "error": "",
+          "seconds": "0.017",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.learning.LearningAgentToolProviderTest"
+        },
+        {
+          "name": "runnerKeepsFailedEvidenceReadButAllowsLaterInformalPractice",
+          "error": "",
+          "seconds": "0.011",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.learning.LearningAgentToolProviderTest"
+        },
+        {
+          "name": "sourceRereadRequiresHostPointerAndRejectsNodeScope",
+          "error": "",
+          "seconds": "0.004",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.learning.LearningAgentToolProviderTest"
+        },
+        {
+          "name": "actualRunnerProducesPathDiffExplanationAndTwoInformalQuestions",
+          "error": "",
+          "seconds": "0.022",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.learning.LearningAgentToolProviderTest"
+        },
+        {
+          "name": "runnerMergesDirectResearchSourceAndLearningRereadWithoutChangingOriginalRef",
+          "error": "",
+          "seconds": "0.02",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.learning.LearningAgentToolProviderTest"
+        },
+        {
+          "name": "subsetQualityReadReturnsPartialWithExplicitUncoveredClaim",
+          "error": "",
+          "seconds": "0.005",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.learning.LearningAgentToolProviderTest"
+        }
+      ],
+      "skipped": 0,
+      "tests": 10
+    },
+    {
+      "class": "com.knowledgegraph.assistant.learning.JdbcLearningReadRepositoryTest",
+      "xmlRawSha256": "87189eb8278a1d908371be967f055c2f95e6146ffa53f07850886a86d241390f",
+      "xmlPath": "D:\\知识图谱\\backend-java\\target\\surefire-reports\\TEST-com.knowledgegraph.assistant.learning.JdbcLearningReadRepositoryTest-Offline-20260929T104719641-Original.xml",
+      "failures": 0,
+      "errors": 0,
+      "cases": [
+        {
+          "name": "actualPathAndStepMapperFingerprintChangesWithStepStatus",
+          "error": "",
+          "seconds": "0.04",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.learning.JdbcLearningReadRepositoryTest"
+        },
+        {
+          "name": "nodeSourceLinkRequiresExactTripleAndFormalStates",
+          "error": "",
+          "seconds": "0.006",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.learning.JdbcLearningReadRepositoryTest"
+        },
+        {
+          "name": "graphFiltersAllDimensionsBeforeLimitAndBindsParameters",
+          "error": "",
+          "seconds": "0.005",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.learning.JdbcLearningReadRepositoryTest"
+        }
+      ],
+      "skipped": 0,
+      "tests": 3
+    },
+    {
+      "class": "com.knowledgegraph.assistant.learning.LearningArtifactHandoffTest",
+      "xmlRawSha256": "1e934d50a9e98105f2edec3696e20d521b27faa74af55e0d95ac3295b7dadb3f",
+      "xmlPath": "D:\\知识图谱\\backend-java\\target\\surefire-reports\\TEST-com.knowledgegraph.assistant.learning.LearningArtifactHandoffTest-Offline-20260929T104719641-Original.xml",
+      "failures": 0,
+      "errors": 0,
+      "cases": [
+        {
+          "name": "comparisonKeepsUncheckedClaimsSeparateFromActuallyCheckedSources",
+          "error": "",
+          "seconds": "0.006",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.learning.LearningArtifactHandoffTest"
+        },
+        {
+          "name": "failedObservationIsRecordedWithoutBecomingEvidenceButForgedObservationStillRejects",
+          "error": "",
+          "seconds": "0.003",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.learning.LearningArtifactHandoffTest"
+        },
+        {
+          "name": "rejectsNonDirectMaterialAndForgedQualityClaimOrHash",
+          "error": "",
+          "seconds": "0.003",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.learning.LearningArtifactHandoffTest"
+        },
+        {
+          "name": "disjointQualityBatchesCoverWholeArtifactWithoutConflatingRequestCoverage",
+          "error": "",
+          "seconds": "0.003",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.learning.LearningArtifactHandoffTest"
+        },
+        {
+          "name": "directResearchAndCapturedQualityObservationRemainPartialAndSemanticUnknown",
+          "error": "",
+          "seconds": "0.001",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.learning.LearningArtifactHandoffTest"
+        },
+        {
+          "name": "completeSingleClaimRequestDoesNotClaimWholeArtifactCoverage",
+          "error": "",
+          "seconds": "0.001",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.learning.LearningArtifactHandoffTest"
+        },
+        {
+          "name": "samePhysicalSourceDifferentScopeCountsOnceButDifferentDocumentDoesNotCollapse",
+          "error": "",
+          "seconds": "0.002",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.learning.LearningArtifactHandoffTest"
+        },
+        {
+          "name": "duplicateUnknownAndFalselyCompleteQualityChecksStillReject",
+          "error": "",
+          "seconds": "0.006",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.learning.LearningArtifactHandoffTest"
+        }
+      ],
+      "skipped": 0,
+      "tests": 8
+    },
+    {
+      "class": "com.knowledgegraph.assistant.learning.LearningDraftValidatorTest",
+      "xmlRawSha256": "c6e20c7b2af692390a1b203becccb10d0a69ed7a57bdaebc925a903fa2d94192",
+      "xmlPath": "D:\\知识图谱\\backend-java\\target\\surefire-reports\\TEST-com.knowledgegraph.assistant.learning.LearningDraftValidatorTest-Offline-20260929T104719641-Original.xml",
+      "failures": 0,
+      "errors": 0,
+      "cases": [
+        {
+          "name": "rejectsOutOfScopeInactiveAndInventedFormalFields",
+          "error": "",
+          "seconds": "0.005",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.learning.LearningDraftValidatorTest"
+        },
+        {
+          "name": "inactiveNodeCannotBeUsedForExplanationOrPractice",
+          "error": "",
+          "seconds": "0.003",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.learning.LearningDraftValidatorTest"
+        },
+        {
+          "name": "layeredExplanationAndTwoInformalQuestionsCannotClaimGrades",
+          "error": "",
+          "seconds": "0.003",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.learning.LearningDraftValidatorTest"
+        },
+        {
+          "name": "newDraftHasRealNodesOnlyLocalIdsAndNoWriteReceipt",
+          "error": "",
+          "seconds": "0.001",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.learning.LearningDraftValidatorTest"
+        },
+        {
+          "name": "adjustRequiresFreshBaselineAndDeterministicCompletionImpact",
+          "error": "",
+          "seconds": "0.004",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.learning.LearningDraftValidatorTest"
+        }
+      ],
+      "skipped": 0,
+      "tests": 5
+    },
+    {
+      "class": "com.knowledgegraph.assistant.assessment.AssessmentAgentToolProviderTest",
+      "xmlRawSha256": "c5dc5a0296fa9f5170e6127c49f5fc397a06010c6310e1252e2e5a5c22a63dba",
+      "xmlPath": "D:\\知识图谱\\backend-java\\target\\surefire-reports\\TEST-com.knowledgegraph.assistant.assessment.AssessmentAgentToolProviderTest-Offline-20260929T104719641-Original.xml",
+      "failures": 0,
+      "errors": 0,
+      "cases": [
+        {
+          "name": "staleBaselineAndStepOwnershipRejectWithoutRebinding",
+          "error": "",
+          "seconds": "1.348",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.assessment.AssessmentAgentToolProviderTest"
+        },
+        {
+          "name": "currentStageIsRealButLegacyScoreCannotPassAndNoCurrentIsSeparate",
+          "error": "",
+          "seconds": "0.061",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.assessment.AssessmentAgentToolProviderTest"
+        },
+        {
+          "name": "malformedLegacyTotalsStayUnverifiedAndCannotCreateFormalWeakness",
+          "error": "",
+          "seconds": "0.024",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.assessment.AssessmentAgentToolProviderTest"
+        },
+        {
+          "name": "largeIdRealStepOwnershipAcceptsIndependentEqualNumericIds",
+          "error": "",
+          "seconds": "0.021",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.assessment.AssessmentAgentToolProviderTest"
+        },
+        {
+          "name": "multipleCurrentInvalidStatusAndMidReadChangeAreNotDraftReady",
+          "error": "",
+          "seconds": "0.01",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.assessment.AssessmentAgentToolProviderTest"
+        },
+        {
+          "name": "historyIsPagedLegacyOnlyAndUnknownStepRemainsUnknown",
+          "error": "",
+          "seconds": "0.007",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.assessment.AssessmentAgentToolProviderTest"
+        },
+        {
+          "name": "largeIdEmptyHistoryAcceptsIndependentEqualPathSnapshots",
+          "error": "",
+          "seconds": "0.032",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.assessment.AssessmentAgentToolProviderTest"
+        },
+        {
+          "name": "fourClosedRoleBoundToolsRejectFormalFieldsAndWrongRole",
+          "error": "",
+          "seconds": "0.014",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.assessment.AssessmentAgentToolProviderTest"
+        },
+        {
+          "name": "largeIdStillRejectsDifferentPathFingerprintAndForeignOrMissingStepOwner",
+          "error": "",
+          "seconds": "0.005",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.assessment.AssessmentAgentToolProviderTest"
+        },
+        {
+          "name": "staleDuringHistoryAndForeignStepReject",
+          "error": "",
+          "seconds": "0.002",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.assessment.AssessmentAgentToolProviderTest"
+        }
+      ],
+      "skipped": 0,
+      "tests": 10
+    },
+    {
+      "class": "com.knowledgegraph.assistant.assessment.JdbcAssessmentReadRepositoryTest",
+      "xmlRawSha256": "514497bdf704485862300176b74a461228b25d0cff8f6dd52588fdda50228481",
+      "xmlPath": "D:\\知识图谱\\backend-java\\target\\surefire-reports\\TEST-com.knowledgegraph.assistant.assessment.JdbcAssessmentReadRepositoryTest-Offline-20260929T104719641-Original.xml",
+      "failures": 0,
+      "errors": 0,
+      "cases": [
+        {
+          "name": "actualMapperPreservesNullableStepAndClientTotals",
+          "error": "",
+          "seconds": "0.37",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.assessment.JdbcAssessmentReadRepositoryTest"
+        },
+        {
+          "name": "filtersAllScopeDimensionsPathStepAndCursorBeforeLimit",
+          "error": "",
+          "seconds": "0.005",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.assessment.JdbcAssessmentReadRepositoryTest"
+        },
+        {
+          "name": "limitPlusOneSignalsMoreWithoutLeakingExtraRow",
+          "error": "",
+          "seconds": "0.002",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.assessment.JdbcAssessmentReadRepositoryTest"
+        }
+      ],
+      "skipped": 0,
+      "tests": 3
+    },
+    {
+      "class": "com.knowledgegraph.assistant.assessment.AssessmentArtifactHandoffTest",
+      "xmlRawSha256": "e4ccf079148b435d5fda7f276d4c2976bba078ed3fb488db5e0e2cc047b96d1f",
+      "xmlPath": "D:\\知识图谱\\backend-java\\target\\surefire-reports\\TEST-com.knowledgegraph.assistant.assessment.AssessmentArtifactHandoffTest-Offline-20260929T104719641-Original.xml",
+      "failures": 0,
+      "errors": 0,
+      "cases": [
+        {
+          "name": "actualRunnerHandsOriginalInformalPracticeToTwoUnexecutedAssessmentQuestions",
+          "error": "",
+          "seconds": "0.361",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.assessment.AssessmentArtifactHandoffTest"
+        },
+        {
+          "name": "trustedFailureRetainsReasonWithoutEvidenceAndLaterIndependentPracticeSurvives",
+          "error": "",
+          "seconds": "0.006",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.assessment.AssessmentArtifactHandoffTest"
+        }
+      ],
+      "skipped": 0,
+      "tests": 2
+    },
+    {
+      "class": "com.knowledgegraph.assistant.assessment.AssessmentDraftValidatorTest",
+      "xmlRawSha256": "523d8b221f01e1bb009d3d826bb649c87008034eb0fcd8e58529417da2e22a9e",
+      "xmlPath": "D:\\知识图谱\\backend-java\\target\\surefire-reports\\TEST-com.knowledgegraph.assistant.assessment.AssessmentDraftValidatorTest-Offline-20260929T104719641-Original.xml",
+      "failures": 0,
+      "errors": 0,
+      "cases": [
+        {
+          "name": "malformedQuestionAndFormalFieldsRejectBeforeReads",
+          "error": "",
+          "seconds": "0.005",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.assessment.AssessmentDraftValidatorTest"
+        },
+        {
+          "name": "draftRejectsStepChangeAndUnlinkedOriginalSource",
+          "error": "",
+          "seconds": "0.025",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.assessment.AssessmentDraftValidatorTest"
+        },
+        {
+          "name": "originalDirectSourceIsRereadByExactTripleButForgedIdRejects",
+          "error": "",
+          "seconds": "0.008",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.assessment.AssessmentDraftValidatorTest"
+        },
+        {
+          "name": "sourceLessCandidateIsExplicitlyUnexecutedAndPartialWithNoWrite",
+          "error": "",
+          "seconds": "0.005",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.assessment.AssessmentDraftValidatorTest"
+        },
+        {
+          "name": "staleSourceNodeScopeAndPathBaselineCannotBecomeEvidence",
+          "error": "",
+          "seconds": "0.008",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.assessment.AssessmentDraftValidatorTest"
+        }
+      ],
+      "skipped": 0,
+      "tests": 5
+    }
+  ],
+  "uniqueTestCases": 154,
+  "exitCode": 0,
+  "records": [],
+  "suite": "Original",
+  "uniqueMethodDefinitions": 145,
+  "reportSuffix": "Offline-20260929T104719641-Original",
+  "startedAt": "2026-09-29T10:47:19.7816534+08:00"
+}

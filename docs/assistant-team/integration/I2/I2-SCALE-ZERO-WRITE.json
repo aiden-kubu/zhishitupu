@@ -1,0 +1,16 @@
+{
+  "springApplicationStarted": false,
+  "binlogPositionEqual": true,
+  "case": "SCALE",
+  "loaderLockedAfter": "Y",
+  "phase": "static_reader_window",
+  "dataAndSchemaEqual": true,
+  "stage": "I2",
+  "modelConnected": false,
+  "activeReaderQueriesAfter": 0,
+  "generalLogSha256": "c28a4c24023b867bf3b8910177032a62ad0c84aa401b5e41683ab2a1ccd018de",
+  "loaderLockedBefore": "Y",
+  "allTableCount": 34,
+  "mavenExitCode": 1,
+  "testProcessHasOnlyReaderCredential": true
+}

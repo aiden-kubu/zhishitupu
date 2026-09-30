@@ -1,0 +1,230 @@
+package com.knowledgegraph.assistant.quality;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.knowledgegraph.assistant.contract.AssistantContracts.Scope;
+import com.knowledgegraph.assistant.contract.AssistantContracts.ScopeMode;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
+import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.simple.JdbcClient;
+
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.stream.Stream;
+
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.*;
+import static org.mockito.Mockito.*;
+
+/** Offline SQL-shape/binding/row-mapping checks, not a SQL engine or MySQL performance proof. */
+class JdbcQualityInsightRankingRegressionTest {
+    private static final Scope LIBRARIES = new Scope(ScopeMode.SELECTED,
+            Set.of(7910L, 7911L), Set.of(), Set.of());
+    private static final String RANK_ORDER = "ORDER BY degree DESC,n.id LIMIT :limit";
+    private final JdbcClient jdbc = mock(JdbcClient.class);
+    private final JdbcQualityReadRepository repository = new JdbcQualityReadRepository(jdbc, new ObjectMapper());
+    private final List<Query> queries = new ArrayList<>();
+    private List<QualityReadRepository.NodeItem> returnedRanking = List.of();
+
+    private static final class Query {
+        final String sql;
+        final Map<String, Object> params = new LinkedHashMap<>();
+        Query(String sql) { this.sql = sql; }
+    }
+
+    @BeforeEach void captureJdbcWithoutDataSource() {
+        when(jdbc.sql(anyString())).thenAnswer(call -> statement(call.getArgument(0)));
+    }
+
+    @SuppressWarnings({"unchecked", "rawtypes"})
+    private JdbcClient.StatementSpec statement(String sql) {
+        Query query = new Query(sql);
+        queries.add(query);
+        var statement = mock(JdbcClient.StatementSpec.class, RETURNS_SELF);
+        when(statement.param(anyString(), any())).thenAnswer(call -> {
+            query.params.put(call.getArgument(0), call.getArgument(1));
+            return statement;
+        });
+        JdbcClient.MappedQuerySpec<Long> scalar = mock(JdbcClient.MappedQuerySpec.class);
+        when(statement.query(Long.class)).thenReturn(scalar);
+        when(scalar.single()).thenReturn(0L);
+        when(statement.query(any(RowMapper.class))).thenAnswer(call -> {
+            RowMapper<?> mapper = call.getArgument(0);
+            JdbcClient.MappedQuerySpec<Object> mapped = mock(JdbcClient.MappedQuerySpec.class);
+            when(mapped.list()).thenAnswer(ignored -> {
+                List<Object> values = new ArrayList<>();
+                if (sql.contains(RANK_ORDER)) {
+                    for (var row : returnedRanking) {
+                        ResultSet rs = mock(ResultSet.class);
+                        when(rs.getLong(1)).thenReturn(row.id());
+                        when(rs.getString(2)).thenReturn(row.name());
+                        when(rs.getString(3)).thenReturn(row.type());
+                        when(rs.getLong(4)).thenReturn(row.degree());
+                        values.add(mapper.mapRow(rs, values.size()));
+                    }
+                }
+                return values;
+            });
+            return mapped;
+        });
+        return statement;
+    }
+
+    private Query ranking(Scope scope, int topLimit) {
+        repository.insight(scope, 4, topLimit);
+        List<Query> ranking = queries.stream().filter(q -> q.sql.contains(RANK_ORDER)).toList();
+        assertEquals(1, ranking.size());
+        return ranking.get(0);
+    }
+
+    @Test void rankingAggregatesScopedEndpointsInsteadOfCountingEdgesForEachNode() {
+        String sql = ranking(LIBRARIES, 10).sql;
+        assertTrue(sql.contains("incident_endpoints AS (SELECT source_node_id AS node_id FROM visible_edges"));
+        assertTrue(sql.contains("node_degrees AS (SELECT node_id,COUNT(*) AS degree"
+                + " FROM incident_endpoints GROUP BY node_id)"));
+        assertFalse(sql.contains("(SELECT COUNT(*) FROM visible_edges"));
+        assertTrue(sql.indexOf("visible_edges AS") < sql.indexOf("incident_endpoints AS"));
+        assertTrue(sql.indexOf("GROUP BY node_id") < sql.indexOf(RANK_ORDER));
+    }
+
+    @Test void selectedLibrariesKeepExistsMembershipAndBothVisibleActiveEndpoints() {
+        Query query = ranking(LIBRARIES, 10);
+        assertTrue(query.sql.startsWith(frozenCte(true)));
+        assertEquals(Set.of(7910L, 7911L), query.params.get("libraryIds"));
+        assertFalse(query.sql.contains("JOIN library_nodes"), "Shared memberships must not multiply node rows");
+        assertFalse(query.sql.contains("n.status"), "Inactive nodes remain in the frozen visible-node set");
+        assertFalse(query.sql.contains("s.status"));
+        assertFalse(query.sql.contains("t.status"));
+    }
+
+    @Test void projectRankingDoesNotInventLibraryParametersOrRestrictions() {
+        Query query = ranking(Scope.project(), 3);
+        assertTrue(query.sql.startsWith(frozenCte(false)));
+        assertFalse(query.sql.contains("library_nodes"));
+        assertEquals(Map.of("limit", 3), query.params);
+    }
+
+    @Test void selfLoopContributesSourceOnceAndIsExcludedOnlyFromTargetBranch() {
+        String sql = ranking(LIBRARIES, 10).sql;
+        assertTrue(sql.contains("SELECT source_node_id AS node_id FROM visible_edges"
+                + " UNION ALL SELECT target_node_id AS node_id FROM visible_edges"
+                + " WHERE target_node_id<>source_node_id)"));
+    }
+
+    @Test void reverseAndDifferentTypeEdgesKeepRowMultiplicity() {
+        String sql = ranking(LIBRARIES, 10).sql;
+        assertTrue(sql.contains("UNION ALL SELECT target_node_id AS node_id"));
+        assertTrue(sql.contains("COUNT(*) AS degree"));
+        assertFalse(sql.contains("DISTINCT"), "Count edge rows, not unique neighbors or endpoint pairs");
+        assertFalse(sql.contains("GROUP BY source_node_id"));
+        assertFalse(sql.contains("GROUP BY target_node_id"));
+        assertFalse(sql.contains("source_node_id<target_node_id"));
+        assertFalse(sql.contains("target_node_id<source_node_id"));
+    }
+
+    @Test void zeroDegreeNodesRemainInOuterLeftJoinWithZeroValue() {
+        String sql = ranking(LIBRARIES, 10).sql;
+        assertTrue(sql.contains("SELECT n.id,n.canonical_name,n.node_type,COALESCE(d.degree,0) AS degree"));
+        assertTrue(sql.contains("FROM visible_nodes n LEFT JOIN node_degrees d ON d.node_id=n.id"));
+        assertFalse(sql.contains("WHERE d.degree"));
+        assertFalse(sql.contains("HAVING"));
+    }
+
+    @Test void onlyFinalRankLimitIsBoundAndTiesUseAscendingNumericId() {
+        Scope largeLibraryIds = new Scope(ScopeMode.SELECTED,
+                Set.of(4_294_967_301L, 4_294_967_302L), Set.of(), Set.of());
+        Query query = ranking(largeLibraryIds, 7);
+        assertTrue(query.sql.endsWith(RANK_ORDER));
+        assertEquals(1, query.sql.split("LIMIT", -1).length - 1);
+        assertEquals(Map.of("libraryIds", largeLibraryIds.libraryIds(), "limit", 7), query.params);
+        assertFalse(query.sql.contains("4294967301"), "IDs must be bound, not embedded in SQL");
+    }
+
+    @Test void actualRowMapperPreservesLongIdsLongDegreesNamesAndZeroDegree() {
+        returnedRanking = List.of(
+                new QualityReadRepository.NodeItem(4_294_967_301L, "共享概念", "concept", 5_000_000_000L),
+                new QualityReadRepository.NodeItem(4_294_967_302L, "零度节点", "concept", 0L));
+        var insight = repository.insight(LIBRARIES, 4, 10);
+        assertEquals(returnedRanking, insight.topDegree());
+    }
+
+    @Test void emptyRankingStaysEmptyWithoutFabricatedNode() {
+        var insight = repository.insight(new Scope(ScopeMode.SELECTED,
+                Set.of(7913L), Set.of(), Set.of()), 4, 10);
+        assertTrue(insight.topDegree().isEmpty());
+        assertEquals(0, insight.nodeCount());
+        assertEquals(0, insight.edgeCount());
+        assertEquals(0, insight.isolatedTotal());
+    }
+
+    @Test void nonRankingQueriesAndTheirLimitsKeepFrozenShape() {
+        ranking(LIBRARIES, 7);
+        String cte = frozenCte(true);
+        String documents = " AND (d.library_id IN (:libraryIds) OR EXISTS"
+                + " (SELECT 1 FROM document_topic_assignments a WHERE a.document_id=d.id"
+                + " AND a.library_id IN (:libraryIds)))";
+        String pending = " FROM %s c JOIN ingestion_jobs j ON j.id=c.job_id"
+                + " JOIN documents d ON d.id=j.document_id WHERE c.review_status='PENDING'"
+                + " AND j.status IN ('AWAITING_REVIEW','AI_REVIEWING','FAILED','CANCELLED')" + documents;
+        String isolated = " FROM visible_nodes n WHERE NOT EXISTS (SELECT 1 FROM visible_edges e"
+                + " WHERE e.source_node_id=n.id OR e.target_node_id=n.id)";
+        String isolatedCount = ", incident_nodes AS (SELECT source_node_id AS node_id FROM visible_edges"
+                + " UNION SELECT target_node_id AS node_id FROM visible_edges) "
+                + "SELECT COUNT(*) FROM visible_nodes n LEFT JOIN incident_nodes i ON i.node_id=n.id"
+                + " WHERE i.node_id IS NULL";
+        List<String> unchanged = List.of(
+                cte + "SELECT COUNT(*) FROM visible_nodes",
+                cte + "SELECT COUNT(*) FROM visible_edges",
+                "SELECT COUNT(*) FROM documents d WHERE 1=1" + documents,
+                "SELECT COUNT(*)" + pending.formatted("entity_candidates"),
+                "SELECT COUNT(*)" + pending.formatted("relation_candidates"),
+                cte + "SELECT COUNT(*) FROM (SELECT node_type FROM visible_nodes GROUP BY node_type) grouped_types",
+                cte + "SELECT node_type,COUNT(*) FROM visible_nodes GROUP BY node_type"
+                        + " ORDER BY COUNT(*) DESC,node_type LIMIT :limit",
+                cte + isolatedCount,
+                cte + "SELECT n.id,n.canonical_name,n.node_type,0" + isolated + " ORDER BY n.id LIMIT :limit");
+        assertEquals(10, queries.size());
+        assertEquals(unchanged, queries.stream().filter(q -> !q.sql.contains(RANK_ORDER)).map(q -> q.sql).toList());
+        assertEquals(50, queries.get(6).params.get("limit"));
+        assertEquals(4, queries.get(9).params.get("limit"));
+        assertTrue(queries.stream().allMatch(q -> LIBRARIES.libraryIds().equals(q.params.get("libraryIds"))));
+    }
+
+    @Test void rankingJdbcFailureIsNotConvertedIntoSuccessfulEmptyInsight() {
+        IllegalStateException failure = new IllegalStateException("synthetic JDBC failure");
+        doThrow(failure).when(jdbc).sql(contains(RANK_ORDER));
+        assertSame(failure, assertThrows(IllegalStateException.class,
+                () -> repository.insight(LIBRARIES, 4, 10)));
+    }
+
+    @ParameterizedTest @MethodSource("unsupportedScopes")
+    void unsupportedDimensionsStillRejectBeforeAnySql(Scope scope) {
+        var failure = assertThrows(IllegalArgumentException.class, () -> repository.insight(scope, 4, 10));
+        assertEquals("UNSUPPORTED_SCOPE", failure.getMessage());
+        verifyNoInteractions(jdbc);
+    }
+
+    private static Stream<Scope> unsupportedScopes() {
+        return Stream.of(
+                new Scope(ScopeMode.SELECTED, Set.of(), Set.of(7201L), Set.of()),
+                new Scope(ScopeMode.SELECTED, Set.of(), Set.of(), Set.of(900001L)),
+                new Scope(ScopeMode.SELECTED, Set.of(7910L), Set.of(7201L), Set.of()),
+                new Scope(ScopeMode.SELECTED, Set.of(7910L), Set.of(), Set.of(900001L)));
+    }
+
+    /** Frozen visibility definition, deliberately independent of the production private helper. */
+    private static String frozenCte(boolean selectedLibraries) {
+        return "WITH visible_nodes AS (SELECT n.id,n.canonical_name,n.node_type FROM knowledge_nodes n WHERE 1=1"
+                + (selectedLibraries ? " AND EXISTS (SELECT 1 FROM library_nodes ln WHERE ln.node_id=n.id"
+                        + " AND ln.library_id IN (:libraryIds))" : "")
+                + "), visible_edges AS (SELECT e.id,e.source_node_id,e.target_node_id"
+                + " FROM knowledge_edges e JOIN visible_nodes s ON s.id=e.source_node_id"
+                + " JOIN visible_nodes t ON t.id=e.target_node_id WHERE e.status='active') ";
+    }
+}

@@ -1,0 +1,15 @@
+{
+  "loaderLocked": true,
+  "scaleCounts": "10000\t30000\t2000\t20000",
+  "identity": {
+    "port": 33078,
+    "uuid": "8c6cfcb3-ba49-11f1-bf64-005056c00001",
+    "memory": "KG_I2_33078_8c6cfcb3",
+    "datadir": "D:\\kg-i2-env\\mysql-data\\",
+    "version": "8.4.11",
+    "currentUser": "root@localhost"
+  },
+  "credentialAclCurrentUserOnly": true,
+  "readerGrants": "kg_i2_reader@127.0.0.1\tNONE\r\nGRANT USAGE ON *.* TO `kg_i2_reader`@`127.0.0.1`\r\nGRANT SELECT ON `kg_assistant_i2_20260927_r01`.`document_chunks` TO `kg_i2_reader`@`127.0.0.1`\r\nGRANT SELECT ON `kg_assistant_i2_20260927_r01`.`document_metadata` TO `kg_i2_reader`@`127.0.0.1`\r\nGRANT SELECT ON `kg_assistant_i2_20260927_r01`.`document_tags` TO `kg_i2_reader`@`127.0.0.1`\r\nGRANT SELECT ON `kg_assistant_i2_20260927_r01`.`document_topic_assignments` TO `kg_i2_reader`@`127.0.0.1`\r\nGRANT SELECT ON `kg_assistant_i2_20260927_r01`.`document_units` TO `kg_i2_reader`@`127.0.0.1`\r\nGRANT SELECT ON `kg_assistant_i2_20260927_r01`.`documents` TO `kg_i2_reader`@`127.0.0.1`\r\nGRANT SELECT ON `kg_assistant_i2_20260927_r01`.`edge_evidence` TO `kg_i2_reader`@`127.0.0.1`\r\nGRANT SELECT ON `kg_assistant_i2_20260927_r01`.`entity_candidates` TO `kg_i2_reader`@`127.0.0.1`\r\nGRANT SELECT ON `kg_assistant_i2_20260927_r01`.`extraction_batch_results` TO `kg_i2_reader`@`127.0.0.1`\r\nGRANT SELECT ON `kg_assistant_i2_20260927_r01`.`ingestion_jobs` TO `kg_i2_reader`@`127.0.0.1`\r\nGRANT SELECT ON `kg_assistant_i2_20260927_r01`.`knowledge_edges` TO `kg_i2_reader`@`127.0.0.1`\r\nGRANT SELECT ON `kg_assistant_i2_20260927_r01`.`knowledge_libraries` TO `kg_i2_reader`@`127.0.0.1`\r\nGRANT SELECT ON `kg_assistant_i2_20260927_r01`.`knowledge_nodes` TO `kg_i2_reader`@`127.0.0.1`\r\nGRANT SELECT ON `kg_assistant_i2_20260927_r01`.`learning_assessment_attempts` TO `kg_i2_reader`@`127.0.0.1`\r\nGRANT SELECT ON `kg_assistant_i2_20260927_r01`.`learning_path_steps` TO `kg_i2_reader`@`127.0.0.1`\r\nGRANT SELECT ON `kg_assistant_i2_20260927_r01`.`learning_paths` TO `kg_i2_reader`@`127.0.0.1`\r\nGRANT SELECT ON `kg_assistant_i2_20260927_r01`.`library_aliases` TO `kg_i2_reader`@`127.0.0.1`\r\nGRANT SELECT ON `kg_assistant_i2_20260927_r01`.`library_nodes` TO `kg_i2_reader`@`127.0.0.1`\r\nGRANT SELECT (`enabled`, `encrypted_api_key`, `vision`) ON `kg_assistant_i2_20260927_r01`.`llm_profiles` TO `kg_i2_reader`@`127.0.0.1`\r\nGRANT SELECT ON `kg_assistant_i2_20260927_r01`.`node_aliases` TO `kg_i2_reader`@`127.0.0.1`\r\nGRANT SELECT ON `kg_assistant_i2_20260927_r01`.`node_evidence` TO `kg_i2_reader`@`127.0.0.1`\r\nGRANT SELECT ON `kg_assistant_i2_20260927_r01`.`relation_candidates` TO `kg_i2_reader`@`127.0.0.1`\r\nGRANT SELECT (`encrypted_value`, `is_secret`, `setting_key`) ON `kg_assistant_i2_20260927_r01`.`system_settings` TO `kg_i2_reader`@`127.0.0.1`",
+  "originalCredentialFileUsed": true
+}

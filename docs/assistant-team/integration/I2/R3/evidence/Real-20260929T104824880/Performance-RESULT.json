@@ -1,0 +1,404 @@
+{
+  "uniqueTestCases": 1,
+  "startedAt": "2026-09-29T10:51:28.8463090+08:00",
+  "rawXmlArchived": false,
+  "executionRound": 1,
+  "uniqueMethodDefinitions": 1,
+  "records": [
+    {
+      "value": {
+        "sample": 1,
+        "mode": "single",
+        "elapsedMs": 1351,
+        "status": "ok"
+      },
+      "kind": "scale_sample"
+    },
+    {
+      "value": {
+        "sample": 2,
+        "mode": "single",
+        "elapsedMs": 1220,
+        "status": "ok"
+      },
+      "kind": "scale_sample"
+    },
+    {
+      "value": {
+        "sample": 3,
+        "mode": "single",
+        "elapsedMs": 1196,
+        "status": "ok"
+      },
+      "kind": "scale_sample"
+    },
+    {
+      "value": {
+        "sample": 4,
+        "mode": "single",
+        "elapsedMs": 1165,
+        "status": "ok"
+      },
+      "kind": "scale_sample"
+    },
+    {
+      "value": {
+        "sample": 5,
+        "mode": "single",
+        "elapsedMs": 1155,
+        "status": "ok"
+      },
+      "kind": "scale_sample"
+    },
+    {
+      "value": {
+        "sample": 6,
+        "mode": "single",
+        "elapsedMs": 1169,
+        "status": "ok"
+      },
+      "kind": "scale_sample"
+    },
+    {
+      "value": {
+        "sample": 7,
+        "mode": "single",
+        "elapsedMs": 1183,
+        "status": "ok"
+      },
+      "kind": "scale_sample"
+    },
+    {
+      "value": {
+        "sample": 8,
+        "mode": "single",
+        "elapsedMs": 1152,
+        "status": "ok"
+      },
+      "kind": "scale_sample"
+    },
+    {
+      "value": {
+        "sample": 9,
+        "mode": "single",
+        "elapsedMs": 1138,
+        "status": "ok"
+      },
+      "kind": "scale_sample"
+    },
+    {
+      "value": {
+        "sample": 10,
+        "mode": "single",
+        "elapsedMs": 1113,
+        "status": "ok"
+      },
+      "kind": "scale_sample"
+    },
+    {
+      "value": {
+        "sample": 11,
+        "mode": "single",
+        "elapsedMs": 1116,
+        "status": "ok"
+      },
+      "kind": "scale_sample"
+    },
+    {
+      "value": {
+        "sample": 12,
+        "mode": "single",
+        "elapsedMs": 1086,
+        "status": "ok"
+      },
+      "kind": "scale_sample"
+    },
+    {
+      "value": {
+        "sample": 13,
+        "mode": "single",
+        "elapsedMs": 1154,
+        "status": "ok"
+      },
+      "kind": "scale_sample"
+    },
+    {
+      "value": {
+        "sample": 14,
+        "mode": "single",
+        "elapsedMs": 1124,
+        "status": "ok"
+      },
+      "kind": "scale_sample"
+    },
+    {
+      "value": {
+        "sample": 15,
+        "mode": "single",
+        "elapsedMs": 1146,
+        "status": "ok"
+      },
+      "kind": "scale_sample"
+    },
+    {
+      "value": {
+        "sample": 16,
+        "mode": "single",
+        "elapsedMs": 1126,
+        "status": "ok"
+      },
+      "kind": "scale_sample"
+    },
+    {
+      "value": {
+        "sample": 17,
+        "mode": "single",
+        "elapsedMs": 1126,
+        "status": "ok"
+      },
+      "kind": "scale_sample"
+    },
+    {
+      "value": {
+        "sample": 18,
+        "mode": "single",
+        "elapsedMs": 1089,
+        "status": "ok"
+      },
+      "kind": "scale_sample"
+    },
+    {
+      "value": {
+        "sample": 19,
+        "mode": "single",
+        "elapsedMs": 1099,
+        "status": "ok"
+      },
+      "kind": "scale_sample"
+    },
+    {
+      "value": {
+        "sample": 20,
+        "mode": "single",
+        "elapsedMs": 1117,
+        "status": "ok"
+      },
+      "kind": "scale_sample"
+    },
+    {
+      "value": {
+        "sample": 1,
+        "mode": "concurrent4",
+        "elapsedMs": 1816,
+        "status": "ok"
+      },
+      "kind": "scale_sample"
+    },
+    {
+      "value": {
+        "sample": 2,
+        "mode": "concurrent4",
+        "elapsedMs": 1843,
+        "status": "ok"
+      },
+      "kind": "scale_sample"
+    },
+    {
+      "value": {
+        "sample": 3,
+        "mode": "concurrent4",
+        "elapsedMs": 1843,
+        "status": "ok"
+      },
+      "kind": "scale_sample"
+    },
+    {
+      "value": {
+        "sample": 4,
+        "mode": "concurrent4",
+        "elapsedMs": 1852,
+        "status": "ok"
+      },
+      "kind": "scale_sample"
+    },
+    {
+      "value": {
+        "sample": 7,
+        "mode": "concurrent4",
+        "elapsedMs": 1759,
+        "status": "ok"
+      },
+      "kind": "scale_sample"
+    },
+    {
+      "value": {
+        "sample": 5,
+        "mode": "concurrent4",
+        "elapsedMs": 1800,
+        "status": "ok"
+      },
+      "kind": "scale_sample"
+    },
+    {
+      "value": {
+        "sample": 6,
+        "mode": "concurrent4",
+        "elapsedMs": 1818,
+        "status": "ok"
+      },
+      "kind": "scale_sample"
+    },
+    {
+      "value": {
+        "sample": 8,
+        "mode": "concurrent4",
+        "elapsedMs": 1836,
+        "status": "ok"
+      },
+      "kind": "scale_sample"
+    },
+    {
+      "value": {
+        "sample": 9,
+        "mode": "concurrent4",
+        "elapsedMs": 1815,
+        "status": "ok"
+      },
+      "kind": "scale_sample"
+    },
+    {
+      "value": {
+        "sample": 10,
+        "mode": "concurrent4",
+        "elapsedMs": 1800,
+        "status": "ok"
+      },
+      "kind": "scale_sample"
+    },
+    {
+      "value": {
+        "sample": 11,
+        "mode": "concurrent4",
+        "elapsedMs": 1769,
+        "status": "ok"
+      },
+      "kind": "scale_sample"
+    },
+    {
+      "value": {
+        "sample": 12,
+        "mode": "concurrent4",
+        "elapsedMs": 1785,
+        "status": "ok"
+      },
+      "kind": "scale_sample"
+    },
+    {
+      "value": {
+        "sample": 14,
+        "mode": "concurrent4",
+        "elapsedMs": 1749,
+        "status": "ok"
+      },
+      "kind": "scale_sample"
+    },
+    {
+      "value": {
+        "sample": 13,
+        "mode": "concurrent4",
+        "elapsedMs": 1774,
+        "status": "ok"
+      },
+      "kind": "scale_sample"
+    },
+    {
+      "value": {
+        "sample": 15,
+        "mode": "concurrent4",
+        "elapsedMs": 1785,
+        "status": "ok"
+      },
+      "kind": "scale_sample"
+    },
+    {
+      "value": {
+        "sample": 16,
+        "mode": "concurrent4",
+        "elapsedMs": 1783,
+        "status": "ok"
+      },
+      "kind": "scale_sample"
+    },
+    {
+      "value": {
+        "sample": 17,
+        "mode": "concurrent4",
+        "elapsedMs": 1717,
+        "status": "ok"
+      },
+      "kind": "scale_sample"
+    },
+    {
+      "value": {
+        "sample": 19,
+        "mode": "concurrent4",
+        "elapsedMs": 1739,
+        "status": "ok"
+      },
+      "kind": "scale_sample"
+    },
+    {
+      "value": {
+        "sample": 18,
+        "mode": "concurrent4",
+        "elapsedMs": 1770,
+        "status": "ok"
+      },
+      "kind": "scale_sample"
+    },
+    {
+      "value": {
+        "sample": 20,
+        "mode": "concurrent4",
+        "elapsedMs": 1725,
+        "status": "ok"
+      },
+      "kind": "scale_sample"
+    },
+    {
+      "value": {
+        "singleCount": 20,
+        "concurrentP95Ms": 1843,
+        "warmupDiscarded": 0,
+        "concurrentCount": 20,
+        "rank": 19,
+        "singleP95Ms": 1220,
+        "limitMs": 3000
+      },
+      "kind": "scale_p95"
+    }
+  ],
+  "exitCode": 0,
+  "suites": [
+    {
+      "cases": [
+        {
+          "class": "com.knowledgegraph.assistant.i2.I2QualityInsightRankingTest",
+          "name": "fullScaleSingleAndFourConcurrentSamples",
+          "seconds": "32.073",
+          "error": "",
+          "failure": ""
+        }
+      ],
+      "class": "com.knowledgegraph.assistant.i2.I2QualityInsightRankingTest",
+      "tests": 1,
+      "skipped": 0,
+      "xmlRawSha256": "a650e31af4a476d4e3b4b3512cffcbe641cefa25b9cb17b05514d41dd05fe547",
+      "failures": 0,
+      "errors": 0,
+      "xmlPath": "D:\\知识图谱\\backend-java\\target\\surefire-reports\\TEST-com.knowledgegraph.assistant.i2.I2QualityInsightRankingTest-Real-20260929T104824880-Performance.xml"
+    }
+  ],
+  "suite": "Performance",
+  "reportSuffix": "Real-20260929T104824880-Performance"
+}

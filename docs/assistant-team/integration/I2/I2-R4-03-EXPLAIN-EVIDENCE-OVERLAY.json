@@ -1,0 +1,78 @@
+{
+  "kind": "I2-R4 diagnostic evidence addition, not a domain patch",
+  "recordedOn": "2026-09-29",
+  "runId": "R4Explain-20260929T164517990",
+  "runtimeExecutor": "original desktop 06 integration-test",
+  "reviewer": "controller; read-only evidence review, no rerun",
+  "historicalExpectedHashesUntouched": true,
+  "task": {
+    "path": "D:/知识图谱/docs/assistant-team/integration/I2/I2-R4-RESEARCH-EDGE-QUERY-TASK.md",
+    "rawSha256": "faa3d2e707696bfc29ec5f2831ecdd6aff5d1355f055afd493fcf6e0e781d994"
+  },
+  "originalEvidence": {
+    "path": "D:/知识图谱/docs/assistant-team/integration/I2/I2-R4-RESEARCH-EDGE-EVIDENCE.json",
+    "rawSha256": "afca6f306ac755c41e3c9c9ed914205dbe1bfb9bdd72fe00a1d00fd8c1cfc1c3"
+  },
+  "runRoot": "D:/知识图谱-worktrees/assistant-06-integration-test/docs/assistant-team/integration/I2/R4-EXPLAIN/evidence/R4Explain-20260929T164517990",
+  "index": {
+    "file": "INDEX.json",
+    "rawSha256": "cb57d0fa2d7c2e0c39ac758119d31e958ac06e2920b99f3cc2362f65023cd5d2",
+    "indexedPublicFiles": 23,
+    "externalXmlFiles": 4
+  },
+  "report": {
+    "path": "D:/知识图谱-worktrees/assistant-06-integration-test/docs/assistant-team/reports/06-integration-I2-R4-explain.md",
+    "rawSha256": "1cb735bec26c5b49124cbb89038a02af11aba67006492957efb6bd9d9188c0b8",
+    "relevantSection": "2026-09-29 正式续作：真实 EXPLAIN 取证结果"
+  },
+  "scopeDefinitions": {
+    "mode": "SELECTED",
+    "AB": {"libraryIds": [7101], "documentIds": [7201, 7202], "nodeIds": []},
+    "LIB": {"libraryIds": [7101], "documentIds": [], "nodeIds": []},
+    "businessLimit": 10,
+    "maxRows": 11
+  },
+  "results": [
+    {
+      "case": "E01", "method": "outgoingEdges", "scope": "AB", "nodeId": 7702,
+      "file": "E01.json", "bytes": 12106,
+      "rawSha256": "aee333e1573b9841fbb9ec4e36cd7c1c29f66923377aef7461b87c2bc0f87aa3",
+      "executeCount": 1, "status": "explain_error", "sqlState": "HY000", "vendorCode": 3024,
+      "planObtained": false, "elapsedMs": 1659, "bindingCount": 26
+    },
+    {
+      "case": "E02", "method": "outgoingEdges", "scope": "AB", "nodeId": 7701,
+      "file": "E02.json", "bytes": 12074,
+      "rawSha256": "72edc590f96d98642e530d8f6aadcd8614b29014f7497817fa7a2e4cdbfde609",
+      "executeCount": 1, "status": "explain_error", "sqlState": "HY000", "vendorCode": 3024,
+      "planObtained": false, "elapsedMs": 1648, "bindingCount": 26
+    },
+    {
+      "case": "E03", "method": "incidentEdges", "scope": "AB", "nodeId": 7701,
+      "file": "E03.json", "bytes": 12260,
+      "rawSha256": "23f8bae054bac68c5f05ed8259be79885956b02db7980972ee99fb3f4ada6813",
+      "executeCount": 1, "status": "explain_error", "sqlState": "HY000", "vendorCode": 3024,
+      "planObtained": false, "elapsedMs": 1668, "bindingCount": 27
+    },
+    {
+      "case": "E04", "method": "incidentEdges", "scope": "LIB", "nodeId": 7701,
+      "file": "E04.json", "bytes": 14918,
+      "rawSha256": "cedd4172f660d631fd801744bfa521aec00c69c5925f82f72aba8948b9a95a1c",
+      "executeCount": 1, "status": "plan_captured", "planObtained": true,
+      "elapsedMs": 131, "bindingCount": 7
+    }
+  ],
+  "budgets": {"connectMs": 3000, "socketMs": 4000, "statementSeconds": 2, "sessionMaxExecutionTimeMs": 1500},
+  "sourcePreimage": {
+    "relativePath": "backend-java/src/main/java/com/knowledgegraph/assistant/research/JdbcResearchReadRepository.java",
+    "mainAndOriginal03NormalizedSha256": "b922ec24fc397fd772524524c34c6837a3f044bff4bd18efcdd23c37ae67612f"
+  },
+  "limits": [
+    "Only E04 has a plan; do not infer missing AB plans from it.",
+    "EXPLAIN elapsed time is not target SELECT elapsed time or p95.",
+    "No target business SELECT was executed in this diagnostic batch.",
+    "Four executions of one diagnostic test method: one pass, three failures, no skips; no retries.",
+    "Root cause and safe domain repair remain for original 03; no automatic authorization for more database runs.",
+    "Original 03 consumes redacted public evidence; do not access credentials or restricted raw XML/general-log archives."
+  ]
+}

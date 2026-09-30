@@ -1,0 +1,29 @@
+{
+  "tests": 3,
+  "class": "I2QueryBudgetTest",
+  "case": "BUDGET",
+  "skipped": 0,
+  "failures": 0,
+  "errors": 0,
+  "rawXmlSha256": "c9f5f19db18479def0897fabf0dc0c295ab044b5205628622f962081a2c1baf4",
+  "cases": [
+    {
+      "seconds": "3.698",
+      "name": "smallFixtureSingleAndFourConcurrentReadBudgets",
+      "error": "",
+      "failure": ""
+    },
+    {
+      "seconds": "1.027",
+      "name": "jdbcTimeoutInterruptsServerQuery",
+      "error": "",
+      "failure": ""
+    },
+    {
+      "seconds": "1.241",
+      "name": "serverTimeoutReallyCancelsStatementAndKeepsConnectionUsable",
+      "error": "",
+      "failure": ""
+    }
+  ]
+}

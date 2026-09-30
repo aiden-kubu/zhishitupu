@@ -1,0 +1,17 @@
+{
+  "tests": 1,
+  "class": "I2FaultVariantTest",
+  "case": "MULTI_CURRENT",
+  "skipped": 0,
+  "failures": 0,
+  "errors": 0,
+  "rawXmlSha256": "8cad751f10e476bac06b1fee448b588ffa242ed2a224617c718fcf272c2fd3dd",
+  "cases": [
+    {
+      "seconds": "0.526",
+      "name": "selectedDatabaseVariant",
+      "error": "",
+      "failure": ""
+    }
+  ]
+}

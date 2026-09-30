@@ -1,0 +1,299 @@
+{
+  "suite": "Semantics",
+  "rawXmlArchived": false,
+  "exitCode": 1,
+  "uniqueMethodDefinitions": 1,
+  "startedAt": "2026-09-29T00:17:29.6103410+08:00",
+  "records": [
+    {
+      "value": {
+        "actualTop": [
+          {
+            "id": 900001,
+            "degree": 4
+          },
+          {
+            "id": 900002,
+            "degree": 4
+          },
+          {
+            "id": 900005,
+            "degree": 1
+          },
+          {
+            "id": 900006,
+            "degree": 0
+          }
+        ],
+        "case": "library_7910",
+        "expectedTop": [
+          {
+            "id": 900001,
+            "degree": 4
+          },
+          {
+            "id": 900002,
+            "degree": 4
+          },
+          {
+            "id": 900005,
+            "degree": 1
+          },
+          {
+            "id": 900006,
+            "degree": 0
+          }
+        ],
+        "isolated": 1,
+        "edgeCount": 5,
+        "nodeCount": 4
+      },
+      "kind": "semantic"
+    },
+    {
+      "value": {
+        "actualTop": [
+          {
+            "id": 900001,
+            "degree": 5
+          },
+          {
+            "id": 900002,
+            "degree": 4
+          },
+          {
+            "id": 900003,
+            "degree": 1
+          },
+          {
+            "id": 900005,
+            "degree": 1
+          },
+          {
+            "id": 900006,
+            "degree": 0
+          }
+        ],
+        "case": "union_7910_7911",
+        "expectedTop": [
+          {
+            "id": 900001,
+            "degree": 5
+          },
+          {
+            "id": 900002,
+            "degree": 4
+          },
+          {
+            "id": 900003,
+            "degree": 1
+          },
+          {
+            "id": 900005,
+            "degree": 1
+          },
+          {
+            "id": 900006,
+            "degree": 0
+          }
+        ],
+        "isolated": 1,
+        "edgeCount": 6,
+        "nodeCount": 5
+      },
+      "kind": "semantic"
+    },
+    {
+      "value": {
+        "actualTop": [
+          {
+            "id": 900001,
+            "degree": 2
+          },
+          {
+            "id": 900003,
+            "degree": 1
+          }
+        ],
+        "case": "library_7911",
+        "expectedTop": [
+          {
+            "id": 900001,
+            "degree": 2
+          },
+          {
+            "id": 900003,
+            "degree": 1
+          }
+        ],
+        "isolated": 0,
+        "edgeCount": 2,
+        "nodeCount": 2
+      },
+      "kind": "semantic"
+    },
+    {
+      "value": {
+        "actualTop": [
+          {
+            "id": 900004,
+            "degree": 0
+          }
+        ],
+        "case": "outside_library_7912",
+        "expectedTop": [
+          {
+            "id": 900004,
+            "degree": 0
+          }
+        ],
+        "isolated": 1,
+        "edgeCount": 0,
+        "nodeCount": 1
+      },
+      "kind": "semantic"
+    },
+    {
+      "value": {
+        "actualTop": [],
+        "case": "empty_7913",
+        "expectedTop": [],
+        "isolated": 0,
+        "edgeCount": 0,
+        "nodeCount": 0
+      },
+      "kind": "semantic"
+    },
+    {
+      "value": {
+        "actualTop": [
+          {
+            "id": 900001,
+            "degree": 4
+          }
+        ],
+        "case": "top_limit_one",
+        "expectedTop": [
+          {
+            "id": 900001,
+            "degree": 4
+          }
+        ],
+        "isolated": 1,
+        "edgeCount": 5,
+        "nodeCount": 4
+      },
+      "kind": "semantic"
+    },
+    {
+      "value": {
+        "actualTop": [
+          {
+            "id": 900001,
+            "degree": 5
+          },
+          {
+            "id": 900002,
+            "degree": 4
+          },
+          {
+            "id": 900003,
+            "degree": 1
+          }
+        ],
+        "case": "top_limit_three",
+        "expectedTop": [
+          {
+            "id": 900001,
+            "degree": 5
+          },
+          {
+            "id": 900002,
+            "degree": 4
+          },
+          {
+            "id": 900003,
+            "degree": 1
+          }
+        ],
+        "isolated": 1,
+        "edgeCount": 6,
+        "nodeCount": 5
+      },
+      "kind": "semantic"
+    },
+    {
+      "value": {
+        "edgeCount": 30009,
+        "isolated": 3,
+        "top": [
+          {
+            "id": 100000,
+            "degree": 6
+          },
+          {
+            "id": 100001,
+            "degree": 6
+          },
+          {
+            "id": 100002,
+            "degree": 6
+          },
+          {
+            "id": 100003,
+            "degree": 6
+          },
+          {
+            "id": 100004,
+            "degree": 6
+          },
+          {
+            "id": 100005,
+            "degree": 6
+          },
+          {
+            "id": 100006,
+            "degree": 6
+          },
+          {
+            "id": 100007,
+            "degree": 6
+          },
+          {
+            "id": 100008,
+            "degree": 6
+          },
+          {
+            "id": 100009,
+            "degree": 6
+          }
+        ],
+        "nodeCount": 10011
+      },
+      "kind": "project_oracle"
+    }
+  ],
+  "suites": [
+    {
+      "skipped": 0,
+      "errors": 1,
+      "xmlPath": "D:\\知识图谱\\backend-java\\target\\surefire-reports\\TEST-com.knowledgegraph.assistant.i2.I2QualityInsightRankingTest-Real-20260929T001613649-Semantics.xml",
+      "tests": 1,
+      "cases": [
+        {
+          "class": "com.knowledgegraph.assistant.i2.I2QualityInsightRankingTest",
+          "name": "realSemanticMatrixAndProjectOracle",
+          "seconds": "2.79",
+          "error": "PreparedStatementCallback; uncategorized SQLException for SQL [WITH visible_nodes AS (SELECT n.id,n.canonical_name,n.node_type FROM knowledge_nodes n WHERE 1=1), visible_edges AS (SELECT e.id,e.source_node_id,e.target_node_id FROM knowledge_edges e JOIN visible_nodes s ON s.id=e.source_node_id JOIN visible_nodes t ON t.id=e.target_node_id WHERE e.status='active') SELECT n.id,n.canonical_name,n.node_type,0 FROM visible_nodes n WHERE NOT EXISTS (SELECT 1 FROM visible_edges e WHERE e.source_node_id=n.id OR e.target_node_id=n.id) ORDER BY n.id LIMIT ?]; SQL state [HY000]; error code [3024]; Query execution was interrupted, maximum statement execution time exceeded",
+          "failure": ""
+        }
+      ],
+      "class": "com.knowledgegraph.assistant.i2.I2QualityInsightRankingTest",
+      "xmlRawSha256": "22cd450ab1b4906501070d4b43e38ba46b9af05cd5a4e79bc6fa26b3de22b6e6",
+      "failures": 0
+    }
+  ],
+  "uniqueTestCases": 1,
+  "executionRound": 1,
+  "reportSuffix": "Real-20260929T001613649-Semantics"
+}

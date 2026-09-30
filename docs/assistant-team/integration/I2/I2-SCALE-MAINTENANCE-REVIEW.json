@@ -1,0 +1,16 @@
+{
+  "kind": "cross_window_restart_and_statistics_maintenance_review",
+  "ddlDifferences": [
+    {
+      "beforeSha256": "ba043c8cff37ef514c211a275b1a5fee9eb623e5b1492c6cb88c5abfd5cd6db0",
+      "afterSha256": "29263f002094a7404cd50252c75fc1a9b28515d12211679a996c56ee363f6f6c",
+      "table": "node_evidence"
+    }
+  ],
+  "businessRowsNotReset": true,
+  "columnsAndIndexesUnchanged": true,
+  "notPartOfReaderZeroWriteWindows": true,
+  "causation": "Observed across restart and statistics maintenance; not attributing counter display change to ANALYZE alone",
+  "all34TableRowCountsAndDataHashesEqual": true,
+  "exactDifference": "node_evidence SHOW CREATE TABLE AUTO_INCREMENT=16389 -> 10006; replacement alone reproduces exact earlier SHA-256"
+}

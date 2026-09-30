@@ -1,0 +1,63 @@
+{
+  "class": "I2ReadOnlyPrivilegeTest",
+  "cases": [
+    {
+      "seconds": "0.014",
+      "name": "minimumGrantsAndNoRole"
+    },
+    {
+      "seconds": "0.026",
+      "name": "unrelatedDataAndColumnsDenied()[1]"
+    },
+    {
+      "seconds": "0.006",
+      "name": "unrelatedDataAndColumnsDenied()[2]"
+    },
+    {
+      "seconds": "0.007",
+      "name": "unrelatedDataAndColumnsDenied()[3]"
+    },
+    {
+      "seconds": "0.007",
+      "name": "unrelatedDataAndColumnsDenied()[4]"
+    },
+    {
+      "seconds": "0.007",
+      "name": "serverRejectsEveryWriteCategory()[1]"
+    },
+    {
+      "seconds": "0.005",
+      "name": "serverRejectsEveryWriteCategory()[2]"
+    },
+    {
+      "seconds": "0.005",
+      "name": "serverRejectsEveryWriteCategory()[3]"
+    },
+    {
+      "seconds": "0.007",
+      "name": "serverRejectsEveryWriteCategory()[4]"
+    },
+    {
+      "seconds": "0.007",
+      "name": "serverRejectsEveryWriteCategory()[5]"
+    },
+    {
+      "seconds": "0.007",
+      "name": "serverRejectsEveryWriteCategory()[6]"
+    },
+    {
+      "seconds": "0.006",
+      "name": "serverRejectsEveryWriteCategory()[7]"
+    },
+    {
+      "seconds": "0.005",
+      "name": "serverRejectsEveryWriteCategory()[8]"
+    }
+  ],
+  "rawXmlSha256": "9de0f26d666881c56ff18bb9c436bec7da8d582a80eabade4e1c0ec109371eaf",
+  "case": "BASE",
+  "errors": 0,
+  "skipped": 0,
+  "tests": 13,
+  "failures": 0
+}

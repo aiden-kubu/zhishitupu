@@ -1,0 +1,341 @@
+{
+  "stage": "I2",
+  "status": "authorized_preflight",
+  "verifiedAt": "2026-09-27T12:09:59.6715088+08:00",
+  "kind": "offline_read_only_verification_not_user_acceptance",
+  "head": "86d1e1fcff6b7b492faec3d499837a42246df320",
+  "branch": "main",
+  "baselineFilesMatched": 62,
+  "identicalDuplicateCopiesMatched": 98,
+  "preExistingMainFilesUnchanged": 429,
+  "unexpectedNewMainFiles": [],
+  "frozen": [
+    {
+      "file": "docs/assistant-team/references/02-quality-W1-DEPENDENCIES.json",
+      "matched": 16
+    },
+    {
+      "file": "docs/assistant-team/references/03-research-W1-DEPENDENCIES.json",
+      "matched": 18
+    },
+    {
+      "file": "docs/assistant-team/references/04-learning-W1-DEPENDENCIES.json",
+      "matched": 29
+    },
+    {
+      "file": "docs/assistant-team/references/05-assessment-W1-DEPENDENCIES.json",
+      "matched": 42
+    }
+  ],
+  "productionRegistrationPerformedInI1": false,
+  "toolNamesStaticallyUnique": 33,
+  "toolCheckNote": "Static declarations only; no production registration or all-domain production host exercised",
+  "testClasses": 19,
+  "deduplicatedTests": 154,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "testsByDomain": [
+    {
+      "owner": "01-ingestion",
+      "classes": 2,
+      "tests": 16
+    },
+    {
+      "owner": "02-quality",
+      "classes": 3,
+      "tests": 25
+    },
+    {
+      "owner": "03-research",
+      "classes": 4,
+      "tests": 24
+    },
+    {
+      "owner": "04-learning",
+      "classes": 4,
+      "tests": 26
+    },
+    {
+      "owner": "05-assessment",
+      "classes": 4,
+      "tests": 20
+    },
+    {
+      "owner": "root",
+      "classes": 2,
+      "tests": 43
+    }
+  ],
+  "suites": [
+    {
+      "owner": "root",
+      "name": "com.knowledgegraph.assistant.runtime.AssistantRuntimeTest",
+      "tests": 28,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "seconds": 0.164,
+      "reportRawSha256": "8742d22fa18169d87ca6343d7be1152eefc74af89660c12f9826216ef08d4fe8",
+      "lastWriteTime": "2026-09-27T09:43:04.5206553+08:00"
+    },
+    {
+      "owner": "root",
+      "name": "com.knowledgegraph.assistant.runtime.DecisionParserTest",
+      "tests": 15,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "seconds": 0.216,
+      "reportRawSha256": "8f5a7b045e9d67e9e6014af7cea19340c467c40dba634a60e99cbc87d64b9eb0",
+      "lastWriteTime": "2026-09-27T09:43:04.7358667+08:00"
+    },
+    {
+      "owner": "01-ingestion",
+      "name": "com.knowledgegraph.assistant.ingestion.IngestionAgentToolProviderTest",
+      "tests": 12,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "seconds": 0.14,
+      "reportRawSha256": "c0e8b65585d28a21efff4f10b638918479a6de1c6b3b8c93602d2fa29ad48241",
+      "lastWriteTime": "2026-09-27T09:43:03.5704155+08:00"
+    },
+    {
+      "owner": "01-ingestion",
+      "name": "com.knowledgegraph.assistant.ingestion.JdbcIngestionReadRepositoryTest",
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "seconds": 0.139,
+      "reportRawSha256": "6fc23e2d336161ff0e317ff7ebac7f50cc06b46fabeb35fc28b93f735f932f68",
+      "lastWriteTime": "2026-09-27T09:43:03.7093678+08:00"
+    },
+    {
+      "owner": "02-quality",
+      "name": "com.knowledgegraph.assistant.quality.QualityAgentToolProviderTest",
+      "tests": 15,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "seconds": 0.138,
+      "reportRawSha256": "6ead97e99238864e608c82803a8afccc22bf9a4e058edadc45d139c8fe6561df",
+      "lastWriteTime": "2026-09-27T09:43:04.1731559+08:00"
+    },
+    {
+      "owner": "02-quality",
+      "name": "com.knowledgegraph.assistant.quality.QualityEvidenceVerifierTest",
+      "tests": 6,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "seconds": 0.007,
+      "reportRawSha256": "8da5371c63a0a10cd56b956ea329581fd70e1ebbf9e22911892e1ec0e5c010de",
+      "lastWriteTime": "2026-09-27T09:43:04.1797007+08:00"
+    },
+    {
+      "owner": "02-quality",
+      "name": "com.knowledgegraph.assistant.quality.JdbcQualityReadRepositoryTest",
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "seconds": 0.033,
+      "reportRawSha256": "5838c8db24a88d74a354c0c66d5e576f3d6236bf72fcdcb88c4f5ee0482ba976",
+      "lastWriteTime": "2026-09-27T09:43:04.0266716+08:00"
+    },
+    {
+      "owner": "03-research",
+      "name": "com.knowledgegraph.assistant.research.ResearchAgentToolProviderTest",
+      "tests": 7,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "seconds": 0.069,
+      "reportRawSha256": "3c6cebcd22fc366f1348d89a038b3d8b02e30bf6928ae776a6b1b1dd1378a9b2",
+      "lastWriteTime": "2026-09-27T09:43:04.2877690+08:00"
+    },
+    {
+      "owner": "03-research",
+      "name": "com.knowledgegraph.assistant.research.JdbcResearchReadRepositoryTest",
+      "tests": 5,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "seconds": 0.035,
+      "reportRawSha256": "a07ec6a8a27370d821acba82ac200a26be0eda7031f6bcaf613e0d96dc4ae50a",
+      "lastWriteTime": "2026-09-27T09:43:04.2179934+08:00"
+    },
+    {
+      "owner": "03-research",
+      "name": "com.knowledgegraph.assistant.research.ResearchComparisonTest",
+      "tests": 10,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "seconds": 0.058,
+      "reportRawSha256": "7fe0fed802216ed580b380a63c730fbfa4b3f0e6814ea929b9c1ac88ec37f34c",
+      "lastWriteTime": "2026-09-27T09:43:04.3472501+08:00"
+    },
+    {
+      "owner": "03-research",
+      "name": "com.knowledgegraph.assistant.research.ResearchDraftValidatorTest",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "seconds": 0.003,
+      "reportRawSha256": "87bbca8c68ca9ac12387e378813f71a8fdba4085b9c44f82286afb49e5f60a13",
+      "lastWriteTime": "2026-09-27T09:43:04.3523146+08:00"
+    },
+    {
+      "owner": "04-learning",
+      "name": "com.knowledgegraph.assistant.learning.LearningAgentToolProviderTest",
+      "tests": 10,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "seconds": 0.191,
+      "reportRawSha256": "10649f761911beffc61f407d44a65378582aa0630f9f3133edd754679b4710f0",
+      "lastWriteTime": "2026-09-27T09:43:03.9501971+08:00"
+    },
+    {
+      "owner": "04-learning",
+      "name": "com.knowledgegraph.assistant.learning.JdbcLearningReadRepositoryTest",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "seconds": 0.045,
+      "reportRawSha256": "c69a3fbf91a26ad040a4a43b111bffce01c1673fb34c0da409552d95f0a70d28",
+      "lastWriteTime": "2026-09-27T09:43:03.7557424+08:00"
+    },
+    {
+      "owner": "04-learning",
+      "name": "com.knowledgegraph.assistant.learning.LearningArtifactHandoffTest",
+      "tests": 8,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "seconds": 0.022,
+      "reportRawSha256": "1cbc3fb92be3001255e4db827d58b9fff4ba7ac37aaaee18cc4648b82369b1a3",
+      "lastWriteTime": "2026-09-27T09:43:03.9719805+08:00"
+    },
+    {
+      "owner": "04-learning",
+      "name": "com.knowledgegraph.assistant.learning.LearningDraftValidatorTest",
+      "tests": 5,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "seconds": 0.014,
+      "reportRawSha256": "d38495c45088de48ec004e36ef69872abf9ebf0346a6cabe2400dea4e5b2323f",
+      "lastWriteTime": "2026-09-27T09:43:03.9874282+08:00"
+    },
+    {
+      "owner": "05-assessment",
+      "name": "com.knowledgegraph.assistant.assessment.AssessmentAgentToolProviderTest",
+      "tests": 10,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "seconds": 1.546,
+      "reportRawSha256": "d85d1013dbcba477c0b6360a3838105944b30962a49c0d781af0834ccc3b1c89",
+      "lastWriteTime": "2026-09-27T09:43:02.8772615+08:00"
+    },
+    {
+      "owner": "05-assessment",
+      "name": "com.knowledgegraph.assistant.assessment.JdbcAssessmentReadRepositoryTest",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "seconds": 0.226,
+      "reportRawSha256": "df864a88cdad9b9b4f4a7881fcd5525e02fc6577a2a5ba860df3f57dca8197ec",
+      "lastWriteTime": "2026-09-27T09:43:03.4215799+08:00"
+    },
+    {
+      "owner": "05-assessment",
+      "name": "com.knowledgegraph.assistant.assessment.AssessmentArtifactHandoffTest",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "seconds": 0.294,
+      "reportRawSha256": "615a19d3e2a7a4503668805bb7a8cf4a347f6fd8a0939356b7a51f8ba0942424",
+      "lastWriteTime": "2026-09-27T09:43:03.1607316+08:00"
+    },
+    {
+      "owner": "05-assessment",
+      "name": "com.knowledgegraph.assistant.assessment.AssessmentDraftValidatorTest",
+      "tests": 5,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "seconds": 0.038,
+      "reportRawSha256": "4a3789189f880afda639120276b1b9dee7bde33dcd1e646d613428206e064a70",
+      "lastWriteTime": "2026-09-27T09:43:03.1968455+08:00"
+    }
+  ],
+  "fixture": {
+    "documents": 6,
+    "chunks": 5,
+    "chunkHashesMatched": 5,
+    "nodes": 5,
+    "edges": 3,
+    "paths": 1,
+    "steps": 2,
+    "legacyAttempts": 2,
+    "faultVariants": 12,
+    "acceptanceCases": 36,
+    "logicalVisibleNodes": 4,
+    "logicalActiveEdges": 1,
+    "logicalIsolatedNodes": 2,
+    "databaseLoaded": false,
+    "websiteExecuted": false
+  },
+  "report05": {
+    "removedConversationCharacters": 794,
+    "originalNormalizedSha256": "ca9f6509f200b891f159c8deeaa06ef8e45e1b952113570320a90cbe1500de60",
+    "cleanNormalizedSha256": "a0825e454a14aaddcd484e2a35f45922485b86ddf96e649d644cd89869e3b41b",
+    "technicalContentUnchanged": true
+  },
+  "reportArchives": [
+    {
+      "name": "01-ingestion",
+      "source": "D:/知识图谱-worktrees/assistant-01-ingestion/docs/assistant-team/reports/01-ingestion-W1.md",
+      "normalizedSha256": "326ab1f238034d9295a0920f9cb0606363091a6b55548ff8b018eba07c200a85"
+    },
+    {
+      "name": "02-quality",
+      "source": "D:/知识图谱-worktrees/assistant-02-quality/docs/assistant-team/reports/02-quality-W1.md",
+      "normalizedSha256": "eecf290e1f27efc7c061126670598cbab22142af2ef02e9574784a48261fe25c"
+    },
+    {
+      "name": "03-research",
+      "source": "D:/知识图谱-worktrees/assistant-03-research/docs/assistant-team/reports/03-research-W1.md",
+      "normalizedSha256": "7eb2ac99909593f594c7c29bb370e478d0e8d6884a496cc669f9b251db68506c"
+    },
+    {
+      "name": "04-learning",
+      "source": "D:/知识图谱-worktrees/assistant-04-learning/docs/assistant-team/reports/04-learning-W1.md",
+      "normalizedSha256": "c65653073d7873f45c07b7955eac0445e7afd3afced9d787249e6b7bf40e8727"
+    }
+  ],
+  "i2MainSnapshotFile": "I2-PROTECTION-BEFORE.json",
+  "requestedEnvironment": {
+    "version": "8.4.11",
+    "host": "127.0.0.1",
+    "port": 33078,
+    "directory": "D:/知识图谱-i2-env",
+    "database": "kg_assistant_i2_20260927_r01"
+  },
+  "preflight": {
+    "environmentRootPreviouslyAbsent": true,
+    "portFree": true,
+    "mysqlOnExistingPath": "8.0 installation not used or connected",
+    "officialZip": "https://cdn.mysql.com/Downloads/MySQL-8.4/mysql-8.4.11-winx64.zip",
+    "officialMd5": "2e833921898a9a030ea6bfe81bd811bc"
+  }
+}

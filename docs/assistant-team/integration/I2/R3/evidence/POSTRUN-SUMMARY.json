@@ -1,0 +1,957 @@
+{
+  "stage": "I2-R3",
+  "status": "batch_not_all_green_owner_acceptance_pending",
+  "offline": {
+    "caseExecutions": 198,
+    "uniqueMethodDefinitions": 170,
+    "passed": 198,
+    "failed": 0,
+    "reruns": 0
+  },
+  "real": {
+    "caseExecutions": 44,
+    "uniqueMethodDefinitions": 34,
+    "passed": 43,
+    "errors": 1,
+    "assertionFailures": 0,
+    "skipped": 0,
+    "reruns": 0
+  },
+  "qualityInsight": {
+    "scopeCases": 10,
+    "explainPlans": 100,
+    "queryResultChecks": 100,
+    "fullInsightCallsInMatrix": 10,
+    "issues": []
+  },
+  "suiteResults": [
+    {
+      "exit": 0,
+      "failures": 0,
+      "run": "Offline-20260929T104719641",
+      "errors": 0,
+      "methods": 7,
+      "skipped": 0,
+      "round": 1,
+      "suite": "IsolatedCount",
+      "cases": 10
+    },
+    {
+      "exit": 0,
+      "failures": 0,
+      "run": "Offline-20260929T104719641",
+      "errors": 0,
+      "methods": 145,
+      "skipped": 0,
+      "round": 1,
+      "suite": "Original",
+      "cases": 154
+    },
+    {
+      "exit": 0,
+      "failures": 0,
+      "run": "Offline-20260929T104719641",
+      "errors": 0,
+      "methods": 12,
+      "skipped": 0,
+      "round": 1,
+      "suite": "Ranking",
+      "cases": 15
+    },
+    {
+      "exit": 0,
+      "failures": 0,
+      "run": "Offline-20260929T104719641",
+      "errors": 0,
+      "methods": 6,
+      "skipped": 0,
+      "round": 1,
+      "suite": "WholeRegression",
+      "cases": 19
+    },
+    {
+      "exit": 1,
+      "failures": 0,
+      "run": "Real-20260929T104824880",
+      "errors": 1,
+      "methods": 25,
+      "skipped": 0,
+      "round": 1,
+      "suite": "Base",
+      "cases": 35
+    },
+    {
+      "exit": 0,
+      "failures": 0,
+      "run": "Real-20260929T104824880",
+      "errors": 0,
+      "methods": 3,
+      "skipped": 0,
+      "round": 1,
+      "suite": "Budget",
+      "cases": 3
+    },
+    {
+      "exit": 0,
+      "failures": 0,
+      "run": "Real-20260929T104824880",
+      "errors": 0,
+      "methods": 1,
+      "skipped": 0,
+      "round": 1,
+      "suite": "CountPlan",
+      "cases": 1
+    },
+    {
+      "exit": 0,
+      "failures": 0,
+      "run": "Real-20260929T104824880",
+      "errors": 0,
+      "methods": 1,
+      "skipped": 0,
+      "round": 1,
+      "suite": "LegacyWindow",
+      "cases": 1
+    },
+    {
+      "exit": 0,
+      "failures": 0,
+      "run": "Real-20260929T104824880",
+      "errors": 0,
+      "methods": 1,
+      "skipped": 0,
+      "round": 1,
+      "suite": "Matrix",
+      "cases": 1
+    },
+    {
+      "exit": 0,
+      "failures": 0,
+      "run": "Real-20260929T104824880",
+      "errors": 0,
+      "methods": 1,
+      "skipped": 0,
+      "round": 1,
+      "suite": "Performance",
+      "cases": 1
+    },
+    {
+      "exit": 0,
+      "failures": 0,
+      "run": "Real-20260929T104824880",
+      "errors": 0,
+      "methods": 1,
+      "skipped": 0,
+      "round": 1,
+      "suite": "Plan",
+      "cases": 1
+    },
+    {
+      "exit": 0,
+      "failures": 0,
+      "run": "Real-20260929T104824880",
+      "errors": 0,
+      "methods": 1,
+      "skipped": 0,
+      "round": 1,
+      "suite": "Semantics",
+      "cases": 1
+    }
+  ],
+  "performance": [
+    {
+      "min": 1086,
+      "max": 1351,
+      "count": 20,
+      "p95": 1220,
+      "allOk": true,
+      "raw": [
+        {
+          "sample": 1,
+          "mode": "single",
+          "elapsedMs": 1351,
+          "status": "ok"
+        },
+        {
+          "sample": 2,
+          "mode": "single",
+          "elapsedMs": 1220,
+          "status": "ok"
+        },
+        {
+          "sample": 3,
+          "mode": "single",
+          "elapsedMs": 1196,
+          "status": "ok"
+        },
+        {
+          "sample": 4,
+          "mode": "single",
+          "elapsedMs": 1165,
+          "status": "ok"
+        },
+        {
+          "sample": 5,
+          "mode": "single",
+          "elapsedMs": 1155,
+          "status": "ok"
+        },
+        {
+          "sample": 6,
+          "mode": "single",
+          "elapsedMs": 1169,
+          "status": "ok"
+        },
+        {
+          "sample": 7,
+          "mode": "single",
+          "elapsedMs": 1183,
+          "status": "ok"
+        },
+        {
+          "sample": 8,
+          "mode": "single",
+          "elapsedMs": 1152,
+          "status": "ok"
+        },
+        {
+          "sample": 9,
+          "mode": "single",
+          "elapsedMs": 1138,
+          "status": "ok"
+        },
+        {
+          "sample": 10,
+          "mode": "single",
+          "elapsedMs": 1113,
+          "status": "ok"
+        },
+        {
+          "sample": 11,
+          "mode": "single",
+          "elapsedMs": 1116,
+          "status": "ok"
+        },
+        {
+          "sample": 12,
+          "mode": "single",
+          "elapsedMs": 1086,
+          "status": "ok"
+        },
+        {
+          "sample": 13,
+          "mode": "single",
+          "elapsedMs": 1154,
+          "status": "ok"
+        },
+        {
+          "sample": 14,
+          "mode": "single",
+          "elapsedMs": 1124,
+          "status": "ok"
+        },
+        {
+          "sample": 15,
+          "mode": "single",
+          "elapsedMs": 1146,
+          "status": "ok"
+        },
+        {
+          "sample": 16,
+          "mode": "single",
+          "elapsedMs": 1126,
+          "status": "ok"
+        },
+        {
+          "sample": 17,
+          "mode": "single",
+          "elapsedMs": 1126,
+          "status": "ok"
+        },
+        {
+          "sample": 18,
+          "mode": "single",
+          "elapsedMs": 1089,
+          "status": "ok"
+        },
+        {
+          "sample": 19,
+          "mode": "single",
+          "elapsedMs": 1099,
+          "status": "ok"
+        },
+        {
+          "sample": 20,
+          "mode": "single",
+          "elapsedMs": 1117,
+          "status": "ok"
+        }
+      ],
+      "ids": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20
+      ],
+      "mode": "single"
+    },
+    {
+      "min": 1717,
+      "max": 1852,
+      "count": 20,
+      "p95": 1843,
+      "allOk": true,
+      "raw": [
+        {
+          "sample": 1,
+          "mode": "concurrent4",
+          "elapsedMs": 1816,
+          "status": "ok"
+        },
+        {
+          "sample": 2,
+          "mode": "concurrent4",
+          "elapsedMs": 1843,
+          "status": "ok"
+        },
+        {
+          "sample": 3,
+          "mode": "concurrent4",
+          "elapsedMs": 1843,
+          "status": "ok"
+        },
+        {
+          "sample": 4,
+          "mode": "concurrent4",
+          "elapsedMs": 1852,
+          "status": "ok"
+        },
+        {
+          "sample": 7,
+          "mode": "concurrent4",
+          "elapsedMs": 1759,
+          "status": "ok"
+        },
+        {
+          "sample": 5,
+          "mode": "concurrent4",
+          "elapsedMs": 1800,
+          "status": "ok"
+        },
+        {
+          "sample": 6,
+          "mode": "concurrent4",
+          "elapsedMs": 1818,
+          "status": "ok"
+        },
+        {
+          "sample": 8,
+          "mode": "concurrent4",
+          "elapsedMs": 1836,
+          "status": "ok"
+        },
+        {
+          "sample": 9,
+          "mode": "concurrent4",
+          "elapsedMs": 1815,
+          "status": "ok"
+        },
+        {
+          "sample": 10,
+          "mode": "concurrent4",
+          "elapsedMs": 1800,
+          "status": "ok"
+        },
+        {
+          "sample": 11,
+          "mode": "concurrent4",
+          "elapsedMs": 1769,
+          "status": "ok"
+        },
+        {
+          "sample": 12,
+          "mode": "concurrent4",
+          "elapsedMs": 1785,
+          "status": "ok"
+        },
+        {
+          "sample": 14,
+          "mode": "concurrent4",
+          "elapsedMs": 1749,
+          "status": "ok"
+        },
+        {
+          "sample": 13,
+          "mode": "concurrent4",
+          "elapsedMs": 1774,
+          "status": "ok"
+        },
+        {
+          "sample": 15,
+          "mode": "concurrent4",
+          "elapsedMs": 1785,
+          "status": "ok"
+        },
+        {
+          "sample": 16,
+          "mode": "concurrent4",
+          "elapsedMs": 1783,
+          "status": "ok"
+        },
+        {
+          "sample": 17,
+          "mode": "concurrent4",
+          "elapsedMs": 1717,
+          "status": "ok"
+        },
+        {
+          "sample": 19,
+          "mode": "concurrent4",
+          "elapsedMs": 1739,
+          "status": "ok"
+        },
+        {
+          "sample": 18,
+          "mode": "concurrent4",
+          "elapsedMs": 1770,
+          "status": "ok"
+        },
+        {
+          "sample": 20,
+          "mode": "concurrent4",
+          "elapsedMs": 1725,
+          "status": "ok"
+        }
+      ],
+      "ids": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20
+      ],
+      "mode": "concurrent4"
+    }
+  ],
+  "performanceDefinition": "20 sequential and 20 bounded-four-concurrent samples; each measures full insight plus existing research node search, not insight-only latency",
+  "qTimings": [
+    {
+      "ms": 50,
+      "key": "project/Q01"
+    },
+    {
+      "ms": 79,
+      "key": "project/Q02"
+    },
+    {
+      "ms": 18,
+      "key": "project/Q03"
+    },
+    {
+      "ms": 18,
+      "key": "project/Q04"
+    },
+    {
+      "ms": 15,
+      "key": "project/Q05"
+    },
+    {
+      "ms": 14,
+      "key": "project/Q06"
+    },
+    {
+      "ms": 16,
+      "key": "project/Q07"
+    },
+    {
+      "ms": 145,
+      "key": "project/Q08"
+    },
+    {
+      "ms": 133,
+      "key": "project/Q09"
+    },
+    {
+      "ms": 118,
+      "key": "project/Q10"
+    },
+    {
+      "ms": 23,
+      "key": "scale_7901/Q01"
+    },
+    {
+      "ms": 124,
+      "key": "scale_7901/Q02"
+    },
+    {
+      "ms": 11,
+      "key": "scale_7901/Q03"
+    },
+    {
+      "ms": 9,
+      "key": "scale_7901/Q04"
+    },
+    {
+      "ms": 8,
+      "key": "scale_7901/Q05"
+    },
+    {
+      "ms": 19,
+      "key": "scale_7901/Q06"
+    },
+    {
+      "ms": 21,
+      "key": "scale_7901/Q07"
+    },
+    {
+      "ms": 246,
+      "key": "scale_7901/Q08"
+    },
+    {
+      "ms": 231,
+      "key": "scale_7901/Q09"
+    },
+    {
+      "ms": 214,
+      "key": "scale_7901/Q10"
+    }
+  ],
+  "q10PlanNodes": [
+    {
+      "key": "project/Q10",
+      "nodes": [
+        {
+          "path": "plan/query_block/ordering_operation",
+          "filesort": false
+        },
+        {
+          "path": "plan/query_block/ordering_operation/nested_loop/0/table",
+          "table": "n",
+          "access": "index",
+          "key": "PRIMARY",
+          "rowsPerScan": 10,
+          "rowsPerJoin": 8463,
+          "notExists": null
+        },
+        {
+          "path": "plan/query_block/ordering_operation/nested_loop/1/table",
+          "table": "i",
+          "access": "eq_ref",
+          "key": "<auto_distinct_key>",
+          "rowsPerScan": 1,
+          "rowsPerJoin": 8463,
+          "notExists": true
+        },
+        {
+          "path": "plan/query_block/ordering_operation/nested_loop/1/table/materialized_from_subquery",
+          "dependent": false,
+          "cacheable": true
+        },
+        {
+          "path": "plan/query_block/ordering_operation/nested_loop/1/table/materialized_from_subquery/query_block/union_result",
+          "table": "<union3,7>",
+          "access": "ALL",
+          "key": null,
+          "rowsPerScan": null,
+          "rowsPerJoin": null,
+          "notExists": null
+        },
+        {
+          "path": "plan/query_block/ordering_operation/nested_loop/1/table/materialized_from_subquery/query_block/union_result/query_specifications/0",
+          "dependent": false,
+          "cacheable": true
+        },
+        {
+          "path": "plan/query_block/ordering_operation/nested_loop/1/table/materialized_from_subquery/query_block/union_result/query_specifications/0/query_block/nested_loop/0/table",
+          "table": "e",
+          "access": "ALL",
+          "key": null,
+          "rowsPerScan": 27523,
+          "rowsPerJoin": 2752,
+          "notExists": null
+        },
+        {
+          "path": "plan/query_block/ordering_operation/nested_loop/1/table/materialized_from_subquery/query_block/union_result/query_specifications/0/query_block/nested_loop/1/table",
+          "table": "n",
+          "access": "eq_ref",
+          "key": "PRIMARY",
+          "rowsPerScan": 1,
+          "rowsPerJoin": 2752,
+          "notExists": null
+        },
+        {
+          "path": "plan/query_block/ordering_operation/nested_loop/1/table/materialized_from_subquery/query_block/union_result/query_specifications/0/query_block/nested_loop/2/table",
+          "table": "n",
+          "access": "eq_ref",
+          "key": "PRIMARY",
+          "rowsPerScan": 1,
+          "rowsPerJoin": 2752,
+          "notExists": null
+        },
+        {
+          "path": "plan/query_block/ordering_operation/nested_loop/1/table/materialized_from_subquery/query_block/union_result/query_specifications/1",
+          "dependent": false,
+          "cacheable": true
+        },
+        {
+          "path": "plan/query_block/ordering_operation/nested_loop/1/table/materialized_from_subquery/query_block/union_result/query_specifications/1/query_block/nested_loop/0/table",
+          "table": "e",
+          "access": "ALL",
+          "key": null,
+          "rowsPerScan": 27523,
+          "rowsPerJoin": 2752,
+          "notExists": null
+        },
+        {
+          "path": "plan/query_block/ordering_operation/nested_loop/1/table/materialized_from_subquery/query_block/union_result/query_specifications/1/query_block/nested_loop/1/table",
+          "table": "n",
+          "access": "eq_ref",
+          "key": "PRIMARY",
+          "rowsPerScan": 1,
+          "rowsPerJoin": 2752,
+          "notExists": null
+        },
+        {
+          "path": "plan/query_block/ordering_operation/nested_loop/1/table/materialized_from_subquery/query_block/union_result/query_specifications/1/query_block/nested_loop/2/table",
+          "table": "n",
+          "access": "eq_ref",
+          "key": "PRIMARY",
+          "rowsPerScan": 1,
+          "rowsPerJoin": 2752,
+          "notExists": null
+        }
+      ]
+    },
+    {
+      "key": "scale_7901/Q10",
+      "nodes": [
+        {
+          "path": "plan/query_block/ordering_operation",
+          "filesort": false
+        },
+        {
+          "path": "plan/query_block/ordering_operation/nested_loop/0/table",
+          "table": "n",
+          "access": "index",
+          "key": "PRIMARY",
+          "rowsPerScan": 10,
+          "rowsPerJoin": 8463,
+          "notExists": null
+        },
+        {
+          "path": "plan/query_block/ordering_operation/nested_loop/1/table",
+          "table": "ln",
+          "access": "eq_ref",
+          "key": "PRIMARY",
+          "rowsPerScan": 1,
+          "rowsPerJoin": 8463,
+          "notExists": null
+        },
+        {
+          "path": "plan/query_block/ordering_operation/nested_loop/2/table",
+          "table": "i",
+          "access": "eq_ref",
+          "key": "<auto_distinct_key>",
+          "rowsPerScan": 1,
+          "rowsPerJoin": 8463,
+          "notExists": true
+        },
+        {
+          "path": "plan/query_block/ordering_operation/nested_loop/2/table/materialized_from_subquery",
+          "dependent": false,
+          "cacheable": true
+        },
+        {
+          "path": "plan/query_block/ordering_operation/nested_loop/2/table/materialized_from_subquery/query_block/union_result",
+          "table": "<union4,10>",
+          "access": "ALL",
+          "key": null,
+          "rowsPerScan": null,
+          "rowsPerJoin": null,
+          "notExists": null
+        },
+        {
+          "path": "plan/query_block/ordering_operation/nested_loop/2/table/materialized_from_subquery/query_block/union_result/query_specifications/0",
+          "dependent": false,
+          "cacheable": true
+        },
+        {
+          "path": "plan/query_block/ordering_operation/nested_loop/2/table/materialized_from_subquery/query_block/union_result/query_specifications/0/query_block/nested_loop/0/table",
+          "table": "ln",
+          "access": "ref",
+          "key": "PRIMARY",
+          "rowsPerScan": 5002,
+          "rowsPerJoin": 5002,
+          "notExists": null
+        },
+        {
+          "path": "plan/query_block/ordering_operation/nested_loop/2/table/materialized_from_subquery/query_block/union_result/query_specifications/0/query_block/nested_loop/1/table",
+          "table": "e",
+          "access": "ref",
+          "key": "idx_edges_target",
+          "rowsPerScan": 2,
+          "rowsPerJoin": 1251,
+          "notExists": null
+        },
+        {
+          "path": "plan/query_block/ordering_operation/nested_loop/2/table/materialized_from_subquery/query_block/union_result/query_specifications/0/query_block/nested_loop/2/table",
+          "table": "ln",
+          "access": "eq_ref",
+          "key": "PRIMARY",
+          "rowsPerScan": 1,
+          "rowsPerJoin": 1251,
+          "notExists": null
+        },
+        {
+          "path": "plan/query_block/ordering_operation/nested_loop/2/table/materialized_from_subquery/query_block/union_result/query_specifications/0/query_block/nested_loop/3/table",
+          "table": "n",
+          "access": "eq_ref",
+          "key": "PRIMARY",
+          "rowsPerScan": 1,
+          "rowsPerJoin": 1251,
+          "notExists": null
+        },
+        {
+          "path": "plan/query_block/ordering_operation/nested_loop/2/table/materialized_from_subquery/query_block/union_result/query_specifications/0/query_block/nested_loop/4/table",
+          "table": "n",
+          "access": "eq_ref",
+          "key": "PRIMARY",
+          "rowsPerScan": 1,
+          "rowsPerJoin": 1251,
+          "notExists": null
+        },
+        {
+          "path": "plan/query_block/ordering_operation/nested_loop/2/table/materialized_from_subquery/query_block/union_result/query_specifications/1",
+          "dependent": false,
+          "cacheable": true
+        },
+        {
+          "path": "plan/query_block/ordering_operation/nested_loop/2/table/materialized_from_subquery/query_block/union_result/query_specifications/1/query_block/nested_loop/0/table",
+          "table": "ln",
+          "access": "ref",
+          "key": "PRIMARY",
+          "rowsPerScan": 5002,
+          "rowsPerJoin": 5002,
+          "notExists": null
+        },
+        {
+          "path": "plan/query_block/ordering_operation/nested_loop/2/table/materialized_from_subquery/query_block/union_result/query_specifications/1/query_block/nested_loop/1/table",
+          "table": "e",
+          "access": "ref",
+          "key": "idx_edges_target",
+          "rowsPerScan": 2,
+          "rowsPerJoin": 1251,
+          "notExists": null
+        },
+        {
+          "path": "plan/query_block/ordering_operation/nested_loop/2/table/materialized_from_subquery/query_block/union_result/query_specifications/1/query_block/nested_loop/2/table",
+          "table": "ln",
+          "access": "eq_ref",
+          "key": "PRIMARY",
+          "rowsPerScan": 1,
+          "rowsPerJoin": 1251,
+          "notExists": null
+        },
+        {
+          "path": "plan/query_block/ordering_operation/nested_loop/2/table/materialized_from_subquery/query_block/union_result/query_specifications/1/query_block/nested_loop/3/table",
+          "table": "n",
+          "access": "eq_ref",
+          "key": "PRIMARY",
+          "rowsPerScan": 1,
+          "rowsPerJoin": 1251,
+          "notExists": null
+        },
+        {
+          "path": "plan/query_block/ordering_operation/nested_loop/2/table/materialized_from_subquery/query_block/union_result/query_specifications/1/query_block/nested_loop/4/table",
+          "table": "n",
+          "access": "eq_ref",
+          "key": "PRIMARY",
+          "rowsPerScan": 1,
+          "rowsPerJoin": 1251,
+          "notExists": null
+        }
+      ]
+    }
+  ],
+  "zeroWrite": [
+    {
+      "testProcessOnlyReaderCredential": true,
+      "activeReaderQueriesAfter": 0,
+      "testSucceeded": false,
+      "binlogPositionEqual": true,
+      "generalLogRawSha256": "9a6bd61603738aee1a8f89f168d8fcaf16c75d797b1279b868e2c59e4503bce6",
+      "tableCount": 34,
+      "loaderLockedBefore": "Y",
+      "loaderLockedAfter": "Y",
+      "suite": "Base",
+      "dataAndSchemaEqual": true
+    },
+    {
+      "testProcessOnlyReaderCredential": true,
+      "activeReaderQueriesAfter": 0,
+      "testSucceeded": true,
+      "binlogPositionEqual": true,
+      "generalLogRawSha256": "fe3f9948f745abc34d09789c77b67a0c98b02cc8af3c30556d2a597c41e39fab",
+      "tableCount": 34,
+      "loaderLockedBefore": "Y",
+      "loaderLockedAfter": "Y",
+      "suite": "Budget",
+      "dataAndSchemaEqual": true
+    },
+    {
+      "testProcessOnlyReaderCredential": true,
+      "activeReaderQueriesAfter": 0,
+      "testSucceeded": true,
+      "binlogPositionEqual": true,
+      "generalLogRawSha256": "5bed3b3e22500d80ee5c5f5dd7c5a920da5baa68a4a0e5d104f3521b31669371",
+      "tableCount": 34,
+      "loaderLockedBefore": "Y",
+      "loaderLockedAfter": "Y",
+      "suite": "CountPlan",
+      "dataAndSchemaEqual": true
+    },
+    {
+      "testProcessOnlyReaderCredential": true,
+      "activeReaderQueriesAfter": 0,
+      "testSucceeded": true,
+      "binlogPositionEqual": true,
+      "generalLogRawSha256": "7f7b1d3ff8375bf16ce499869e89436437da4f2470394ca920a1d70ca051e56a",
+      "tableCount": 34,
+      "loaderLockedBefore": "Y",
+      "loaderLockedAfter": "Y",
+      "suite": "LegacyWindow",
+      "dataAndSchemaEqual": true
+    },
+    {
+      "testProcessOnlyReaderCredential": true,
+      "activeReaderQueriesAfter": 0,
+      "testSucceeded": true,
+      "binlogPositionEqual": true,
+      "generalLogRawSha256": "1f1f8fbe4140ae95bf982b432d9af7add38901eab7f58277050e9a03dd33e8d6",
+      "tableCount": 34,
+      "loaderLockedBefore": "Y",
+      "loaderLockedAfter": "Y",
+      "suite": "Matrix",
+      "dataAndSchemaEqual": true
+    },
+    {
+      "testProcessOnlyReaderCredential": true,
+      "activeReaderQueriesAfter": 0,
+      "testSucceeded": true,
+      "binlogPositionEqual": true,
+      "generalLogRawSha256": "3490476cca1c96ec6d76f7de085754ca8edb8f9b32184c7c4b14a3a005e496e1",
+      "tableCount": 34,
+      "loaderLockedBefore": "Y",
+      "loaderLockedAfter": "Y",
+      "suite": "Performance",
+      "dataAndSchemaEqual": true
+    },
+    {
+      "testProcessOnlyReaderCredential": true,
+      "activeReaderQueriesAfter": 0,
+      "testSucceeded": true,
+      "binlogPositionEqual": true,
+      "generalLogRawSha256": "94aa5b2916022d77538191d8e0a505a94e4d435d4da77b55ad7d882fb1bd605a",
+      "tableCount": 34,
+      "loaderLockedBefore": "Y",
+      "loaderLockedAfter": "Y",
+      "suite": "Plan",
+      "dataAndSchemaEqual": true
+    },
+    {
+      "testProcessOnlyReaderCredential": true,
+      "activeReaderQueriesAfter": 0,
+      "testSucceeded": true,
+      "binlogPositionEqual": true,
+      "generalLogRawSha256": "d251d35968df702470d858bbcd84a4694a64371b7d5d26206aee8b1ac9c15ceb",
+      "tableCount": 34,
+      "loaderLockedBefore": "Y",
+      "loaderLockedAfter": "Y",
+      "suite": "Semantics",
+      "dataAndSchemaEqual": true
+    }
+  ],
+  "baseline": {
+    "priorFiles": 689,
+    "approvedExistingChanges": 3,
+    "otherPriorFilesUnchanged": 686,
+    "baselineWithOverlays": 62,
+    "duplicateCopies": 98,
+    "frozenEntries": 105,
+    "packageChecked": true
+  },
+  "shutdown": {
+    "dataRetained": true,
+    "graceful": true,
+    "existingServicesUntouched": true,
+    "remainingProcesses": [],
+    "remainingListeners": []
+  },
+  "failures": [
+    {
+      "class": "com.knowledgegraph.assistant.i2.I2JdbcBaselineTest",
+      "name": "researchEdgesKeepDirectionAndBothEndpointScope",
+      "seconds": "1.566",
+      "error": "PreparedStatementCallback; uncategorized SQLException for SQL [SELECT e.id,e.source_node_id,e.target_node_id,e.relation_type,e.status,e.updated_at,e.properties_json,\nEXISTS(SELECT 1 FROM edge_evidence ee JOIN document_chunks ec ON ec.id=ee.chunk_id\n       JOIN document_units eu ON eu.id=ec.unit_id JOIN documents ed ON ed.id=eu.document_id\n       LEFT JOIN document_metadata em ON em.document_id=ed.id\n       WHERE ee.edge_id=e.id AND ed.status='COMPLETED' AND eu.status IN ('READY','OCR_OK')\n         AND (em.lifecycle_status IS NULL OR em.lifecycle_status='active')\n AND (ed.library_id IN (?) OR EXISTS (SELECT 1 FROM document_topic_assignments a WHERE a.document_id=ed.id AND a.library_id IN (?))) AND ed.id IN (?, ?)) AS has_source FROM knowledge_edges e JOIN knowledge_nodes s ON s.id=e.source_node_id JOIN knowledge_nodes t ON t.id=e.target_node_id WHERE e.source_node_id=? AND EXISTS (SELECT 1 FROM library_nodes ln WHERE ln.node_id=s.id AND ln.library_id IN (?)) AND EXISTS (SELECT 1 FROM node_evidence ne JOIN document_chunks nc ON nc.id=ne.chunk_id JOIN document_units nu ON nu.id=nc.unit_id JOIN documents nd ON nd.id=nu.document_id LEFT JOIN document_metadata nm ON nm.document_id=nd.id WHERE ne.node_id=s.id AND nd.id IN (?, ?) AND nd.status='COMPLETED' AND nu.status IN ('READY','OCR_OK') AND (nm.lifecycle_status IS NULL OR nm.lifecycle_status='active') AND (nd.library_id IN (?) OR EXISTS (SELECT 1 FROM document_topic_assignments a WHERE a.document_id=nd.id AND a.library_id IN (?))) AND nd.id IN (?, ?)) AND EXISTS (SELECT 1 FROM library_nodes ln WHERE ln.node_id=t.id AND ln.library_id IN (?)) AND EXISTS (SELECT 1 FROM node_evidence ne JOIN document_chunks nc ON nc.id=ne.chunk_id JOIN document_units nu ON nu.id=nc.unit_id JOIN documents nd ON nd.id=nu.document_id LEFT JOIN document_metadata nm ON nm.document_id=nd.id WHERE ne.node_id=t.id AND nd.id IN (?, ?) AND nd.status='COMPLETED' AND nu.status IN ('READY','OCR_OK') AND (nm.lifecycle_status IS NULL OR nm.lifecycle_status='active') AND (nd.library_id IN (?) OR EXISTS (SELECT 1 FROM document_topic_assignments a WHERE a.document_id=nd.id AND a.library_id IN (?))) AND nd.id IN (?, ?)) AND EXISTS (SELECT 1 FROM edge_evidence ee JOIN document_chunks ec ON ec.id=ee.chunk_id JOIN document_units eu ON eu.id=ec.unit_id JOIN documents ed ON ed.id=eu.document_id LEFT JOIN document_metadata em ON em.document_id=ed.id WHERE ee.edge_id=e.id AND ed.id IN (?, ?) AND ed.status='COMPLETED' AND eu.status IN ('READY','OCR_OK') AND (em.lifecycle_status IS NULL OR em.lifecycle_status='active') AND (ed.library_id IN (?) OR EXISTS (SELECT 1 FROM document_topic_assignments a WHERE a.document_id=ed.id AND a.library_id IN (?))) AND ed.id IN (?, ?)) ORDER BY e.id LIMIT ?]; SQL state [HY000]; error code [3024]; Query execution was interrupted, maximum statement execution time exceeded",
+      "failure": ""
+    }
+  ],
+  "failureOwner": "03 research; no evidence of causation by R3 quality SQL; no automatic reassignment",
+  "failedCall": {
+    "method": "research.outgoingEdges",
+    "libraryIds": [
+      7101
+    ],
+    "documentIds": [
+      7201,
+      7202
+    ],
+    "nodeIds": [],
+    "nodeId": 7702,
+    "limit": 10,
+    "jdbcFetchLimit": 11,
+    "expected": "empty items",
+    "sqlState": "HY000",
+    "errorCode": 3024,
+    "subsequentAssertionsNotReached": [
+      "outgoingEdges(AB,7701,10) direction 7801",
+      "incidentEdges(AB,7701,10) scope 7801"
+    ],
+    "noAdditionalExplain": true
+  },
+  "xmlHashesMatched": 31,
+  "noDomainRepairByController": true,
+  "noRemainingI2OrI3OrW2": true,
+  "acceptance": "Project owner decides; main regression passing and quality measurements do not make entire I2 accepted"
+}

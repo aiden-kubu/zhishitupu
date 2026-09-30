@@ -1,0 +1,72 @@
+{
+  "stage": "I2-R1",
+  "capturedAt": "2026-09-28T10:09:05.2676689+08:00",
+  "files": [
+    {
+      "file": "docs/assistant-team/integration/I2/R1/Invoke-R1Tests.ps1",
+      "rawSha256": "bb50432c9de00a04fc1651c834051bca4839584b29dac0c2a56a51d8b6d32364"
+    },
+    {
+      "file": "docs/assistant-team/integration/I2/R1/Invoke-R1Verification.ps1",
+      "rawSha256": "b6ceea1ca1cb3b1c7151e678ab8feb553e8d6090c6ea59f1e4ed2f89c85f4c10"
+    },
+    {
+      "file": "docs/assistant-team/integration/I2/R1/R1-FIXTURE.sql",
+      "rawSha256": "d2a72adcb368908cbdafa2ef51de42a47a2bf92dcc85086ef41d0c31a40ad8f2"
+    },
+    {
+      "file": "docs/assistant-team/integration/I2/R1/R1-OVERLAY.json",
+      "rawSha256": "223289fec385ad11d1f563b2fe9ac4dbd6df5fe80011d137ef5e5ed09e326e39"
+    },
+    {
+      "file": "docs/assistant-team/integration/I2/R1/R1-PLAN.md",
+      "rawSha256": "e0427b8429c74c79876a7b2d4b0a26bba01d10124cbcf53930972ef9bc4f743e"
+    },
+    {
+      "file": "docs/assistant-team/integration/I2/R1/R1-PROTECTION-BEFORE.json",
+      "rawSha256": "4aff9a28a6a1769dea7a60371d55d4fb4b39d68f8870fe942ef8f92eb07166ed"
+    },
+    {
+      "file": "docs/assistant-team/integration/I2/R1/Verify-R1Baseline.ps1",
+      "rawSha256": "2d188a1e1978b1d08c2d6c403eca74fb347eed2721ceb8dc7720de976113ed6e"
+    },
+    {
+      "file": "docs/assistant-team/integration/I2/R1/archive/02-quality-I2-R1.md",
+      "rawSha256": "21ceb14153dee7c3829046182254e37c0a95033b13d7efd1d278f4af5afc7da5"
+    },
+    {
+      "file": "docs/assistant-team/integration/I2/R1/archive/JdbcQualityReadRepository.java.before.txt",
+      "rawSha256": "cc2c7aa2e5a401fd6f1c3dbc05d631be563e0dad9551f7f70de7be0ab17ebee6"
+    },
+    {
+      "file": "backend-java/src/test/java/com/knowledgegraph/assistant/i2/I2QualityInsightRankingTest.java",
+      "rawSha256": "412c80014ec660665e42fcbfea75f469bff930bfbc3722f526d4ef972063be9b"
+    },
+    {
+      "file": "backend-java/src/test/java/com/knowledgegraph/assistant/quality/JdbcQualityInsightRankingRegressionTest.java",
+      "rawSha256": "78d6e56c7ca07cdbf574ae2437fff94cfbf9fd6b94ce9582e15daf0cbbbc8100"
+    },
+    {
+      "file": "backend-java/src/main/java/com/knowledgegraph/assistant/quality/JdbcQualityReadRepository.java",
+      "rawSha256": "fde4199bef96385ea87a3a0bfd671f170edd2501de1a2dab7adc8481b2757e52"
+    }
+  ],
+  "environmentFiles": [
+    {
+      "file": "D:\\知识图谱-i2-env\\mysql-i2-ascii.ini",
+      "rawSha256": "74d49c6e56797acdb47d9a8ebe866a1399bb8e295f20d1b8d04c397c5ea3a414"
+    },
+    {
+      "file": "D:\\知识图谱-i2-env\\mysql-data\\auto.cnf",
+      "rawSha256": "dbe31609c062afcf539292237dddf5242ac6a67d4aefe6e0533f66ab9b7164cb"
+    },
+    {
+      "file": "D:\\知识图谱-i2-env\\mysql-8.4.11-winx64\\bin\\mysqld.exe",
+      "rawSha256": "b83561f885785133b79cfe53f225dffbdbdec160ea54b5245cfb30cc7a440fa7"
+    },
+    {
+      "file": "D:\\知识图谱-i2-env\\mysql-8.4.11-winx64\\bin\\mysql.exe",
+      "rawSha256": "66994f521874606872630d3909a08d54db0ca1ca831d4348be5b26b80ab41ea2"
+    }
+  ]
+}

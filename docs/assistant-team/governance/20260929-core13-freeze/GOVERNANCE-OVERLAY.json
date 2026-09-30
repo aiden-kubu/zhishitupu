@@ -1,0 +1,85 @@
+{
+  "kind": "owner-approved freeze of thirteen long-term collaboration rules",
+  "recordedOn": "2026-09-29",
+  "editor": "controller",
+  "authority": "owner approved addition of rules 11-13 and freeze with 好就这样吧",
+  "coreRuleCount": 13,
+  "onlyNewPrinciples": [
+    11,
+    12,
+    13
+  ],
+  "longTermRuleChangesRequireExplicitOwnerDecision": true,
+  "caseSpecificDetailsGoTo": "current task documents and reports, not permanent-rule growth",
+  "changedFiles": [
+    {
+      "path": "D:/知识图谱/AGENTS.md",
+      "beforeRawSha256": "03968a12d04e397f52f5423ad08a6e24b66b7a210beba688dcf02d46c63aa701",
+      "afterRawSha256": "4d8aaaba19277bb0bc2f67255399d28206ce00e898ab6cf7b92ca54341d9a36d",
+      "afterNormalizedSha256": "4d8aaaba19277bb0bc2f67255399d28206ce00e898ab6cf7b92ca54341d9a36d",
+      "archivePath": "D:/知识图谱/docs/assistant-team/governance/20260929-core13-freeze/AGENTS.md.before.json",
+      "archiveRawSha256": "4250d36784b95806cff21f2f73e38db6f763f7b8c394798cc78ddc24628de00e",
+      "archiveMatches": true
+    },
+    {
+      "path": "D:/知识图谱/docs/assistant-team/COORDINATION.md",
+      "beforeRawSha256": "5093e2ea2aa0638490ac6550ccfeae250f5cdc76d90df04ec4f5f4f2f7c0320c",
+      "afterRawSha256": "17d3d297b988938442d383dbca3b5f88e65a2e37a5d45ec43fec3ed2c1a99d8e",
+      "afterNormalizedSha256": "17d3d297b988938442d383dbca3b5f88e65a2e37a5d45ec43fec3ed2c1a99d8e",
+      "archivePath": "D:/知识图谱/docs/assistant-team/governance/20260929-core13-freeze/COORDINATION.md.before.json",
+      "archiveRawSha256": "5df78fe1d231b1a045091b3805900284ae0f3f0a449ae1c782c91d238d2fbc78",
+      "archiveMatches": true
+    },
+    {
+      "path": "D:/知识图谱/docs/assistant-team/CONTROLLER-RULES.md",
+      "beforeRawSha256": "9c16d5b930c3cb59369ef27e4ea7075aeda29fcc177800a4ded0390d670c3eb3",
+      "afterRawSha256": "92cc0f2cc2ddec5e29d1dd7f2e4fc2eb7b22735c854dc9eb9a8b279c4d4844bc",
+      "afterNormalizedSha256": "92cc0f2cc2ddec5e29d1dd7f2e4fc2eb7b22735c854dc9eb9a8b279c4d4844bc",
+      "archivePath": "D:/知识图谱/docs/assistant-team/governance/20260929-core13-freeze/CONTROLLER-RULES.md.before.json",
+      "archiveRawSha256": "4ed5f4f68540a33b33b705acbe9c37417c9df12e6f85ec8f53ba16041ede052c",
+      "archiveMatches": true
+    },
+    {
+      "path": "D:/知识图谱/docs/assistant-team/DISPATCH-RULES.md",
+      "beforeRawSha256": "3a6a12a19a2daac2b53d56aa8dcbc3e462dfd862ef32876c38d3febb28789326",
+      "afterRawSha256": "a52742edea7b495a4ba390e244d9b61c28976e4e350f31d573a2f61b7cbd4391",
+      "afterNormalizedSha256": "a52742edea7b495a4ba390e244d9b61c28976e4e350f31d573a2f61b7cbd4391",
+      "archivePath": "D:/知识图谱/docs/assistant-team/governance/20260929-core13-freeze/DISPATCH-RULES.md.before.json",
+      "archiveRawSha256": "3ba40e8fef6e6544b503f15e8b90c190895b575c7b165f394ebb2973e56e0c7c",
+      "archiveMatches": true
+    }
+  ],
+  "addedFiles": [
+    {
+      "path": "D:/知识图谱/docs/assistant-team/LONG-TERM-RULES.md",
+      "rawSha256": "1f1941afae07168a873ab9524e3d222fd01926b87c8bb2d6045f0ecc31e26ffd",
+      "bytes": 5305
+    }
+  ],
+  "priorOverlayUntouched": "D:/知识图谱/docs/assistant-team/governance/20260929-direct-execution/GOVERNANCE-OVERLAY.json",
+  "archives": "before.json files contain exact pre-change bytes encoded in Base64",
+  "historicalExpectedHashesChanged": false,
+  "sourceOrTestsModified": false,
+  "tasksStarted": false,
+  "databaseConnected": false,
+  "currentR4ExecutionAuthorizedByThisRuleChange": false,
+  "checks": {
+    "ruleNumbers": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13
+    ],
+    "archiveMatches": 4,
+    "missingLinks": 0
+  }
+}

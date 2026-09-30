@@ -1,0 +1,17 @@
+{
+  "tests": 1,
+  "class": "I2FaultVariantTest",
+  "case": "NO_PATH",
+  "skipped": 0,
+  "failures": 0,
+  "errors": 0,
+  "rawXmlSha256": "d79a01400eb5c2fc51e1345476b13ccfe2bcd5ecd0dc3bdfa21440b6252b73f5",
+  "cases": [
+    {
+      "seconds": "0.07",
+      "name": "selectedDatabaseVariant",
+      "error": "",
+      "failure": ""
+    }
+  ]
+}

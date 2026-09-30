@@ -1,0 +1,31 @@
+{
+  "uniqueTestCases": 1,
+  "startedAt": "2026-09-29T10:52:23.8560673+08:00",
+  "rawXmlArchived": false,
+  "executionRound": 1,
+  "uniqueMethodDefinitions": 1,
+  "records": [],
+  "exitCode": 0,
+  "suites": [
+    {
+      "cases": [
+        {
+          "class": "com.knowledgegraph.assistant.i2.I2ScaleQueryTest",
+          "name": "scaledFixtureQueryWindowsAndScope",
+          "seconds": "0.863",
+          "error": "",
+          "failure": ""
+        }
+      ],
+      "class": "com.knowledgegraph.assistant.i2.I2ScaleQueryTest",
+      "tests": 1,
+      "skipped": 0,
+      "xmlRawSha256": "39ee200e77f694a58731dbf5277719bf7c362d9cc17bf3e389250b69ca881a95",
+      "failures": 0,
+      "errors": 0,
+      "xmlPath": "D:\\知识图谱\\backend-java\\target\\surefire-reports\\TEST-com.knowledgegraph.assistant.i2.I2ScaleQueryTest-Real-20260929T104824880-LegacyWindow.xml"
+    }
+  ],
+  "suite": "LegacyWindow",
+  "reportSuffix": "Real-20260929T104824880-LegacyWindow"
+}

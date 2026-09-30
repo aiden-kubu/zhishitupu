@@ -35,6 +35,7 @@ public class LibraryService {
                                    AND EXISTS (SELECT 1 FROM library_nodes la WHERE la.library_id = kl.id AND la.node_id = e.source_node_id)
                                    AND EXISTS (SELECT 1 FROM library_nodes lb WHERE lb.library_id = kl.id AND lb.node_id = e.target_node_id)) AS edge_count
                         FROM knowledge_libraries kl
+                        WHERE kl.status <> 'archived'
                         ORDER BY kl.id
                         """)
                 .query(libraryRowMapper())

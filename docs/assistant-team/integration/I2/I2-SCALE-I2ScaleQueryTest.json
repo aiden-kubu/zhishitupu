@@ -1,0 +1,23 @@
+{
+  "skipped": 0,
+  "case": "SCALE",
+  "rawXmlSha256": "fb8e255f4625bcba8cd493fd5acef469d700b4e54578f554b1c445aeb3807f08",
+  "errors": 1,
+  "tests": 2,
+  "failures": 0,
+  "cases": [
+    {
+      "failure": "",
+      "error": "",
+      "seconds": "1.029",
+      "name": "scaledFixtureQueryWindowsAndScope"
+    },
+    {
+      "failure": "",
+      "error": "PreparedStatementCallback; uncategorized SQLException for SQL [WITH visible_nodes AS (SELECT n.id,n.canonical_name,n.node_type FROM knowledge_nodes n WHERE 1=1 AND EXISTS (SELECT 1 FROM library_nodes ln WHERE ln.node_id=n.id AND ln.library_id IN (?))), visible_edges AS (SELECT e.id,e.source_node_id,e.target_node_id FROM knowledge_edges e JOIN visible_nodes s ON s.id=e.source_node_id JOIN visible_nodes t ON t.id=e.target_node_id WHERE e.status='active') SELECT n.id,n.canonical_name,n.node_type,(SELECT COUNT(*) FROM visible_edges e WHERE e.source_node_id=n.id OR e.target_node_id=n.id) AS degree FROM visible_nodes n ORDER BY degree DESC,n.id LIMIT ?]; SQL state [HY000]; error code [3024]; Query execution was interrupted, maximum statement execution time exceeded",
+      "seconds": "1.782",
+      "name": "scaledInsightAndSearchSingleAndFourConcurrentBudgets"
+    }
+  ],
+  "class": "I2ScaleQueryTest"
+}

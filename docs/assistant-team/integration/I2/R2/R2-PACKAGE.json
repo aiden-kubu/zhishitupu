@@ -1,0 +1,69 @@
+{
+  "stage": "I2-R2",
+  "capturedAt": "2026-09-28T16:15:18.430Z",
+  "files": [
+    {
+      "rawSha256": "75f988712e3ec620f6f42d46925bc06bcc193bd7523009ce1d185e4484989163",
+      "file": "backend-java/src/test/java/com/knowledgegraph/assistant/i2/I2QualityIsolatedCountTest.java"
+    },
+    {
+      "rawSha256": "1fcb245eaac857476c7a8bb6c4d854f6bfea649d347079291029bb88fca10c66",
+      "file": "backend-java/src/test/java/com/knowledgegraph/assistant/quality/JdbcQualityInsightIsolatedCountRegressionTest.java"
+    },
+    {
+      "rawSha256": "b2fa73065a0d78a75aa89e93a01d0cd76e86b90e1b924956bac58b4b42a72e87",
+      "file": "docs/assistant-team/integration/I2/R2/Invoke-R2Tests.ps1"
+    },
+    {
+      "rawSha256": "e2ab6c4f6a5f4b1e16e01fb7f777484d2326dc314d6776c34e0eb3e286998592",
+      "file": "docs/assistant-team/integration/I2/R2/Invoke-R2Verification.ps1"
+    },
+    {
+      "rawSha256": "4526dd5cae932cecb9616d9dcb32c30349c0d825e6424e73bfe26caf96bdff13",
+      "file": "docs/assistant-team/integration/I2/R2/R2-OVERLAY.json"
+    },
+    {
+      "rawSha256": "ab558d6a68165405f22168a51f853f395733fd1bfe6840fc85e57ca3f7c71549",
+      "file": "docs/assistant-team/integration/I2/R2/R2-PLAN.md"
+    },
+    {
+      "rawSha256": "809a4426de8ba8cc0568b6e0b66d262156d2c048be3e7a46eda1acb058039f86",
+      "file": "docs/assistant-team/integration/I2/R2/R2-PROTECTION-BEFORE.json"
+    },
+    {
+      "rawSha256": "8d7b9b1ce542ef5098226d66f59deb8f336bbac88bd614c0517efb6254b25579",
+      "file": "docs/assistant-team/integration/I2/R2/Verify-R2Baseline.ps1"
+    },
+    {
+      "rawSha256": "d7d7050bfeb0b50395bbe5e7f72e3d88646ee52258da0eff8fc2d78ae8019855",
+      "file": "docs/assistant-team/integration/I2/R2/archive/02-quality-I2-R2.md"
+    },
+    {
+      "rawSha256": "78d6e56c7ca07cdbf574ae2437fff94cfbf9fd6b94ce9582e15daf0cbbbc8100",
+      "file": "docs/assistant-team/integration/I2/R2/archive/JdbcQualityInsightRankingRegressionTest.java.before.txt"
+    },
+    {
+      "rawSha256": "fde4199bef96385ea87a3a0bfd671f170edd2501de1a2dab7adc8481b2757e52",
+      "file": "docs/assistant-team/integration/I2/R2/archive/JdbcQualityReadRepository.java.before.txt"
+    }
+  ],
+  "environmentFiles": [
+    {
+      "file": "D:\\知识图谱-i2-env\\mysql-i2-ascii.ini",
+      "rawSha256": "74d49c6e56797acdb47d9a8ebe866a1399bb8e295f20d1b8d04c397c5ea3a414"
+    },
+    {
+      "file": "D:\\知识图谱-i2-env\\mysql-data\\auto.cnf",
+      "rawSha256": "dbe31609c062afcf539292237dddf5242ac6a67d4aefe6e0533f66ab9b7164cb"
+    },
+    {
+      "file": "D:\\知识图谱-i2-env\\mysql-8.4.11-winx64\\bin\\mysqld.exe",
+      "rawSha256": "b83561f885785133b79cfe53f225dffbdbdec160ea54b5245cfb30cc7a440fa7"
+    },
+    {
+      "file": "D:\\知识图谱-i2-env\\mysql-8.4.11-winx64\\bin\\mysql.exe",
+      "rawSha256": "66994f521874606872630d3909a08d54db0ca1ca831d4348be5b26b80ab41ea2"
+    }
+  ],
+  "preflightNote": "Initial preflight PowerShell parsing failed due to controller script-generation replacement escaping; corrected only the new unsealed integration runner before any compile/test/DB. No test or domain standard changed."
+}

@@ -1,0 +1,295 @@
+{
+  "startedAt": "2026-09-28T10:11:04.4883409+08:00",
+  "uniqueTestCases": 1,
+  "rawXmlArchived": false,
+  "suites": [
+    {
+      "tests": 1,
+      "xmlRawSha256": "1bb0c52ce948bb900076e10bd8eace5d7cf1a242821e71c33b9282298a015416",
+      "class": "com.knowledgegraph.assistant.i2.I2QualityInsightRankingTest",
+      "skipped": 0,
+      "cases": [
+        {
+          "name": "realSemanticMatrixAndProjectOracle",
+          "error": "PreparedStatementCallback; uncategorized SQLException for SQL [WITH visible_nodes AS (SELECT n.id,n.canonical_name,n.node_type FROM knowledge_nodes n WHERE 1=1), visible_edges AS (SELECT e.id,e.source_node_id,e.target_node_id FROM knowledge_edges e JOIN visible_nodes s ON s.id=e.source_node_id JOIN visible_nodes t ON t.id=e.target_node_id WHERE e.status='active') SELECT COUNT(*) FROM visible_nodes n WHERE NOT EXISTS (SELECT 1 FROM visible_edges e WHERE e.source_node_id=n.id OR e.target_node_id=n.id)]; SQL state [HY000]; error code [3024]; Query execution was interrupted, maximum statement execution time exceeded",
+          "failure": "",
+          "seconds": "2.546",
+          "class": "com.knowledgegraph.assistant.i2.I2QualityInsightRankingTest"
+        }
+      ],
+      "failures": 0,
+      "errors": 1
+    }
+  ],
+  "suite": "Semantics",
+  "records": [
+    {
+      "kind": "semantic",
+      "value": {
+        "case": "library_7910",
+        "actualTop": [
+          {
+            "id": 900001,
+            "degree": 4
+          },
+          {
+            "id": 900002,
+            "degree": 4
+          },
+          {
+            "id": 900005,
+            "degree": 1
+          },
+          {
+            "id": 900006,
+            "degree": 0
+          }
+        ],
+        "nodeCount": 4,
+        "edgeCount": 5,
+        "isolated": 1,
+        "expectedTop": [
+          {
+            "id": 900001,
+            "degree": 4
+          },
+          {
+            "id": 900002,
+            "degree": 4
+          },
+          {
+            "id": 900005,
+            "degree": 1
+          },
+          {
+            "id": 900006,
+            "degree": 0
+          }
+        ]
+      }
+    },
+    {
+      "kind": "semantic",
+      "value": {
+        "case": "union_7910_7911",
+        "actualTop": [
+          {
+            "id": 900001,
+            "degree": 5
+          },
+          {
+            "id": 900002,
+            "degree": 4
+          },
+          {
+            "id": 900003,
+            "degree": 1
+          },
+          {
+            "id": 900005,
+            "degree": 1
+          },
+          {
+            "id": 900006,
+            "degree": 0
+          }
+        ],
+        "nodeCount": 5,
+        "edgeCount": 6,
+        "isolated": 1,
+        "expectedTop": [
+          {
+            "id": 900001,
+            "degree": 5
+          },
+          {
+            "id": 900002,
+            "degree": 4
+          },
+          {
+            "id": 900003,
+            "degree": 1
+          },
+          {
+            "id": 900005,
+            "degree": 1
+          },
+          {
+            "id": 900006,
+            "degree": 0
+          }
+        ]
+      }
+    },
+    {
+      "kind": "semantic",
+      "value": {
+        "case": "library_7911",
+        "actualTop": [
+          {
+            "id": 900001,
+            "degree": 2
+          },
+          {
+            "id": 900003,
+            "degree": 1
+          }
+        ],
+        "nodeCount": 2,
+        "edgeCount": 2,
+        "isolated": 0,
+        "expectedTop": [
+          {
+            "id": 900001,
+            "degree": 2
+          },
+          {
+            "id": 900003,
+            "degree": 1
+          }
+        ]
+      }
+    },
+    {
+      "kind": "semantic",
+      "value": {
+        "case": "outside_library_7912",
+        "actualTop": [
+          {
+            "id": 900004,
+            "degree": 0
+          }
+        ],
+        "nodeCount": 1,
+        "edgeCount": 0,
+        "isolated": 1,
+        "expectedTop": [
+          {
+            "id": 900004,
+            "degree": 0
+          }
+        ]
+      }
+    },
+    {
+      "kind": "semantic",
+      "value": {
+        "case": "empty_7913",
+        "actualTop": [],
+        "nodeCount": 0,
+        "edgeCount": 0,
+        "isolated": 0,
+        "expectedTop": []
+      }
+    },
+    {
+      "kind": "semantic",
+      "value": {
+        "case": "top_limit_one",
+        "actualTop": [
+          {
+            "id": 900001,
+            "degree": 4
+          }
+        ],
+        "nodeCount": 4,
+        "edgeCount": 5,
+        "isolated": 1,
+        "expectedTop": [
+          {
+            "id": 900001,
+            "degree": 4
+          }
+        ]
+      }
+    },
+    {
+      "kind": "semantic",
+      "value": {
+        "case": "top_limit_three",
+        "actualTop": [
+          {
+            "id": 900001,
+            "degree": 5
+          },
+          {
+            "id": 900002,
+            "degree": 4
+          },
+          {
+            "id": 900003,
+            "degree": 1
+          }
+        ],
+        "nodeCount": 5,
+        "edgeCount": 6,
+        "isolated": 1,
+        "expectedTop": [
+          {
+            "id": 900001,
+            "degree": 5
+          },
+          {
+            "id": 900002,
+            "degree": 4
+          },
+          {
+            "id": 900003,
+            "degree": 1
+          }
+        ]
+      }
+    },
+    {
+      "kind": "project_oracle",
+      "value": {
+        "nodeCount": 10011,
+        "top": [
+          {
+            "id": 100000,
+            "degree": 6
+          },
+          {
+            "id": 100001,
+            "degree": 6
+          },
+          {
+            "id": 100002,
+            "degree": 6
+          },
+          {
+            "id": 100003,
+            "degree": 6
+          },
+          {
+            "id": 100004,
+            "degree": 6
+          },
+          {
+            "id": 100005,
+            "degree": 6
+          },
+          {
+            "id": 100006,
+            "degree": 6
+          },
+          {
+            "id": 100007,
+            "degree": 6
+          },
+          {
+            "id": 100008,
+            "degree": 6
+          },
+          {
+            "id": 100009,
+            "degree": 6
+          }
+        ],
+        "isolated": 3,
+        "edgeCount": 30009
+      }
+    }
+  ],
+  "exitCode": 1
+}

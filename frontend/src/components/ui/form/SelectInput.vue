@@ -2,6 +2,7 @@
   <div v-click-outside="close" class="relative z-20">
     <!-- 触发按钮：沿用模板输入框视觉 -->
     <button
+      ref="reference"
       type="button"
       :disabled="disabled"
       class="dark:bg-dark-900 flex h-11 w-full items-center justify-between gap-2 rounded-lg border bg-transparent px-4 py-2.5 text-start text-sm shadow-theme-xs transition focus:outline-hidden focus:ring-3 disabled:cursor-not-allowed disabled:border-gray-100 disabled:bg-gray-50 dark:bg-gray-900 dark:disabled:border-gray-800 dark:disabled:bg-white/[0.03]"
@@ -14,10 +15,7 @@
       @click="toggle"
       @keydown="onKeydown"
     >
-      <span
-        v-if="selectedLabel"
-        class="truncate text-gray-800 dark:text-white/90"
-      >
+      <span v-if="selectedLabel" class="truncate text-gray-800 dark:text-white/90">
         {{ selectedLabel }}
       </span>
       <span v-else class="truncate text-gray-400 dark:text-gray-500">
@@ -43,62 +41,69 @@
     </button>
 
     <!-- 自绘下拉面板（替代原生 select 弹层，反馈②） -->
-    <transition
-      enter-active-class="transition duration-150 ease-out"
-      enter-from-class="-translate-y-1 opacity-0"
-      enter-to-class="translate-y-0 opacity-100"
-      leave-active-class="transition duration-100 ease-in"
-      leave-from-class="translate-y-0 opacity-100"
-      leave-to-class="-translate-y-1 opacity-0"
-    >
-      <div
-        v-if="open"
-        class="absolute inset-x-0 top-full z-50 mt-1.5 max-h-60 overflow-y-auto rounded-xl border border-gray-200 bg-white p-1.5 shadow-theme-lg dark:border-gray-800 dark:bg-gray-900"
-        role="listbox"
+    <Teleport to="body">
+      <transition
+        enter-active-class="transition duration-150 ease-out"
+        enter-from-class="-translate-y-1 opacity-0"
+        enter-to-class="translate-y-0 opacity-100"
+        leave-active-class="transition duration-100 ease-in"
+        leave-from-class="translate-y-0 opacity-100"
+        leave-to-class="-translate-y-1 opacity-0"
       >
-        <button
-          v-for="(option, index) in selectableOptions"
-          :key="option.value"
-          type="button"
-          role="option"
-          :aria-selected="option.value === modelValue"
-          class="flex w-full items-center justify-between gap-2 rounded-lg px-3 py-2 text-start text-sm transition"
-          :class="
-            option.value === modelValue
-              ? 'bg-brand-50 font-medium text-brand-600 dark:bg-brand-500/15 dark:text-brand-400'
-              : index === activeIndex
-                ? 'bg-gray-100 text-gray-800 dark:bg-white/[0.06] dark:text-white/90'
-                : 'text-gray-600 hover:bg-gray-50 dark:text-gray-300 dark:hover:bg-white/[0.03]'
-          "
-          @mouseenter="activeIndex = index"
-          @click="select(option)"
+        <div
+          v-if="open"
+          ref="floating"
+          :style="floatingStyles"
+          :class="isPositioned || !open ? 'visible' : 'invisible'"
+          class="z-999999 overflow-y-auto rounded-xl border border-gray-200 bg-white p-1.5 shadow-theme-lg dark:border-gray-800 dark:bg-gray-900"
+          role="listbox"
+          @click.stop
         >
-          <span class="truncate">{{ option.label }}</span>
-          <svg
-            v-if="option.value === modelValue"
-            class="shrink-0 stroke-brand-500 dark:stroke-brand-400"
-            width="16"
-            height="16"
-            viewBox="0 0 20 20"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
+          <button
+            v-for="(option, index) in selectableOptions"
+            :key="option.value"
+            type="button"
+            role="option"
+            :aria-selected="option.value === modelValue"
+            class="flex w-full items-center justify-between gap-2 rounded-lg px-3 py-2 text-start text-sm transition"
+            :class="
+              option.value === modelValue
+                ? 'bg-brand-50 font-medium text-brand-600 dark:bg-brand-500/15 dark:text-brand-400'
+                : index === activeIndex
+                  ? 'bg-gray-100 text-gray-800 dark:bg-white/[0.06] dark:text-white/90'
+                  : 'text-gray-600 hover:bg-gray-50 dark:text-gray-300 dark:hover:bg-white/[0.03]'
+            "
+            @mouseenter="activeIndex = index"
+            @click="select(option)"
           >
-            <path
-              d="M4.5 10.5L8.2 14.2L15.5 6.5"
-              stroke=""
-              stroke-width="1.8"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
-          </svg>
-        </button>
-      </div>
-    </transition>
+            <span class="truncate">{{ option.label }}</span>
+            <svg
+              v-if="option.value === modelValue"
+              class="shrink-0 stroke-brand-500 dark:stroke-brand-400"
+              width="16"
+              height="16"
+              viewBox="0 0 20 20"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M4.5 10.5L8.2 14.2L15.5 6.5"
+                stroke=""
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </button>
+        </div>
+      </transition>
+    </Teleport>
   </div>
 </template>
 
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { computed, nextTick, ref } from 'vue'
+import { autoUpdate, flip, offset, shift, size, useFloating } from '@floating-ui/vue'
 import vClickOutside from '@/components/common/v-click-outside.vue'
 
 export interface SelectOption {
@@ -121,6 +126,29 @@ const emit = defineEmits<{ (e: 'update:modelValue', value: string): void }>()
 
 const open = ref(false)
 const activeIndex = ref(0)
+const reference = ref<HTMLElement | null>(null)
+const floating = ref<HTMLElement | null>(null)
+const { floatingStyles, isPositioned, update } = useFloating(reference, floating, {
+  open,
+  placement: 'bottom-start',
+  strategy: 'fixed',
+  transform: false,
+  whileElementsMounted: autoUpdate,
+  middleware: [
+    offset(6),
+    flip({ padding: 8 }),
+    shift({ padding: 8 }),
+    size({
+      padding: 8,
+      apply({ availableHeight, rects, elements }) {
+        Object.assign(elements.floating.style, {
+          width: `${rects.reference.width}px`,
+          maxHeight: `${Math.max(120, Math.min(240, availableHeight))}px`,
+        })
+      },
+    }),
+  ],
+})
 
 const selectableOptions = computed(() => {
   // 已有空值选项时直接使用它，避免占位符重复生成同一个选项。
@@ -138,10 +166,9 @@ function toggle() {
   if (props.disabled) return
   open.value = !open.value
   if (open.value) {
-    const current = selectableOptions.value.findIndex(
-      (option) => option.value === props.modelValue,
-    )
+    const current = selectableOptions.value.findIndex((option) => option.value === props.modelValue)
     activeIndex.value = current >= 0 ? current : 0
+    void nextTick(update)
   }
 }
 

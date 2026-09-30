@@ -1,0 +1,949 @@
+{
+  "stage": "I2-R3",
+  "scope": "quality.insight() whole-method performance review; evidence references only, no authorization to run scripts or database",
+  "preparedAt": "2026-09-28T17:01:57.703Z",
+  "mainRoot": "D:/知识图谱",
+  "ownerRoot": "D:/知识图谱-worktrees/assistant-02-quality",
+  "mainBranch": "main",
+  "mainHead": "86d1e1fcff6b7b492faec3d499837a42246df320",
+  "ownerBranch": "codex/assistant-02-quality",
+  "ownerHead": "bcd3b60ea4e6e18daad53f31787028a0f69bc6cf",
+  "normalization": "UTF-8 decode, CRLF -> LF, preserve trailing newline, no trim",
+  "targetPreimages": [
+    {
+      "ownerNormalizedSha256": "c977e453d407aa150404c8f5acecddb6a9dfd63ae27692acb4e057840a3bcc15",
+      "mainNormalizedSha256": "c977e453d407aa150404c8f5acecddb6a9dfd63ae27692acb4e057840a3bcc15",
+      "file": "backend-java/src/main/java/com/knowledgegraph/assistant/quality/JdbcQualityReadRepository.java"
+    },
+    {
+      "ownerNormalizedSha256": "c99ac56054eee8f01d20aa3cac9f9f11be3c3a663d5aaeb5919bb5c956b9dabc",
+      "mainNormalizedSha256": "c99ac56054eee8f01d20aa3cac9f9f11be3c3a663d5aaeb5919bb5c956b9dabc",
+      "file": "backend-java/src/test/java/com/knowledgegraph/assistant/quality/JdbcQualityReadRepositoryTest.java"
+    },
+    {
+      "ownerNormalizedSha256": "454ad390e192749f41c5759ba55b7e4915ce203296ced09def72bc4aabcc25d6",
+      "mainNormalizedSha256": "454ad390e192749f41c5759ba55b7e4915ce203296ced09def72bc4aabcc25d6",
+      "file": "backend-java/src/test/java/com/knowledgegraph/assistant/quality/JdbcQualityInsightRankingRegressionTest.java"
+    },
+    {
+      "ownerNormalizedSha256": "1fcb245eaac857476c7a8bb6c4d854f6bfea649d347079291029bb88fca10c66",
+      "mainNormalizedSha256": "1fcb245eaac857476c7a8bb6c4d854f6bfea649d347079291029bb88fca10c66",
+      "file": "backend-java/src/test/java/com/knowledgegraph/assistant/quality/JdbcQualityInsightIsolatedCountRegressionTest.java"
+    }
+  ],
+  "newEvidenceForReceipt": [
+    "docs/assistant-team/integration/I2/R2/R2-REPORT.md",
+    "docs/assistant-team/integration/I2/R2/evidence/Real-20260929T001613649/CountPlan-RESULT.json",
+    "docs/assistant-team/integration/I2/R2/evidence/Real-20260929T001613649/Plan-RESULT.json",
+    "docs/assistant-team/integration/I2/R2/evidence/Real-20260929T001613649/Semantics-RESULT.json",
+    "docs/assistant-team/integration/I2/R2/evidence/ExplainList-20260929T003739745/LIST-EXPLAIN-DIAGNOSIS.md",
+    "docs/assistant-team/integration/I2/R2/evidence/ExplainList-20260929T003739745/EXPLAIN.json",
+    "docs/assistant-team/integration/I2/R2/evidence/ExplainList-20260929T003739745/TARGET.json"
+  ],
+  "counts": {
+    "read-only integration harness reference": 5,
+    "rules/task/contracts/fixtures reference": 8,
+    "original timeout budgets/small-data samples": 5,
+    "original ranking failure/plans/scale/maintenance": 15,
+    "R1 ranking reception/real failure/archives": 39,
+    "R2 reception/full regression/real evidence": 46,
+    "R2 LIST explain diagnosis and transport failure provenance": 31
+  },
+  "incrementalReview": "Read new task fully. Reuse already-reviewed immutable material. Check changed targets and new critical evidence; the remaining inventory is searchable reference, not a mandatory 149-file re-audit. Hash differences trigger impact review; no source of passwords, no script execution.",
+  "files": [
+    {
+      "path": "backend-java/src/test/java/com/knowledgegraph/assistant/i2/I2MySqlSupport.java",
+      "rawSha256": "eb518e6c7b884595bd868764f3686e5f002bea07266fcaa9851f4df31200f70c",
+      "bytes": 6217,
+      "group": "read-only integration harness reference"
+    },
+    {
+      "path": "backend-java/src/test/java/com/knowledgegraph/assistant/i2/I2QualityInsightRankingTest.java",
+      "rawSha256": "412c80014ec660665e42fcbfea75f469bff930bfbc3722f526d4ef972063be9b",
+      "bytes": 10556,
+      "group": "read-only integration harness reference"
+    },
+    {
+      "path": "backend-java/src/test/java/com/knowledgegraph/assistant/i2/I2QualityIsolatedCountTest.java",
+      "rawSha256": "75f988712e3ec620f6f42d46925bc06bcc193bd7523009ce1d185e4484989163",
+      "bytes": 5787,
+      "group": "read-only integration harness reference"
+    },
+    {
+      "path": "backend-java/src/test/java/com/knowledgegraph/assistant/i2/I2QueryBudgetTest.java",
+      "rawSha256": "1a61284f97d59290c3d168434800dc32cd8767212dfe63bbaa1d36a8cba673ca",
+      "bytes": 3377,
+      "group": "read-only integration harness reference"
+    },
+    {
+      "path": "backend-java/src/test/java/com/knowledgegraph/assistant/i2/I2ScaleQueryTest.java",
+      "rawSha256": "83f0b125da9aaac0f5370e7b98f5e4187b71d7d47e61226116b88e8006342875",
+      "bytes": 2382,
+      "group": "read-only integration harness reference"
+    },
+    {
+      "path": "docs/assistant-team/assignments/02-quality-W1.md",
+      "rawSha256": "880145a7524fb7f650f4113ac92402eeecd2705e4132349db8d2bf966ff14a01",
+      "bytes": 13834,
+      "group": "rules/task/contracts/fixtures reference"
+    },
+    {
+      "path": "docs/assistant-team/integration/I1/fixtures/I1-FIXTURES.json",
+      "rawSha256": "8fe1a8463558e4c0068a5511f5d8038022a7c9bf40fbb59e363c3071a0615574",
+      "bytes": 18609,
+      "group": "rules/task/contracts/fixtures reference"
+    },
+    {
+      "path": "docs/assistant-team/integration/I2/I2-BUDGET-AFTER.json",
+      "rawSha256": "09130b50c3a9bfca40c76ae19e2caa72e496560643b9bf860aad8c8467313db0",
+      "bytes": 8937,
+      "group": "original timeout budgets/small-data samples"
+    },
+    {
+      "path": "docs/assistant-team/integration/I2/I2-BUDGET-BEFORE.json",
+      "rawSha256": "9c5f6709764bce483521d8f1465264fcfdd2f8d880f4ba4280d05d7666dd6fa6",
+      "bytes": 8938,
+      "group": "original timeout budgets/small-data samples"
+    },
+    {
+      "path": "docs/assistant-team/integration/I2/I2-BUDGET-I2QueryBudgetTest.json",
+      "rawSha256": "850a23e30487df4d98da05c7a99579bdf3f039b13597287e5273250417ebc04c",
+      "bytes": 672,
+      "group": "original timeout budgets/small-data samples"
+    },
+    {
+      "path": "docs/assistant-team/integration/I2/I2-BUDGET-MAVEN.log",
+      "rawSha256": "e0754bfa2937b9e988c986b547d019aa4ece19b9cf736166f1ae1b201a870651",
+      "bytes": 2303,
+      "group": "original timeout budgets/small-data samples"
+    },
+    {
+      "path": "docs/assistant-team/integration/I2/I2-BUDGET-ZERO-WRITE.json",
+      "rawSha256": "5b664785798bf44b47aa555ec80a2455957c4e21cc98d8fd6384c9a99ef77b4b",
+      "bytes": 485,
+      "group": "original timeout budgets/small-data samples"
+    },
+    {
+      "path": "docs/assistant-team/integration/I2/I2-ENVIRONMENT.json",
+      "rawSha256": "62782469fd7c87d69cde1c6c9c178337c7e0d015b6d8ad529d1b8d409a4ce530",
+      "bytes": 22024,
+      "group": "rules/task/contracts/fixtures reference"
+    },
+    {
+      "path": "docs/assistant-team/integration/I2/I2-R1-QUALITY-PERFORMANCE-TASK.md",
+      "rawSha256": "96c64c8e912edd079373b3dccb091f75f4cc1a5cd9cb0e7b0e8b79aea5b4485d",
+      "bytes": 20461,
+      "group": "rules/task/contracts/fixtures reference"
+    },
+    {
+      "path": "docs/assistant-team/integration/I2/I2-R2-QUALITY-ISOLATED-COUNT-TASK.md",
+      "rawSha256": "e0f142268391b4084370a2a3cbc43c1982e1f09454dfdc8fc42edf9e7da691aa",
+      "bytes": 17502,
+      "group": "rules/task/contracts/fixtures reference"
+    },
+    {
+      "path": "docs/assistant-team/integration/I2/I2-R2-TECHNICAL-REVIEW.md",
+      "rawSha256": "4e304e5eb4807b8a293f8e670a556da62ab9625807318fc0c13f8fed1af7175c",
+      "bytes": 9555,
+      "group": "rules/task/contracts/fixtures reference"
+    },
+    {
+      "path": "docs/assistant-team/integration/I2/I2-REPORT.md",
+      "rawSha256": "9f3f4aad10561dd610ab8d06f33238f8a939c87d1715bb24c9203664228b35da",
+      "bytes": 14793,
+      "group": "rules/task/contracts/fixtures reference"
+    },
+    {
+      "path": "docs/assistant-team/integration/I2/I2-SCALE_ANALYZED-AFTER.json",
+      "rawSha256": "a05e36b7f888fc2b4f3c99820b9124bea31e6e75c3a6df9aefc1de7dfd36f729",
+      "bytes": 8962,
+      "group": "original ranking failure/plans/scale/maintenance"
+    },
+    {
+      "path": "docs/assistant-team/integration/I2/I2-SCALE_ANALYZED-BEFORE.json",
+      "rawSha256": "4535a0ddaa8655a454a296267abfd60919553c09282ba717f1a5b9920b4792c2",
+      "bytes": 8963,
+      "group": "original ranking failure/plans/scale/maintenance"
+    },
+    {
+      "path": "docs/assistant-team/integration/I2/I2-SCALE_ANALYZED-I2ScaleQueryTest.json",
+      "rawSha256": "00edb7e09178c9b9880fb6e3ea36bd39d116fc1d99e4f0444962eca3ebfad491",
+      "bytes": 1294,
+      "group": "original ranking failure/plans/scale/maintenance"
+    },
+    {
+      "path": "docs/assistant-team/integration/I2/I2-SCALE_ANALYZED-MAVEN.log",
+      "rawSha256": "d12a970b2a73b65d849250808692f0ae1c1cb055fea418882581dbd0ca119e1c",
+      "bytes": 6583,
+      "group": "original ranking failure/plans/scale/maintenance"
+    },
+    {
+      "path": "docs/assistant-team/integration/I2/I2-SCALE_ANALYZED-ZERO-WRITE.json",
+      "rawSha256": "7c9d781d378ebd8fe5b7d43d82d075c3e1e9282d5f4544a3ff88916f90066075",
+      "bytes": 493,
+      "group": "original ranking failure/plans/scale/maintenance"
+    },
+    {
+      "path": "docs/assistant-team/integration/I2/I2-SCALE-AFTER.json",
+      "rawSha256": "b0bb4b323e6b0f6b8f3f251bd624dec22bac0e8f25c9fdf4f6d78cc3972cf73c",
+      "bytes": 8965,
+      "group": "original ranking failure/plans/scale/maintenance"
+    },
+    {
+      "path": "docs/assistant-team/integration/I2/I2-SCALE-BEFORE.json",
+      "rawSha256": "908dc3c85b613058346f67ba40e1daadb9958e99bb1e79e798c19b4ecc844d01",
+      "bytes": 8966,
+      "group": "original ranking failure/plans/scale/maintenance"
+    },
+    {
+      "path": "docs/assistant-team/integration/I2/I2-SCALE-EXPLAIN-ANALYZED.json",
+      "rawSha256": "eacb9eebc5810d190e5b2dde083e871fb264473bb5a79bf65358f4b7ab8c29c4",
+      "bytes": 11954,
+      "group": "original ranking failure/plans/scale/maintenance"
+    },
+    {
+      "path": "docs/assistant-team/integration/I2/I2-SCALE-EXPLAIN.json",
+      "rawSha256": "cf60e998a1c9bc646bb06c20f018b9e25a1a1dbc137c29e6f70513b43c0fb6ca",
+      "bytes": 11390,
+      "group": "original ranking failure/plans/scale/maintenance"
+    },
+    {
+      "path": "docs/assistant-team/integration/I2/I2-SCALE-FIXTURE.json",
+      "rawSha256": "14ad75816d167a11b52b4370c386adfa31903619ef8323877a5746f850fd7048",
+      "bytes": 414,
+      "group": "original ranking failure/plans/scale/maintenance"
+    },
+    {
+      "path": "docs/assistant-team/integration/I2/I2-SCALE-I2ScaleQueryTest.json",
+      "rawSha256": "48b130b8a8cfa9ec70bfbd4d5e211badb0325a33d6f9b1288de5d45654da8bb0",
+      "bytes": 1285,
+      "group": "original ranking failure/plans/scale/maintenance"
+    },
+    {
+      "path": "docs/assistant-team/integration/I2/I2-SCALE-MAINTENANCE-REVIEW.json",
+      "rawSha256": "ac5dae2cbeb318e1a381f9825fb2b6445f49b1cc2728c35562a89ee262bfd53d",
+      "bytes": 760,
+      "group": "original ranking failure/plans/scale/maintenance"
+    },
+    {
+      "path": "docs/assistant-team/integration/I2/I2-SCALE-MAVEN.log",
+      "rawSha256": "ecce51ef3de6010d8290d097c9a2e209ae5a4d1faf849ab6700b963036597a6b",
+      "bytes": 7114,
+      "group": "original ranking failure/plans/scale/maintenance"
+    },
+    {
+      "path": "docs/assistant-team/integration/I2/I2-SCALE-STATISTICS.json",
+      "rawSha256": "f7929d3fa28be5d7daa7d0ba862321b86c1c0faae4e16c2811f8e417b6c30dbb",
+      "bytes": 1980,
+      "group": "original ranking failure/plans/scale/maintenance"
+    },
+    {
+      "path": "docs/assistant-team/integration/I2/I2-SCALE-ZERO-WRITE.json",
+      "rawSha256": "8beda3351f265bb39623fdb2252f1352a6c3f523b7b785c00b30e74813f5fccc",
+      "bytes": 484,
+      "group": "original ranking failure/plans/scale/maintenance"
+    },
+    {
+      "path": "docs/assistant-team/integration/I2/R1/archive/02-quality-I2-R1.md",
+      "rawSha256": "21ceb14153dee7c3829046182254e37c0a95033b13d7efd1d278f4af5afc7da5",
+      "bytes": 11145,
+      "group": "R1 ranking reception/real failure/archives"
+    },
+    {
+      "path": "docs/assistant-team/integration/I2/R1/archive/JdbcQualityReadRepository.java.before.txt",
+      "rawSha256": "cc2c7aa2e5a401fd6f1c3dbc05d631be563e0dad9551f7f70de7be0ab17ebee6",
+      "bytes": 14303,
+      "group": "R1 ranking reception/real failure/archives"
+    },
+    {
+      "path": "docs/assistant-team/integration/I2/R1/evidence/Offline-20260928T100912110/BASELINE-AFTER.json",
+      "rawSha256": "7e093b54b750eb2476b91d2783cda1e1f0758997a423e198f82f84f6ee15170a",
+      "bytes": 1493,
+      "group": "R1 ranking reception/real failure/archives"
+    },
+    {
+      "path": "docs/assistant-team/integration/I2/R1/evidence/Offline-20260928T100912110/BASELINE-BEFORE.json",
+      "rawSha256": "6bd1411397a6d3d10ae528ad610dda43fdd59455abe6c30be695e2b190dcdcd9",
+      "bytes": 1185,
+      "group": "R1 ranking reception/real failure/archives"
+    },
+    {
+      "path": "docs/assistant-team/integration/I2/R1/evidence/Offline-20260928T100912110/Original-MAVEN.log",
+      "rawSha256": "7d65cf9204b6afec099629fe6a35120162547411ccb73a9a7246809c3cbc2e6b",
+      "bytes": 6990,
+      "group": "R1 ranking reception/real failure/archives"
+    },
+    {
+      "path": "docs/assistant-team/integration/I2/R1/evidence/Offline-20260928T100912110/Original-RESULT.json",
+      "rawSha256": "9d51c9766df17e23b06b6c867cf1c5a8728dd587d6d5418a673f2cf01d123219",
+      "bytes": 47146,
+      "group": "R1 ranking reception/real failure/archives"
+    },
+    {
+      "path": "docs/assistant-team/integration/I2/R1/evidence/Offline-20260928T100912110/Ranking-MAVEN.log",
+      "rawSha256": "af8146e76f86617ed9ad0b2aeb1578c7821f2f3f6739f73229eda11c6fc8c038",
+      "bytes": 2135,
+      "group": "R1 ranking reception/real failure/archives"
+    },
+    {
+      "path": "docs/assistant-team/integration/I2/R1/evidence/Offline-20260928T100912110/Ranking-RESULT.json",
+      "rawSha256": "1feb7d95042e3a86c74d8602dc23c3b9ceae0fd14e7e6a7dd7cb5157ae1d2d6a",
+      "bytes": 4712,
+      "group": "R1 ranking reception/real failure/archives"
+    },
+    {
+      "path": "docs/assistant-team/integration/I2/R1/evidence/Offline-20260928T100912110/RUN.json",
+      "rawSha256": "1c0a859cb797711c8d2b6cdd5b5202361c4327ee9e91cf599ae43e3046c38c31",
+      "bytes": 194,
+      "group": "R1 ranking reception/real failure/archives"
+    },
+    {
+      "path": "docs/assistant-team/integration/I2/R1/evidence/Real-20260928T101016147/BASELINE-AFTER.json",
+      "rawSha256": "6a2a3d603372762b29af44d275c956da5ca03ddf803eea435fa6012e667b920c",
+      "bytes": 3278,
+      "group": "R1 ranking reception/real failure/archives"
+    },
+    {
+      "path": "docs/assistant-team/integration/I2/R1/evidence/Real-20260928T101016147/BASELINE-BEFORE.json",
+      "rawSha256": "1d22c84c994f0bb4a0a4967697ea45a7fdfc392756ae5c93ecb0c9fd3a0300b5",
+      "bytes": 1686,
+      "group": "R1 ranking reception/real failure/archives"
+    },
+    {
+      "path": "docs/assistant-team/integration/I2/R1/evidence/Real-20260928T101016147/FAILURE.json",
+      "rawSha256": "e6ee330ecd64e674a5244488405ea19284b47ee07ca327eef1f5f224170f05f6",
+      "bytes": 191,
+      "group": "R1 ranking reception/real failure/archives"
+    },
+    {
+      "path": "docs/assistant-team/integration/I2/R1/evidence/Real-20260928T101016147/FIXTURE-DDL.json",
+      "rawSha256": "b18d9883a608564b2967c6afbb707de00ec5d78227652463db0f009277cce4b7",
+      "bytes": 6686,
+      "group": "R1 ranking reception/real failure/archives"
+    },
+    {
+      "path": "docs/assistant-team/integration/I2/R1/evidence/Real-20260928T101016147/FIXTURE-LOAD.json",
+      "rawSha256": "539d50a91a61b94037b92d732ecac75305a8045baa7da6f79e0d74bbef1145e8",
+      "bytes": 881,
+      "group": "R1 ranking reception/real failure/archives"
+    },
+    {
+      "path": "docs/assistant-team/integration/I2/R1/evidence/Real-20260928T101016147/I2-R1_LOAD-AFTER.json",
+      "rawSha256": "a403f13050ba781768db37b5e3298442dd0089c9f8a19dedc0a3f6057d4d5bf2",
+      "bytes": 8902,
+      "group": "R1 ranking reception/real failure/archives"
+    },
+    {
+      "path": "docs/assistant-team/integration/I2/R1/evidence/Real-20260928T101016147/I2-R1_LOAD-BEFORE.json",
+      "rawSha256": "71982b1914c0f101ddb2175d27fabc8fc5228cee2b6f07f74a76f279f09b1c01",
+      "bytes": 8902,
+      "group": "R1 ranking reception/real failure/archives"
+    },
+    {
+      "path": "docs/assistant-team/integration/I2/R1/evidence/Real-20260928T101016147/I2-R1_Plan-AFTER.json",
+      "rawSha256": "11e5756d4bb13b531d5c82ee6e9358b5cd05a2980a7871153d3507d65123ad54",
+      "bytes": 8902,
+      "group": "R1 ranking reception/real failure/archives"
+    },
+    {
+      "path": "docs/assistant-team/integration/I2/R1/evidence/Real-20260928T101016147/I2-R1_Plan-BEFORE.json",
+      "rawSha256": "31958d6b58ae4f67aa5bb8649818273e376d34fd047caac869c0a496fe76f7c3",
+      "bytes": 8903,
+      "group": "R1 ranking reception/real failure/archives"
+    },
+    {
+      "path": "docs/assistant-team/integration/I2/R1/evidence/Real-20260928T101016147/I2-R1_Semantics-AFTER.json",
+      "rawSha256": "c4bc6fc69e660ef9b0150b4aa157ff863b1210252163f80622ee26089ce3ae67",
+      "bytes": 8902,
+      "group": "R1 ranking reception/real failure/archives"
+    },
+    {
+      "path": "docs/assistant-team/integration/I2/R1/evidence/Real-20260928T101016147/I2-R1_Semantics-BEFORE.json",
+      "rawSha256": "eac0e011412ecf8afe22b93fa5575127c02b555a8e18e82ce36994326d409a13",
+      "bytes": 8903,
+      "group": "R1 ranking reception/real failure/archives"
+    },
+    {
+      "path": "docs/assistant-team/integration/I2/R1/evidence/Real-20260928T101016147/IDENTITY.json",
+      "rawSha256": "c13e969b77cc77109aa5d6cef8621868e32385f2bea72138fd346bb36e9caa4f",
+      "bytes": 2874,
+      "group": "R1 ranking reception/real failure/archives"
+    },
+    {
+      "path": "docs/assistant-team/integration/I2/R1/evidence/Real-20260928T101016147/Plan-MAVEN.log",
+      "rawSha256": "69d7e3d348651201c7d4c12caf5dcc7b0f5ff5481cd8ef7d483f1a2fcc76c461",
+      "bytes": 10655,
+      "group": "R1 ranking reception/real failure/archives"
+    },
+    {
+      "path": "docs/assistant-team/integration/I2/R1/evidence/Real-20260928T101016147/Plan-RESULT.json",
+      "rawSha256": "08b6aadc4fc26cfb7b0e37b19b4e5d3b799349fc9d31cd34e957798ab8a842ef",
+      "bytes": 29938,
+      "group": "R1 ranking reception/real failure/archives"
+    },
+    {
+      "path": "docs/assistant-team/integration/I2/R1/evidence/Real-20260928T101016147/Plan-ZERO-WRITE.json",
+      "rawSha256": "2d2540fba39e52a4b9d2d25bef19d4027506a9d5d9c699f19fba1929b180f972",
+      "bytes": 364,
+      "group": "R1 ranking reception/real failure/archives"
+    },
+    {
+      "path": "docs/assistant-team/integration/I2/R1/evidence/Real-20260928T101016147/RUN.json",
+      "rawSha256": "e2b90fbad26a1a4f411f3e4f5ae6945723e5c4ff0e3a07450fad7b985e56515a",
+      "bytes": 251,
+      "group": "R1 ranking reception/real failure/archives"
+    },
+    {
+      "path": "docs/assistant-team/integration/I2/R1/evidence/Real-20260928T101016147/Semantics-MAVEN.log",
+      "rawSha256": "674820568db655c0cc56ec764d2cb78858c9a46e1c538103febf4c661aa59bf7",
+      "bytes": 8614,
+      "group": "R1 ranking reception/real failure/archives"
+    },
+    {
+      "path": "docs/assistant-team/integration/I2/R1/evidence/Real-20260928T101016147/Semantics-RESULT.json",
+      "rawSha256": "6b9723982ed6de77c5df2dd840d30efba0d15384cf20bf25372f54615ae8c666",
+      "bytes": 6575,
+      "group": "R1 ranking reception/real failure/archives"
+    },
+    {
+      "path": "docs/assistant-team/integration/I2/R1/evidence/Real-20260928T101016147/Semantics-ZERO-WRITE.json",
+      "rawSha256": "9848ef12e0f0b8d0197178e400359a826fd72463ee043d46ab5b6ae8e89605d4",
+      "bytes": 370,
+      "group": "R1 ranking reception/real failure/archives"
+    },
+    {
+      "path": "docs/assistant-team/integration/I2/R1/evidence/Real-20260928T101016147/server-stderr.log",
+      "rawSha256": "c346d3043246ac06f7386cbabdd3cc643f2440935e35fdbf97c49d441857816a",
+      "bytes": 1779,
+      "group": "R1 ranking reception/real failure/archives"
+    },
+    {
+      "path": "docs/assistant-team/integration/I2/R1/evidence/Real-20260928T101016147/server-stdout.log",
+      "rawSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "group": "R1 ranking reception/real failure/archives"
+    },
+    {
+      "path": "docs/assistant-team/integration/I2/R1/evidence/Real-20260928T101016147/SHUTDOWN.json",
+      "rawSha256": "e3f27922790a2a1dc0f61e4593c7b034775c2277b778994303c832c769a62140",
+      "bytes": 145,
+      "group": "R1 ranking reception/real failure/archives"
+    },
+    {
+      "path": "docs/assistant-team/integration/I2/R1/Invoke-R1Tests.ps1",
+      "rawSha256": "bb50432c9de00a04fc1651c834051bca4839584b29dac0c2a56a51d8b6d32364",
+      "bytes": 1323,
+      "group": "R1 ranking reception/real failure/archives"
+    },
+    {
+      "path": "docs/assistant-team/integration/I2/R1/Invoke-R1Verification.ps1",
+      "rawSha256": "b6ceea1ca1cb3b1c7151e678ab8feb553e8d6090c6ea59f1e4ed2f89c85f4c10",
+      "bytes": 17940,
+      "group": "R1 ranking reception/real failure/archives"
+    },
+    {
+      "path": "docs/assistant-team/integration/I2/R1/R1-FIXTURE.sql",
+      "rawSha256": "d2a72adcb368908cbdafa2ef51de42a47a2bf92dcc85086ef41d0c31a40ad8f2",
+      "bytes": 1868,
+      "group": "R1 ranking reception/real failure/archives"
+    },
+    {
+      "path": "docs/assistant-team/integration/I2/R1/R1-OVERLAY.json",
+      "rawSha256": "223289fec385ad11d1f563b2fe9ac4dbd6df5fe80011d137ef5e5ed09e326e39",
+      "bytes": 1705,
+      "group": "R1 ranking reception/real failure/archives"
+    },
+    {
+      "path": "docs/assistant-team/integration/I2/R1/R1-PACKAGE.json",
+      "rawSha256": "d18a7df22ab7d85939d0fc6e5e4d0c3cc3d7c9524308a9535bfe0f6aeed5eaad",
+      "bytes": 3041,
+      "group": "R1 ranking reception/real failure/archives"
+    },
+    {
+      "path": "docs/assistant-team/integration/I2/R1/R1-PLAN.md",
+      "rawSha256": "e0427b8429c74c79876a7b2d4b0a26bba01d10124cbcf53930972ef9bc4f743e",
+      "bytes": 3119,
+      "group": "R1 ranking reception/real failure/archives"
+    },
+    {
+      "path": "docs/assistant-team/integration/I2/R1/R1-PROTECTION-BEFORE.json",
+      "rawSha256": "4aff9a28a6a1769dea7a60371d55d4fb4b39d68f8870fe942ef8f92eb07166ed",
+      "bytes": 100857,
+      "group": "R1 ranking reception/real failure/archives"
+    },
+    {
+      "path": "docs/assistant-team/integration/I2/R1/Verify-R1Baseline.ps1",
+      "rawSha256": "2d188a1e1978b1d08c2d6c403eca74fb347eed2721ceb8dc7720de976113ed6e",
+      "bytes": 4431,
+      "group": "R1 ranking reception/real failure/archives"
+    },
+    {
+      "path": "docs/assistant-team/integration/I2/R2/archive/02-quality-I2-R2.md",
+      "rawSha256": "d7d7050bfeb0b50395bbe5e7f72e3d88646ee52258da0eff8fc2d78ae8019855",
+      "bytes": 8514,
+      "group": "R2 reception/full regression/real evidence"
+    },
+    {
+      "path": "docs/assistant-team/integration/I2/R2/archive/JdbcQualityInsightRankingRegressionTest.java.before.txt",
+      "rawSha256": "78d6e56c7ca07cdbf574ae2437fff94cfbf9fd6b94ce9582e15daf0cbbbc8100",
+      "bytes": 12124,
+      "group": "R2 reception/full regression/real evidence"
+    },
+    {
+      "path": "docs/assistant-team/integration/I2/R2/archive/JdbcQualityReadRepository.java.before.txt",
+      "rawSha256": "fde4199bef96385ea87a3a0bfd671f170edd2501de1a2dab7adc8481b2757e52",
+      "bytes": 14748,
+      "group": "R2 reception/full regression/real evidence"
+    },
+    {
+      "path": "docs/assistant-team/integration/I2/R2/evidence/ExplainList-20260929T003614228/BASELINE-AFTER.json",
+      "rawSha256": "aa181823f5049fd1e71f670b6072addb1e443165875926763632897747ae2c8e",
+      "bytes": 5036,
+      "group": "R2 LIST explain diagnosis and transport failure provenance"
+    },
+    {
+      "path": "docs/assistant-team/integration/I2/R2/evidence/ExplainList-20260929T003614228/BASELINE-BEFORE.json",
+      "rawSha256": "9a41d1758ec08ec868511f3ae4ebb1923f31be4808b09b313a739982a1b8dd29",
+      "bytes": 3983,
+      "group": "R2 LIST explain diagnosis and transport failure provenance"
+    },
+    {
+      "path": "docs/assistant-team/integration/I2/R2/evidence/ExplainList-20260929T003614228/DIAGNOSTIC-OUTPUT.json",
+      "rawSha256": "d4232c8c805db3272c90fbc887778fc1380537d6b4140716dc5dd52f7716c530",
+      "bytes": 661,
+      "group": "R2 LIST explain diagnosis and transport failure provenance"
+    },
+    {
+      "path": "docs/assistant-team/integration/I2/R2/evidence/ExplainList-20260929T003614228/FAILURE.json",
+      "rawSha256": "b4646bbdbbf4340f81f46384c9a4a9a537b8ddb045f4ec73234bf0d431371ce8",
+      "bytes": 122,
+      "group": "R2 LIST explain diagnosis and transport failure provenance"
+    },
+    {
+      "path": "docs/assistant-team/integration/I2/R2/evidence/ExplainList-20260929T003614228/I2-R2_LIST_EXPLAIN-AFTER.json",
+      "rawSha256": "9fb6423de41cb0995e7c8fa43bc5e2b6ac8d968bc4aed2a97a64df333ea011d2",
+      "bytes": 8901,
+      "group": "R2 LIST explain diagnosis and transport failure provenance"
+    },
+    {
+      "path": "docs/assistant-team/integration/I2/R2/evidence/ExplainList-20260929T003614228/I2-R2_LIST_EXPLAIN-BEFORE.json",
+      "rawSha256": "14fc0bfd2f85dad6cdccdeed2f84b4f7804664113507f6d63a34ec4c921b46b6",
+      "bytes": 8902,
+      "group": "R2 LIST explain diagnosis and transport failure provenance"
+    },
+    {
+      "path": "docs/assistant-team/integration/I2/R2/evidence/ExplainList-20260929T003614228/IDENTITY.json",
+      "rawSha256": "d656b832850a128035e1baec30bba865a1c8e2a5a59f37e42cbec1b87c2ca69f",
+      "bytes": 2874,
+      "group": "R2 LIST explain diagnosis and transport failure provenance"
+    },
+    {
+      "path": "docs/assistant-team/integration/I2/R2/evidence/ExplainList-20260929T003614228/RETAINED-DATA.json",
+      "rawSha256": "cce011ce3fae8a8c5105910a4414d58f83ca5d81f688ac86139dd1c6f6856d7a",
+      "bytes": 114,
+      "group": "R2 LIST explain diagnosis and transport failure provenance"
+    },
+    {
+      "path": "docs/assistant-team/integration/I2/R2/evidence/ExplainList-20260929T003614228/RUN.json",
+      "rawSha256": "1e0245a1411b278cc1fd2826427fdb1886d48de9f789d7f5a6f662b2b548521e",
+      "bytes": 342,
+      "group": "R2 LIST explain diagnosis and transport failure provenance"
+    },
+    {
+      "path": "docs/assistant-team/integration/I2/R2/evidence/ExplainList-20260929T003614228/server-stderr.log",
+      "rawSha256": "22dd00413934e6f11b5135a4845307b9115a9b7cf061dc62fc026ae4fd6fb57b",
+      "bytes": 1779,
+      "group": "R2 LIST explain diagnosis and transport failure provenance"
+    },
+    {
+      "path": "docs/assistant-team/integration/I2/R2/evidence/ExplainList-20260929T003614228/server-stdout.log",
+      "rawSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "group": "R2 LIST explain diagnosis and transport failure provenance"
+    },
+    {
+      "path": "docs/assistant-team/integration/I2/R2/evidence/ExplainList-20260929T003614228/SHUTDOWN.json",
+      "rawSha256": "a7715172e5b7aa40920caf1021c7daac2a5abc1c854e3af3d9a782464954a100",
+      "bytes": 145,
+      "group": "R2 LIST explain diagnosis and transport failure provenance"
+    },
+    {
+      "path": "docs/assistant-team/integration/I2/R2/evidence/ExplainList-20260929T003614228/TARGET.json",
+      "rawSha256": "0b9d06af0900ebaef990be20d744e56e9bdc3e25da324ee5ef375dcc308b5019",
+      "bytes": 2559,
+      "group": "R2 LIST explain diagnosis and transport failure provenance"
+    },
+    {
+      "path": "docs/assistant-team/integration/I2/R2/evidence/ExplainList-20260929T003614228/ZERO-WRITE.json",
+      "rawSha256": "6b58b69d7b13a8790f3fee3827d7f8b8f589370e18b7a81d1a7a405c66e36004",
+      "bytes": 264,
+      "group": "R2 LIST explain diagnosis and transport failure provenance"
+    },
+    {
+      "path": "docs/assistant-team/integration/I2/R2/evidence/ExplainList-20260929T003739745/BASELINE-AFTER.json",
+      "rawSha256": "8612259719dd10f7f48d04ec8823b7adcdc4c66f3c8462609716025a24d0430a",
+      "bytes": 6393,
+      "group": "R2 LIST explain diagnosis and transport failure provenance"
+    },
+    {
+      "path": "docs/assistant-team/integration/I2/R2/evidence/ExplainList-20260929T003739745/BASELINE-BEFORE.json",
+      "rawSha256": "c9cf6b3cac156832ea0a931b8cf9ce71b56f731180c42ee886b8e2128bc6a47e",
+      "bytes": 5237,
+      "group": "R2 LIST explain diagnosis and transport failure provenance"
+    },
+    {
+      "path": "docs/assistant-team/integration/I2/R2/evidence/ExplainList-20260929T003739745/DIAGNOSTIC-INDEX.json",
+      "rawSha256": "dcd9cd13b2ae178edf62919343e318272d5e6f293286d1f9566641b7a30ff09a",
+      "bytes": 6742,
+      "group": "R2 LIST explain diagnosis and transport failure provenance"
+    },
+    {
+      "path": "docs/assistant-team/integration/I2/R2/evidence/ExplainList-20260929T003739745/DIAGNOSTIC-OUTPUT.json",
+      "rawSha256": "cf0c480d2b93285ab0813411a4b3bd8ffa97d49228c11b6c8f3bf54af5e16544",
+      "bytes": 5318,
+      "group": "R2 LIST explain diagnosis and transport failure provenance"
+    },
+    {
+      "path": "docs/assistant-team/integration/I2/R2/evidence/ExplainList-20260929T003739745/EXPLAIN-RAW.json",
+      "rawSha256": "56e3dedc012e4e036b439fd411f15e75577d1ca3720d9103b80b8d9ec86f8734",
+      "bytes": 4139,
+      "group": "R2 LIST explain diagnosis and transport failure provenance"
+    },
+    {
+      "path": "docs/assistant-team/integration/I2/R2/evidence/ExplainList-20260929T003739745/EXPLAIN.json",
+      "rawSha256": "01eb843127517f3e55b1ffa6e58b690428bc5b44a31b18a1cc78f67fbfc27f81",
+      "bytes": 4388,
+      "group": "R2 LIST explain diagnosis and transport failure provenance"
+    },
+    {
+      "path": "docs/assistant-team/integration/I2/R2/evidence/ExplainList-20260929T003739745/I2-R2_LIST_EXPLAIN-AFTER.json",
+      "rawSha256": "06c31fef11794fbb57e11f2adf7c8e5ee4f8d908a58363f4f79699cf692f4859",
+      "bytes": 8901,
+      "group": "R2 LIST explain diagnosis and transport failure provenance"
+    },
+    {
+      "path": "docs/assistant-team/integration/I2/R2/evidence/ExplainList-20260929T003739745/I2-R2_LIST_EXPLAIN-BEFORE.json",
+      "rawSha256": "0a6ca59cc5c04ac2757d320ea107fb7d2d5c1c0d783d55313872312af229740d",
+      "bytes": 8902,
+      "group": "R2 LIST explain diagnosis and transport failure provenance"
+    },
+    {
+      "path": "docs/assistant-team/integration/I2/R2/evidence/ExplainList-20260929T003739745/IDENTITY.json",
+      "rawSha256": "b17aa834f556fd3cf73cfe48791a427d0a2448fd73619affa8e7f3e8fb37b84c",
+      "bytes": 2874,
+      "group": "R2 LIST explain diagnosis and transport failure provenance"
+    },
+    {
+      "path": "docs/assistant-team/integration/I2/R2/evidence/ExplainList-20260929T003739745/LIST-EXPLAIN-DIAGNOSIS.md",
+      "rawSha256": "d0bc6513cecbbd8e7dd8d48fca6bdb966811f95cb9113ffd018cc3689f7009df",
+      "bytes": 7911,
+      "group": "R2 LIST explain diagnosis and transport failure provenance"
+    },
+    {
+      "path": "docs/assistant-team/integration/I2/R2/evidence/ExplainList-20260929T003739745/RETAINED-DATA.json",
+      "rawSha256": "ecb15bdfa360fa5b1031bb3554b22b98cbb9aac8f15f4eafdd85be6300c800ce",
+      "bytes": 114,
+      "group": "R2 LIST explain diagnosis and transport failure provenance"
+    },
+    {
+      "path": "docs/assistant-team/integration/I2/R2/evidence/ExplainList-20260929T003739745/RUN.json",
+      "rawSha256": "cdbf115b09cd7f30770cd53fec6c2c586215d00b3a7d59eb30e124af3e7e47b3",
+      "bytes": 409,
+      "group": "R2 LIST explain diagnosis and transport failure provenance"
+    },
+    {
+      "path": "docs/assistant-team/integration/I2/R2/evidence/ExplainList-20260929T003739745/server-stderr.log",
+      "rawSha256": "8565695228d633f4af7860c7b3d60c771ab8a18f8efd83354533e4e8930e2712",
+      "bytes": 1779,
+      "group": "R2 LIST explain diagnosis and transport failure provenance"
+    },
+    {
+      "path": "docs/assistant-team/integration/I2/R2/evidence/ExplainList-20260929T003739745/server-stdout.log",
+      "rawSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "group": "R2 LIST explain diagnosis and transport failure provenance"
+    },
+    {
+      "path": "docs/assistant-team/integration/I2/R2/evidence/ExplainList-20260929T003739745/SHUTDOWN.json",
+      "rawSha256": "e3f27922790a2a1dc0f61e4593c7b034775c2277b778994303c832c769a62140",
+      "bytes": 145,
+      "group": "R2 LIST explain diagnosis and transport failure provenance"
+    },
+    {
+      "path": "docs/assistant-team/integration/I2/R2/evidence/ExplainList-20260929T003739745/TARGET.json",
+      "rawSha256": "b66ce7bece8339b9740caf19f206ef2691132489e254579be4d51617d1557013",
+      "bytes": 2559,
+      "group": "R2 LIST explain diagnosis and transport failure provenance"
+    },
+    {
+      "path": "docs/assistant-team/integration/I2/R2/evidence/ExplainList-20260929T003739745/ZERO-WRITE.json",
+      "rawSha256": "e0b3997bf2487d3f0e2097901bb65a16955fa25eac2f2d39aaf3ace81a36773b",
+      "bytes": 264,
+      "group": "R2 LIST explain diagnosis and transport failure provenance"
+    },
+    {
+      "path": "docs/assistant-team/integration/I2/R2/evidence/FINAL-INDEX.json",
+      "rawSha256": "5ec553d72018c5e661b6387f3444bd6ef1d9d3c7ab1481bf70918d0165460739",
+      "bytes": 14507,
+      "group": "R2 reception/full regression/real evidence"
+    },
+    {
+      "path": "docs/assistant-team/integration/I2/R2/evidence/Offline-20260929T001520530/BASELINE-AFTER.json",
+      "rawSha256": "55569095ac026bad61675fb88a990e6027317cf2ea3712804159fc0efad456d9",
+      "bytes": 1656,
+      "group": "R2 reception/full regression/real evidence"
+    },
+    {
+      "path": "docs/assistant-team/integration/I2/R2/evidence/Offline-20260929T001520530/BASELINE-BEFORE.json",
+      "rawSha256": "e6ad971cfd722c299c98720283264c62c2c75b2a521705e55f66424e5482aa9f",
+      "bytes": 1240,
+      "group": "R2 reception/full regression/real evidence"
+    },
+    {
+      "path": "docs/assistant-team/integration/I2/R2/evidence/Offline-20260929T001520530/IsolatedCount-MAVEN.log",
+      "rawSha256": "ba03820d0f4fb048b6acf60fe78a8940b24b8cd2a0712ccd194ebc62e07d1658",
+      "bytes": 2147,
+      "group": "R2 reception/full regression/real evidence"
+    },
+    {
+      "path": "docs/assistant-team/integration/I2/R2/evidence/Offline-20260929T001520530/IsolatedCount-RESULT.json",
+      "rawSha256": "f50174b578d9bba5d64beb6e09dd38779bf58feb6f7c1a6345e572b2f29c1ff3",
+      "bytes": 3662,
+      "group": "R2 reception/full regression/real evidence"
+    },
+    {
+      "path": "docs/assistant-team/integration/I2/R2/evidence/Offline-20260929T001520530/Original-MAVEN.log",
+      "rawSha256": "bbac30b60eed6859e1591eec57731bd620021257fc00778f0e690626b0dd7dbe",
+      "bytes": 6990,
+      "group": "R2 reception/full regression/real evidence"
+    },
+    {
+      "path": "docs/assistant-team/integration/I2/R2/evidence/Offline-20260929T001520530/Original-RESULT.json",
+      "rawSha256": "6d8e80d9127ff59c1387eb5726cf9accaf2551c326208eb27b0968ccb5de1334",
+      "bytes": 50893,
+      "group": "R2 reception/full regression/real evidence"
+    },
+    {
+      "path": "docs/assistant-team/integration/I2/R2/evidence/Offline-20260929T001520530/Ranking-MAVEN.log",
+      "rawSha256": "eb252fadacb9446ec785d844f944029ebc0a22cb609fdec5c4d2ed37deb10004",
+      "bytes": 2135,
+      "group": "R2 reception/full regression/real evidence"
+    },
+    {
+      "path": "docs/assistant-team/integration/I2/R2/evidence/Offline-20260929T001520530/Ranking-RESULT.json",
+      "rawSha256": "ab18195ec37e64e9fb73961c2655b71a341dfd50a590d304cedc23729e5bc042",
+      "bytes": 5026,
+      "group": "R2 reception/full regression/real evidence"
+    },
+    {
+      "path": "docs/assistant-team/integration/I2/R2/evidence/Offline-20260929T001520530/RUN.json",
+      "rawSha256": "d66e267532272e0f1fc9df394a9d775cc696a431196d5caafd00f02252ba6f6b",
+      "bytes": 194,
+      "group": "R2 reception/full regression/real evidence"
+    },
+    {
+      "path": "docs/assistant-team/integration/I2/R2/evidence/Real-20260929T001613649/BASELINE-AFTER.json",
+      "rawSha256": "13230b19ef562c1a192d102049b8c620ddc7302f9c306692c73f1fb54838cd6e",
+      "bytes": 3665,
+      "group": "R2 reception/full regression/real evidence"
+    },
+    {
+      "path": "docs/assistant-team/integration/I2/R2/evidence/Real-20260929T001613649/BASELINE-BEFORE.json",
+      "rawSha256": "df14a43b3e058f137f847f66e3cc48742cc642f442782fc8a13531c01bbfdf22",
+      "bytes": 1849,
+      "group": "R2 reception/full regression/real evidence"
+    },
+    {
+      "path": "docs/assistant-team/integration/I2/R2/evidence/Real-20260929T001613649/CountPlan-MAVEN.log",
+      "rawSha256": "364a7fa34c5370d6e33fcb59c504716a1e5141c65babaea893df20d17da5918c",
+      "bytes": 19555,
+      "group": "R2 reception/full regression/real evidence"
+    },
+    {
+      "path": "docs/assistant-team/integration/I2/R2/evidence/Real-20260929T001613649/CountPlan-RESULT.json",
+      "rawSha256": "4b891164d54c0e92e22966d32a3b58e47cb8b59984be9b9af0af1ff01db7ce80",
+      "bytes": 43657,
+      "group": "R2 reception/full regression/real evidence"
+    },
+    {
+      "path": "docs/assistant-team/integration/I2/R2/evidence/Real-20260929T001613649/CountPlan-ZERO-WRITE.json",
+      "rawSha256": "07ee1e89f65cfbaa89018e80fb353278f4a21f530d62dbb87cce413ef99a3924",
+      "bytes": 369,
+      "group": "R2 reception/full regression/real evidence"
+    },
+    {
+      "path": "docs/assistant-team/integration/I2/R2/evidence/Real-20260929T001613649/FAILURE.json",
+      "rawSha256": "232b6fca92955df79cd78ab8079b969eae7cbb57c426b7e02118cff20b760624",
+      "bytes": 191,
+      "group": "R2 reception/full regression/real evidence"
+    },
+    {
+      "path": "docs/assistant-team/integration/I2/R2/evidence/Real-20260929T001613649/I2-R2_CountPlan-AFTER.json",
+      "rawSha256": "42a026416054c572b2067ddc49f67be69acdbe23f060e3dedc19bf5e406b7f6a",
+      "bytes": 8901,
+      "group": "R2 reception/full regression/real evidence"
+    },
+    {
+      "path": "docs/assistant-team/integration/I2/R2/evidence/Real-20260929T001613649/I2-R2_CountPlan-BEFORE.json",
+      "rawSha256": "f2a69548e18ad37c3b9ef80ab5f4aafc123be0462a062deae16c152af0462e73",
+      "bytes": 8902,
+      "group": "R2 reception/full regression/real evidence"
+    },
+    {
+      "path": "docs/assistant-team/integration/I2/R2/evidence/Real-20260929T001613649/I2-R2_ENTRY-BEFORE.json",
+      "rawSha256": "d84f146ea7b1f75238be36b98090c0b52abb6bb64524d6b2154cdc29b4d3f891",
+      "bytes": 8902,
+      "group": "R2 reception/full regression/real evidence"
+    },
+    {
+      "path": "docs/assistant-team/integration/I2/R2/evidence/Real-20260929T001613649/I2-R2_Plan-AFTER.json",
+      "rawSha256": "2954cdd0489e0c07d9cdb7e0b6dee0631923cf1e41fc766d7100ae8a95f9b676",
+      "bytes": 8901,
+      "group": "R2 reception/full regression/real evidence"
+    },
+    {
+      "path": "docs/assistant-team/integration/I2/R2/evidence/Real-20260929T001613649/I2-R2_Plan-BEFORE.json",
+      "rawSha256": "5901abdbe49658a118153b560571c316a1037f967d9969dcddac2f6e94905da4",
+      "bytes": 8902,
+      "group": "R2 reception/full regression/real evidence"
+    },
+    {
+      "path": "docs/assistant-team/integration/I2/R2/evidence/Real-20260929T001613649/I2-R2_Semantics-AFTER.json",
+      "rawSha256": "d0e609d37b00da53d86636ed18d2bee0f0a044c79481d77f6b8c043598e6e799",
+      "bytes": 8901,
+      "group": "R2 reception/full regression/real evidence"
+    },
+    {
+      "path": "docs/assistant-team/integration/I2/R2/evidence/Real-20260929T001613649/I2-R2_Semantics-BEFORE.json",
+      "rawSha256": "b61cc06d7eef092c1ac5f4f248be976e798eef07027b2c7ea0cc5a492668efbb",
+      "bytes": 8902,
+      "group": "R2 reception/full regression/real evidence"
+    },
+    {
+      "path": "docs/assistant-team/integration/I2/R2/evidence/Real-20260929T001613649/IDENTITY.json",
+      "rawSha256": "813aa14bc769126d6e0efcb56a3a6125ea3e382e119de3cf0265711d39d0dbf6",
+      "bytes": 2874,
+      "group": "R2 reception/full regression/real evidence"
+    },
+    {
+      "path": "docs/assistant-team/integration/I2/R2/evidence/Real-20260929T001613649/Plan-MAVEN.log",
+      "rawSha256": "4eba3ca3ac492f089e0cf5548c2e2184c94deb52a7ffd1473b72a0eca67f1289",
+      "bytes": 10655,
+      "group": "R2 reception/full regression/real evidence"
+    },
+    {
+      "path": "docs/assistant-team/integration/I2/R2/evidence/Real-20260929T001613649/Plan-RESULT.json",
+      "rawSha256": "98717953757e34f11480ee511df0610cfb6b1aeb8a155c09d67a5523a1705db0",
+      "bytes": 30223,
+      "group": "R2 reception/full regression/real evidence"
+    },
+    {
+      "path": "docs/assistant-team/integration/I2/R2/evidence/Real-20260929T001613649/Plan-ZERO-WRITE.json",
+      "rawSha256": "edc9dad90bee232efe9c760763cac051ec307616a45ee1f3b47d40927fa02d11",
+      "bytes": 364,
+      "group": "R2 reception/full regression/real evidence"
+    },
+    {
+      "path": "docs/assistant-team/integration/I2/R2/evidence/Real-20260929T001613649/RETAINED-DATA.json",
+      "rawSha256": "4c958f6dc99515a4a2b2b665ea6530f699125f33912db507e4de66b7f945de23",
+      "bytes": 169,
+      "group": "R2 reception/full regression/real evidence"
+    },
+    {
+      "path": "docs/assistant-team/integration/I2/R2/evidence/Real-20260929T001613649/RUN.json",
+      "rawSha256": "ed40c52e1c957d7c7509e5ee761c8c0b94e4a1cfa406f3869529b50b15affe4c",
+      "bytes": 251,
+      "group": "R2 reception/full regression/real evidence"
+    },
+    {
+      "path": "docs/assistant-team/integration/I2/R2/evidence/Real-20260929T001613649/Semantics-MAVEN.log",
+      "rawSha256": "c804eabdf0e23ed8c41c0cf25018a938eac1a3a6bc57ae4a8969b0883a16d4f2",
+      "bytes": 8536,
+      "group": "R2 reception/full regression/real evidence"
+    },
+    {
+      "path": "docs/assistant-team/integration/I2/R2/evidence/Real-20260929T001613649/Semantics-RESULT.json",
+      "rawSha256": "39c4ecc886eac1dc6bc81bc5eef510372a7f607c3ef7bd78961da4b6f30dd59b",
+      "bytes": 6918,
+      "group": "R2 reception/full regression/real evidence"
+    },
+    {
+      "path": "docs/assistant-team/integration/I2/R2/evidence/Real-20260929T001613649/Semantics-ZERO-WRITE.json",
+      "rawSha256": "685816e1eabb9afc2ebada6254f1f70e02e119994925bbcd04ebd0dba4676cc1",
+      "bytes": 370,
+      "group": "R2 reception/full regression/real evidence"
+    },
+    {
+      "path": "docs/assistant-team/integration/I2/R2/evidence/Real-20260929T001613649/server-stderr.log",
+      "rawSha256": "2dedafb471036bd32b045ba52467ed0950710d179fcb38e52c75fcb2c9987724",
+      "bytes": 1780,
+      "group": "R2 reception/full regression/real evidence"
+    },
+    {
+      "path": "docs/assistant-team/integration/I2/R2/evidence/Real-20260929T001613649/server-stdout.log",
+      "rawSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "group": "R2 reception/full regression/real evidence"
+    },
+    {
+      "path": "docs/assistant-team/integration/I2/R2/evidence/Real-20260929T001613649/SHUTDOWN.json",
+      "rawSha256": "5af53806a4e111746d14d9507be5d06980aa2c861af02f581690dbaaaf37c53a",
+      "bytes": 145,
+      "group": "R2 reception/full regression/real evidence"
+    },
+    {
+      "path": "docs/assistant-team/integration/I2/R2/Invoke-R2Tests.ps1",
+      "rawSha256": "b2fa73065a0d78a75aa89e93a01d0cd76e86b90e1b924956bac58b4b42a72e87",
+      "bytes": 1610,
+      "group": "R2 reception/full regression/real evidence"
+    },
+    {
+      "path": "docs/assistant-team/integration/I2/R2/Invoke-R2Verification.ps1",
+      "rawSha256": "e2ab6c4f6a5f4b1e16e01fb7f777484d2326dc314d6776c34e0eb3e286998592",
+      "bytes": 16411,
+      "group": "R2 reception/full regression/real evidence"
+    },
+    {
+      "path": "docs/assistant-team/integration/I2/R2/R2-OVERLAY.json",
+      "rawSha256": "4526dd5cae932cecb9616d9dcb32c30349c0d825e6424e73bfe26caf96bdff13",
+      "bytes": 2267,
+      "group": "R2 reception/full regression/real evidence"
+    },
+    {
+      "path": "docs/assistant-team/integration/I2/R2/R2-PACKAGE.json",
+      "rawSha256": "896bae8b2beace4b0f80d13031fd5484bb6373fb1f9412657c54e6cf16d1a277",
+      "bytes": 3114,
+      "group": "R2 reception/full regression/real evidence"
+    },
+    {
+      "path": "docs/assistant-team/integration/I2/R2/R2-PLAN.md",
+      "rawSha256": "ab558d6a68165405f22168a51f853f395733fd1bfe6840fc85e57ca3f7c71549",
+      "bytes": 3468,
+      "group": "R2 reception/full regression/real evidence"
+    },
+    {
+      "path": "docs/assistant-team/integration/I2/R2/R2-PROTECTION-BEFORE.json",
+      "rawSha256": "809a4426de8ba8cc0568b6e0b66d262156d2c048be3e7a46eda1acb058039f86",
+      "bytes": 109384,
+      "group": "R2 reception/full regression/real evidence"
+    },
+    {
+      "path": "docs/assistant-team/integration/I2/R2/R2-REPORT.md",
+      "rawSha256": "eea70ed77f8a2225523296bcaafd029aa7fc7455ad6f826cf456b87ab96914b1",
+      "bytes": 12616,
+      "group": "R2 reception/full regression/real evidence"
+    },
+    {
+      "path": "docs/assistant-team/integration/I2/R2/Verify-R2Baseline.ps1",
+      "rawSha256": "8d7b9b1ce542ef5098226d66f59deb8f336bbac88bd614c0517efb6254b25579",
+      "bytes": 5294,
+      "group": "R2 reception/full regression/real evidence"
+    },
+    {
+      "path": "docs/assistant-team/references/02-quality-W1-DEPENDENCIES.json",
+      "rawSha256": "a9d0bae5a81fd331e1765c7bd72bd2c049a5fd943ee07374bbb9e6a5e602eb8a",
+      "bytes": 5937,
+      "group": "rules/task/contracts/fixtures reference"
+    }
+  ]
+}

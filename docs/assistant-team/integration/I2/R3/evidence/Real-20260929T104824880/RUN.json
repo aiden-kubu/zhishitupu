@@ -1,0 +1,11 @@
+{
+  "phase": "Real",
+  "failedSuites": [
+    "Base"
+  ],
+  "failure": "R3 batch has validation failures: Base",
+  "finishedAt": "2026-09-29T10:52:44.7600296+08:00",
+  "success": false,
+  "noI2CompletionClaim": true,
+  "runId": "Real-20260929T104824880"
+}

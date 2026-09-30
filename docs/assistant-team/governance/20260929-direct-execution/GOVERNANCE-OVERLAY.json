@@ -1,0 +1,83 @@
+{
+  "kind": "approved governance increment; direct execution after one explicit task approval",
+  "recordedOn": "2026-09-29",
+  "authority": "Project owner explicitly changed original 01-06 dispatch workflow in controller conversation",
+  "editor": "controller",
+  "appliesTo": "Original 01-06; I2-I7, W2 and later phases",
+  "defaultFlow": "controller prepares and reviews -> owner approves identified task -> original task gates and executes without second authorization if unchanged -> controller reviews delivery -> owner accepts or decides next step",
+  "separateReceiptExceptions": [
+    "new task first onboarding",
+    "cross-domain or high-risk work with stated need",
+    "unclear baseline",
+    "environment or permissions changed",
+    "historical ownership handoff",
+    "specific necessity explained by controller"
+  ],
+  "changedFiles": [
+    {
+      "path": "D:/知识图谱/AGENTS.md",
+      "beforeBytes": 2955,
+      "beforeRawSha256": "300a3473bcf24143f96f1f6e9331f4905ceef0f827b02446bca5fe965c12697d",
+      "afterBytes": 3782,
+      "afterRawSha256": "03968a12d04e397f52f5423ad08a6e24b66b7a210beba688dcf02d46c63aa701",
+      "afterNormalizedSha256": "03968a12d04e397f52f5423ad08a6e24b66b7a210beba688dcf02d46c63aa701",
+      "archivePath": "D:/知识图谱/docs/assistant-team/governance/20260929-direct-execution/AGENTS.md.before.json",
+      "archiveRawSha256": "a738520208324c5a4d8c50dd1aa289779ed6cba3bb3cfb56e9eaae6db2414b25",
+      "archiveDecodedMatches": true
+    },
+    {
+      "path": "D:/知识图谱/docs/assistant-team/COORDINATION.md",
+      "beforeBytes": 12093,
+      "beforeRawSha256": "a664cab30dbf03da37eba95e8f7632edfbae410b0833ec58a24c3b14e8428da5",
+      "afterBytes": 13751,
+      "afterRawSha256": "5093e2ea2aa0638490ac6550ccfeae250f5cdc76d90df04ec4f5f4f2f7c0320c",
+      "afterNormalizedSha256": "5093e2ea2aa0638490ac6550ccfeae250f5cdc76d90df04ec4f5f4f2f7c0320c",
+      "archivePath": "D:/知识图谱/docs/assistant-team/governance/20260929-direct-execution/COORDINATION.md.before.json",
+      "archiveRawSha256": "f34e46b5b9d0b9ca36e374277d7d0cac365487e30d9d35df698438539f4ef535",
+      "archiveDecodedMatches": true
+    },
+    {
+      "path": "D:/知识图谱/docs/assistant-team/CONTROLLER-RULES.md",
+      "beforeBytes": 24897,
+      "beforeRawSha256": "98e9d6dfc5cc2da68886466816c3d3826a3e986cfa9af4fa6852d3f31891a678",
+      "afterBytes": 26978,
+      "afterRawSha256": "9c16d5b930c3cb59369ef27e4ea7075aeda29fcc177800a4ded0390d670c3eb3",
+      "afterNormalizedSha256": "9c16d5b930c3cb59369ef27e4ea7075aeda29fcc177800a4ded0390d670c3eb3",
+      "archivePath": "D:/知识图谱/docs/assistant-team/governance/20260929-direct-execution/CONTROLLER-RULES.md.before.json",
+      "archiveRawSha256": "52cbe17293a22eee366fba53fc2fbb7d3b526f2604cf3ffcd7cb6e1855ea1c1b",
+      "archiveDecodedMatches": true
+    },
+    {
+      "path": "D:/知识图谱/docs/assistant-team/06-INTEGRATION-TEST-CHARTER.md",
+      "beforeBytes": 5057,
+      "beforeRawSha256": "312dfbd04d27d587db7c4e79b45c0adfa0a3288005d66dba6e0f0a7aa046d7b7",
+      "afterBytes": 6069,
+      "afterRawSha256": "42945524cf102ca2b9a2febb8ebc60235ff3760dd55e600cd410554f6caf11ad",
+      "afterNormalizedSha256": "42945524cf102ca2b9a2febb8ebc60235ff3760dd55e600cd410554f6caf11ad",
+      "archivePath": "D:/知识图谱/docs/assistant-team/governance/20260929-direct-execution/06-INTEGRATION-TEST-CHARTER.md.before.json",
+      "archiveRawSha256": "e24133f7e21721914bd645ca1b8ab2b173009a8a4bca33d21583f1c56e00e0ec",
+      "archiveDecodedMatches": true
+    }
+  ],
+  "addedFiles": [
+    {
+      "path": "D:/知识图谱/docs/assistant-team/DISPATCH-RULES.md",
+      "bytes": 4785,
+      "rawSha256": "3a6a12a19a2daac2b53d56aa8dcbc3e462dfd862ef32876c38d3febb28789326"
+    }
+  ],
+  "archivesEncoding": "Each *.before.json stores exact original file bytes as Base64; decoded hash must equal beforeRawSha256. No original text rewritten in archive.",
+  "historicalExpectedHashesChanged": false,
+  "historicalEvidenceRewritten": false,
+  "projectSourceModified": false,
+  "testsRun": false,
+  "databaseConnected": false,
+  "tasksDispatched": false,
+  "currentR4VerificationBatchApprovedByThisChange": false,
+  "gatingRule": "Recognize this explicit governance delta in future protection snapshots; do not disable old guards or alter old expected hashes.",
+  "verification": {
+    "archivesChecked": 4,
+    "archiveMismatches": 0,
+    "missingLocalLinks": []
+  }
+}

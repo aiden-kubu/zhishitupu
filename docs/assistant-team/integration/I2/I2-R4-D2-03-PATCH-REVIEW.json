@@ -1,0 +1,77 @@
+{
+  "kind": "controller incremental static review of original 03 candidate patch",
+  "recordedOn": "2026-09-29",
+  "decision": "no blocking issue found in offline candidate; real verification pending",
+  "reviewer": "controller",
+  "domainAuthorAndOfflineExecutor": "original desktop 03 research",
+  "thisReviewRanTests": false,
+  "thisReviewConnectedDatabase": false,
+  "thisReviewMergedFiles": false,
+  "recipientBranch": "codex/assistant-03-research",
+  "recipientHead": "bcd3b60ea4e6e18daad53f31787028a0f69bc6cf",
+  "ownerRoot": "D:/知识图谱-worktrees/assistant-03-research",
+  "mainRoot": "D:/知识图谱",
+  "normalization": "UTF-8 decode; CRLF to LF; preserve trailing newline; no trim",
+  "files": [
+    {
+      "relativePath": "backend-java/src/main/java/com/knowledgegraph/assistant/research/JdbcResearchReadRepository.java",
+      "mainPreimageNormalizedSha256": "b922ec24fc397fd772524524c34c6837a3f044bff4bd18efcdd23c37ae67612f",
+      "ownerCandidateNormalizedSha256": "7107873c220e44e5eb3e9638e98c70606503d6504fb6a99080e11e84f9c10c26"
+    },
+    {
+      "relativePath": "backend-java/src/test/java/com/knowledgegraph/assistant/research/JdbcResearchReadRepositoryTest.java",
+      "mainPreimageNormalizedSha256": "1b7c80d568cd0e75b982427c10c404b90f608ea8dee83daf4b92843a131277ce",
+      "ownerCandidateNormalizedSha256": "2381dad233b3e22ff52209e59a1194d2954fb739855685b8268b2f774811f386"
+    },
+    {
+      "relativePath": "backend-java/src/test/java/com/knowledgegraph/assistant/research/JdbcResearchEdgeQueryPerformanceRegressionTest.java",
+      "mainPreimage": "absent",
+      "ownerCandidateNormalizedSha256": "39a8c48684640ca28ae7cc78cab2b3d45a6bf002eacf020d07a43219d6768ed2"
+    }
+  ],
+  "scopeChecks": {
+    "mainResearchBaselineMatched": 10,
+    "mainResearchBaselineTotal": 10,
+    "ownerExistingResearchUnchanged": 8,
+    "ownerExistingResearchChanged": 2,
+    "ownerFrozenDependenciesMatched": 18,
+    "ownerFrozenDependenciesTotal": 18,
+    "d2TemplateUnchanged": true,
+    "wholeRepositoryAuditPerformed": false
+  },
+  "report": {
+    "path": "D:/知识图谱-worktrees/assistant-03-research/docs/assistant-team/reports/03-research-I2-R4.md",
+    "bytes": 21171,
+    "rawSha256": "086428fd567eda271544a9b40095c1cae28c4c78a7292af28d2614a94179d598",
+    "preservedPrefixBytes": 13338,
+    "preservedPrefixRawSha256": "38c7594ef9edae9a561e53524ba47c9675b3c847f74d0a9016f8c9581ec59b5c"
+  },
+  "offlineEvidence": {
+    "path": "D:/知识图谱-worktrees/assistant-03-research/docs/assistant-team/reports/I2-R4/D2-03-OFFLINE-RESULTS.json",
+    "rawSha256": "3d42c24e2364be50dd0626c2e4e507f9c7001fca1b3ea3279f7b70c26d01b3c5",
+    "xmlFilesVerified": 8,
+    "xmlHashMismatches": 0,
+    "runs": [
+      {"id": "I2R4D2-03-new-20260929A", "definitions": 5, "expandedExecutions": 5, "failures": 0, "errors": 0, "skipped": 0, "finalNewTestVersion": false},
+      {"id": "I2R4D2-03-core-20260929A", "definitions": 58, "expandedExecutions": 67, "failures": 0, "errors": 0, "skipped": 0},
+      {"id": "I2R4D2-03-new-20260929B", "definitions": 5, "expandedExecutions": 5, "failures": 0, "errors": 0, "skipped": 0, "finalNewTestVersion": true}
+    ],
+    "uniqueFinalDefinitions": 63,
+    "uniqueFinalExpandedScenarios": 72,
+    "historicalTotalExpandedExecutions": 77,
+    "repeatedExecutionsNotAdditionalCoverage": 5,
+    "sourceOfCommandsAndExitCodes": "original 03 evidence index; controller inspected XML, did not replay commands"
+  },
+  "limits": [
+    "No real MySQL execution, result equivalence, EXPLAIN or performance verification of this candidate yet",
+    "New regression tests assert mock SQL structure, partial bindings, mapping, paging wrapper and exception propagation",
+    "Existing empty-result check and searchNodes performance sampling cannot replace nonempty document-scoped edge branch verification",
+    "No authority to change schema, indexes, contracts, permissions, samples or budgets"
+  ],
+  "model": {
+    "requiredFor03And06": "GPT-6 Sol / High",
+    "userDesktopConfirmationDate": "2026-09-29",
+    "independentlyVerified": false
+  },
+  "nextGate": "prepare explicit original 06 merge/regression/real-verification batch; no automatic dispatch or execution"
+}

@@ -1,0 +1,12 @@
+{
+  "noChildTask": true,
+  "priorDiagnosticTransportFailure": "ExplainList-20260929T003614228: no reader connection or EXPLAIN; local JShell driver load failure",
+  "noRepair": true,
+  "finishedAt": "2026-09-29T00:38:09.5869927+08:00",
+  "diagnosticAttempted": true,
+  "noAnalyze": true,
+  "noListExecution": true,
+  "failure": null,
+  "success": true,
+  "runId": "ExplainList-20260929T003739745"
+}

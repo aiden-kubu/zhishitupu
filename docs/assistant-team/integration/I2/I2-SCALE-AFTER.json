@@ -1,0 +1,222 @@
+{
+  "identity": {
+    "port": 33078,
+    "uuid": "8c6cfcb3-ba49-11f1-bf64-005056c00001",
+    "datadir": "D:\\kg-i2-env\\mysql-data\\",
+    "version": "8.4.11",
+    "currentUser": "root@localhost",
+    "sharedMemory": 1,
+    "partialRevokes": 1,
+    "sharedMemoryName": "KG_I2_33078_8c6cfcb3"
+  },
+  "tag": "AFTER",
+  "checkedAt": "2026-09-27T21:24:19.0983567+08:00",
+  "tables": [
+    {
+      "table": "auto_document_imports",
+      "count": 0,
+      "dataSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "schemaSha256": "2b3a0f614a1d0701050595eee6a6b009f7b367d3c716a0da0a9dba788aa3e959"
+    },
+    {
+      "table": "bootstrap_flags",
+      "count": 1,
+      "dataSha256": "dc5e9c6cdd4e6e360bfbeeeabcfffe16665892a2781062d3ad408b3096cca68e",
+      "schemaSha256": "6f2b46cf450aa036fc79ad6273c6187e71d00a5552df3ec5cbb5276ab22bc6ec"
+    },
+    {
+      "table": "chat_messages",
+      "count": 0,
+      "dataSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "schemaSha256": "47a12b332211d68878e81585305e7e6d718a2a8103122382d1e33f769410b93b"
+    },
+    {
+      "table": "chat_sessions",
+      "count": 0,
+      "dataSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "schemaSha256": "acea8d11c6fcd7b1b5fbb5c94d5dd6d2ce87940613d1cad954118614e9d7861c"
+    },
+    {
+      "table": "document_analyses",
+      "count": 0,
+      "dataSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "schemaSha256": "690d8db7c186242d312dacee8c15ce0d09e776d214194968a4f737106ab90598"
+    },
+    {
+      "table": "document_chunks",
+      "count": 20005,
+      "dataSha256": "966dc0907b59a1ef166299aba018942122327c76f68a496042a90083354d7b3d",
+      "schemaSha256": "b81a9cdf821d0b7117baaa4c0b9a04b0c6758a6722c6028433d3375dc9b84dde"
+    },
+    {
+      "table": "document_metadata",
+      "count": 6,
+      "dataSha256": "42f0baa85665b521a28708b65551b7b94524d8329e436ea3d7ec3be0840d2e94",
+      "schemaSha256": "341c7fe7684f94c37d13efea72b2d0d44748f4d832b401faa92ead0e19254a22"
+    },
+    {
+      "table": "document_tags",
+      "count": 1,
+      "dataSha256": "89877779d523bbdda776ced08a950b0f284cd81109b6e0e2d39d4380b8df5ccc",
+      "schemaSha256": "033d9fb71927937732d1fbde098ab2e661c7fb00cfd5fb621a99b8e239593b2d"
+    },
+    {
+      "table": "document_topic_assignments",
+      "count": 1,
+      "dataSha256": "76ca3a3272b23a4c69649370d4251dd38bce8301829043455968a7780304e1f5",
+      "schemaSha256": "732d5b11082d4dbad13977f3c4ae3bd4591891fee06e5a50b53e8ead510bbcdb"
+    },
+    {
+      "table": "document_units",
+      "count": 2004,
+      "dataSha256": "ca5a7061066a2088d8d2239f7b218285bee9be1ce3d4ded0cdafef9b16c3a8a4",
+      "schemaSha256": "b4ba089402f8383fadb9026e96273275a6bb0b7675e827e5e1b4dfb97984b3a2"
+    },
+    {
+      "table": "documents",
+      "count": 2006,
+      "dataSha256": "e7d527755a1884881485d940f11065d09afd55c818c653577d5c23cd64781e92",
+      "schemaSha256": "1d5a34c038f69dbee64da7f93cf218c3f9815b948e02bc134370d53a6da22409"
+    },
+    {
+      "table": "edge_evidence",
+      "count": 3,
+      "dataSha256": "87d70e9cafcf7ce39f5bc4637ba111f3aa28f791f4f508c984fb16496b1f916c",
+      "schemaSha256": "471b33c8d7a9f979a724c82967c2723bfe2ab4d24035d88dc2a7e9f4ea3e506a"
+    },
+    {
+      "table": "edges",
+      "count": 0,
+      "dataSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "schemaSha256": "c5e88fae069f91a1998cae2c0cfbe7367c5e6b905195a86cd8f9a4ce67cc4c91"
+    },
+    {
+      "table": "entity_candidates",
+      "count": 2,
+      "dataSha256": "a17c17c744c00b6a9405c867ec98c9723e7746d896a624585cde1c475365802f",
+      "schemaSha256": "43e60a87336c589eb80e4f25abe4bb8acedaa7586e97f113a18d531c93ca9d59"
+    },
+    {
+      "table": "extraction_batch_results",
+      "count": 0,
+      "dataSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "schemaSha256": "86cba29596306ade1175df3b3046bc7c5e61c68238ead7ea370b89a04d1cfb54"
+    },
+    {
+      "table": "extraction_plan_versions",
+      "count": 0,
+      "dataSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "schemaSha256": "afe807ae8c3f90ecbab44fd3051cddb068814490dc5a27a65da31dc8e3c02bb7"
+    },
+    {
+      "table": "i2_privilege_canary",
+      "count": 1,
+      "dataSha256": "08f0cb0814edc5b7842a295b693696d9e854033d870b7f93163fa42b14661d2e",
+      "schemaSha256": "4f354486beed7d691ab267624ddd1942faee6083d0f155176c931bf761906412"
+    },
+    {
+      "table": "ingestion_jobs",
+      "count": 3,
+      "dataSha256": "2ab051e7504e68d067424d6d503910a3ddaf061d51e7b71edcc374cbe6c3fc91",
+      "schemaSha256": "7a81a07cd473d640ebcbd99aa6aaba2092aca7b363cf6a50c23a66ad26f187c8"
+    },
+    {
+      "table": "knowledge_edges",
+      "count": 30003,
+      "dataSha256": "12a038dedef2f8eed6b2ede0349166d7983b673177a5ea2a162a0fa0c67392cb",
+      "schemaSha256": "f752f588d338350d5652d7e75c1789d74aa2f38f387ad9d99cada19fc70a5b6d"
+    },
+    {
+      "table": "knowledge_libraries",
+      "count": 3,
+      "dataSha256": "873b3ab6dfd0d76f2c38c152701ee2bdfd9b2b48fe4477682390cea974d16089",
+      "schemaSha256": "dbd3fca90a9f28659809d82f05a0eb994dd12ba4bd1b7a2590e73068e5ed2834"
+    },
+    {
+      "table": "knowledge_nodes",
+      "count": 10005,
+      "dataSha256": "6e35e124790b7ca8919e9c8790a35205fccf8d11c20c19000a313457a1469844",
+      "schemaSha256": "be90aebd21d4d1e2702f72871aee336a2af5e2d1387583fe52774af7c859f5f1"
+    },
+    {
+      "table": "learning_assessment_attempts",
+      "count": 2,
+      "dataSha256": "c8fc2d3085641e2c0660c5e58b50348df138dac7ea89c250e9b6ecd5b77eca47",
+      "schemaSha256": "eedbed5a922bcf7d621d1b22e34dcfcc30fd719d9d8df986fc2b8a81b423127f"
+    },
+    {
+      "table": "learning_path_steps",
+      "count": 2,
+      "dataSha256": "cfbe129c95420f5e2dca371041472f2b274747bfe211eb2f38acea80c019c5ff",
+      "schemaSha256": "3cc2d28e687ee64a2ed2e3ebd446b877dc2015b2922f29839ab425dbd4acfc33"
+    },
+    {
+      "table": "learning_paths",
+      "count": 1,
+      "dataSha256": "2885767e7161234e047b1133b59b0fe1542cc84bb6e5adf2ceeedad048ba4c89",
+      "schemaSha256": "2da7afefe7b3e5a4e398b083fbe800bc12dd9a21bd70de074169d6d19a9c2e51"
+    },
+    {
+      "table": "library_aliases",
+      "count": 1,
+      "dataSha256": "6699edd93953a73db56dc5e2742c0e9e8506a328b921cbe513e8385e99b44cc2",
+      "schemaSha256": "4907c655aca0587f8a19cb1dad2228f30dc5afec898db95e6dd7c9f37c294eb4"
+    },
+    {
+      "table": "library_nodes",
+      "count": 10005,
+      "dataSha256": "c0aa886d9cd221af5161b7e6175e0e4cac73a8692ce41177834968cd707e10c2",
+      "schemaSha256": "6f301032018665e5f169adbf49c9827d3f52e2b0e4d1d418a4dd9ede1b56ca06"
+    },
+    {
+      "table": "llm_profiles",
+      "count": 0,
+      "dataSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "schemaSha256": "1133d23c75e32edd2041792dd8f15c4e6a604af7498f536993ffb75b7f8de4d7"
+    },
+    {
+      "table": "node_aliases",
+      "count": 1,
+      "dataSha256": "c23bf352e8abf6ea09338a966bf167edfa97cd6c4a6f9c96909fadcfa8354570",
+      "schemaSha256": "df9ea1e7d44a81921c35da488f0b62acfc0bd79d2145d22f699e62244a95bac6"
+    },
+    {
+      "table": "node_evidence",
+      "count": 10005,
+      "dataSha256": "ce0c405049e77af880af3daaf8f391321d3e40bc766b625a022db4ce996797c3",
+      "schemaSha256": "ba043c8cff37ef514c211a275b1a5fee9eb623e5b1492c6cb88c5abfd5cd6db0"
+    },
+    {
+      "table": "nodes",
+      "count": 0,
+      "dataSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "schemaSha256": "75ae13e455a9616266556a19fca61354989bbebb3292ae901f8bd2a0f2c5e673"
+    },
+    {
+      "table": "organization_checkpoints",
+      "count": 0,
+      "dataSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "schemaSha256": "b07c1879ed7fb2e6bc3fb711184dc630927b07c52f6372ebcbd403400e2572e7"
+    },
+    {
+      "table": "organization_mutex",
+      "count": 1,
+      "dataSha256": "43de3a417d75f4818c5a553268b80ce3a5805109a3bbc6b605e9fb0b8f50b485",
+      "schemaSha256": "b92de6d0b6b783e1bc0e9880ad8a8e07f69ec715a00981b6a4a2e6dfacf1a23d"
+    },
+    {
+      "table": "relation_candidates",
+      "count": 1,
+      "dataSha256": "88c7241ef6919db94ebd89a0970875098ba5a3f79f3c9b4e04fc135a33e2f8e0",
+      "schemaSha256": "1d11ab3b486ee2bdf05f283f2409b908dd6ca6f4f78cbe83f15af57d343b2e93"
+    },
+    {
+      "table": "system_settings",
+      "count": 1,
+      "dataSha256": "857d07300c00264e2c732ce709c8dba5761d8e1876baa8e8cbee2d1d487e1885",
+      "schemaSha256": "1b9f52d0085ab328cd6fcbd6237ccf67a6fe4268e2a9e6aa049dd3f67736eac9"
+    }
+  ],
+  "binaryLogStatus": "i2-bin.000010\t6426354",
+  "loaderLocked": "Y"
+}

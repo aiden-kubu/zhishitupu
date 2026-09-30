@@ -21,11 +21,40 @@ public class ExtractionEvidencePlan {
                 .param("id",jobId).query(String.class).optional().orElse(null);
         if(strategy==null) {
             int staged=jdbc.sql("SELECT COUNT(*) FROM extraction_batch_results WHERE job_id=:id").param("id",jobId).query(Integer.class).single();
-            strategy=staged>0 ? "legacy-v1" : "deduplicated-v1";
+            strategy=staged>0 ? "legacy-v1" : "book-priority-v1";
             jdbc.sql("INSERT INTO extraction_plan_versions(job_id,strategy) VALUES(:id,:s)")
                     .param("id",jobId).param("s",strategy).update();
         }
+        if ("book-priority-v1".equals(strategy)) all = prioritizeBooks(documentId,all);
         return plan(all,valid,"legacy-v1".equals(strategy));
+    }
+
+    private List<ExtractionService.ChunkRow> prioritizeBooks(long documentId,List<ExtractionService.ChunkRow> all) {
+        // Shared concepts retain the first extracted definition, so put the selected primary source first.
+        var mapper = new com.fasterxml.jackson.databind.ObjectMapper();
+        String raw = jdbc.sql("SELECT verification_json FROM document_metadata WHERE document_id=:id")
+                .param("id",documentId).query(String.class).optional().orElse(null);
+        String analysis = jdbc.sql("SELECT analysis_json FROM document_analyses WHERE document_id=:id")
+                .param("id",documentId).query(String.class).optional().orElse(null);
+        if (raw==null || analysis==null) return all;
+        Set<String> preferred = new LinkedHashSet<>();
+        try {
+            Set<String> primary = new LinkedHashSet<>();
+            for (var comparison:mapper.readTree(raw).path("bookComparisons"))
+                if ("similar".equals(comparison.path("verdict").asText())) primary.add(comparison.path("primaryBook").asText());
+            for (var book:mapper.readTree(analysis).path("courses"))
+                if (primary.contains(book.path("key").asText())) book.path("sources").forEach(s -> preferred.add(s.asText()));
+        } catch (com.fasterxml.jackson.core.JsonProcessingException ex) {
+            throw new IllegalStateException("书籍抽样记录损坏，请重新识别资料",ex);
+        }
+        if (preferred.isEmpty()) return all;
+        Set<Long> primaryIds = new HashSet<>();
+        jdbc.sql("SELECT c.id,u.source_locator FROM document_chunks c JOIN document_units u ON u.id=c.unit_id WHERE u.document_id=:id")
+                .param("id",documentId).query((rs,i) -> {
+                    if(preferred.contains(DocumentUnderstandingService.sourceName(rs.getString(2)))) primaryIds.add(rs.getLong(1));
+                    return rs.getLong(1);
+                }).list();
+        return all.stream().sorted(Comparator.comparingInt(c -> primaryIds.contains(c.id()) ? 0 : 1)).toList();
     }
 
     static Plan plan(List<ExtractionService.ChunkRow> all,Set<Long> valid,boolean legacy) {

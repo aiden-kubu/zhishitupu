@@ -1,0 +1,33 @@
+{
+  "stage": "06-ONBOARDING-RECEIPT-REVIEW",
+  "date": "2026-09-29",
+  "actor": "controller",
+  "source": "Owner-forwarded06receipt; no independent desktop tool readback",
+  "changes": [
+    {
+      "file": "docs/assistant-team/REGISTRY.md",
+      "oldRawSha256": "d638bc69be29dd863e8ef2b2ae9c31f968f52581c770fda037458efd29ed5b5e",
+      "newRawSha256": "866911d17a21fe0aa42c83b84cda2e1ed01454325243378e4766eddf7bd7abc4",
+      "reason": "Record actual reported readonly onboarding, explicit-workdir exception, pending model confirmation and next manual03 receipt"
+    }
+  ],
+  "additions": [
+    {
+      "file": "docs/assistant-team/onboarding/06/06-RECEIPT-REVIEW.md",
+      "rawSha256": "413e69fc0f08f1d181f9459885d2e521417efdb71469ddc0eb1932f8749d45ef"
+    }
+  ],
+  "priorGovernanceOverlay": "GOVERNANCE-OVERLAY.json",
+  "immutableHistoricalFilesUnchanged": true,
+  "status": {
+    "readOnlyOnboardingReportedComplete": true,
+    "technicalReceiptReviewed": true,
+    "modelUserConfirmationPending": true,
+    "modelIndependentlyVerified": false,
+    "desktopThreadId": null,
+    "formal06ExecutionAuthorized": false,
+    "task03ReadyForManualReadOnlyReceipt": true,
+    "task03AutoDispatched": false
+  },
+  "scope": "No code/test/database operations; no original full baseline rescan"
+}

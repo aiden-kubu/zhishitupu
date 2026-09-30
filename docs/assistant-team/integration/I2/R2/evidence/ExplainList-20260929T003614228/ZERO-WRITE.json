@@ -1,0 +1,10 @@
+{
+  "tableCount": 34,
+  "activeReaderQueriesAfter": 0,
+  "generalLogSettingNotChanged": true,
+  "loaderLockedAfter": "Y",
+  "binlogPositionEqual": true,
+  "dataAndSchemaEqual": true,
+  "loaderLockedBefore": "Y",
+  "testProcessOnlyReaderCredential": true
+}

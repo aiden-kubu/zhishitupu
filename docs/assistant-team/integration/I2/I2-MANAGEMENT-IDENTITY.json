@@ -1,0 +1,28 @@
+{
+  "autoCnfSha256": "dbe31609c062afcf539292237dddf5242ac6a67d4aefe6e0533f66ab9b7164cb",
+  "stage": "I2",
+  "processId": 25400,
+  "acceptanceDatabaseCreated": false,
+  "identity": {
+    "port": 33078,
+    "uuid": "8c6cfcb3-ba49-11f1-bf64-005056c00001",
+    "datadir": "D:\\kg-i2-env\\mysql-data\\",
+    "version": "8.4.11",
+    "currentUser": "root@localhost",
+    "sharedMemory": 1,
+    "partialRevokes": 1,
+    "sharedMemoryName": "KG_I2_33078_8c6cfcb3"
+  },
+  "checkedAt": "2026-09-27T16:29:11.6811933+08:00",
+  "listeners": [
+    {
+      "LocalAddress": "127.0.0.1",
+      "LocalPort": 33078,
+      "OwningProcess": 17900
+    }
+  ],
+  "junction": "D:\\kg-i2-env",
+  "phase": "same_instance_alias_start_verified",
+  "reinitialized": false,
+  "resolvedTarget": "D:\\知识图谱-i2-env"
+}

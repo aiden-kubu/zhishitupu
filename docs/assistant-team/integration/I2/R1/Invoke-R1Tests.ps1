@@ -1,0 +1,18 @@
+param([ValidateSet('Original','Ranking','Plan','Semantics','Base','Budget','Performance','LegacyScale')][string]$Suite)
+$ErrorActionPreference='Stop'
+$root='D:\知识图谱'
+$classes=switch($Suite){
+    'Original' { $base=Get-Content -LiteralPath (Join-Path $root 'docs/assistant-team/integration/I1/I1-BASELINE.json') -Raw|ConvertFrom-Json; (@($base.files|Where-Object kind -eq 'test'|ForEach-Object{[IO.Path]::GetFileNameWithoutExtension($_.file)}) -join ',') }
+    'Ranking' {'JdbcQualityInsightRankingRegressionTest'}
+    'Plan' {'I2QualityInsightRankingTest#realRankingPlanAndScaleTop'}
+    'Semantics' {'I2QualityInsightRankingTest#realSemanticMatrixAndProjectOracle'}
+    'Base' {'I2JdbcBaselineTest,I2ReadOnlyPrivilegeTest'}
+    'Budget' {'I2QueryBudgetTest'}
+    'Performance' {'I2QualityInsightRankingTest#fullScaleSingleAndFourConcurrentSamples'}
+    'LegacyScale' {'I2ScaleQueryTest'}
+}
+if($Suite -notin @('Original','Ranking') -and $env:KG_I2_AUTHORIZED -ne '8c6cfcb3-ba49-11f1-bf64-005056c00001'){throw 'Explicit original I2 instance authorization missing'}
+if($env:KG_I2_ADMIN_PASSWORD -or $env:KG_I2_LOADER_PASSWORD -or $env:MYSQL_PWD){throw 'Write credential must not enter test process'}
+Set-Location -LiteralPath (Join-Path $root 'backend-java')
+& .\mvnw.cmd -o "-Dtest=$classes" test
+exit $LASTEXITCODE

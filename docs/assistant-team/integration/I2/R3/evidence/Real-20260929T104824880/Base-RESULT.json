@@ -1,0 +1,280 @@
+{
+  "uniqueTestCases": 35,
+  "startedAt": "2026-09-29T10:50:32.5997626+08:00",
+  "rawXmlArchived": false,
+  "executionRound": 1,
+  "uniqueMethodDefinitions": 25,
+  "records": [],
+  "exitCode": 1,
+  "suites": [
+    {
+      "cases": [
+        {
+          "class": "com.knowledgegraph.assistant.i2.I2JdbcBaselineTest",
+          "name": "jobsDerivedFlagsAndFailureAreRealSql",
+          "seconds": "0.201",
+          "error": "",
+          "failure": ""
+        },
+        {
+          "class": "com.knowledgegraph.assistant.i2.I2JdbcBaselineTest",
+          "name": "ingestionLibrariesAndMetadata",
+          "seconds": "0.095",
+          "error": "",
+          "failure": ""
+        },
+        {
+          "class": "com.knowledgegraph.assistant.i2.I2JdbcBaselineTest",
+          "name": "qualityJobsCandidatesPaginationAndAiState",
+          "seconds": "0.144",
+          "error": "",
+          "failure": ""
+        },
+        {
+          "class": "com.knowledgegraph.assistant.i2.I2JdbcBaselineTest",
+          "name": "researchRetrievalFiltersArchivedAndOutsideBeforeLimit",
+          "seconds": "0.117",
+          "error": "",
+          "failure": ""
+        },
+        {
+          "class": "com.knowledgegraph.assistant.i2.I2JdbcBaselineTest",
+          "name": "multiLibraryToolHidesOutsidePrimaryId",
+          "seconds": "0.107",
+          "error": "",
+          "failure": ""
+        },
+        {
+          "class": "com.knowledgegraph.assistant.i2.I2JdbcBaselineTest",
+          "name": "qualitySnapshotReturnsCurrentSourceHashes",
+          "seconds": "0.104",
+          "error": "",
+          "failure": ""
+        },
+        {
+          "class": "com.knowledgegraph.assistant.i2.I2JdbcBaselineTest",
+          "name": "documentFilePresenceMetadataAndMultiLibrary",
+          "seconds": "0.144",
+          "error": "",
+          "failure": ""
+        },
+        {
+          "class": "com.knowledgegraph.assistant.i2.I2JdbcBaselineTest",
+          "name": "qualityInsightUsesScopedActiveEdges",
+          "seconds": "0.109",
+          "error": "",
+          "failure": ""
+        },
+        {
+          "class": "com.knowledgegraph.assistant.i2.I2JdbcBaselineTest",
+          "name": "researchEdgesKeepDirectionAndBothEndpointScope",
+          "seconds": "1.566",
+          "error": "PreparedStatementCallback; uncategorized SQLException for SQL [SELECT e.id,e.source_node_id,e.target_node_id,e.relation_type,e.status,e.updated_at,e.properties_json,\nEXISTS(SELECT 1 FROM edge_evidence ee JOIN document_chunks ec ON ec.id=ee.chunk_id\n       JOIN document_units eu ON eu.id=ec.unit_id JOIN documents ed ON ed.id=eu.document_id\n       LEFT JOIN document_metadata em ON em.document_id=ed.id\n       WHERE ee.edge_id=e.id AND ed.status='COMPLETED' AND eu.status IN ('READY','OCR_OK')\n         AND (em.lifecycle_status IS NULL OR em.lifecycle_status='active')\n AND (ed.library_id IN (?) OR EXISTS (SELECT 1 FROM document_topic_assignments a WHERE a.document_id=ed.id AND a.library_id IN (?))) AND ed.id IN (?, ?)) AS has_source FROM knowledge_edges e JOIN knowledge_nodes s ON s.id=e.source_node_id JOIN knowledge_nodes t ON t.id=e.target_node_id WHERE e.source_node_id=? AND EXISTS (SELECT 1 FROM library_nodes ln WHERE ln.node_id=s.id AND ln.library_id IN (?)) AND EXISTS (SELECT 1 FROM node_evidence ne JOIN document_chunks nc ON nc.id=ne.chunk_id JOIN document_units nu ON nu.id=nc.unit_id JOIN documents nd ON nd.id=nu.document_id LEFT JOIN document_metadata nm ON nm.document_id=nd.id WHERE ne.node_id=s.id AND nd.id IN (?, ?) AND nd.status='COMPLETED' AND nu.status IN ('READY','OCR_OK') AND (nm.lifecycle_status IS NULL OR nm.lifecycle_status='active') AND (nd.library_id IN (?) OR EXISTS (SELECT 1 FROM document_topic_assignments a WHERE a.document_id=nd.id AND a.library_id IN (?))) AND nd.id IN (?, ?)) AND EXISTS (SELECT 1 FROM library_nodes ln WHERE ln.node_id=t.id AND ln.library_id IN (?)) AND EXISTS (SELECT 1 FROM node_evidence ne JOIN document_chunks nc ON nc.id=ne.chunk_id JOIN document_units nu ON nu.id=nc.unit_id JOIN documents nd ON nd.id=nu.document_id LEFT JOIN document_metadata nm ON nm.document_id=nd.id WHERE ne.node_id=t.id AND nd.id IN (?, ?) AND nd.status='COMPLETED' AND nu.status IN ('READY','OCR_OK') AND (nm.lifecycle_status IS NULL OR nm.lifecycle_status='active') AND (nd.library_id IN (?) OR EXISTS (SELECT 1 FROM document_topic_assignments a WHERE a.document_id=nd.id AND a.library_id IN (?))) AND nd.id IN (?, ?)) AND EXISTS (SELECT 1 FROM edge_evidence ee JOIN document_chunks ec ON ec.id=ee.chunk_id JOIN document_units eu ON eu.id=ec.unit_id JOIN documents ed ON ed.id=eu.document_id LEFT JOIN document_metadata em ON em.document_id=ed.id WHERE ee.edge_id=e.id AND ed.id IN (?, ?) AND ed.status='COMPLETED' AND eu.status IN ('READY','OCR_OK') AND (em.lifecycle_status IS NULL OR em.lifecycle_status='active') AND (ed.library_id IN (?) OR EXISTS (SELECT 1 FROM document_topic_assignments a WHERE a.document_id=ed.id AND a.library_id IN (?))) AND ed.id IN (?, ?)) ORDER BY e.id LIMIT ?]; SQL state [HY000]; error code [3024]; Query execution was interrupted, maximum statement execution time exceeded",
+          "failure": ""
+        },
+        {
+          "class": "com.knowledgegraph.assistant.i2.I2JdbcBaselineTest",
+          "name": "formalUnavailableAndLegacyNeverBecomeValid",
+          "seconds": "0.422",
+          "error": "",
+          "failure": ""
+        },
+        {
+          "class": "com.knowledgegraph.assistant.i2.I2JdbcBaselineTest",
+          "name": "missingRowsReturnEmptyWithoutBroadeningScope",
+          "seconds": "0.063",
+          "error": "",
+          "failure": ""
+        },
+        {
+          "class": "com.knowledgegraph.assistant.i2.I2JdbcBaselineTest",
+          "name": "sourceUnitPagingTruncationAndUtf8Hashes",
+          "seconds": "0.084",
+          "error": "",
+          "failure": ""
+        },
+        {
+          "class": "com.knowledgegraph.assistant.i2.I2JdbcBaselineTest",
+          "name": "learningPathFingerprintHighIdsAndScope",
+          "seconds": "0.346",
+          "error": "",
+          "failure": ""
+        },
+        {
+          "class": "com.knowledgegraph.assistant.i2.I2JdbcBaselineTest",
+          "name": "qualitySourceMetadataAndGraphMatches",
+          "seconds": "0.08",
+          "error": "",
+          "failure": ""
+        },
+        {
+          "class": "com.knowledgegraph.assistant.i2.I2JdbcBaselineTest",
+          "name": "learningGraphAndLinksAreScoped",
+          "seconds": "0.238",
+          "error": "",
+          "failure": ""
+        },
+        {
+          "class": "com.knowledgegraph.assistant.i2.I2JdbcBaselineTest",
+          "name": "researchScopedSearchAliasesAndNoSqlInjection",
+          "seconds": "0.113",
+          "error": "",
+          "failure": ""
+        },
+        {
+          "class": "com.knowledgegraph.assistant.i2.I2JdbcBaselineTest",
+          "name": "researchNodeDimensionsAndSourceAvailability",
+          "seconds": "0.104",
+          "error": "",
+          "failure": ""
+        },
+        {
+          "class": "com.knowledgegraph.assistant.i2.I2JdbcBaselineTest",
+          "name": "legacyHistoryCursorNullStepAndActualOwner",
+          "seconds": "0.041",
+          "error": "",
+          "failure": ""
+        },
+        {
+          "class": "com.knowledgegraph.assistant.i2.I2JdbcBaselineTest",
+          "name": "ingestionDocumentsFilterBeforePaging",
+          "seconds": "0.175",
+          "error": "",
+          "failure": ""
+        },
+        {
+          "class": "com.knowledgegraph.assistant.i2.I2JdbcBaselineTest",
+          "name": "readSourceRejectsStaleHashArchivedAndWrongOwner",
+          "seconds": "0.064",
+          "error": "",
+          "failure": ""
+        },
+        {
+          "class": "com.knowledgegraph.assistant.i2.I2JdbcBaselineTest",
+          "name": "assessmentContextAndRepeatedHighIdBaseline",
+          "seconds": "0.627",
+          "error": "",
+          "failure": ""
+        },
+        {
+          "class": "com.knowledgegraph.assistant.i2.I2JdbcBaselineTest",
+          "name": "sourceOwnershipAndUnsupportedNodeScope",
+          "seconds": "0.029",
+          "error": "",
+          "failure": ""
+        }
+      ],
+      "class": "com.knowledgegraph.assistant.i2.I2JdbcBaselineTest",
+      "tests": 22,
+      "skipped": 0,
+      "xmlRawSha256": "3d260d7d118fff75f7a540bb79a1212a0489d118c1be17d052e8a6458a3a6fe7",
+      "failures": 0,
+      "errors": 1,
+      "xmlPath": "D:\\知识图谱\\backend-java\\target\\surefire-reports\\TEST-com.knowledgegraph.assistant.i2.I2JdbcBaselineTest-Real-20260929T104824880-Base.xml"
+    },
+    {
+      "cases": [
+        {
+          "class": "com.knowledgegraph.assistant.i2.I2ReadOnlyPrivilegeTest",
+          "name": "minimumGrantsAndNoRole",
+          "seconds": "0.017",
+          "error": "",
+          "failure": ""
+        },
+        {
+          "class": "com.knowledgegraph.assistant.i2.I2ReadOnlyPrivilegeTest",
+          "name": "unrelatedDataAndColumnsDenied()[1]",
+          "seconds": "0.009",
+          "error": "",
+          "failure": ""
+        },
+        {
+          "class": "com.knowledgegraph.assistant.i2.I2ReadOnlyPrivilegeTest",
+          "name": "unrelatedDataAndColumnsDenied()[2]",
+          "seconds": "0.006",
+          "error": "",
+          "failure": ""
+        },
+        {
+          "class": "com.knowledgegraph.assistant.i2.I2ReadOnlyPrivilegeTest",
+          "name": "unrelatedDataAndColumnsDenied()[3]",
+          "seconds": "0.006",
+          "error": "",
+          "failure": ""
+        },
+        {
+          "class": "com.knowledgegraph.assistant.i2.I2ReadOnlyPrivilegeTest",
+          "name": "unrelatedDataAndColumnsDenied()[4]",
+          "seconds": "0.008",
+          "error": "",
+          "failure": ""
+        },
+        {
+          "class": "com.knowledgegraph.assistant.i2.I2ReadOnlyPrivilegeTest",
+          "name": "serverRejectsEveryWriteCategory()[1]",
+          "seconds": "0.013",
+          "error": "",
+          "failure": ""
+        },
+        {
+          "class": "com.knowledgegraph.assistant.i2.I2ReadOnlyPrivilegeTest",
+          "name": "serverRejectsEveryWriteCategory()[2]",
+          "seconds": "0.009",
+          "error": "",
+          "failure": ""
+        },
+        {
+          "class": "com.knowledgegraph.assistant.i2.I2ReadOnlyPrivilegeTest",
+          "name": "serverRejectsEveryWriteCategory()[3]",
+          "seconds": "0.008",
+          "error": "",
+          "failure": ""
+        },
+        {
+          "class": "com.knowledgegraph.assistant.i2.I2ReadOnlyPrivilegeTest",
+          "name": "serverRejectsEveryWriteCategory()[4]",
+          "seconds": "0.008",
+          "error": "",
+          "failure": ""
+        },
+        {
+          "class": "com.knowledgegraph.assistant.i2.I2ReadOnlyPrivilegeTest",
+          "name": "serverRejectsEveryWriteCategory()[5]",
+          "seconds": "0.006",
+          "error": "",
+          "failure": ""
+        },
+        {
+          "class": "com.knowledgegraph.assistant.i2.I2ReadOnlyPrivilegeTest",
+          "name": "serverRejectsEveryWriteCategory()[6]",
+          "seconds": "0.01",
+          "error": "",
+          "failure": ""
+        },
+        {
+          "class": "com.knowledgegraph.assistant.i2.I2ReadOnlyPrivilegeTest",
+          "name": "serverRejectsEveryWriteCategory()[7]",
+          "seconds": "0.009",
+          "error": "",
+          "failure": ""
+        },
+        {
+          "class": "com.knowledgegraph.assistant.i2.I2ReadOnlyPrivilegeTest",
+          "name": "serverRejectsEveryWriteCategory()[8]",
+          "seconds": "0.007",
+          "error": "",
+          "failure": ""
+        }
+      ],
+      "class": "com.knowledgegraph.assistant.i2.I2ReadOnlyPrivilegeTest",
+      "tests": 13,
+      "skipped": 0,
+      "xmlRawSha256": "3b61496954afc46ac175438f1d1cfa7e743abffbfadd42eeb2313fbf26b240be",
+      "failures": 0,
+      "errors": 0,
+      "xmlPath": "D:\\知识图谱\\backend-java\\target\\surefire-reports\\TEST-com.knowledgegraph.assistant.i2.I2ReadOnlyPrivilegeTest-Real-20260929T104824880-Base.xml"
+    }
+  ],
+  "suite": "Base",
+  "reportSuffix": "Real-20260929T104824880-Base"
+}

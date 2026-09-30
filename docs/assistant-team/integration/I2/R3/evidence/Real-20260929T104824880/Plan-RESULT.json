@@ -1,0 +1,583 @@
+{
+  "uniqueTestCases": 1,
+  "startedAt": "2026-09-29T10:49:43.8201192+08:00",
+  "rawXmlArchived": false,
+  "executionRound": 1,
+  "uniqueMethodDefinitions": 1,
+  "records": [
+    {
+      "value": {
+        "limit": 10,
+        "plan": {
+          "query_block": {
+            "select_id": 1,
+            "cost_info": {
+              "query_cost": "19814.72"
+            },
+            "ordering_operation": {
+              "using_temporary_table": true,
+              "using_filesort": true,
+              "nested_loop": [
+                {
+                  "table": {
+                    "table_name": "ln",
+                    "access_type": "ref",
+                    "possible_keys": [
+                      "PRIMARY",
+                      "idx_library_nodes_node"
+                    ],
+                    "key": "PRIMARY",
+                    "used_key_parts": [
+                      "library_id"
+                    ],
+                    "key_length": "8",
+                    "ref": [
+                      "const"
+                    ],
+                    "rows_examined_per_scan": 5002,
+                    "rows_produced_per_join": 5002,
+                    "filtered": "100.00",
+                    "using_index": true,
+                    "cost_info": {
+                      "read_cost": "5.11",
+                      "eval_cost": "500.20",
+                      "prefix_cost": "505.31",
+                      "data_read_per_join": "3M"
+                    },
+                    "used_columns": [
+                      "library_id",
+                      "node_id"
+                    ]
+                  }
+                },
+                {
+                  "table": {
+                    "table_name": "n",
+                    "access_type": "eq_ref",
+                    "possible_keys": [
+                      "PRIMARY"
+                    ],
+                    "key": "PRIMARY",
+                    "used_key_parts": [
+                      "id"
+                    ],
+                    "key_length": "8",
+                    "ref": [
+                      "kg_assistant_i2_20260927_r01.ln.node_id"
+                    ],
+                    "rows_examined_per_scan": 1,
+                    "rows_produced_per_join": 5002,
+                    "filtered": "100.00",
+                    "cost_info": {
+                      "read_cost": "1250.50",
+                      "eval_cost": "500.20",
+                      "prefix_cost": "2256.01",
+                      "data_read_per_join": "8M"
+                    },
+                    "used_columns": [
+                      "id",
+                      "canonical_name",
+                      "node_type"
+                    ]
+                  }
+                },
+                {
+                  "table": {
+                    "table_name": "d",
+                    "access_type": "ref",
+                    "possible_keys": [
+                      "<auto_key0>"
+                    ],
+                    "key": "<auto_key0>",
+                    "used_key_parts": [
+                      "node_id"
+                    ],
+                    "key_length": "8",
+                    "ref": [
+                      "kg_assistant_i2_20260927_r01.ln.node_id"
+                    ],
+                    "rows_examined_per_scan": 10,
+                    "rows_produced_per_join": 50167,
+                    "filtered": "100.00",
+                    "cost_info": {
+                      "read_cost": "12541.93",
+                      "eval_cost": "5016.77",
+                      "prefix_cost": "19814.72",
+                      "data_read_per_join": "1M"
+                    },
+                    "used_columns": [
+                      "node_id",
+                      "degree"
+                    ],
+                    "materialized_from_subquery": {
+                      "using_temporary_table": true,
+                      "dependent": false,
+                      "cacheable": true,
+                      "query_block": {
+                        "select_id": 4,
+                        "cost_info": {
+                          "query_cost": "269.91"
+                        },
+                        "grouping_operation": {
+                          "using_temporary_table": true,
+                          "using_filesort": false,
+                          "table": {
+                            "table_name": "incident_endpoints",
+                            "access_type": "ALL",
+                            "rows_examined_per_scan": 2377,
+                            "rows_produced_per_join": 2377,
+                            "filtered": "100.00",
+                            "cost_info": {
+                              "read_cost": "32.21",
+                              "eval_cost": "237.70",
+                              "prefix_cost": "269.91",
+                              "data_read_per_join": "37K"
+                            },
+                            "used_columns": [
+                              "node_id"
+                            ],
+                            "materialized_from_subquery": {
+                              "using_temporary_table": true,
+                              "dependent": false,
+                              "cacheable": true,
+                              "query_block": {
+                                "union_result": {
+                                  "using_temporary_table": false,
+                                  "query_specifications": [
+                                    {
+                                      "dependent": false,
+                                      "cacheable": true,
+                                      "query_block": {
+                                        "select_id": 5,
+                                        "cost_info": {
+                                          "query_cost": "6199.33"
+                                        },
+                                        "nested_loop": [
+                                          {
+                                            "table": {
+                                              "table_name": "ln",
+                                              "access_type": "ref",
+                                              "possible_keys": [
+                                                "PRIMARY",
+                                                "idx_library_nodes_node"
+                                              ],
+                                              "key": "PRIMARY",
+                                              "used_key_parts": [
+                                                "library_id"
+                                              ],
+                                              "key_length": "8",
+                                              "ref": [
+                                                "const"
+                                              ],
+                                              "rows_examined_per_scan": 5002,
+                                              "rows_produced_per_join": 5002,
+                                              "filtered": "100.00",
+                                              "using_index": true,
+                                              "cost_info": {
+                                                "read_cost": "5.11",
+                                                "eval_cost": "500.20",
+                                                "prefix_cost": "505.31",
+                                                "data_read_per_join": "3M"
+                                              },
+                                              "used_columns": [
+                                                "library_id",
+                                                "node_id"
+                                              ]
+                                            }
+                                          },
+                                          {
+                                            "table": {
+                                              "table_name": "e",
+                                              "access_type": "ref",
+                                              "possible_keys": [
+                                                "uk_edges_source_target_relation",
+                                                "idx_edges_target"
+                                              ],
+                                              "key": "idx_edges_target",
+                                              "used_key_parts": [
+                                                "target_node_id"
+                                              ],
+                                              "key_length": "8",
+                                              "ref": [
+                                                "kg_assistant_i2_20260927_r01.ln.node_id"
+                                              ],
+                                              "rows_examined_per_scan": 2,
+                                              "rows_produced_per_join": 1251,
+                                              "filtered": "10.00",
+                                              "cost_info": {
+                                                "read_cost": "3128.58",
+                                                "eval_cost": "125.14",
+                                                "prefix_cost": "4885.33",
+                                                "data_read_per_join": "664K"
+                                              },
+                                              "used_columns": [
+                                                "source_node_id",
+                                                "target_node_id",
+                                                "status"
+                                              ],
+                                              "attached_condition": "(`kg_assistant_i2_20260927_r01`.`e`.`status` = 'active')"
+                                            }
+                                          },
+                                          {
+                                            "table": {
+                                              "table_name": "ln",
+                                              "access_type": "eq_ref",
+                                              "possible_keys": [
+                                                "PRIMARY",
+                                                "idx_library_nodes_node"
+                                              ],
+                                              "key": "PRIMARY",
+                                              "used_key_parts": [
+                                                "library_id",
+                                                "node_id"
+                                              ],
+                                              "key_length": "16",
+                                              "ref": [
+                                                "const",
+                                                "kg_assistant_i2_20260927_r01.e.source_node_id"
+                                              ],
+                                              "rows_examined_per_scan": 1,
+                                              "rows_produced_per_join": 1251,
+                                              "filtered": "100.00",
+                                              "using_index": true,
+                                              "cost_info": {
+                                                "read_cost": "312.86",
+                                                "eval_cost": "125.14",
+                                                "prefix_cost": "5323.33",
+                                                "data_read_per_join": "1007K"
+                                              },
+                                              "used_columns": [
+                                                "library_id",
+                                                "node_id"
+                                              ]
+                                            }
+                                          },
+                                          {
+                                            "table": {
+                                              "table_name": "n",
+                                              "access_type": "eq_ref",
+                                              "possible_keys": [
+                                                "PRIMARY"
+                                              ],
+                                              "key": "PRIMARY",
+                                              "used_key_parts": [
+                                                "id"
+                                              ],
+                                              "key_length": "8",
+                                              "ref": [
+                                                "kg_assistant_i2_20260927_r01.e.source_node_id"
+                                              ],
+                                              "rows_examined_per_scan": 1,
+                                              "rows_produced_per_join": 1251,
+                                              "filtered": "100.00",
+                                              "using_index": true,
+                                              "cost_info": {
+                                                "read_cost": "312.86",
+                                                "eval_cost": "125.14",
+                                                "prefix_cost": "5761.33",
+                                                "data_read_per_join": "2M"
+                                              },
+                                              "used_columns": [
+                                                "id"
+                                              ]
+                                            }
+                                          },
+                                          {
+                                            "table": {
+                                              "table_name": "n",
+                                              "access_type": "eq_ref",
+                                              "possible_keys": [
+                                                "PRIMARY"
+                                              ],
+                                              "key": "PRIMARY",
+                                              "used_key_parts": [
+                                                "id"
+                                              ],
+                                              "key_length": "8",
+                                              "ref": [
+                                                "kg_assistant_i2_20260927_r01.ln.node_id"
+                                              ],
+                                              "rows_examined_per_scan": 1,
+                                              "rows_produced_per_join": 1251,
+                                              "filtered": "100.00",
+                                              "using_index": true,
+                                              "cost_info": {
+                                                "read_cost": "312.86",
+                                                "eval_cost": "125.14",
+                                                "prefix_cost": "6199.33",
+                                                "data_read_per_join": "2M"
+                                              },
+                                              "used_columns": [
+                                                "id"
+                                              ]
+                                            }
+                                          }
+                                        ]
+                                      }
+                                    },
+                                    {
+                                      "dependent": false,
+                                      "cacheable": true,
+                                      "query_block": {
+                                        "select_id": 11,
+                                        "cost_info": {
+                                          "query_cost": "6067.93"
+                                        },
+                                        "nested_loop": [
+                                          {
+                                            "table": {
+                                              "table_name": "ln",
+                                              "access_type": "ref",
+                                              "possible_keys": [
+                                                "PRIMARY",
+                                                "idx_library_nodes_node"
+                                              ],
+                                              "key": "PRIMARY",
+                                              "used_key_parts": [
+                                                "library_id"
+                                              ],
+                                              "key_length": "8",
+                                              "ref": [
+                                                "const"
+                                              ],
+                                              "rows_examined_per_scan": 5002,
+                                              "rows_produced_per_join": 5002,
+                                              "filtered": "100.00",
+                                              "using_index": true,
+                                              "cost_info": {
+                                                "read_cost": "5.11",
+                                                "eval_cost": "500.20",
+                                                "prefix_cost": "505.31",
+                                                "data_read_per_join": "3M"
+                                              },
+                                              "used_columns": [
+                                                "library_id",
+                                                "node_id"
+                                              ]
+                                            }
+                                          },
+                                          {
+                                            "table": {
+                                              "table_name": "e",
+                                              "access_type": "ref",
+                                              "possible_keys": [
+                                                "uk_edges_source_target_relation",
+                                                "idx_edges_target"
+                                              ],
+                                              "key": "idx_edges_target",
+                                              "used_key_parts": [
+                                                "target_node_id"
+                                              ],
+                                              "key_length": "8",
+                                              "ref": [
+                                                "kg_assistant_i2_20260927_r01.ln.node_id"
+                                              ],
+                                              "rows_examined_per_scan": 2,
+                                              "rows_produced_per_join": 1126,
+                                              "filtered": "9.00",
+                                              "cost_info": {
+                                                "read_cost": "3128.58",
+                                                "eval_cost": "112.63",
+                                                "prefix_cost": "4885.33",
+                                                "data_read_per_join": "598K"
+                                              },
+                                              "used_columns": [
+                                                "source_node_id",
+                                                "target_node_id",
+                                                "status"
+                                              ],
+                                              "attached_condition": "((`kg_assistant_i2_20260927_r01`.`e`.`status` = 'active') and (`kg_assistant_i2_20260927_r01`.`e`.`target_node_id` <> `kg_assistant_i2_20260927_r01`.`e`.`source_node_id`))"
+                                            }
+                                          },
+                                          {
+                                            "table": {
+                                              "table_name": "ln",
+                                              "access_type": "eq_ref",
+                                              "possible_keys": [
+                                                "PRIMARY",
+                                                "idx_library_nodes_node"
+                                              ],
+                                              "key": "PRIMARY",
+                                              "used_key_parts": [
+                                                "library_id",
+                                                "node_id"
+                                              ],
+                                              "key_length": "16",
+                                              "ref": [
+                                                "const",
+                                                "kg_assistant_i2_20260927_r01.e.source_node_id"
+                                              ],
+                                              "rows_examined_per_scan": 1,
+                                              "rows_produced_per_join": 1126,
+                                              "filtered": "100.00",
+                                              "using_index": true,
+                                              "cost_info": {
+                                                "read_cost": "281.57",
+                                                "eval_cost": "112.63",
+                                                "prefix_cost": "5279.53",
+                                                "data_read_per_join": "906K"
+                                              },
+                                              "used_columns": [
+                                                "library_id",
+                                                "node_id"
+                                              ]
+                                            }
+                                          },
+                                          {
+                                            "table": {
+                                              "table_name": "n",
+                                              "access_type": "eq_ref",
+                                              "possible_keys": [
+                                                "PRIMARY"
+                                              ],
+                                              "key": "PRIMARY",
+                                              "used_key_parts": [
+                                                "id"
+                                              ],
+                                              "key_length": "8",
+                                              "ref": [
+                                                "kg_assistant_i2_20260927_r01.e.source_node_id"
+                                              ],
+                                              "rows_examined_per_scan": 1,
+                                              "rows_produced_per_join": 1126,
+                                              "filtered": "100.00",
+                                              "using_index": true,
+                                              "cost_info": {
+                                                "read_cost": "281.57",
+                                                "eval_cost": "112.63",
+                                                "prefix_cost": "5673.73",
+                                                "data_read_per_join": "1M"
+                                              },
+                                              "used_columns": [
+                                                "id"
+                                              ]
+                                            }
+                                          },
+                                          {
+                                            "table": {
+                                              "table_name": "n",
+                                              "access_type": "eq_ref",
+                                              "possible_keys": [
+                                                "PRIMARY"
+                                              ],
+                                              "key": "PRIMARY",
+                                              "used_key_parts": [
+                                                "id"
+                                              ],
+                                              "key_length": "8",
+                                              "ref": [
+                                                "kg_assistant_i2_20260927_r01.ln.node_id"
+                                              ],
+                                              "rows_examined_per_scan": 1,
+                                              "rows_produced_per_join": 1126,
+                                              "filtered": "100.00",
+                                              "using_index": true,
+                                              "cost_info": {
+                                                "read_cost": "281.57",
+                                                "eval_cost": "112.63",
+                                                "prefix_cost": "6067.93",
+                                                "data_read_per_join": "1M"
+                                              },
+                                              "used_columns": [
+                                                "id"
+                                              ]
+                                            }
+                                          }
+                                        ]
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        "sql": "WITH visible_nodes AS (SELECT n.id,n.canonical_name,n.node_type FROM knowledge_nodes n WHERE 1=1 AND EXISTS (SELECT 1 FROM library_nodes ln WHERE ln.node_id=n.id AND ln.library_id IN (:libraryIds))), visible_edges AS (SELECT e.id,e.source_node_id,e.target_node_id FROM knowledge_edges e JOIN visible_nodes s ON s.id=e.source_node_id JOIN visible_nodes t ON t.id=e.target_node_id WHERE e.status='active') , incident_endpoints AS (SELECT source_node_id AS node_id FROM visible_edges UNION ALL SELECT target_node_id AS node_id FROM visible_edges WHERE target_node_id<>source_node_id), node_degrees AS (SELECT node_id,COUNT(*) AS degree FROM incident_endpoints GROUP BY node_id) SELECT n.id,n.canonical_name,n.node_type,COALESCE(d.degree,0) AS degree FROM visible_nodes n LEFT JOIN node_degrees d ON d.node_id=n.id ORDER BY degree DESC,n.id LIMIT :limit",
+        "libraryIds": [
+          7901
+        ]
+      },
+      "kind": "ranking_plan"
+    },
+    {
+      "value": {
+        "rows": [
+          {
+            "id": 100000,
+            "degree": 6
+          },
+          {
+            "id": 100001,
+            "degree": 6
+          },
+          {
+            "id": 100002,
+            "degree": 6
+          },
+          {
+            "id": 100003,
+            "degree": 6
+          },
+          {
+            "id": 100004,
+            "degree": 6
+          },
+          {
+            "id": 100005,
+            "degree": 6
+          },
+          {
+            "id": 100006,
+            "degree": 6
+          },
+          {
+            "id": 100007,
+            "degree": 6
+          },
+          {
+            "id": 100008,
+            "degree": 6
+          },
+          {
+            "id": 100009,
+            "degree": 6
+          }
+        ],
+        "elapsedMs": 290,
+        "readerOnly": true
+      },
+      "kind": "scale_direct_ranking"
+    }
+  ],
+  "exitCode": 0,
+  "suites": [
+    {
+      "cases": [
+        {
+          "class": "com.knowledgegraph.assistant.i2.I2QualityInsightRankingTest",
+          "name": "realRankingPlanAndScaleTop",
+          "seconds": "2.14",
+          "error": "",
+          "failure": ""
+        }
+      ],
+      "class": "com.knowledgegraph.assistant.i2.I2QualityInsightRankingTest",
+      "tests": 1,
+      "skipped": 0,
+      "xmlRawSha256": "c16844e70bad6b25847370a10c09b1080d85287e5f43f651073767b35fe3b46d",
+      "failures": 0,
+      "errors": 0,
+      "xmlPath": "D:\\知识图谱\\backend-java\\target\\surefire-reports\\TEST-com.knowledgegraph.assistant.i2.I2QualityInsightRankingTest-Real-20260929T104824880-Plan.xml"
+    }
+  ],
+  "suite": "Plan",
+  "reportSuffix": "Real-20260929T104824880-Plan"
+}

@@ -1,0 +1,7 @@
+{
+  "binlogRestartPositionNotComparedAcrossRuns": true,
+  "loaderLocked": "Y",
+  "fixturesReloaded": false,
+  "tableCount": 34,
+  "matchesLastR2DataAndDDL": true
+}

@@ -48,7 +48,41 @@ public class LibraryOrganizationService {
         if (libraries.size() > 200) throw bad("现有知识库过多，暂无法完整比较，请使用指定知识库导入");
         Set<Long> allowedLibraries = new HashSet<>();
         libraries.forEach(l -> allowedLibraries.add((Long) l.get("id")));
-        return planBatches(candidates, model, libraries, allowedLibraries, understanding.get(documentId), jobId);
+        var overview = understanding.get(documentId);
+        if (overview != null) {
+            Map<Long,String> sources = new HashMap<>();
+            jdbc.sql("""
+                    SELECT c.id, u.source_locator FROM document_chunks c
+                    JOIN document_units u ON u.id=c.unit_id WHERE u.document_id=:id
+                    """).param("id",documentId).query((rs,i) -> {
+                        sources.put(rs.getLong(1),DocumentUnderstandingService.sourceName(rs.getString(2)));
+                        return rs.getLong(1);
+                    }).list();
+            return routeBooks(candidates, overview, libraries, sources);
+        }
+        return planBatches(candidates, model, libraries, allowedLibraries, null, jobId);
+    }
+
+    static List<Group> routeBooks(ExtractionService.DeduplicatedCandidates candidates,
+            DocumentUnderstandingService.Overview overview, List<Map<String,Object>> libraries,
+            Map<Long,String> sources) {
+        List<Group> groups = new ArrayList<>();
+        Set<String> assigned = new HashSet<>();
+        for (var book : overview.courses()) {
+            var keys = candidates.entities().stream()
+                    .filter(e -> e.evidenceChunkIds.stream().anyMatch(id -> book.sources().contains(sources.get(id))))
+                    .map(e -> e.tempKey).toList();
+            if (keys.isEmpty()) continue;
+            assigned.addAll(keys);
+            // Only an exact book title AND identity description can reuse an existing library.
+            // Broad subject aliases must never merge different textbooks.
+            Long existing = libraries.stream().filter(l -> book.name().equals(l.get("name"))
+                    && book.description().equals(l.get("description")))
+                    .map(l -> ((Number)l.get("id")).longValue()).findFirst().orElse(null);
+            groups.add(new Group(existing,book.name(),book.description(),book.aliases(),keys));
+        }
+        if (assigned.size() != candidates.entities().size()) throw bad("部分知识点缺少可核对的书籍来源，已保留候选，请检查原文来源");
+        return groups;
     }
 
     List<Group> planBatches(ExtractionService.DeduplicatedCandidates candidates,
@@ -182,7 +216,7 @@ public class LibraryOrganizationService {
                     多个独立主题分成不同组；不要按每个知识点机械分库，不要把同一主题的章节拆散。
                     新主题生成简洁明确的中文库名和一句简介。知识点可同时属于多个相关主题。
                     courseFramework 是已依据资料正文识别的课程框架。非空时必须使用其中 courses 的 name，禁止新增章节级库名。
-                    相同课程不同版本放在同一课程下；仅当现有库范围与课程整体相同才归入，不能将章节库当作整个课程库。
+                    不同书籍、不同版本分别归属；只能复用同一本书的知识库，不能仅因课程相同合并书籍。
                     每个输入 key 至少分配一次，不得编造 key 或库 id。每批只返回包含本批知识的组，不截断全局课程。
                     为每组补充 0～5 个同义别名 aliases（可选字段），帮助后续资料按别名归库。
                     只输出 JSON：{"groups":[{"existingLibraryId":null,"name":"主题名","description":"主题简介","aliases":["同义别名"],"entityKeys":["真实key"]}]

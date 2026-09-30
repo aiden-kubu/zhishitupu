@@ -1,0 +1,94 @@
+{
+  "executionRound": 1,
+  "rawXmlArchived": false,
+  "suites": [
+    {
+      "class": "com.knowledgegraph.assistant.quality.JdbcQualityInsightIsolatedCountRegressionTest",
+      "xmlRawSha256": "dd00e14e8c922a8fb30aee4b232ab8d67cd910d04346947ab66e6c1750180285",
+      "xmlPath": "D:\\知识图谱\\backend-java\\target\\surefire-reports\\TEST-com.knowledgegraph.assistant.quality.JdbcQualityInsightIsolatedCountRegressionTest-Offline-20260929T104719641-IsolatedCount.xml",
+      "failures": 0,
+      "errors": 0,
+      "cases": [
+        {
+          "name": "countReadsLongResultIndependentOfTruncatedList",
+          "error": "",
+          "seconds": "0.294",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.quality.JdbcQualityInsightIsolatedCountRegressionTest"
+        },
+        {
+          "name": "countFailurePropagatesBeforeTheListQuery",
+          "error": "",
+          "seconds": "0.023",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.quality.JdbcQualityInsightIsolatedCountRegressionTest"
+        },
+        {
+          "name": "emptyResultMapsZeroWithoutInventingRows",
+          "error": "",
+          "seconds": "0.015",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.quality.JdbcQualityInsightIsolatedCountRegressionTest"
+        },
+        {
+          "name": "selectedLibraryUnionIsScopedBeforeCountingAndKeepsLargeBoundIds",
+          "error": "",
+          "seconds": "0.025",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.quality.JdbcQualityInsightIsolatedCountRegressionTest"
+        },
+        {
+          "name": "ninthCountRemainsUnboundedAndTenthListKeepsItsOwnLimit",
+          "error": "",
+          "seconds": "0.011",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.quality.JdbcQualityInsightIsolatedCountRegressionTest"
+        },
+        {
+          "name": "unsupportedDimensionsStillRejectBeforeJdbc(Scope)[1]",
+          "error": "",
+          "seconds": "0.018",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.quality.JdbcQualityInsightIsolatedCountRegressionTest"
+        },
+        {
+          "name": "unsupportedDimensionsStillRejectBeforeJdbc(Scope)[2]",
+          "error": "",
+          "seconds": "0.002",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.quality.JdbcQualityInsightIsolatedCountRegressionTest"
+        },
+        {
+          "name": "unsupportedDimensionsStillRejectBeforeJdbc(Scope)[3]",
+          "error": "",
+          "seconds": "0.001",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.quality.JdbcQualityInsightIsolatedCountRegressionTest"
+        },
+        {
+          "name": "unsupportedDimensionsStillRejectBeforeJdbc(Scope)[4]",
+          "error": "",
+          "seconds": "0.002",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.quality.JdbcQualityInsightIsolatedCountRegressionTest"
+        },
+        {
+          "name": "countAggregatesScopedIncidentNodesBeforeOneAntiJoin",
+          "error": "",
+          "seconds": "0.01",
+          "failure": "",
+          "class": "com.knowledgegraph.assistant.quality.JdbcQualityInsightIsolatedCountRegressionTest"
+        }
+      ],
+      "skipped": 0,
+      "tests": 10
+    }
+  ],
+  "uniqueTestCases": 10,
+  "exitCode": 0,
+  "records": [],
+  "suite": "IsolatedCount",
+  "uniqueMethodDefinitions": 7,
+  "reportSuffix": "Offline-20260929T104719641-IsolatedCount",
+  "startedAt": "2026-09-29T10:47:50.5113503+08:00"
+}

@@ -631,15 +631,28 @@ async function loadAll() {
   loading.value = true
   error.value = null
   try {
-    const [settingsData, profileList] = await Promise.all([
+    // 基础设置与模型档案相互独立。模型档案表/接口临时不可用时，
+    // 仍须保留存储和图谱设置的可用性，不能让整页进入失败状态。
+    const [settingsResult, profilesResult] = await Promise.allSettled([
       settingsApi.get(),
       settingsApi.listLlmProfiles(),
     ])
+    if (settingsResult.status === 'rejected') throw settingsResult.reason
+
+    const settingsData = settingsResult.value
     settings.value = settingsData
-    profiles.value = profileList
     storageForm.maxUploadSizeMb = String(settingsData.storage.maxUploadSizeMb ?? 200)
     graphForm.defaultDepth = String(settingsData.graph.defaultDepth ?? 1)
     graphForm.maxNodes = String(settingsData.graph.maxNodes ?? 300)
+
+    if (profilesResult.status === 'fulfilled') {
+      profiles.value = profilesResult.value
+    } else {
+      profiles.value = []
+      actionError.value = profilesResult.reason instanceof ApiError
+        ? `模型档案加载失败：${profilesResult.reason.message}`
+        : '模型档案加载失败，请稍后重试'
+    }
   } catch (err) {
     error.value = err instanceof ApiError ? err.message : '设置加载失败，请确认 Java 后端已启动'
   } finally {
@@ -688,7 +701,11 @@ async function saveProfile() {
     name: profileForm.name.trim(),
     baseUrl: profileForm.baseUrl.trim(),
     model: profileForm.model.trim(),
-    apiKey: profileForm.apiKey,
+    // 编辑时留空表示不修改已有密钥；只有新建档案或明确输入新值时才提交该字段。
+    // 后端把空字符串解释为“清除密钥”，因此不能把表单初始空值直接发送出去。
+    apiKey: editingId.value === null || profileForm.apiKey.trim()
+      ? profileForm.apiKey.trim()
+      : undefined,
     timeoutMs: Number(profileForm.timeoutMs),
     maxOutputTokens: Number(profileForm.maxOutputTokens),
     vision: profileForm.vision,

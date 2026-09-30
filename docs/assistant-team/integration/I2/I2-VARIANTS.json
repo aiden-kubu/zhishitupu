@@ -1,0 +1,44 @@
+[
+  {
+    "case": "HASH_CHANGED",
+    "status": "passed",
+    "loaderMutationOutsideReadWindow": true,
+    "readerCredentialOnly": true
+  },
+  {
+    "case": "ARCHIVE_A",
+    "status": "passed",
+    "loaderMutationOutsideReadWindow": true,
+    "readerCredentialOnly": true
+  },
+  {
+    "case": "LONG_A",
+    "status": "passed",
+    "loaderMutationOutsideReadWindow": true,
+    "readerCredentialOnly": true
+  },
+  {
+    "case": "MULTI_CURRENT",
+    "status": "passed",
+    "loaderMutationOutsideReadWindow": true,
+    "readerCredentialOnly": true
+  },
+  {
+    "case": "INACTIVE_CURRENT",
+    "status": "passed",
+    "loaderMutationOutsideReadWindow": true,
+    "readerCredentialOnly": true
+  },
+  {
+    "case": "NO_PATH",
+    "status": "passed",
+    "loaderMutationOutsideReadWindow": true,
+    "readerCredentialOnly": true
+  },
+  {
+    "case": "ACCEPTED_STATE",
+    "status": "passed",
+    "loaderMutationOutsideReadWindow": true,
+    "readerCredentialOnly": true
+  }
+]

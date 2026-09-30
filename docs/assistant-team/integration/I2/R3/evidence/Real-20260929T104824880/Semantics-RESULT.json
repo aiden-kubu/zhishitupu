@@ -1,0 +1,392 @@
+{
+  "uniqueTestCases": 1,
+  "startedAt": "2026-09-29T10:50:08.5703371+08:00",
+  "rawXmlArchived": false,
+  "executionRound": 1,
+  "uniqueMethodDefinitions": 1,
+  "records": [
+    {
+      "value": {
+        "actualTop": [
+          {
+            "id": 900001,
+            "degree": 4
+          },
+          {
+            "id": 900002,
+            "degree": 4
+          },
+          {
+            "id": 900005,
+            "degree": 1
+          },
+          {
+            "id": 900006,
+            "degree": 0
+          }
+        ],
+        "case": "library_7910",
+        "expectedTop": [
+          {
+            "id": 900001,
+            "degree": 4
+          },
+          {
+            "id": 900002,
+            "degree": 4
+          },
+          {
+            "id": 900005,
+            "degree": 1
+          },
+          {
+            "id": 900006,
+            "degree": 0
+          }
+        ],
+        "isolated": 1,
+        "edgeCount": 5,
+        "nodeCount": 4
+      },
+      "kind": "semantic"
+    },
+    {
+      "value": {
+        "actualTop": [
+          {
+            "id": 900001,
+            "degree": 5
+          },
+          {
+            "id": 900002,
+            "degree": 4
+          },
+          {
+            "id": 900003,
+            "degree": 1
+          },
+          {
+            "id": 900005,
+            "degree": 1
+          },
+          {
+            "id": 900006,
+            "degree": 0
+          }
+        ],
+        "case": "union_7910_7911",
+        "expectedTop": [
+          {
+            "id": 900001,
+            "degree": 5
+          },
+          {
+            "id": 900002,
+            "degree": 4
+          },
+          {
+            "id": 900003,
+            "degree": 1
+          },
+          {
+            "id": 900005,
+            "degree": 1
+          },
+          {
+            "id": 900006,
+            "degree": 0
+          }
+        ],
+        "isolated": 1,
+        "edgeCount": 6,
+        "nodeCount": 5
+      },
+      "kind": "semantic"
+    },
+    {
+      "value": {
+        "actualTop": [
+          {
+            "id": 900001,
+            "degree": 2
+          },
+          {
+            "id": 900003,
+            "degree": 1
+          }
+        ],
+        "case": "library_7911",
+        "expectedTop": [
+          {
+            "id": 900001,
+            "degree": 2
+          },
+          {
+            "id": 900003,
+            "degree": 1
+          }
+        ],
+        "isolated": 0,
+        "edgeCount": 2,
+        "nodeCount": 2
+      },
+      "kind": "semantic"
+    },
+    {
+      "value": {
+        "actualTop": [
+          {
+            "id": 900004,
+            "degree": 0
+          }
+        ],
+        "case": "outside_library_7912",
+        "expectedTop": [
+          {
+            "id": 900004,
+            "degree": 0
+          }
+        ],
+        "isolated": 1,
+        "edgeCount": 0,
+        "nodeCount": 1
+      },
+      "kind": "semantic"
+    },
+    {
+      "value": {
+        "actualTop": [],
+        "case": "empty_7913",
+        "expectedTop": [],
+        "isolated": 0,
+        "edgeCount": 0,
+        "nodeCount": 0
+      },
+      "kind": "semantic"
+    },
+    {
+      "value": {
+        "actualTop": [
+          {
+            "id": 900001,
+            "degree": 4
+          }
+        ],
+        "case": "top_limit_one",
+        "expectedTop": [
+          {
+            "id": 900001,
+            "degree": 4
+          }
+        ],
+        "isolated": 1,
+        "edgeCount": 5,
+        "nodeCount": 4
+      },
+      "kind": "semantic"
+    },
+    {
+      "value": {
+        "actualTop": [
+          {
+            "id": 900001,
+            "degree": 5
+          },
+          {
+            "id": 900002,
+            "degree": 4
+          },
+          {
+            "id": 900003,
+            "degree": 1
+          }
+        ],
+        "case": "top_limit_three",
+        "expectedTop": [
+          {
+            "id": 900001,
+            "degree": 5
+          },
+          {
+            "id": 900002,
+            "degree": 4
+          },
+          {
+            "id": 900003,
+            "degree": 1
+          }
+        ],
+        "isolated": 1,
+        "edgeCount": 6,
+        "nodeCount": 5
+      },
+      "kind": "semantic"
+    },
+    {
+      "value": {
+        "edgeCount": 30009,
+        "isolated": 3,
+        "top": [
+          {
+            "id": 100000,
+            "degree": 6
+          },
+          {
+            "id": 100001,
+            "degree": 6
+          },
+          {
+            "id": 100002,
+            "degree": 6
+          },
+          {
+            "id": 100003,
+            "degree": 6
+          },
+          {
+            "id": 100004,
+            "degree": 6
+          },
+          {
+            "id": 100005,
+            "degree": 6
+          },
+          {
+            "id": 100006,
+            "degree": 6
+          },
+          {
+            "id": 100007,
+            "degree": 6
+          },
+          {
+            "id": 100008,
+            "degree": 6
+          },
+          {
+            "id": 100009,
+            "degree": 6
+          }
+        ],
+        "nodeCount": 10011
+      },
+      "kind": "project_oracle"
+    },
+    {
+      "value": {
+        "actualTop": [
+          {
+            "id": 100000,
+            "degree": 6
+          },
+          {
+            "id": 100001,
+            "degree": 6
+          },
+          {
+            "id": 100002,
+            "degree": 6
+          },
+          {
+            "id": 100003,
+            "degree": 6
+          },
+          {
+            "id": 100004,
+            "degree": 6
+          },
+          {
+            "id": 100005,
+            "degree": 6
+          },
+          {
+            "id": 100006,
+            "degree": 6
+          },
+          {
+            "id": 100007,
+            "degree": 6
+          },
+          {
+            "id": 100008,
+            "degree": 6
+          },
+          {
+            "id": 100009,
+            "degree": 6
+          }
+        ],
+        "case": "project",
+        "expectedTop": [
+          {
+            "id": 100000,
+            "degree": 6
+          },
+          {
+            "id": 100001,
+            "degree": 6
+          },
+          {
+            "id": 100002,
+            "degree": 6
+          },
+          {
+            "id": 100003,
+            "degree": 6
+          },
+          {
+            "id": 100004,
+            "degree": 6
+          },
+          {
+            "id": 100005,
+            "degree": 6
+          },
+          {
+            "id": 100006,
+            "degree": 6
+          },
+          {
+            "id": 100007,
+            "degree": 6
+          },
+          {
+            "id": 100008,
+            "degree": 6
+          },
+          {
+            "id": 100009,
+            "degree": 6
+          }
+        ],
+        "isolated": 3,
+        "edgeCount": 30009,
+        "nodeCount": 10011
+      },
+      "kind": "semantic"
+    }
+  ],
+  "exitCode": 0,
+  "suites": [
+    {
+      "cases": [
+        {
+          "class": "com.knowledgegraph.assistant.i2.I2QualityInsightRankingTest",
+          "name": "realSemanticMatrixAndProjectOracle",
+          "seconds": "1.486",
+          "error": "",
+          "failure": ""
+        }
+      ],
+      "class": "com.knowledgegraph.assistant.i2.I2QualityInsightRankingTest",
+      "tests": 1,
+      "skipped": 0,
+      "xmlRawSha256": "2169a39113e898803e8e18c5bba8f629605ed3ebb3c426239c7ede8652559c1a",
+      "failures": 0,
+      "errors": 0,
+      "xmlPath": "D:\\知识图谱\\backend-java\\target\\surefire-reports\\TEST-com.knowledgegraph.assistant.i2.I2QualityInsightRankingTest-Real-20260929T104824880-Semantics.xml"
+    }
+  ],
+  "suite": "Semantics",
+  "reportSuffix": "Real-20260929T104824880-Semantics"
+}

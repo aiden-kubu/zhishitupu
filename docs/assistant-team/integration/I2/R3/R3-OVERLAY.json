@@ -1,0 +1,41 @@
+{
+  "stage": "I2-R3",
+  "authorization": "Project owner authorized batch reception/regression/original isolated MySQL whole-insight acceptance; no domain development by controller",
+  "domainAuthor": "Original desktop 02",
+  "changes": [
+    {
+      "file": "backend-java/src/main/java/com/knowledgegraph/assistant/quality/JdbcQualityReadRepository.java",
+      "owner": "D:/知识图谱-worktrees/assistant-02-quality/backend-java/src/main/java/com/knowledgegraph/assistant/quality/JdbcQualityReadRepository.java",
+      "oldRawSha256": "c977e453d407aa150404c8f5acecddb6a9dfd63ae27692acb4e057840a3bcc15",
+      "newRawSha256": "6a17642e64bbfdb5f0d3bffa13ad9cde4ddbe6384e3b2d5f1a2e592a4db0d740",
+      "newNormalizedSha256": "6a17642e64bbfdb5f0d3bffa13ad9cde4ddbe6384e3b2d5f1a2e592a4db0d740",
+      "archive": "archive/JdbcQualityReadRepository.java.before.txt"
+    },
+    {
+      "file": "backend-java/src/test/java/com/knowledgegraph/assistant/quality/JdbcQualityInsightRankingRegressionTest.java",
+      "owner": "D:/知识图谱-worktrees/assistant-02-quality/backend-java/src/test/java/com/knowledgegraph/assistant/quality/JdbcQualityInsightRankingRegressionTest.java",
+      "oldRawSha256": "454ad390e192749f41c5759ba55b7e4915ce203296ced09def72bc4aabcc25d6",
+      "newRawSha256": "8c6c40ff5fc28254f7226a4013d45b04fe67972557de11814af51952eb2c9ced",
+      "newNormalizedSha256": "8c6c40ff5fc28254f7226a4013d45b04fe67972557de11814af51952eb2c9ced",
+      "archive": "archive/JdbcQualityInsightRankingRegressionTest.java.before.txt"
+    },
+    {
+      "file": "backend-java/src/test/java/com/knowledgegraph/assistant/quality/JdbcQualityInsightIsolatedCountRegressionTest.java",
+      "owner": "D:/知识图谱-worktrees/assistant-02-quality/backend-java/src/test/java/com/knowledgegraph/assistant/quality/JdbcQualityInsightIsolatedCountRegressionTest.java",
+      "oldRawSha256": "1fcb245eaac857476c7a8bb6c4d854f6bfea649d347079291029bb88fca10c66",
+      "newRawSha256": "10f46f136fc13a1ff7cf50f4e90c3ac0e9c0ffb74a7577619f1558eadddbfff9",
+      "newNormalizedSha256": "10f46f136fc13a1ff7cf50f4e90c3ac0e9c0ffb74a7577619f1558eadddbfff9",
+      "archive": "archive/JdbcQualityInsightIsolatedCountRegressionTest.java.before.txt"
+    }
+  ],
+  "additions": [
+    {
+      "file": "backend-java/src/test/java/com/knowledgegraph/assistant/quality/JdbcQualityInsightPerformanceRegressionTest.java",
+      "owner": "D:/知识图谱-worktrees/assistant-02-quality/backend-java/src/test/java/com/knowledgegraph/assistant/quality/JdbcQualityInsightPerformanceRegressionTest.java",
+      "normalizedSha256": "5bcdee1ee353d22b6770242bf8683d502dc77f4bdb2a8e1b789306c523c3724f"
+    }
+  ],
+  "reportRawSha256": "946488684ff71c46a662ce98ca3b17195b461b64797751db2cedd0eb4d3d5403",
+  "indexRawSha256": "6b70776b308e8d538c4d9115741c3acc478d268293f7cefb1809a638d38eb886",
+  "scope": "Only Q10 LIST SQL changed. Q01-Q09 generated SQL preserved; two precise test adjustments; one new 19-case regression."
+}

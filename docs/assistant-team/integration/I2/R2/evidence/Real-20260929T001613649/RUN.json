@@ -1,0 +1,8 @@
+{
+  "runId": "Real-20260929T001613649",
+  "phase": "Real",
+  "failure": "R2 Semantics failed; stop without changing another SQL or budget",
+  "finishedAt": "2026-09-29T00:17:49.7141880+08:00",
+  "success": false,
+  "noI2CompletionClaim": true
+}

@@ -40,6 +40,30 @@ const router = createRouter({
       meta: { title: '数据洞察' },
     },
     {
+      path: '/learning-path',
+      name: 'LearningPath',
+      component: () => import('../views/LearningPath/LearningPathView.vue'),
+      meta: { title: '学习路径' },
+    },
+    {
+      path: '/assessment',
+      name: 'Assessment',
+      component: () => import('../views/Assessment/AssessmentView.vue'),
+      meta: { title: '智能测评' },
+    },
+    {
+      path: '/learning-progress',
+      name: 'LearningProgress',
+      component: () => import('../views/LearningProgress/LearningProgressView.vue'),
+      meta: { title: '学习进度' },
+    },
+    {
+      path: '/assistant',
+      name: 'Assistant',
+      component: () => import('../views/Assistant/AssistantView.vue'),
+      meta: { title: '智能助手' },
+    },
+    {
       path: '/settings',
       name: 'Settings',
       component: () => import('../views/Settings/SettingsView.vue'),

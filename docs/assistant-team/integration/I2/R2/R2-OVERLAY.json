@@ -1,0 +1,33 @@
+{
+  "stage": "I2-R2",
+  "authorization": "2026-09-29 owner authorized controlled reception, main regression and original isolated MySQL verification; stop at new SQL obstruction.",
+  "domainAuthor": "Original desktop 02 (R2 only); earlier R1 author was controller",
+  "integrationActor": "controller",
+  "changes": [
+    {
+      "file": "backend-java/src/main/java/com/knowledgegraph/assistant/quality/JdbcQualityReadRepository.java",
+      "owner": "D:/知识图谱-worktrees/assistant-02-quality/backend-java/src/main/java/com/knowledgegraph/assistant/quality/JdbcQualityReadRepository.java",
+      "oldRawSha256": "fde4199bef96385ea87a3a0bfd671f170edd2501de1a2dab7adc8481b2757e52",
+      "newRawSha256": "c977e453d407aa150404c8f5acecddb6a9dfd63ae27692acb4e057840a3bcc15",
+      "newNormalizedSha256": "c977e453d407aa150404c8f5acecddb6a9dfd63ae27692acb4e057840a3bcc15",
+      "archive": "archive/JdbcQualityReadRepository.java.before.txt"
+    },
+    {
+      "file": "backend-java/src/test/java/com/knowledgegraph/assistant/quality/JdbcQualityInsightRankingRegressionTest.java",
+      "owner": "D:/知识图谱-worktrees/assistant-02-quality/backend-java/src/test/java/com/knowledgegraph/assistant/quality/JdbcQualityInsightRankingRegressionTest.java",
+      "oldRawSha256": "78d6e56c7ca07cdbf574ae2437fff94cfbf9fd6b94ce9582e15daf0cbbbc8100",
+      "newRawSha256": "454ad390e192749f41c5759ba55b7e4915ce203296ced09def72bc4aabcc25d6",
+      "newNormalizedSha256": "454ad390e192749f41c5759ba55b7e4915ce203296ced09def72bc4aabcc25d6",
+      "archive": "archive/JdbcQualityInsightRankingRegressionTest.java.before.txt"
+    }
+  ],
+  "additions": [
+    {
+      "file": "backend-java/src/test/java/com/knowledgegraph/assistant/quality/JdbcQualityInsightIsolatedCountRegressionTest.java",
+      "owner": "D:/知识图谱-worktrees/assistant-02-quality/backend-java/src/test/java/com/knowledgegraph/assistant/quality/JdbcQualityInsightIsolatedCountRegressionTest.java",
+      "normalizedSha256": "1fcb245eaac857476c7a8bb6c4d854f6bfea649d347079291029bb88fca10c66"
+    }
+  ],
+  "scope": "Only isolatedTotal COUNT and corresponding one expected SQL; ranking/shared filters/list unchanged",
+  "reportRawSha256": "d7d7050bfeb0b50395bbe5e7f72e3d88646ee52258da0eff8fc2d78ae8019855"
+}

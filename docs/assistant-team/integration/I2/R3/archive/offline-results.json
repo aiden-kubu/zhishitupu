@@ -1,0 +1,113 @@
+{
+  "stage": "I2-R3-quality-offline",
+  "date": "2026-09-29",
+  "worktree": "D:/知识图谱-worktrees/assistant-02-quality",
+  "branch": "codex/assistant-02-quality",
+  "head": "bcd3b60ea4e6e18daad53f31787028a0f69bc6cf",
+  "hashNormalization": "UTF-8 decode, CRLF to LF, retain trailing newline, no trim",
+  "sourceFiles": [
+    {
+      "path": "backend-java/src/main/java/com/knowledgegraph/assistant/quality/JdbcQualityReadRepository.java",
+      "beforeNormalizedSha256": "c977e453d407aa150404c8f5acecddb6a9dfd63ae27692acb4e057840a3bcc15",
+      "afterNormalizedSha256": "6a17642e64bbfdb5f0d3bffa13ad9cde4ddbe6384e3b2d5f1a2e592a4db0d740"
+    },
+    {
+      "path": "backend-java/src/test/java/com/knowledgegraph/assistant/quality/JdbcQualityReadRepositoryTest.java",
+      "beforeNormalizedSha256": "c99ac56054eee8f01d20aa3cac9f9f11be3c3a663d5aaeb5919bb5c956b9dabc",
+      "afterNormalizedSha256": "c99ac56054eee8f01d20aa3cac9f9f11be3c3a663d5aaeb5919bb5c956b9dabc",
+      "modified": false
+    },
+    {
+      "path": "backend-java/src/test/java/com/knowledgegraph/assistant/quality/JdbcQualityInsightRankingRegressionTest.java",
+      "beforeNormalizedSha256": "454ad390e192749f41c5759ba55b7e4915ce203296ced09def72bc4aabcc25d6",
+      "afterNormalizedSha256": "8c6c40ff5fc28254f7226a4013d45b04fe67972557de11814af51952eb2c9ced"
+    },
+    {
+      "path": "backend-java/src/test/java/com/knowledgegraph/assistant/quality/JdbcQualityInsightIsolatedCountRegressionTest.java",
+      "beforeNormalizedSha256": "1fcb245eaac857476c7a8bb6c4d854f6bfea649d347079291029bb88fca10c66",
+      "afterNormalizedSha256": "10f46f136fc13a1ff7cf50f4e90c3ac0e9c0ffb74a7577619f1558eadddbfff9"
+    },
+    {
+      "path": "backend-java/src/test/java/com/knowledgegraph/assistant/quality/JdbcQualityInsightPerformanceRegressionTest.java",
+      "before": "absent",
+      "afterNormalizedSha256": "5bcdee1ee353d22b6770242bf8683d502dc77f4bdb2a8e1b789306c523c3724f"
+    }
+  ],
+  "testRuns": [
+    {
+      "suffix": "i2r3-original-01",
+      "command": ".\\mvnw.cmd -o '-Dtest=AssistantRuntimeTest,DecisionParserTest,QualityAgentToolProviderTest,QualityEvidenceVerifierTest,JdbcQualityReadRepositoryTest' '-Dsurefire.reportNameSuffix=i2r3-original-01' test",
+      "exitCode": 0,
+      "methodDefinitions": 59,
+      "expandedCases": 68,
+      "errors": 0,
+      "failures": 0,
+      "skipped": 0,
+      "xmlSha256": {
+        "JdbcQualityReadRepositoryTest": "834a69d001efd0bf5fbeb0011eff4705242a299eca822b8f578fecac552bc138",
+        "QualityAgentToolProviderTest": "377e9d60c966175988505dfbbc942d522e3c7b1970008cae36b5dcc455997d97",
+        "QualityEvidenceVerifierTest": "51ef646858ff4396fdd54fba3eee036ee2a3e21754c41d29b95754eb227cb1ae",
+        "AssistantRuntimeTest": "d5deb66b7ae729491c77cbe4cafdd7a11ceaa559d3170232ec80d1c4df66042b",
+        "DecisionParserTest": "6fe8aac16e2fe8bb92ed28c64c4465505cf7a9f61ec55fb67053191837f971f5"
+      }
+    },
+    {
+      "suffix": "i2r3-ranking-01",
+      "command": ".\\mvnw.cmd -o '-Dtest=JdbcQualityInsightRankingRegressionTest' '-Dsurefire.reportNameSuffix=i2r3-ranking-01' test",
+      "exitCode": 0,
+      "methodDefinitions": 12,
+      "expandedCases": 15,
+      "errors": 0,
+      "failures": 0,
+      "skipped": 0,
+      "xmlSha256": {
+        "JdbcQualityInsightRankingRegressionTest": "b815709d77a40f60d860b1ebabd1b2d1905a63c62d98e2cab427f0e2e5207df9"
+      }
+    },
+    {
+      "suffix": "i2r3-count-01",
+      "command": ".\\mvnw.cmd -o '-Dtest=JdbcQualityInsightIsolatedCountRegressionTest' '-Dsurefire.reportNameSuffix=i2r3-count-01' test",
+      "exitCode": 0,
+      "methodDefinitions": 7,
+      "expandedCases": 10,
+      "errors": 0,
+      "failures": 0,
+      "skipped": 0,
+      "xmlSha256": {
+        "JdbcQualityInsightIsolatedCountRegressionTest": "fe0ec6367d9a65e9e94f3f5960f7d0fb890a04156d46363fd40045d9af2f47a5"
+      }
+    },
+    {
+      "suffix": "i2r3-whole-01",
+      "command": ".\\mvnw.cmd -o '-Dtest=JdbcQualityInsightPerformanceRegressionTest' '-Dsurefire.reportNameSuffix=i2r3-whole-01' test",
+      "exitCode": 1,
+      "methodDefinitions": 6,
+      "expandedCases": 17,
+      "errors": 1,
+      "failures": 0,
+      "skipped": 0,
+      "error": "invalidScopes() constructed an empty SELECTED Scope, rejected by the frozen Scope constructor before repository invocation; test-input error, not a SQL failure",
+      "xmlSha256": {
+        "JdbcQualityInsightPerformanceRegressionTest": "6df8804ce25ba7a5eadc1044f3188dc9c0a9301aa3008a75b5e64c3a8b5903c1"
+      }
+    },
+    {
+      "suffix": "i2r3-whole-02",
+      "command": ".\\mvnw.cmd -o '-Dtest=JdbcQualityInsightPerformanceRegressionTest' '-Dsurefire.reportNameSuffix=i2r3-whole-02' test",
+      "exitCode": 0,
+      "methodDefinitions": 6,
+      "expandedCases": 19,
+      "errors": 0,
+      "failures": 0,
+      "skipped": 0,
+      "xmlSha256": {
+        "JdbcQualityInsightPerformanceRegressionTest": "4441c9d1735c237b84bc43c46995c9a495fe585a6a82b79352694bbf74b37b42"
+      }
+    }
+  ],
+  "testXmlLocation": "backend-java/target/surefire-reports/TEST-<class>-<suffix>.xml; local ignored build output, hash-indexed here but not copied into repository",
+  "deduplicatedFinalCases": 112,
+  "deduplicatedFinalMethodDefinitions": 84,
+  "realMySqlTestsRunByOriginal02": 0,
+  "realModelCalls": 0
+}

@@ -1,0 +1,5 @@
+{
+  "executionRound": 1,
+  "exitCode": 0,
+  "output": "->  \b->  \b->  \b->  \b->  \bI2_LIST_FAILURE java.lang.ClassNotFoundException: com.mysql.cj.jdbc.Driver\r\n|  �쳣���� java.lang.NoClassDefFoundError��java/sql/SQLException\r\n|        at (#4:35)\r\n|  ԭ��: java.lang.ClassNotFoundException�� java.sql.SQLException\r\n|        at URLClassLoader.findClass (URLClassLoader.java:445)\r\n|        at DefaultLoaderDelegate$RemoteClassLoader.findClass (DefaultLoaderDelegate.java:154)\r\n|        at ClassLoader.loadClass (ClassLoader.java:592)\r\n|        at ClassLoader.loadClass (ClassLoader.java:525)\r\n|        ...\r\n->  \b\n"
+}

@@ -1,0 +1,96 @@
+{
+  "date": "2026-09-29",
+  "preparedBy": "controller",
+  "worktreeCreated": true,
+  "desktopThreadCreated": false,
+  "readOnlyOnboardingCompleted": false,
+  "task03Dispatched": false,
+  "testsRun": false,
+  "databaseStartedOrConnected": false,
+  "reason": "No desktop creation tools available; manual desktop creation/forwarding required",
+  "selfExcluded": true,
+  "extraFiles": [
+    {
+      "rawSha256": "312dfbd04d27d587db7c4e79b45c0adfa0a3288005d66dba6e0f0a7aa046d7b7",
+      "path": "D:\\知识图谱\\docs\\assistant-team\\06-INTEGRATION-TEST-CHARTER.md",
+      "bytes": 5057
+    },
+    {
+      "rawSha256": "faa3d2e707696bfc29ec5f2831ecdd6aff5d1355f055afd493fcf6e0e781d994",
+      "path": "D:\\知识图谱\\docs\\assistant-team\\integration\\I2\\I2-R4-RESEARCH-EDGE-QUERY-TASK.md",
+      "bytes": 9686
+    },
+    {
+      "rawSha256": "742fc8985c04d5c4e7314cb959f83a86d4be7149ad87f47a2d78fcd3b9bd329e",
+      "path": "D:\\知识图谱\\docs\\assistant-team\\integration\\I2\\I2-R4-RESEARCH-EDGE-RECEIPT.md",
+      "bytes": 1597
+    },
+    {
+      "rawSha256": "afca6f306ac755c41e3c9c9ed914205dbe1bfb9bdd72fe00a1d00fd8c1cfc1c3",
+      "path": "D:\\知识图谱\\docs\\assistant-team\\integration\\I2\\I2-R4-RESEARCH-EDGE-EVIDENCE.json",
+      "bytes": 19324
+    },
+    {
+      "rawSha256": "efcdbc5f8d0f04882a3fa363c87f8fa5b2de6171a01b8d336df91d004b2458bc",
+      "path": "D:\\知识图谱-worktrees\\assistant-06-integration-test\\AGENTS.md",
+      "bytes": 1011
+    }
+  ],
+  "files": [
+    {
+      "rawSha256": "807d3789e41a35fff9694a2befdb077089fa921725af9b6b3b6c4d1620b602b3",
+      "path": "D:\\知识图谱\\docs\\assistant-team\\onboarding\\06\\06-BASELINE-MANIFEST.json",
+      "bytes": 26095
+    },
+    {
+      "rawSha256": "138679cacdda310bed07b12bd0314f7f26b4fefca98c676221652a0cce9328f5",
+      "path": "D:\\知识图谱\\docs\\assistant-team\\onboarding\\06\\06-I2-ENVIRONMENT-HANDOFF.md",
+      "bytes": 3726
+    },
+    {
+      "rawSha256": "1f3645fb450e2edd9ff180535185f75dfa1e46075145136cb5215378a5ef0969",
+      "path": "D:\\知识图谱\\docs\\assistant-team\\onboarding\\06\\06-ONBOARDING.md",
+      "bytes": 3852
+    },
+    {
+      "rawSha256": "82ddca167b720e5e36045f2af01fd8d62137ce52de12d7b7e6db6da25b38e68a",
+      "path": "D:\\知识图谱\\docs\\assistant-team\\onboarding\\06\\06-RECEIPT-INSTRUCTION.md",
+      "bytes": 1600
+    },
+    {
+      "rawSha256": "3fa22b173799f0ef2a00530c151dec13d5a9afecb0309de68cd083c6c377a476",
+      "path": "D:\\知识图谱\\docs\\assistant-team\\onboarding\\06\\06-REPORT-TEMPLATE.md",
+      "bytes": 1689
+    },
+    {
+      "rawSha256": "190c861f749e9290d887d8d1fad305b4eb848391eac09422380b956b757d44f3",
+      "path": "D:\\知识图谱\\docs\\assistant-team\\onboarding\\06\\CONTROLLER-SETUP-REPORT.md",
+      "bytes": 3848
+    },
+    {
+      "rawSha256": "b9f48a7ca433b251761849f1f3a1bb88ddb22eca24ce99c94ad3e245ce3e5616",
+      "path": "D:\\知识图谱\\docs\\assistant-team\\onboarding\\06\\GOVERNANCE-OVERLAY.json",
+      "bytes": 2299
+    },
+    {
+      "rawSha256": "14fa02e499c72ba2c34d8f390397db0b7c0cba8627a60edd384253da86f4390d",
+      "path": "D:\\知识图谱\\docs\\assistant-team\\onboarding\\06\\archive\\AGENTS.md.before.txt",
+      "bytes": 2027
+    },
+    {
+      "rawSha256": "8f299f708c6b7b5e98f8ae0cd27ba419d8fd02c72d554f18cb03378348bc32d7",
+      "path": "D:\\知识图谱\\docs\\assistant-team\\onboarding\\06\\archive\\docs__assistant-team__CONTROLLER-RULES.md.before.txt",
+      "bytes": 22039
+    },
+    {
+      "rawSha256": "64137deb39b37ed9ad7d217e58afb84810c402ed0397eeca4440761c8482dc9a",
+      "path": "D:\\知识图谱\\docs\\assistant-team\\onboarding\\06\\archive\\docs__assistant-team__COORDINATION.md.before.txt",
+      "bytes": 9588
+    },
+    {
+      "rawSha256": "3200e0627fd936c7bdcb11a284e709e8bdd1b8ad1646f3ef62e5ef02bce439b0",
+      "path": "D:\\知识图谱\\docs\\assistant-team\\onboarding\\06\\archive\\docs__assistant-team__REGISTRY.md.before.txt",
+      "bytes": 7099
+    }
+  ]
+}

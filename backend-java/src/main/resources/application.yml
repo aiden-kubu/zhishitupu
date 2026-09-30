@@ -29,6 +29,7 @@ spring:
         - classpath:db/migration/V8__extraction_checkpoint.sql
         - classpath:db/migration/V9__document_understanding.sql
         - classpath:db/migration/V10__extraction_plan_versions.sql
+        - classpath:db/migration/V11__learning_paths.sql
   servlet:
     multipart:
       max-file-size: 200MB

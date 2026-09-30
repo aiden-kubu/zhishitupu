@@ -1,0 +1,60 @@
+{
+  "stage": "I2",
+  "fixedTimestampUtc": "2026-09-27 00:00:00",
+  "sourceFile": "D:\\知识图谱\\docs\\assistant-team\\integration\\I1\\fixtures\\I1-FIXTURES.json",
+  "sourceRawSha256": "8fe1a8463558e4c0068a5511f5d8038022a7c9bf40fbb59e363c3071a0615574",
+  "kind": "fixture_mapping_not_execution_result",
+  "derivedExpectations": [
+    "7501.reviewable=true from existing entity candidates, not I1 logical false",
+    "7502.extractable=true from completed chunks and zero candidates, not I1 logical false",
+    "APPROVED preserved as nonstandard raw legacy state; never silently converted to ACCEPTED",
+    "actualStepPathId derived by LEFT JOIN, not a stored column",
+    "TEXT is synthetic unit metadata, not proof of real document parser",
+    "Missing files have deterministic historical upload metadata, not verified on-disk hashes"
+  ],
+  "foreignKeysDisabled": false,
+  "files": [
+    {
+      "fileSha256": "6e660411c6b3dbae83bdf8d3bfbc9e45005cae9c1890322bd7c927d1b7ee37aa",
+      "path": "D:\\知识图谱\\docs\\assistant-team\\integration\\I1\\fixtures\\documents\\A.txt",
+      "fileBytes": 327,
+      "filePresent": true,
+      "documentId": 7201
+    },
+    {
+      "fileSha256": "a2e327c6053f1dc94c078d12a098947e81ef2867826909a78fe04b26cee1a7b4",
+      "path": "D:\\知识图谱\\docs\\assistant-team\\integration\\I1\\fixtures\\documents\\B.txt",
+      "fileBytes": 242,
+      "filePresent": true,
+      "documentId": 7202
+    },
+    {
+      "fileSha256": "a9e91a56b3a38b5949cbc14154ae7863d3c0fd4290af906568333b3dd1c07700",
+      "path": "D:\\知识图谱-i2-env\\fixture-files\\failed-no-file.txt",
+      "fileBytes": 22,
+      "filePresent": false,
+      "documentId": 7203
+    },
+    {
+      "fileSha256": "1551978594f6cc8b31435af78f02501376e539e332fd920b158493c1ac777e51",
+      "path": "D:\\知识图谱-i2-env\\fixture-files\\archived.txt",
+      "fileBytes": 279,
+      "filePresent": true,
+      "documentId": 7204
+    },
+    {
+      "fileSha256": "501485a71d6a5df3347e0836726225b565393575c5f49797fcf75a7949eba72e",
+      "path": "D:\\知识图谱-i2-env\\fixture-files\\outside.txt",
+      "fileBytes": 208,
+      "filePresent": true,
+      "documentId": 7205
+    },
+    {
+      "fileSha256": "7cd443404b551ea84f2841b9fe610c730de49c7a189c653a7ed274e331765d2d",
+      "path": "D:\\知识图谱-i2-env\\fixture-files\\multi-library.txt",
+      "fileBytes": 22,
+      "filePresent": false,
+      "documentId": 7206
+    }
+  ]
+}

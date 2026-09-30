@@ -1,0 +1,147 @@
+{
+  "kind": "controller_static_document_review_not_test_run",
+  "templateRawSha256": "531988319b3aed79a8bcd3f5c9088f4bc7f11273573553bb8a183af309c68d01",
+  "templateBytes": 39285,
+  "e02RawSha256": "72edc590f96d98642e530d8f6aadcd8614b29014f7497817fa7a2e4cdbfde609",
+  "baselineBindings": 26,
+  "reportRawSha256": "38c7594ef9edae9a561e53524ba47c9675b3c847f74d0a9016f8c9581ec59b5c",
+  "reportBytes": 13338,
+  "historicalPrefixBytes": 9411,
+  "historicalPrefixRawSha256": "26c84155fd83319148495d5311015cdc94c54a76c4654d9c33702c62a29d0e76",
+  "codeChecks": [
+    {
+      "path": "D:\\知识图谱\\backend-java\\src\\main\\java\\com\\knowledgegraph\\assistant\\research\\JdbcResearchReadRepository.java",
+      "normalizedSha256": "b922ec24fc397fd772524524c34c6837a3f044bff4bd18efcdd23c37ae67612f"
+    },
+    {
+      "path": "D:\\知识图谱\\backend-java\\src\\test\\java\\com\\knowledgegraph\\assistant\\research\\JdbcResearchReadRepositoryTest.java",
+      "normalizedSha256": "1b7c80d568cd0e75b982427c10c404b90f608ea8dee83daf4b92843a131277ce"
+    },
+    {
+      "path": "D:\\知识图谱-worktrees\\assistant-03-research\\backend-java\\src\\main\\java\\com\\knowledgegraph\\assistant\\research\\JdbcResearchReadRepository.java",
+      "normalizedSha256": "b922ec24fc397fd772524524c34c6837a3f044bff4bd18efcdd23c37ae67612f"
+    },
+    {
+      "path": "D:\\知识图谱-worktrees\\assistant-03-research\\backend-java\\src\\test\\java\\com\\knowledgegraph\\assistant\\research\\JdbcResearchReadRepositoryTest.java",
+      "normalizedSha256": "1b7c80d568cd0e75b982427c10c404b90f608ea8dee83daf4b92843a131277ce"
+    }
+  ],
+  "probes": [
+    {
+      "probe": "P1",
+      "derivedFrom": "E02",
+      "bindings": 22,
+      "orderedValues": [
+        7701,
+        7101,
+        7201,
+        7202,
+        7101,
+        7101,
+        7201,
+        7202,
+        7101,
+        7201,
+        7202,
+        7101,
+        7101,
+        7201,
+        7202,
+        7201,
+        7202,
+        7101,
+        7101,
+        7201,
+        7202,
+        11
+      ],
+      "counts": {
+        "edgeDocumentEvidence": 1,
+        "targetNodeEvidence": 1,
+        "namedOccurrences": 16,
+        "sourceNodeEvidence": 1,
+        "hasSourceAliases": 1,
+        "expectedQuestionMarks": 22
+      },
+      "hashes": {
+        "namedSelectSha256": "98a6a2d000702537270d68de0899dfc52c6e6eed73f10d65c6b6dda4e50fa1f8",
+        "namedExplainSha256": "bcd7094095957414587cec4ae6f74e8ba277b29f832529560314526639ad2646",
+        "expectedPreparedExplainSha256": "57b30f84be3bf4e343a4aa1a21479501f900800848346d8ab2cd7d9d99b55569"
+      }
+    },
+    {
+      "probe": "P2",
+      "derivedFrom": "P1",
+      "bindings": 16,
+      "orderedValues": [
+        7701,
+        7101,
+        7201,
+        7202,
+        7101,
+        7101,
+        7201,
+        7202,
+        7101,
+        7201,
+        7202,
+        7101,
+        7101,
+        7201,
+        7202,
+        11
+      ],
+      "counts": {
+        "edgeDocumentEvidence": 0,
+        "targetNodeEvidence": 1,
+        "namedOccurrences": 12,
+        "sourceNodeEvidence": 1,
+        "hasSourceAliases": 1,
+        "expectedQuestionMarks": 16
+      },
+      "hashes": {
+        "namedSelectSha256": "6f7a510a60c14ba33b85353e0c808ce02fd3759592b00417133339d8258369dd",
+        "namedExplainSha256": "f974446d5f41b06489fd0bb7403ad9205f2e096d6e3f9b011c7767c30ca74cf1",
+        "expectedPreparedExplainSha256": "05e7b7a8fe29ec4c204c3de9108643c94995f70e4a24d8ae80804ec7e999ced4"
+      }
+    },
+    {
+      "probe": "P3",
+      "derivedFrom": "P1",
+      "bindings": 10,
+      "orderedValues": [
+        7701,
+        7101,
+        7101,
+        7201,
+        7202,
+        7101,
+        7101,
+        7201,
+        7202,
+        11
+      ],
+      "counts": {
+        "edgeDocumentEvidence": 1,
+        "targetNodeEvidence": 0,
+        "namedOccurrences": 8,
+        "sourceNodeEvidence": 0,
+        "hasSourceAliases": 1,
+        "expectedQuestionMarks": 10
+      },
+      "hashes": {
+        "namedSelectSha256": "65692c78d16acb950977bb93d3eb030c47020463c61a38732b98b7841cecf8bd",
+        "namedExplainSha256": "251bb70506846e131b538ea3ecbb56c446d8286ad337b3252f6c7ede04fcba8f",
+        "expectedPreparedExplainSha256": "3c0943cc4b3ee4ee2495f2b0524e50116178c16da5f2085da2663cbb5e054109"
+      }
+    }
+  ],
+  "issues": [],
+  "reviewDate": "2026-09-29",
+  "reviewer": "current controller",
+  "databaseConnectionMade": false,
+  "testExecutionPerformed": false,
+  "reportHistoricalPrefixPreserved": true,
+  "scope": "New diagnostic template and appended report only; direct research implementation/test preimages checked, prior unchanged reviews reused.",
+  "conclusion": "No blocking mismatch found in the diagnostic definition; not an actual JDBC binding, query performance, domain fix or I2 acceptance result."
+}

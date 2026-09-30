@@ -1,0 +1,268 @@
+{
+  "kind": "controller-reviewed exact baseline bridge for resuming the already-authorized I2-R4 06 batch",
+  "recordedOn": "2026-09-29",
+  "owner": "controller",
+  "executionOwner": "original desktop 06",
+  "authority": "Owner reported this batch started under execution approval and requested controller review/continuation decision. Same approved scope; no new database operations or stage permission.",
+  "scopeUnchanged": true,
+  "oldRunId": "R4Verify-20260929T185120510",
+  "oldRunReadOnly": true,
+  "newRunIdRequired": true,
+  "reviewedDocuments": [
+    {
+      "path": "D:/知识图谱/docs/assistant-team/integration/I2/I2-R4-06-STOP-REVIEW.md",
+      "bytes": 6679,
+      "rawSha256": "a42687a9f9119feb0c30f8a861c62959d4ae3885dc69268dd170b099350c6917"
+    },
+    {
+      "path": "D:/知识图谱/docs/assistant-team/integration/I2/I2-R4-06-RESUME-INSTRUCTION.md",
+      "bytes": 8739,
+      "rawSha256": "90c87229ad8196961e9b0a2eb84c1495523b7592943e001cb6d34cdfba2a0258"
+    }
+  ],
+  "originalPlan": {
+    "path": "D:/知识图谱/docs/assistant-team/integration/I2/I2-R4-06-CANDIDATE-VERIFICATION-PLAN.md",
+    "bytes": 12921,
+    "rawSha256": "bf3081783fb69dc729cb4fbc2813b13d5ad59b39306bcc14ff75f35161fcb470"
+  },
+  "candidateReview": {
+    "path": "D:/知识图谱/docs/assistant-team/integration/I2/I2-R4-D2-03-PATCH-REVIEW.json",
+    "bytes": 4206,
+    "rawSha256": "6875fc07a4989e37b82b81bf57abf47c08f2658b11d0e36faec59ae6544a5fd5"
+  },
+  "oldEvidence": [
+    {
+      "path": "D:/知识图谱-worktrees/assistant-06-integration-test/docs/assistant-team/integration/I2/R4-VERIFY/evidence/R4Verify-20260929T185120510/INDEX.json",
+      "rawSha256": "1cb12750c626ee9e3fc9104685eedb23b5745df8eafaa063e48dacd87df09a5d"
+    },
+    {
+      "path": "D:/知识图谱-worktrees/assistant-06-integration-test/docs/assistant-team/integration/I2/R4-VERIFY/evidence/R4Verify-20260929T185120510/PREIMAGE.json",
+      "rawSha256": "3f45df3a80ff6627b4deb8341e217db2e76814a207be3f1035a365693ed50313"
+    },
+    {
+      "path": "D:/知识图谱-worktrees/assistant-06-integration-test/docs/assistant-team/integration/I2/R4-VERIFY/evidence/R4Verify-20260929T185120510/DRIFT.json",
+      "rawSha256": "b029610c5a278fa3ddd1417d08644091cf4367f3ade63666f0fab3bc08debcac"
+    },
+    {
+      "path": "D:/知识图谱-worktrees/assistant-06-integration-test/docs/assistant-team/integration/I2/R4-VERIFY/evidence/R4Verify-20260929T185120510/MERGE.json",
+      "rawSha256": "2a9b2e9b6a7c00a6f72cedb7a36e957e8fda5dc53b9f59d0489536ba5970f541"
+    },
+    {
+      "path": "D:/知识图谱-worktrees/assistant-06-integration-test/docs/assistant-team/integration/I2/R4-VERIFY/evidence/R4Verify-20260929T185120510/PRESERVATION.json",
+      "rawSha256": "bb15f86dd19f39f0f6fb217d13fd34eaf016342c023d03af073144ceed1d1dd7"
+    },
+    {
+      "path": "D:/知识图谱-worktrees/assistant-06-integration-test/docs/assistant-team/integration/I2/R4-VERIFY/evidence/R4Verify-20260929T185120510/OFFLINE-COMPILE.json",
+      "rawSha256": "926ac3d0508e71f3f2defffa6148f02ac93084d32e6e88ef33087bd07584e35c"
+    },
+    {
+      "path": "D:/知识图谱-worktrees/assistant-06-integration-test/docs/assistant-team/integration/I2/R4-VERIFY/evidence/R4Verify-20260929T185120510/Offline-FAILURE.json",
+      "rawSha256": "472517f2381837d1dfa4b37930de0f574799c67a20286543fd6cc94325b725a4"
+    },
+    {
+      "path": "D:/知识图谱-worktrees/assistant-06-integration-test/docs/assistant-team/integration/I2/R4-VERIFY/evidence/R4Verify-20260929T185120510/SAFETY-STOP.json",
+      "rawSha256": "fec3ee7c0e178b553f3a8a8f0256f8544b862c0a083b616b05c6a0427f678655"
+    }
+  ],
+  "governanceOverlay": {
+    "path": "D:/知识图谱/docs/assistant-team/governance/20260929-core13-freeze/GOVERNANCE-OVERLAY.json",
+    "bytes": 3731,
+    "rawSha256": "481536ae63ad49593b2a11cf545abb5fe7d468340700be46a5f7fb8f55423074"
+  },
+  "acceptedGovernanceChanges": [
+    {
+      "path": "D:/知识图谱/AGENTS.md",
+      "beforeRawSha256": "03968a12d04e397f52f5423ad08a6e24b66b7a210beba688dcf02d46c63aa701",
+      "afterRawSha256": "4d8aaaba19277bb0bc2f67255399d28206ce00e898ab6cf7b92ca54341d9a36d",
+      "afterNormalizedSha256": "4d8aaaba19277bb0bc2f67255399d28206ce00e898ab6cf7b92ca54341d9a36d",
+      "archivePath": "D:/知识图谱/docs/assistant-team/governance/20260929-core13-freeze/AGENTS.md.before.json",
+      "archiveRawSha256": "4250d36784b95806cff21f2f73e38db6f763f7b8c394798cc78ddc24628de00e",
+      "archiveMatches": true
+    },
+    {
+      "path": "D:/知识图谱/docs/assistant-team/COORDINATION.md",
+      "beforeRawSha256": "5093e2ea2aa0638490ac6550ccfeae250f5cdc76d90df04ec4f5f4f2f7c0320c",
+      "afterRawSha256": "17d3d297b988938442d383dbca3b5f88e65a2e37a5d45ec43fec3ed2c1a99d8e",
+      "afterNormalizedSha256": "17d3d297b988938442d383dbca3b5f88e65a2e37a5d45ec43fec3ed2c1a99d8e",
+      "archivePath": "D:/知识图谱/docs/assistant-team/governance/20260929-core13-freeze/COORDINATION.md.before.json",
+      "archiveRawSha256": "5df78fe1d231b1a045091b3805900284ae0f3f0a449ae1c782c91d238d2fbc78",
+      "archiveMatches": true
+    },
+    {
+      "path": "D:/知识图谱/docs/assistant-team/CONTROLLER-RULES.md",
+      "beforeRawSha256": "9c16d5b930c3cb59369ef27e4ea7075aeda29fcc177800a4ded0390d670c3eb3",
+      "afterRawSha256": "92cc0f2cc2ddec5e29d1dd7f2e4fc2eb7b22735c854dc9eb9a8b279c4d4844bc",
+      "afterNormalizedSha256": "92cc0f2cc2ddec5e29d1dd7f2e4fc2eb7b22735c854dc9eb9a8b279c4d4844bc",
+      "archivePath": "D:/知识图谱/docs/assistant-team/governance/20260929-core13-freeze/CONTROLLER-RULES.md.before.json",
+      "archiveRawSha256": "4ed5f4f68540a33b33b705acbe9c37417c9df12e6f85ec8f53ba16041ede052c",
+      "archiveMatches": true
+    },
+    {
+      "path": "D:/知识图谱/docs/assistant-team/DISPATCH-RULES.md",
+      "beforeRawSha256": "3a6a12a19a2daac2b53d56aa8dcbc3e462dfd862ef32876c38d3febb28789326",
+      "afterRawSha256": "a52742edea7b495a4ba390e244d9b61c28976e4e350f31d573a2f61b7cbd4391",
+      "afterNormalizedSha256": "a52742edea7b495a4ba390e244d9b61c28976e4e350f31d573a2f61b7cbd4391",
+      "archivePath": "D:/知识图谱/docs/assistant-team/governance/20260929-core13-freeze/DISPATCH-RULES.md.before.json",
+      "archiveRawSha256": "3ba40e8fef6e6544b503f15e8b90c190895b575c7b165f394ebb2973e56e0c7c",
+      "archiveMatches": true
+    }
+  ],
+  "knownAddedGovernanceFiles": [
+    {
+      "path": "D:/知识图谱/docs/assistant-team/LONG-TERM-RULES.md",
+      "rawSha256": "1f1941afae07168a873ab9524e3d222fd01926b87c8bb2d6045f0ecc31e26ffd",
+      "bytes": 5305
+    },
+    {
+      "path": "D:/知识图谱/docs/assistant-team/governance/20260929-core13-freeze/AGENTS.md.before.json",
+      "rawSha256": "4250d36784b95806cff21f2f73e38db6f763f7b8c394798cc78ddc24628de00e"
+    },
+    {
+      "path": "D:/知识图谱/docs/assistant-team/governance/20260929-core13-freeze/COORDINATION.md.before.json",
+      "rawSha256": "5df78fe1d231b1a045091b3805900284ae0f3f0a449ae1c782c91d238d2fbc78"
+    },
+    {
+      "path": "D:/知识图谱/docs/assistant-team/governance/20260929-core13-freeze/CONTROLLER-RULES.md.before.json",
+      "rawSha256": "4ed5f4f68540a33b33b705acbe9c37417c9df12e6f85ec8f53ba16041ede052c"
+    },
+    {
+      "path": "D:/知识图谱/docs/assistant-team/governance/20260929-core13-freeze/DISPATCH-RULES.md.before.json",
+      "rawSha256": "3ba40e8fef6e6544b503f15e8b90c190895b575c7b165f394ebb2973e56e0c7c"
+    },
+    {
+      "path": "D:/知识图谱/docs/assistant-team/governance/20260929-core13-freeze/GOVERNANCE-OVERLAY.json",
+      "bytes": 3731,
+      "rawSha256": "481536ae63ad49593b2a11cf545abb5fe7d468340700be46a5f7fb8f55423074"
+    }
+  ],
+  "omittedExistingFile": {
+    "path": "D:/知识图谱/docs/智能助手模块审计与重规划-2026-09-22.md",
+    "bytes": 59377,
+    "rawSha256": "4b1fc0951ef0666b10c86ec99dfaff0ca4042e23b3ed60c1af0fbd0dbbf7afc9",
+    "historicalBaseline": {
+      "path": "D:/知识图谱/docs/assistant-team/integration/I1/I1-PROTECTION-BEFORE.json",
+      "bytes": 76256,
+      "rawSha256": "d05b238b10c2c15946409dc5f515940b086f8c03ca4fe450435f4ead2222e9de"
+    },
+    "reason": "Git quoted the Chinese path; old preflight silently skipped it. Existing file matches I1, not an unknown new file. Keep old 805-entry snapshot unchanged."
+  },
+  "alreadyMergedDomainFiles": [
+    {
+      "path": "D:/知识图谱/backend-java/src/main/java/com/knowledgegraph/assistant/research/JdbcResearchReadRepository.java",
+      "beforeNormalizedSha256": "b922ec24fc397fd772524524c34c6837a3f044bff4bd18efcdd23c37ae67612f",
+      "afterNormalizedSha256": "7107873c220e44e5eb3e9638e98c70606503d6504fb6a99080e11e84f9c10c26"
+    },
+    {
+      "path": "D:/知识图谱/backend-java/src/test/java/com/knowledgegraph/assistant/research/JdbcResearchReadRepositoryTest.java",
+      "beforeNormalizedSha256": "1b7c80d568cd0e75b982427c10c404b90f608ea8dee83daf4b92843a131277ce",
+      "afterNormalizedSha256": "2381dad233b3e22ff52209e59a1194d2954fb739855685b8268b2f774811f386"
+    },
+    {
+      "path": "D:/知识图谱/backend-java/src/test/java/com/knowledgegraph/assistant/research/JdbcResearchEdgeQueryPerformanceRegressionTest.java",
+      "beforeState": "absent",
+      "afterNormalizedSha256": "39a8c48684640ca28ae7cc78cab2b3d45a6bf002eacf020d07a43219d6768ed2"
+    }
+  ],
+  "domainNormalization": "UTF-8 decode, CRLF to LF, preserve trailing newline, no trim",
+  "domainAction": "Verify postimage and retain; no remerge, rollback or domain edits.",
+  "integrationFilesBeforeBoundedRevision": [
+    {
+      "path": "D:/知识图谱-worktrees/assistant-06-integration-test/docs/assistant-team/integration/I2/R4-VERIFY/Invoke-R4Verification.ps1",
+      "bytes": 25567,
+      "rawSha256": "3ee82c57cdaa9f78164e109d000dff1ddf08e7da869db8bc2803fb0664d15e90"
+    },
+    {
+      "path": "D:/知识图谱-worktrees/assistant-06-integration-test/docs/assistant-team/integration/I2/R4-VERIFY/Verify-R4VerificationBaseline.ps1",
+      "bytes": 8006,
+      "rawSha256": "f0b67eb11e66ffd3d10338895c36194d194cf4662649f7a8514cf16ed6dc0520"
+    },
+    {
+      "path": "D:/知识图谱/backend-java/src/test/java/com/knowledgegraph/assistant/i2/I2ResearchEdgeVerificationTest.java",
+      "bytes": 19547,
+      "rawSha256": "f505209eb0c0e5089941c6c0acecc7e2416a301bf009eee7d604435f87edde36"
+    },
+    {
+      "path": "D:/知识图谱-worktrees/assistant-06-integration-test/docs/assistant-team/integration/I2/R4-VERIFY/R4-VERIFY-OVERLAY.json",
+      "bytes": 2691,
+      "rawSha256": "9b0f40b311e4030999fa8bc4e04431aec8a8a690558c6c4c1dbe4e7b2b4657df"
+    },
+    {
+      "path": "D:/知识图谱-worktrees/assistant-06-integration-test/docs/assistant-team/reports/06-integration-I2-R4-verification.md",
+      "bytes": 3488,
+      "rawSha256": "ee50676cb93111e4ee056931d125bd0345bca778b57a5dfc23b144504e33cc0f"
+    }
+  ],
+  "revisionScope": [
+    "F1 independent V12 expected target",
+    "F2 literal-path and exact-increment postmerge protection",
+    "F3 reproducible timing/XML and evidence completion gates",
+    "F4 safety-vs-ordinary failure and actual sampling dependencies"
+  ],
+  "versionPreservation": "Archive exact old integration files/overlay/report first; record path-to-archive mapping. Old index and expected hashes are immutable. New version pins belong in a new overlay/run.",
+  "controllerAddedFiles": [
+    {
+      "path": "D:/知识图谱/docs/assistant-team/integration/I2/I2-R4-06-STOP-REVIEW.md",
+      "bytes": 6679,
+      "rawSha256": "a42687a9f9119feb0c30f8a861c62959d4ae3885dc69268dd170b099350c6917"
+    },
+    {
+      "path": "D:/知识图谱/docs/assistant-team/integration/I2/I2-R4-06-RESUME-INSTRUCTION.md",
+      "bytes": 8739,
+      "rawSha256": "90c87229ad8196961e9b0a2eb84c1495523b7592943e001cb6d34cdfba2a0258"
+    },
+    {
+      "path": "D:/知识图谱/docs/assistant-team/integration/I2/I2-R4-06-RESUME-BRIDGE.json",
+      "kind": "this controller document",
+      "selfHash": "No recursive self hash; record exact received bytes/hash in new 06 protection/overlay before execution and retain."
+    }
+  ],
+  "protectionRules": [
+    "Apply only exact accepted governance before/after transitions.",
+    "Validate original visible entries, known additions, omitted historical file and actual current file set.",
+    "Unknown additions, deletions or changes stop affected execution; no directory-wide exclusions.",
+    "New integration revisions require archived preimages and pinned new versions before running.",
+    "Controller does not change protected governance during this resumed batch."
+  ],
+  "verifiedStoppedBatch": {
+    "indexReferences": 20,
+    "historicalXml": 46,
+    "originalSnapshotEntries": 805,
+    "unchangedOriginalEntries": 799,
+    "changedOriginalEntries": 6,
+    "newSurefireXml": 0,
+    "cumulativeLogBytes": 8563867,
+    "cumulativeLogRawSha256": "2ec347af4b0a8a8d1751484a7150ad9467136cdb453df687d651a70a2f314e34",
+    "compileStatus": "06 recorded success; complete transcript not separately retained; controller did not rerun",
+    "testsExecuted": 0,
+    "realVerificationExecuted": false
+  },
+  "executionSequence": "Bounded integration corrections and offline self-checks -> exact baseline/protection gates -> original five offline groups -> approved real batch -> safe normal cleanup -> stop for controller evidence review and owner acceptance. No second routine approval gate.",
+  "environment": {
+    "version": "8.4.11",
+    "uuid": "8c6cfcb3-ba49-11f1-bf64-005056c00001",
+    "host": "127.0.0.1",
+    "port": 33078,
+    "database": "kg_assistant_i2_20260927_r01",
+    "physicalRoot": "D:/知识图谱-i2-env",
+    "junction": "D:/kg-i2-env",
+    "connectTimeoutMs": 3000,
+    "socketTimeoutMs": 4000,
+    "statementTimeoutSeconds": 2,
+    "sessionMaxExecutionTimeMs": 1500,
+    "sampleP95LimitMs": 3000
+  },
+  "noNewScope": [
+    "domain code or domain tests",
+    "new database probes or fixtures",
+    "indexes or migrations",
+    "permissions or timeout budget changes",
+    "shared contracts or frozen helpers",
+    "remaining I2, I3 or W2"
+  ],
+  "model": {
+    "required": "GPT-6 Sol / High",
+    "ownerDesktopConfirmation": "2026-09-29, original 06 separately and later all 01-06",
+    "actualModel": "未核实",
+    "actualReasoningEffort": "未核实"
+  }
+}
