@@ -1,7 +1,10 @@
 <template>
   <div class="flex flex-wrap items-center gap-x-4 gap-y-2">
     <!-- 视图范围（§6.1：全局/局部/聚焦） -->
-    <div class="inline-flex items-center rounded-lg bg-gray-100 p-1 dark:bg-gray-800">
+    <span v-if="readOnly" class="text-sm font-medium text-brand-600 dark:text-brand-400"
+      >研究结果 · 只读</span
+    >
+    <div v-else class="inline-flex items-center rounded-lg bg-gray-100 p-1 dark:bg-gray-800">
       <button
         v-for="item in modeItems"
         :key="item.value"
@@ -55,10 +58,19 @@
         {{ nodeCount }} 节点 · {{ edgeCount }} 关系
       </span>
 
-      <Button size="sm" variant="outline" class="!px-3 !py-1.5" @click="emit('reset')">重置</Button>
+      <Button size="sm" variant="outline" class="!px-3 !py-1.5" @click="emit('reset')">{{
+        readOnly ? '居中 / 清除高亮' : '重置'
+      }}</Button>
 
       <!-- AI 面板开关：桌面折叠 / 移动端抽屉 -->
-      <Button size="sm" variant="outline" class="!px-3 !py-1.5" :class="{ 'lg:hidden': panelOpen }" @click="emit('toggle-panel')">
+      <Button
+        v-if="!readOnly"
+        size="sm"
+        variant="outline"
+        class="!px-3 !py-1.5"
+        :class="{ 'lg:hidden': panelOpen }"
+        @click="emit('toggle-panel')"
+      >
         AI 助手
       </Button>
     </div>
@@ -71,6 +83,7 @@ import type { RenderMode, WorkspaceMode } from '@/composables/useGraphWorkspace'
 
 defineProps<{
   panelOpen?: boolean
+  readOnly?: boolean
   mode: WorkspaceMode
   renderMode: RenderMode
   nodeCount: number

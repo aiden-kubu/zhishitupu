@@ -9,7 +9,13 @@ import * as THREE from 'three'
 import ForceGraph3D from '3d-force-graph'
 import type { ForceGraph3DInstance, Graph3DLinkObject, Graph3DNodeObject } from '3d-force-graph'
 import type { GraphEdgeDto, GraphNodeDto } from '@/services/types'
-import { NODE_TYPE_LABELS, canvasBackground, edgeActiveColor, edgeColor, nodeColor } from './graphTheme'
+import {
+  NODE_TYPE_LABELS,
+  canvasBackground,
+  edgeActiveColor,
+  edgeColor,
+  nodeColor,
+} from './graphTheme'
 
 /**
  * 3D 星链图谱（§6.3）：左键拖动旋转、滚轮缩放、节点拖动、
@@ -20,6 +26,8 @@ const props = defineProps<{
   edges: GraphEdgeDto[]
   selectedId: number | null
   centerId: number | null
+  readOnly?: boolean
+  highlightedEdgeIds?: number[]
 }>()
 
 const emit = defineEmits<{
@@ -73,14 +81,20 @@ function refreshHighlight() {
 function nodeObject3d(node: Graph3DNodeObject): object {
   const meta = (node as NodeObject).meta
   const focusId = props.selectedId ?? props.centerId
-  const dimmed = focusId !== null && meta.id !== focusId && !neighborIds.value.has(meta.id)
+  const onPath = props.edges.some(
+    (e) =>
+      props.highlightedEdgeIds?.includes(e.id) && (e.source === meta.id || e.target === meta.id),
+  )
+  const dimmed =
+    focusId !== null && meta.id !== focusId && !neighborIds.value.has(meta.id) && !onPath
   const radius = 3.2 + Math.min(meta.degree, 40) * 0.12 + (meta.id === props.centerId ? 1.6 : 0)
 
   const material = new THREE.MeshLambertMaterial({
     color: nodeColor(meta.type),
     transparent: true,
     opacity: dimmed ? 0.16 : meta.id === props.selectedId ? 1 : 0.92,
-    emissive: meta.id === props.selectedId || meta.id === props.centerId ? nodeColor(meta.type) : 0x000000,
+    emissive:
+      meta.id === props.selectedId || meta.id === props.centerId ? nodeColor(meta.type) : 0x000000,
     emissiveIntensity: meta.id === props.selectedId ? 0.9 : meta.id === props.centerId ? 0.45 : 0,
   })
   const mesh = new THREE.Mesh(new THREE.SphereGeometry(radius, 20, 20), material)
@@ -89,7 +103,11 @@ function nodeObject3d(node: Graph3DNodeObject): object {
 
 function linkColorFn(edge: Graph3DLinkObject): string {
   const focusId = props.selectedId ?? props.centerId
-  if (focusId !== null && (edge.source === focusId || edge.target === focusId)) {
+  if (
+    props.highlightedEdgeIds?.includes(edge.id as number) ||
+    (focusId !== null &&
+      (endpointId(edge.source) === focusId || endpointId(edge.target) === focusId))
+  ) {
     return edgeActiveColor()
   }
   return edgeColor()
@@ -98,7 +116,14 @@ function linkColorFn(edge: Graph3DLinkObject): string {
 function linkParticles(edge: Graph3DLinkObject): number {
   const focusId = props.selectedId ?? props.centerId
   // 方向粒子只出现在选中路径上（§6.3 禁止每条边高密度特效）
-  return focusId !== null && (edge.source === focusId || edge.target === focusId) ? 3 : 0
+  return props.highlightedEdgeIds?.includes(edge.id as number) ||
+    (focusId !== null &&
+      (endpointId(edge.source) === focusId || endpointId(edge.target) === focusId))
+    ? 3
+    : 0
+}
+function endpointId(value: Graph3DLinkObject['source']) {
+  return typeof value === 'object' && value !== null ? value.id : value
 }
 
 /**
@@ -125,7 +150,7 @@ function nodeLabelHtml(node: Graph3DNodeObject): string {
     <div style="max-width:260px;padding:8px 12px;border-radius:10px;background:rgba(255,255,255,.96);
       border:1px solid #e5e7eb;color:#1f2937;font-size:12px;line-height:1.6;box-shadow:0 4px 12px rgba(0,0,0,.08)">
       <div style="font-weight:600">${name}</div>
-      <div style="color:#6b7280">${safeTypeLabel} · ${escapeHtml(meta.degree)} 个直接关联</div>
+      <div style="color:#6b7280">${safeTypeLabel} · ${escapeHtml(meta.degree)} ${props.readOnly ? '个本子图内关联' : '个直接关联'}</div>
       ${definition ? `<div style="color:#9ca3af;margin-top:2px">${definition}…</div>` : ''}
     </div>`
 }
@@ -161,7 +186,11 @@ function focusCamera(node: Graph3DNodeObject, transitionMs = 450) {
   const z = node.z ?? 0
   const axisLength = Math.sqrt(x * x + y * y + z * z) || 1
   graph.cameraPosition(
-    { x: x + (x / axisLength) * distance, y: y + (y / axisLength) * distance, z: z + (z / axisLength) * distance },
+    {
+      x: x + (x / axisLength) * distance,
+      y: y + (y / axisLength) * distance,
+      z: z + (z / axisLength) * distance,
+    },
     { x, y, z },
     transitionMs,
   )
@@ -192,7 +221,7 @@ onMounted(() => {
         // 双击检测：两次快速点击同一节点 → 扩展下一层（§6.3）
         if (lastClick && lastClick.id === meta.id && now - lastClick.time < 320) {
           lastClick = null
-          emit('expand', meta.id)
+          if (!props.readOnly) emit('expand', meta.id)
           return
         }
         lastClick = { id: meta.id, time: now }
@@ -230,7 +259,7 @@ watch([() => props.nodes, () => props.edges], () => {
   updateGraphData()
 })
 
-watch([() => props.selectedId, () => props.centerId], () => {
+watch([() => props.selectedId, () => props.centerId, () => props.highlightedEdgeIds], () => {
   refreshHighlight()
   // 切换 2D/3D 或外部聚焦（如顶部搜索）时把摄像机对准当前中心节点；
   // 新节点可能尚未完成力布局，先挂起待引擎稳定后执行（§6.3 聚焦动画 300–600ms）

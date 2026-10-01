@@ -1,0 +1,45 @@
+{
+  "date": "2026-09-30",
+  "status": "controller_review_complete_for_06_dependency_sync",
+  "sourceRoot": "D:/知识图谱-worktrees/assistant-07-web-ui",
+  "sourceBranch": "codex/assistant-07-web-ui",
+  "sourceHead": "8544b19f89bbcf477b9b458be7f48117775ff621",
+  "targetRoot": "D:/知识图谱-worktrees/assistant-09-graph-ui",
+  "targetBranch": "codex/assistant-09-graph-ui",
+  "targetHead": "8544b19f89bbcf477b9b458be7f48117775ff621",
+  "normalization": "UTF-8 decoded; CRLF to LF; preserve terminal newline; no trim",
+  "sourceReportRawSha256": "fa3bf78ed722e6d1ee4191e222826baaa5b1cd2ab710777bd0856f37bac756e9",
+  "files": [
+    {
+      "path": "frontend/src/services/assistantApi.ts",
+      "targetPreimage": "absent",
+      "rawSha256": "b3e15646f44b2b99fc3611a1f04f56dbaf74c1dacd195b345921c76ab4fed683",
+      "normalizedSha256": "b3e15646f44b2b99fc3611a1f04f56dbaf74c1dacd195b345921c76ab4fed683",
+      "sourceAuthor": "07"
+    },
+    {
+      "path": "frontend/src/services/assistantTypes.ts",
+      "targetPreimage": "absent",
+      "rawSha256": "ece99c6e58e7773900059a5acc09786d45cf1a1819bc5a41219dedfb97303e9b",
+      "normalizedSha256": "ece99c6e58e7773900059a5acc09786d45cf1a1819bc5a41219dedfb97303e9b",
+      "sourceAuthor": "07"
+    },
+    {
+      "path": "frontend/src/features/assistant/responseValidation.ts",
+      "targetPreimage": "absent",
+      "rawSha256": "5a3c3f64a415eee5f111eb08df067431684b853e2050b7926997c4c231cb1dc7",
+      "normalizedSha256": "5a3c3f64a415eee5f111eb08df067431684b853e2050b7926997c4c231cb1dc7",
+      "sourceAuthor": "07"
+    }
+  ],
+  "readOnlyExistingDependency": {
+    "path": "frontend/src/services/http.ts",
+    "sourceAndTargetRawSha256": "cc396b9fe4ae4e8f457180181f91aff2b0c20cf6424bd610b8705b15a0e72468"
+  },
+  "sourceTestsExecutor": "07",
+  "sourceChecks": {"graphClientDefinitions": 27, "graphClientExecutions": 27, "passed": 27},
+  "controllerReviewer": "总控",
+  "merger": "06_pending_formal_dispatch",
+  "mainProjectSourceMergeAuthorized": false,
+  "databaseOrModelRunAuthorized": false
+}

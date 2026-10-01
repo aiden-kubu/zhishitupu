@@ -1,0 +1,30 @@
+{
+  "date": "2026-09-30",
+  "status": "controller_review_complete_for_06_graph_sync",
+  "sourceRoot": "D:/知识图谱-worktrees/assistant-09-graph-ui",
+  "sourceBranch": "codex/assistant-09-graph-ui",
+  "sourceHead": "8544b19f89bbcf477b9b458be7f48117775ff621",
+  "sourceReportRawSha256": "04de3137fb9992a851d153aca94909d955e65212d2de123fbec19542c8a1649c",
+  "targetRoot": "D:/知识图谱-worktrees/assistant-07-web-ui",
+  "targetBranch": "codex/assistant-07-web-ui",
+  "targetHead": "8544b19f89bbcf477b9b458be7f48117775ff621",
+  "files": [
+    {"path":"frontend/src/views/Graph/GraphView.vue","targetPreimageRawSha256":"18b29648205d17444a742f6b1597945ad8efd59abb2314e7ee3835df3bcb6871","sourceRawSha256":"fcb0a1c37bdf9e97d0324d018a0be63baaaa0f7b61c2d932ac772c051da6e330"},
+    {"path":"frontend/src/composables/useGraphWorkspace.ts","targetPreimageRawSha256":"167dcc21d6bfa72cf1f3f93e36429a313dda4734fd6ebe80a78cda4104ffe431","sourceRawSha256":"d0de3be3fcdc7d9f7293e657a39470332b03d314bc396edaf08d5a048d6790f6"},
+    {"path":"frontend/src/features/graph/GraphToolbar.vue","targetPreimageRawSha256":"180d89e4d196c42ed66144c7efb0770b17a45dc7abc27c1b1c8f58f0f6b73823","sourceRawSha256":"91703455b454e841f42a2fa80f67b035b277e5f1599744f772c2bf2674adac26"},
+    {"path":"frontend/src/features/graph/GraphCanvas2D.vue","targetPreimageRawSha256":"52390283420c4345a7c8d12500925174ac430cde8e7a1bd73c948d09777ac313","sourceRawSha256":"53899aab4bf0dc45ccd5ebdfc29ab27eb29a3e5c88cb9173f4c7dc6fabf389d1"},
+    {"path":"frontend/src/features/graph/GraphCanvas3D.vue","targetPreimageRawSha256":"ddd56b7171eed2b5d38a75902651726b69cd2798f64736e31010e78a91915b61","sourceRawSha256":"c6df0e109467ecb2a67e94a76f4f594b0dfbc43d7562816150f22361a5ac985f"},
+    {"path":"frontend/src/composables/useResearchGraph.ts","targetPreimage":"absent","sourceRawSha256":"5fbdf8bb92c10b1d9f763cba0cddc317ef3e56b23a16fbb7b95eccca04eeefa3"},
+    {"path":"frontend/src/features/graph/ResearchResultPanel.vue","targetPreimage":"absent","sourceRawSha256":"95baba79a7910998e048623867cc0d1759e444c3fc917d82601039be53c317ff"}
+  ],
+  "existingDependencies": [
+    {"path":"frontend/src/services/assistantApi.ts","rawSha256":"b3e15646f44b2b99fc3611a1f04f56dbaf74c1dacd195b345921c76ab4fed683"},
+    {"path":"frontend/src/services/assistantTypes.ts","rawSha256":"ece99c6e58e7773900059a5acc09786d45cf1a1819bc5a41219dedfb97303e9b"},
+    {"path":"frontend/src/features/assistant/responseValidation.ts","rawSha256":"5a3c3f64a415eee5f111eb08df067431684b853e2050b7926997c4c231cb1dc7"}
+  ],
+  "sourceAuthor":"09",
+  "sourceChecksExecutor":"09",
+  "controllerReviewer":"总控",
+  "mainProjectSourceMerge":false,
+  "databaseExecution":false
+}

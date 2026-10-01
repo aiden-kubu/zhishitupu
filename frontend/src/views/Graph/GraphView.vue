@@ -1,5 +1,18 @@
 <template>
-  <AdminLayout bare>
+  <component
+    :is="researchActive ? 'div' : AdminLayout"
+    bare
+    :class="researchActive ? 'flex h-dvh flex-col bg-white dark:bg-gray-900' : ''"
+  >
+    <header
+      v-if="researchActive"
+      class="flex shrink-0 items-center justify-between gap-4 border-b border-gray-200 p-4 text-gray-800 dark:border-gray-800 dark:text-white/90"
+    >
+      <h1 class="font-semibold">研究图谱 · 授权子图只读</h1>
+      <RouterLink :to="returnTo" class="text-sm text-brand-600 dark:text-brand-400"
+        >返回原成果</RouterLink
+      >
+    </header>
     <div class="flex min-h-0 flex-1 flex-col lg:flex-row">
       <!-- 中央图谱区 -->
       <section class="flex min-h-0 min-w-0 flex-1 flex-col">
@@ -7,13 +20,22 @@
           class="shrink-0 border-b border-gray-200 bg-white px-4 py-2.5 dark:border-gray-800 dark:bg-gray-900"
         >
           <GraphToolbar
+            :read-only="researchActive"
             :mode="mode"
             :panel-open="panelOpen"
             :render-mode="renderMode"
-            :node-count="subgraph?.nodes.length ?? 0"
-            :edge-count="subgraph?.edges.length ?? 0"
-            :truncated="subgraph?.truncated ?? false"
-            @update:mode="setMode"
+            :node-count="
+              researchActive ? (researchGraph?.nodes.length ?? 0) : (subgraph?.nodes.length ?? 0)
+            "
+            :edge-count="
+              researchActive ? (researchGraph?.edges.length ?? 0) : (subgraph?.edges.length ?? 0)
+            "
+            :truncated="
+              researchActive
+                ? (researchGraph?.coverage.truncated ?? false)
+                : (subgraph?.truncated ?? false)
+            "
+            @update:mode="workspace.setMode"
             @update:render-mode="setRenderMode"
             @reset="resetView"
             @toggle-panel="openAiPanel"
@@ -43,21 +65,49 @@
 
           <!-- 空态 -->
           <div
+            v-else-if="researchActive && researchGraph && !research.canvas.value"
+            class="absolute inset-0 z-10 flex items-center justify-center px-6"
+          >
+            <Alert
+              variant="warning"
+              title="当前渲染限制"
+              message="结果含超过 JavaScript 安全整数范围的 ID，当前 2D/3D 画布无法精确表示。右侧保留完整字符串 ID、方向、路径及来源；未截断或近似转换。"
+            />
+          </div>
+          <div
             v-else-if="!subgraph || subgraph.nodes.length === 0"
             class="absolute inset-0 z-10 flex flex-col items-center justify-center gap-2 px-6 text-center"
           >
-            <span class="mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-brand-50 text-brand-500 dark:bg-brand-500/10"><LayoutDashboardIcon class="h-8 w-8" /></span>
-            <p class="text-xl font-semibold text-gray-800 dark:text-white/90">从第一份资料开始，建立知识连接</p>
-            <p class="mt-1 max-w-sm text-sm leading-6 text-gray-500 dark:text-gray-400">通过顶部「导入资料」上传内容；识别中或未审核入库的知识暂不显示在图谱中。</p>
-            <router-link
-              to="/processing"
-              class="mt-2 text-sm font-medium text-brand-500 hover:text-brand-600"
-            >
-              查看处理进度 →
-            </router-link>
+            <template v-if="researchActive">
+              <p class="text-lg font-semibold text-gray-800 dark:text-white/90">本次研究结果为空</p>
+              <p class="text-sm text-gray-500 dark:text-gray-400">
+                仅表示本次授权观察未命中，请查看范围与覆盖缺口。
+              </p>
+            </template>
+            <template v-else>
+              <span
+                class="mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-brand-50 text-brand-500 dark:bg-brand-500/10"
+                ><LayoutDashboardIcon class="h-8 w-8"
+              /></span>
+              <p class="text-xl font-semibold text-gray-800 dark:text-white/90">
+                从第一份资料开始，建立知识连接
+              </p>
+              <p class="mt-1 max-w-sm text-sm leading-6 text-gray-500 dark:text-gray-400">
+                通过顶部「导入资料」上传内容；识别中或未审核入库的知识暂不显示在图谱中。
+              </p>
+              <router-link
+                to="/processing"
+                class="mt-2 text-sm font-medium text-brand-500 hover:text-brand-600"
+              >
+                查看处理进度 →
+              </router-link>
+            </template>
           </div>
 
           <GraphCanvas2D
+            :key="canvasKey"
+            :read-only="researchActive"
+            :highlighted-edge-ids="highlightedEdgeIds"
             v-else-if="renderMode === '2d'"
             :nodes="subgraph.nodes"
             :edges="subgraph.edges"
@@ -67,6 +117,9 @@
             @expand="expandNode"
           />
           <GraphCanvas3D
+            :key="canvasKey"
+            :read-only="researchActive"
+            :highlighted-edge-ids="highlightedEdgeIds"
             v-else
             :nodes="subgraph.nodes"
             :edges="subgraph.edges"
@@ -79,7 +132,7 @@
 
           <!-- 选中/中心节点统计（§6.2.4） -->
           <div
-            v-if="centerNode"
+            v-if="!researchActive && centerNode"
             class="absolute bottom-4 start-4 z-10 rounded-2xl border border-gray-200 bg-white/95 px-4 py-3 shadow-theme-md backdrop-blur dark:border-gray-800 dark:bg-gray-900/95"
           >
             <p class="text-sm font-semibold text-gray-800 dark:text-white/90">
@@ -97,7 +150,7 @@
 
       <!-- 右侧 AI 面板（桌面常驻可折叠，<1024px 抽屉，§5.3） -->
       <aside
-        v-if="panelOpen"
+        v-if="!researchActive && panelOpen"
         class="hidden min-h-0 shrink-0 border-s border-gray-200 bg-white lg:flex lg:w-[320px] xl:w-[360px] 2xl:w-[380px] dark:border-gray-800 dark:bg-gray-900"
       >
         <AiChatPanel
@@ -109,8 +162,11 @@
 
       <!-- 移动端 AI 抽屉 -->
       <Teleport to="body">
-        <div v-if="mobilePanelOpen" class="fixed inset-0 z-99999 flex lg:hidden">
-          <div class="absolute inset-0 bg-gray-400/50 dark:bg-gray-900/60" @click="mobilePanelOpen = false"></div>
+        <div v-if="!researchActive && mobilePanelOpen" class="fixed inset-0 z-99999 flex lg:hidden">
+          <div
+            class="absolute inset-0 bg-gray-400/50 dark:bg-gray-900/60"
+            @click="mobilePanelOpen = false"
+          ></div>
           <aside
             class="relative ms-auto h-full w-[88%] max-w-[400px] bg-white shadow-theme-xl dark:bg-gray-900"
           >
@@ -122,9 +178,28 @@
           </aside>
         </div>
       </Teleport>
+      <ResearchResultPanel
+        v-if="researchActive"
+        :graph="researchGraph"
+        :selected-node-id="research.selectedNodeId.value"
+        :selected-edge-id="research.selectedEdgeId.value"
+        :selected-path="research.selectedPath.value"
+        :only-path="research.onlyPath.value"
+        :return-to="returnTo"
+        :reread="research.reread.value"
+        :reread-error="research.rereadError.value"
+        :rereading="research.rereading.value"
+        @select-node="research.selectNode"
+        @select-edge="research.selectEdge"
+        @locate-path="research.locatePath"
+        @update:only-path="research.onlyPath.value = $event"
+        @close-detail="research.clearSelection"
+        @reread="research.readSource"
+      />
     </div>
 
     <NodeDetailDrawer
+      v-if="!researchActive"
       :node-id="detailNodeId"
       @close="detailNodeId = null"
       @deleted="onNodeDeleted"
@@ -138,12 +213,16 @@
       :message="notice3d"
       class="fixed bottom-4 end-4 z-99999 max-w-sm"
     />
-  </AdminLayout>
+  </component>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
-function openAiPanel() { if (window.innerWidth >= 1024) panelOpen.value = true; else mobilePanelOpen.value = true }
+import { computed, ref, watch } from 'vue'
+function openAiPanel() {
+  if (researchActive.value) return
+  if (window.innerWidth >= 1024) panelOpen.value = true
+  else mobilePanelOpen.value = true
+}
 import { LayoutDashboardIcon } from '@/icons'
 import AdminLayout from '@/components/layout/AdminLayout.vue'
 import Alert from '@/components/ui/Alert.vue'
@@ -154,32 +233,75 @@ import GraphCanvas3D from '@/features/graph/GraphCanvas3D.vue'
 import NodeDetailDrawer from '@/features/graph/NodeDetailDrawer.vue'
 import AiChatPanel from '@/features/ai-chat/AiChatPanel.vue'
 import { useGraphWorkspace } from '@/composables/useGraphWorkspace'
+import { canvasId, useResearchGraph } from '@/composables/useResearchGraph'
+import ResearchResultPanel from '@/features/graph/ResearchResultPanel.vue'
+import { useImportModal } from '@/composables/useImportModal'
 
-const {
-  mode,
-  renderMode,
-  subgraph,
-  loading,
-  error,
-  selectedNodeId,
-  centerNode,
-  contextNode,
-  directCount,
-  extendedCount,
-  selectNode,
-  expandNode,
-  setMode,
-  setRenderMode,
-  resetView,
-  applyRouteQuery,
-} = useGraphWorkspace()
+const research = useResearchGraph()
+const { active: researchActive, graph: researchGraph, returnTo } = research
+const workspace = useGraphWorkspace(computed(() => !researchActive.value))
+const { mode, renderMode, centerNode, contextNode, directCount, extendedCount, setRenderMode } =
+  workspace
+const subgraph = computed(() =>
+  researchActive.value ? research.canvas.value : workspace.subgraph.value,
+)
+const loading = computed(() =>
+  researchActive.value ? research.loading.value : workspace.loading.value,
+)
+const error = computed(() => (researchActive.value ? research.error.value : workspace.error.value))
+const selectedNodeId = computed(() =>
+  researchActive.value
+    ? research.selectedNodeId.value
+      ? canvasId(research.selectedNodeId.value)
+      : null
+    : workspace.selectedNodeId.value,
+)
+const highlightedEdgeIds = computed(() =>
+  research.pathIds.value.map(canvasId).filter((id): id is number => id !== null),
+)
+const viewGeneration = ref(0)
+const canvasKey = computed(() => `${researchActive.value}:${viewGeneration.value}`)
+function selectNode(id: number | null) {
+  if (researchActive.value) research.selectNode(id === null ? null : String(id))
+  else workspace.selectNode(id)
+}
+function expandNode(id: number) {
+  if (!researchActive.value) workspace.expandNode(id)
+}
+function applyRouteQuery() {
+  return researchActive.value ? research.refresh() : workspace.applyRouteQuery()
+}
+function resetView() {
+  if (!researchActive.value) {
+    workspace.resetView()
+    return
+  }
+  research.clearSelection()
+  research.selectedPath.value = null
+  research.onlyPath.value = false
+  viewGeneration.value++
+}
 
 const panelOpen = ref(false) // 默认折叠：打开即为空对话（2026-09-14 无历史决策）
 const mobilePanelOpen = ref(false)
 const detailNodeId = ref<number | null>(null)
 const notice3d = ref<string | null>(null)
+const { close: closeImport } = useImportModal()
+watch(
+  researchActive,
+  (active) => {
+    if (active) {
+      panelOpen.value = false
+      mobilePanelOpen.value = false
+      detailNodeId.value = null
+      closeImport()
+    }
+  },
+  { immediate: true, flush: 'sync' },
+)
 
 function openDetailForContext() {
+  if (researchActive.value) return
   detailNodeId.value = contextNode.value?.id ?? null
   mobilePanelOpen.value = false
 }

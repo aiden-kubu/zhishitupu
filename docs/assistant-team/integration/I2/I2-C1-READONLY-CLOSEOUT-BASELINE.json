@@ -1,0 +1,385 @@
+{
+  "kind": "I2 C1 proposed read-only closeout batch baseline; no execution authorized by this document alone",
+  "preparedOn": "2026-09-30",
+  "preparedBy": "controller",
+  "authorization": {
+    "state": "pending_project_owner_approval",
+    "executor": "original desktop 06 integration-test",
+    "receiptRoundRequired": false,
+    "postApproval": "necessary gates pass then directly execute",
+    "domainChangesAllowed": false,
+    "testsRunDuringPreparation": false,
+    "databaseAccessDuringPreparation": false
+  },
+  "worktree": {
+    "path": "D:/知识图谱-worktrees/assistant-06-integration-test",
+    "branch": "codex/assistant-06-integration-test",
+    "head": "86d1e1fcff6b7b492faec3d499837a42246df320",
+    "mavenWorkdir": "D:/知识图谱/backend-java"
+  },
+  "model": {
+    "required": "gpt-6.1-sol / high",
+    "ownerConfirmationDate": "2026-09-30",
+    "ownerConfirmationScope": "original 01 through 06 desktop tasks",
+    "independentToolReadback": "actual model unverified; actual reasoning effort unverified"
+  },
+  "hashing": {
+    "raw": "SHA-256 of original bytes; all evidence raw hash and byte counts must match",
+    "normalized": "UTF-8 decode, replace CRLF by LF, preserve final newline, no trim; retain raw and normalized checks separately"
+  },
+  "inputFiles": [
+    {
+      "path": "D:/知识图谱/docs/assistant-team/integration/I2/I2-R4-OWNER-ACCEPTANCE-20260930.md",
+      "bytes": 4198,
+      "rawSha256": "c9092231f6f3667d04c97ac3669b2177d5616c5879720f5264817809be62ed7a",
+      "normalizedSha256": "c9092231f6f3667d04c97ac3669b2177d5616c5879720f5264817809be62ed7a"
+    },
+    {
+      "path": "D:/知识图谱/docs/assistant-team/governance/20260930-sol61-high-and-r4-acceptance/GOVERNANCE-OVERLAY.json",
+      "bytes": 6645,
+      "rawSha256": "209a52cd97e27cc554eaddcfa163f846757d9878cb55bc9752e76ff328ffc1be",
+      "normalizedSha256": "209a52cd97e27cc554eaddcfa163f846757d9878cb55bc9752e76ff328ffc1be"
+    },
+    {
+      "path": "D:/知识图谱/backend-java/src/main/java/com/knowledgegraph/assistant/contract/AssistantContracts.java",
+      "bytes": 11275,
+      "rawSha256": "9ad6cc545c5306e4a875280537428f1c6d9426e175bc7264189ef3893c6bee19",
+      "normalizedSha256": "9ad6cc545c5306e4a875280537428f1c6d9426e175bc7264189ef3893c6bee19"
+    },
+    {
+      "path": "D:/知识图谱/backend-java/src/main/java/com/knowledgegraph/assistant/research/JdbcResearchReadRepository.java",
+      "bytes": 15599,
+      "rawSha256": "7107873c220e44e5eb3e9638e98c70606503d6504fb6a99080e11e84f9c10c26",
+      "normalizedSha256": "7107873c220e44e5eb3e9638e98c70606503d6504fb6a99080e11e84f9c10c26"
+    },
+    {
+      "path": "D:/知识图谱/backend-java/src/main/java/com/knowledgegraph/assistant/research/ResearchAgentToolProvider.java",
+      "bytes": 29869,
+      "rawSha256": "65c53ea2ec0238a126126131896bdb4e6fe48727c1976fc6acc27cea548cf219",
+      "normalizedSha256": "65c53ea2ec0238a126126131896bdb4e6fe48727c1976fc6acc27cea548cf219"
+    },
+    {
+      "path": "D:/知识图谱/backend-java/src/main/java/com/knowledgegraph/assistant/quality/JdbcQualityReadRepository.java",
+      "bytes": 15057,
+      "rawSha256": "6a17642e64bbfdb5f0d3bffa13ad9cde4ddbe6384e3b2d5f1a2e592a4db0d740",
+      "normalizedSha256": "6a17642e64bbfdb5f0d3bffa13ad9cde4ddbe6384e3b2d5f1a2e592a4db0d740"
+    },
+    {
+      "path": "D:/知识图谱/backend-java/src/main/java/com/knowledgegraph/assistant/quality/QualityAgentToolProvider.java",
+      "bytes": 29970,
+      "rawSha256": "541ffd4f031cdc695a82dcaa29a3c91bf96733fa7b6ff32e3abc4e538a83cbb2",
+      "normalizedSha256": "541ffd4f031cdc695a82dcaa29a3c91bf96733fa7b6ff32e3abc4e538a83cbb2"
+    },
+    {
+      "path": "D:/知识图谱/backend-java/src/main/java/com/knowledgegraph/assistant/quality/QualityEvidenceVerifier.java",
+      "bytes": 3165,
+      "rawSha256": "fb081b24933d14f293c0dc54c55d23286ac462e1587ccf907f9b2d12457d4f27",
+      "normalizedSha256": "fb081b24933d14f293c0dc54c55d23286ac462e1587ccf907f9b2d12457d4f27"
+    },
+    {
+      "path": "D:/知识图谱/backend-java/src/main/java/com/knowledgegraph/assistant/source/JdbcSourceLocator.java",
+      "bytes": 4858,
+      "rawSha256": "0e2cec0cbcdbc28f45cf504955df1c22c4bd64ebd45197fa6c419fa9491dda53",
+      "normalizedSha256": "0e2cec0cbcdbc28f45cf504955df1c22c4bd64ebd45197fa6c419fa9491dda53"
+    },
+    {
+      "path": "D:/知识图谱/backend-java/src/main/java/com/knowledgegraph/assistant/learning/JdbcLearningReadRepository.java",
+      "bytes": 14341,
+      "rawSha256": "cbbec3f35630758847c9c0a31da798a0ed624b7b8c7f8f9f29c5f5a2b87c377b",
+      "normalizedSha256": "cbbec3f35630758847c9c0a31da798a0ed624b7b8c7f8f9f29c5f5a2b87c377b"
+    },
+    {
+      "path": "D:/知识图谱/backend-java/src/main/java/com/knowledgegraph/assistant/assessment/AssessmentAgentToolProvider.java",
+      "bytes": 21343,
+      "rawSha256": "b2a3acaa2db1acc1010b042a2fa559bb34e14650667f524759a87f62fb17cd9b",
+      "normalizedSha256": "b2a3acaa2db1acc1010b042a2fa559bb34e14650667f524759a87f62fb17cd9b"
+    },
+    {
+      "path": "D:/知识图谱/backend-java/src/test/java/com/knowledgegraph/assistant/i2/I2MySqlSupport.java",
+      "bytes": 6217,
+      "rawSha256": "eb518e6c7b884595bd868764f3686e5f002bea07266fcaa9851f4df31200f70c",
+      "normalizedSha256": "eb518e6c7b884595bd868764f3686e5f002bea07266fcaa9851f4df31200f70c"
+    },
+    {
+      "path": "D:/知识图谱/backend-java/src/test/java/com/knowledgegraph/assistant/i2/I2JdbcBaselineTest.java",
+      "bytes": 13857,
+      "rawSha256": "747f23576d633708403c0dfaf1e133dcb0ea74d90509603f245598a1c7b49b56",
+      "normalizedSha256": "747f23576d633708403c0dfaf1e133dcb0ea74d90509603f245598a1c7b49b56"
+    },
+    {
+      "path": "D:/知识图谱/backend-java/src/test/java/com/knowledgegraph/assistant/i2/I2FaultVariantTest.java",
+      "bytes": 3201,
+      "rawSha256": "952a6a9b8a5167fcd1da8996a670630d5a417722e7b3d060a637829aba7d28f3",
+      "normalizedSha256": "952a6a9b8a5167fcd1da8996a670630d5a417722e7b3d060a637829aba7d28f3"
+    },
+    {
+      "path": "D:/知识图谱/backend-java/src/test/java/com/knowledgegraph/assistant/i2/I2ResearchEdgeVerificationTest.java",
+      "bytes": 25929,
+      "rawSha256": "51075d7ccc7e29ba280a3f37415893615f1be41106194438abb598e1e97dae0e",
+      "normalizedSha256": "51075d7ccc7e29ba280a3f37415893615f1be41106194438abb598e1e97dae0e"
+    },
+    {
+      "path": "D:/知识图谱/docs/assistant-team/integration/I2/I2-FIXTURE.sql",
+      "bytes": 26385,
+      "rawSha256": "f2401d9bbe1833d8610d3c65080f17f845a5528b800fed10a8fa0b54dc523be1",
+      "normalizedSha256": "f2401d9bbe1833d8610d3c65080f17f845a5528b800fed10a8fa0b54dc523be1"
+    },
+    {
+      "path": "D:/知识图谱/docs/assistant-team/integration/I2/R1/R1-FIXTURE.sql",
+      "bytes": 1868,
+      "rawSha256": "d2a72adcb368908cbdafa2ef51de42a47a2bf92dcc85086ef41d0c31a40ad8f2",
+      "normalizedSha256": "d2a72adcb368908cbdafa2ef51de42a47a2bf92dcc85086ef41d0c31a40ad8f2"
+    },
+    {
+      "path": "D:/知识图谱/docs/assistant-team/integration/I2/Invoke-I2Scale.ps1",
+      "bytes": 3462,
+      "rawSha256": "9ec393bba42642013d8c183462ce748c8d69ba8a2f1310f59e00a1fc5188cece",
+      "normalizedSha256": "9ec393bba42642013d8c183462ce748c8d69ba8a2f1310f59e00a1fc5188cece"
+    },
+    {
+      "path": "D:/知识图谱/docs/assistant-team/integration/I2/I2-ENVIRONMENT.json",
+      "bytes": 22024,
+      "rawSha256": "62782469fd7c87d69cde1c6c9c178337c7e0d015b6d8ad529d1b8d409a4ce530",
+      "normalizedSha256": "51132d75944648d9c92434a9a79a3a07520f7ed5b9dd6395c168799dfc731932"
+    },
+    {
+      "path": "D:/知识图谱-worktrees/assistant-06-integration-test/docs/assistant-team/integration/I2/R4-VERIFY/evidence/R4Verify-20260930T104031320/DELIVERY-INDEX.json",
+      "bytes": 117574,
+      "rawSha256": "10b5334bb9290c40006fae2397cb795e808deeeffd6a0c2249c25fcf1dfa39a6",
+      "normalizedSha256": "2523707e1baecc97d1948e69c2759e7c34f36591ffe6b354efc41cdfd249dcb6"
+    },
+    {
+      "path": "D:/知识图谱-worktrees/assistant-06-integration-test/docs/assistant-team/integration/I2/R4-VERIFY/evidence/R4Verify-20260930T104031320/PROTECTION.json",
+      "bytes": 176028,
+      "rawSha256": "1836cd22fec39b02a0c65db89f79c51f2f0583c2f41b5964c4c3352746dbb142",
+      "normalizedSha256": "8ca168a0f79967d22cd96c8743d7600879a5ea0cd15264d58cc0a9393f1a6a81"
+    },
+    {
+      "path": "D:/知识图谱-worktrees/assistant-06-integration-test/docs/assistant-team/integration/I2/R4-VERIFY/evidence/R4Verify-20260930T104031320/I2-R4VERIFY_WINDOW-AFTER.json",
+      "bytes": 8901,
+      "rawSha256": "d48730dd066300e30e029e7701252ec10afd36e18b86c0fe2e7b3f31715f0e74",
+      "normalizedSha256": "1f6a5c6a1f53e30239c927b76ac2be5da69740a90e9f5677e3fc8c31ff8684dc"
+    },
+    {
+      "path": "D:/知识图谱-worktrees/assistant-06-integration-test/docs/assistant-team/integration/I2/R4-VERIFY/evidence/R4Verify-20260930T104031320/RESULT-PRESERVATION.json",
+      "bytes": 29311,
+      "rawSha256": "00923ac050af4c8ea35abdd7fb0d3b03d9ff1cb346e8a2bc1c0a37b3d785f3b7",
+      "normalizedSha256": "8a8270b1074d982c0f3e573c3d5ca4e42c121688167bd8feb303ec3772407cf5"
+    },
+    {
+      "path": "D:/知识图谱-worktrees/assistant-06-integration-test/docs/assistant-team/reports/06-integration-I2-R4-verification.md",
+      "bytes": 13547,
+      "rawSha256": "e77e79952be67a2e4ed77bb9021ec3bca2ef744548631af2fd76ef5cd6bddd87",
+      "normalizedSha256": "e77e79952be67a2e4ed77bb9021ec3bca2ef744548631af2fd76ef5cd6bddd87"
+    },
+    {
+      "path": "D:/知识图谱-worktrees/assistant-06-integration-test/docs/assistant-team/integration/I2/R4-VERIFY/Invoke-R4Verification.ps1",
+      "bytes": 37708,
+      "rawSha256": "06aaddcdb10af9ddb663d82017b59911d82c8ca62ee2f2c4dc5c47f80cec0f35",
+      "normalizedSha256": "06aaddcdb10af9ddb663d82017b59911d82c8ca62ee2f2c4dc5c47f80cec0f35"
+    },
+    {
+      "path": "D:/知识图谱-worktrees/assistant-06-integration-test/docs/assistant-team/integration/I2/R4-VERIFY/Verify-R4VerificationBaseline.ps1",
+      "bytes": 7630,
+      "rawSha256": "e11ffa37c0fc87df390d098e8a2253e5beddc45d92f4de3599a2de58e99a6fb2",
+      "normalizedSha256": "e11ffa37c0fc87df390d098e8a2253e5beddc45d92f4de3599a2de58e99a6fb2"
+    },
+    {
+      "path": "D:/知识图谱-worktrees/assistant-06-integration-test/docs/assistant-team/integration/I2/R4-VERIFY/R4-VERIFY-OVERLAY.json",
+      "bytes": 3230,
+      "rawSha256": "20aedca97275caf0d3dc3020accd022065869c34c75932ac3e9aebd5e8a986cd",
+      "normalizedSha256": "4c6c7fe782be7da3fe4a98f77eb1d7d7b587f53a6f99010f4e6d59f27160640d"
+    },
+    {
+      "path": "D:/知识图谱/docs/assistant-team/integration/I2/I2-C1-READONLY-CLOSEOUT-TASK.md",
+      "bytes": 18238,
+      "rawSha256": "8c31b4247ed1f78d146a2ba655483359adab28d8819aa22f4722cd5a366debf6",
+      "normalizedSha256": "8c31b4247ed1f78d146a2ba655483359adab28d8819aa22f4722cd5a366debf6"
+    },
+    {
+      "path": "D:/知识图谱/docs/assistant-team/integration/I2/I2-C1-READONLY-CLOSEOUT-INSTRUCTION.md",
+      "bytes": 2562,
+      "rawSha256": "5ff83b8d57f7c9ccc621dbddd92db8f6e9ff8bb73100dec9cbb46c8491f3f80f",
+      "normalizedSha256": "5ff83b8d57f7c9ccc621dbddd92db8f6e9ff8bb73100dec9cbb46c8491f3f80f"
+    }
+  ],
+  "protectionBridge": {
+    "originalProtectedCount": 817,
+    "originalProtection": "D:/知识图谱-worktrees/assistant-06-integration-test/docs/assistant-team/integration/I2/R4-VERIFY/evidence/R4Verify-20260930T104031320/PROTECTION.json",
+    "orderedLayers": [
+      "unchanged R4 PROTECTION.json",
+      "D:/知识图谱/docs/assistant-team/governance/20260930-sol61-high-and-r4-acceptance/GOVERNANCE-OVERLAY.json",
+      "this batch task, instruction, and this baseline (manifest cannot contain its own digest)",
+      "only approved new C1 integration implementations and run outputs"
+    ],
+    "exactMainProjectAdditionsBeforeExecution": [
+      "D:/知识图谱/docs/assistant-team/governance/20260930-sol61-high-and-r4-acceptance/06-INTEGRATION-TEST-CHARTER.md.before.json",
+      "D:/知识图谱/docs/assistant-team/governance/20260930-sol61-high-and-r4-acceptance/AGENTS.md.before.json",
+      "D:/知识图谱/docs/assistant-team/governance/20260930-sol61-high-and-r4-acceptance/CONTROLLER-RULES.md.before.json",
+      "D:/知识图谱/docs/assistant-team/governance/20260930-sol61-high-and-r4-acceptance/COORDINATION.md.before.json",
+      "D:/知识图谱/docs/assistant-team/governance/20260930-sol61-high-and-r4-acceptance/LONG-TERM-RULES.md.before.json",
+      "D:/知识图谱/docs/assistant-team/governance/20260930-sol61-high-and-r4-acceptance/GOVERNANCE-OVERLAY.json",
+      "D:/知识图谱/docs/assistant-team/integration/I2/I2-R4-OWNER-ACCEPTANCE-20260930.md",
+      "D:/知识图谱/docs/assistant-team/integration/I2/I2-C1-READONLY-CLOSEOUT-TASK.md",
+      "D:/知识图谱/docs/assistant-team/integration/I2/I2-C1-READONLY-CLOSEOUT-INSTRUCTION.md",
+      "D:/知识图谱/docs/assistant-team/integration/I2/I2-C1-READONLY-CLOSEOUT-BASELINE.json"
+    ],
+    "modifications": "Only five governance files at after hashes explicitly recorded by the approved governance overlay; do not change them during C1",
+    "unknownChangePolicy": "stop and report, do not disable guards or accept a directory-wide exemption"
+  },
+  "expectedAbsentAtPreparation": [
+    "D:/知识图谱/backend-java/src/test/java/com/knowledgegraph/assistant/i2/I2ReadOnlyCloseoutTest.java",
+    "D:/知识图谱/backend-java/src/test/java/com/knowledgegraph/assistant/i2/I2ReadOnlyCloseoutConnectionTest.java",
+    "D:/知识图谱/backend-java/src/test/java/com/knowledgegraph/assistant/i2/I2ReadOnlyCloseoutHarnessTest.java",
+    "D:/知识图谱-worktrees/assistant-06-integration-test/docs/assistant-team/integration/I2/C1-READONLY",
+    "D:/知识图谱-worktrees/assistant-06-integration-test/docs/assistant-team/reports/06-integration-I2-C1-readonly.md"
+  ],
+  "allowedNewFiles": [
+    "D:/知识图谱/backend-java/src/test/java/com/knowledgegraph/assistant/i2/I2ReadOnlyCloseoutTest.java",
+    "D:/知识图谱/backend-java/src/test/java/com/knowledgegraph/assistant/i2/I2ReadOnlyCloseoutConnectionTest.java",
+    "D:/知识图谱/backend-java/src/test/java/com/knowledgegraph/assistant/i2/I2ReadOnlyCloseoutHarnessTest.java",
+    "D:/知识图谱-worktrees/assistant-06-integration-test/docs/assistant-team/integration/I2/C1-READONLY/Invoke-C1ReadOnly.ps1",
+    "D:/知识图谱-worktrees/assistant-06-integration-test/docs/assistant-team/integration/I2/C1-READONLY/Verify-C1Baseline.ps1",
+    "D:/知识图谱-worktrees/assistant-06-integration-test/docs/assistant-team/integration/I2/C1-READONLY/C1-OVERLAY.json",
+    "D:/知识图谱-worktrees/assistant-06-integration-test/docs/assistant-team/reports/06-integration-I2-C1-readonly.md"
+  ],
+  "allowedOutputRoots": [
+    "D:/知识图谱-worktrees/assistant-06-integration-test/docs/assistant-team/integration/I2/C1-READONLY/evidence/<unique-runId>",
+    "D:/知识图谱-worktrees/assistant-06-integration-test/docs/assistant-team/integration/I2/C1-READONLY/archive",
+    "D:/知识图谱/backend-java/target",
+    "D:/知识图谱-i2-env/restricted-evidence/I2-C1/<unique-runId>"
+  ],
+  "environment": {
+    "version": "8.4.11",
+    "uuid": "8c6cfcb3-ba49-11f1-bf64-005056c00001",
+    "host": "127.0.0.1",
+    "port": 33078,
+    "database": "kg_assistant_i2_20260927_r01",
+    "physicalRoot": "D:/知识图谱-i2-env",
+    "junction": "D:/kg-i2-env",
+    "reader": "kg_i2_reader@127.0.0.1",
+    "loaderMustRemainLocked": true,
+    "scale": {
+      "libraryId": 7901,
+      "nodes": 10000,
+      "edges": 30000,
+      "documents": 2000,
+      "chunks": 20000
+    },
+    "budget": {
+      "connectMs": 3000,
+      "socketMs": 4000,
+      "statementSeconds": 2,
+      "sessionMs": 1500,
+      "groupP95Ms": 3000
+    },
+    "resetOrDataWritesAllowed": false
+  },
+  "scopeDefinitions": {
+    "S1000": {
+      "libraryIds": [
+        7901
+      ],
+      "documentInclusiveRanges": [
+        [
+          300000,
+          300999
+        ]
+      ],
+      "additionalDocumentIds": [],
+      "documentCount": 1000,
+      "nodeIds": []
+    },
+    "M1000": {
+      "libraryIds": [
+        7101,
+        7901
+      ],
+      "documentInclusiveRanges": [
+        [
+          300000,
+          300997
+        ]
+      ],
+      "additionalDocumentIds": [
+        7201,
+        7202
+      ],
+      "documentCount": 1000,
+      "nodeIds": []
+    },
+    "AB": {
+      "libraryIds": [
+        7101
+      ],
+      "documentIds": [
+        7201,
+        7202
+      ],
+      "nodeIds": []
+    },
+    "LIB": {
+      "libraryIds": [
+        7101
+      ],
+      "documentIds": [],
+      "nodeIds": []
+    },
+    "maxIdsPerDimension": 1000
+  },
+  "executionEnvelope": {
+    "functionalCaseIds": [
+      "C01",
+      "C02",
+      "C03",
+      "C04",
+      "C05",
+      "C06",
+      "C07",
+      "C08",
+      "C09",
+      "C10",
+      "C11",
+      "C12",
+      "C13"
+    ],
+    "planCases": [
+      "C01",
+      "C02",
+      "C03"
+    ],
+    "maxExplainCalls": 3,
+    "explainMode": "FORMAT=JSON; never ANALYZE",
+    "newPerformance": {
+      "id": "P01",
+      "scope": "M1000",
+      "requiredCorrectness": [
+        "C02",
+        "C03"
+      ],
+      "singleSamples": 20,
+      "concurrentWorkers": 4,
+      "concurrentTotalSamples": 20,
+      "totalSamples": 40,
+      "repositoryCallsPerSample": 2,
+      "totalRepositoryCallsIfComplete": 80,
+      "p95Method": "sort each group of 20 elapsed values ascending, use index 18 (19th item)"
+    },
+    "postShutdownConnectionAttempts": 1,
+    "businessSqlForConnectionFailure": 0,
+    "previousOffline203Executions": 0,
+    "previousMatrix14Executions": 0,
+    "previousPerformance40Executions": 0,
+    "previousFaultVariantExecutions": 0,
+    "writeDenialProbeExecutions": 0,
+    "retries": "No automatic real retries; offline harness revisions retain all red and green rounds",
+    "unchangedHistoricalV14ToV16MustRemainUnmodified": true
+  },
+  "preservedGeneralLog": {
+    "minimumPrefixBytes": 13712701,
+    "prefixRawSha256": "2542260dcc038c870cdeb613b954aa73ac01ab3b9ad157c47e02beeb550f17a6",
+    "restrictedLastCopy": "D:/知识图谱-i2-env/restricted-evidence/I2-R4-VERIFY/R4Verify-20260930T104031320/mysql-general.after.log",
+    "contentMustNotBePrintedOrPublished": true
+  },
+  "deferred": "Task section 8; no data mutations, loader access, concurrent writes, reset/destruction, additional diagnosis, index/migration/contract/privilege changes, I3 or W2"
+}

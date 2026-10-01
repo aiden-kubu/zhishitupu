@@ -1,0 +1,105 @@
+{
+  "date": "2026-09-30",
+  "executor": "原07",
+  "root": "D:/知识图谱-worktrees/assistant-07-web-ui",
+  "branch": "codex/assistant-07-web-ui",
+  "head": "8544b19f89bbcf477b9b458be7f48117775ff621",
+  "normalization": "UTF-8; CRLF to LF; preserve trailing newline; no trim",
+  "files": [
+    {
+      "path": "frontend/src/views/Assistant/AssistantView.vue",
+      "rawSha256": "2e1575112b2e6b4f354af128b0cfd937b34fda9699b6b8eb7cdbe0a549a47ef1",
+      "bytes": 26230,
+      "mainRawSha256": "2e1575112b2e6b4f354af128b0cfd937b34fda9699b6b8eb7cdbe0a549a47ef1"
+    },
+    {
+      "path": "frontend/src/features/assistant/ArtifactPanel.vue",
+      "rawSha256": "7617850b36c665edec80baf9956be2b58d89dfcf7ee6da690aa5ea5e7e760f92",
+      "bytes": 11106,
+      "mainRawSha256": "7617850b36c665edec80baf9956be2b58d89dfcf7ee6da690aa5ea5e7e760f92"
+    },
+    {
+      "path": "frontend/src/features/assistant/EvidenceDrawer.vue",
+      "rawSha256": "1648f0f2a80d21f340fab2ff40bbc122c1288aebba60d01ad0c797f6cd8dcbb4",
+      "bytes": 8711,
+      "mainRawSha256": "1648f0f2a80d21f340fab2ff40bbc122c1288aebba60d01ad0c797f6cd8dcbb4"
+    },
+    {
+      "path": "frontend/src/features/assistant/presentation.ts",
+      "rawSha256": "97082ab1925ac92833da9f90e0673035a7ae599c3ae2d2bcbedb80332fad9d08",
+      "bytes": 2857,
+      "mainRawSha256": "97082ab1925ac92833da9f90e0673035a7ae599c3ae2d2bcbedb80332fad9d08"
+    }
+  ],
+  "readonlyDependencies": [
+    {
+      "path": "frontend/src/features/assistant/useAssistantWorkbench.ts",
+      "rawSha256": "438687160130abf6d879f842d1811e305f1717ad1c33c0a1ca9ca502ea7e23dc",
+      "normalizedSha256": "438687160130abf6d879f842d1811e305f1717ad1c33c0a1ca9ca502ea7e23dc",
+      "mainRawSha256": "438687160130abf6d879f842d1811e305f1717ad1c33c0a1ca9ca502ea7e23dc"
+    },
+    {
+      "path": "frontend/src/services/assistantApi.ts",
+      "rawSha256": "b3e15646f44b2b99fc3611a1f04f56dbaf74c1dacd195b345921c76ab4fed683",
+      "normalizedSha256": "b3e15646f44b2b99fc3611a1f04f56dbaf74c1dacd195b345921c76ab4fed683",
+      "mainRawSha256": "b3e15646f44b2b99fc3611a1f04f56dbaf74c1dacd195b345921c76ab4fed683"
+    },
+    {
+      "path": "frontend/src/services/assistantTypes.ts",
+      "rawSha256": "ece99c6e58e7773900059a5acc09786d45cf1a1819bc5a41219dedfb97303e9b",
+      "normalizedSha256": "ece99c6e58e7773900059a5acc09786d45cf1a1819bc5a41219dedfb97303e9b",
+      "mainRawSha256": "ece99c6e58e7773900059a5acc09786d45cf1a1819bc5a41219dedfb97303e9b"
+    },
+    {
+      "path": "frontend/src/features/assistant/responseValidation.ts",
+      "rawSha256": "5a3c3f64a415eee5f111eb08df067431684b853e2050b7926997c4c231cb1dc7",
+      "normalizedSha256": "5a3c3f64a415eee5f111eb08df067431684b853e2050b7926997c4c231cb1dc7",
+      "mainRawSha256": "5a3c3f64a415eee5f111eb08df067431684b853e2050b7926997c4c231cb1dc7"
+    },
+    {
+      "path": "frontend/src/components/ui/Modal.vue",
+      "rawSha256": "5b56eec402f90f729afe67a33e9ebe045a114ed6943db45a856e1ec3ac622c72",
+      "normalizedSha256": "5b56eec402f90f729afe67a33e9ebe045a114ed6943db45a856e1ec3ac622c72",
+      "mainRawSha256": "5b56eec402f90f729afe67a33e9ebe045a114ed6943db45a856e1ec3ac622c72"
+    },
+    {
+      "path": "frontend/src/components/ui/Button.vue",
+      "rawSha256": "d9db07a9ce8c311776b8924938520f8f715142887492674803f643699c0ee34c",
+      "normalizedSha256": "d9db07a9ce8c311776b8924938520f8f715142887492674803f643699c0ee34c",
+      "mainRawSha256": "d9db07a9ce8c311776b8924938520f8f715142887492674803f643699c0ee34c"
+    },
+    {
+      "path": "frontend/src/router/index.ts",
+      "rawSha256": "9f6f565ebb1a7011f9fadfe0cca5507facc9ec345b96a5193ddc70151a5eae86",
+      "normalizedSha256": "9f6f565ebb1a7011f9fadfe0cca5507facc9ec345b96a5193ddc70151a5eae86",
+      "mainRawSha256": "3106f32a0228dcba2e98b1a3f6a2664abbd8d836a6ffbf74747569977b0e10ae"
+    },
+    {
+      "path": "frontend/package.json",
+      "rawSha256": "6c4e1131279875f15a055b0c3202beef8dbb5272d5aad9ffe1ed6639d389b31c",
+      "normalizedSha256": "6c4e1131279875f15a055b0c3202beef8dbb5272d5aad9ffe1ed6639d389b31c",
+      "mainRawSha256": "6c4e1131279875f15a055b0c3202beef8dbb5272d5aad9ffe1ed6639d389b31c"
+    },
+    {
+      "path": "frontend/package-lock.json",
+      "rawSha256": "19597f0b5766c8e5f4a55f60010715ea94959350e5f52efe2ac51d9a49a054c2",
+      "normalizedSha256": "19597f0b5766c8e5f4a55f60010715ea94959350e5f52efe2ac51d9a49a054c2",
+      "mainRawSha256": "19597f0b5766c8e5f4a55f60010715ea94959350e5f52efe2ac51d9a49a054c2"
+    },
+    {
+      "path": "frontend/vite.config.ts",
+      "rawSha256": "fbc0040d61761d1ea1fdb6eac89a0de103e9af6c74fdfccc56f64f760dec0b17",
+      "normalizedSha256": "fbc0040d61761d1ea1fdb6eac89a0de103e9af6c74fdfccc56f64f760dec0b17",
+      "mainRawSha256": "fbc0040d61761d1ea1fdb6eac89a0de103e9af6c74fdfccc56f64f760dec0b17"
+    },
+    {
+      "path": "frontend/tsconfig.app.json",
+      "rawSha256": "328e91d10faeb450e6b739756eb84f18493fea56a11923d8072c0b4d53d1ff6d",
+      "normalizedSha256": "328e91d10faeb450e6b739756eb84f18493fea56a11923d8072c0b4d53d1ff6d",
+      "mainRawSha256": "328e91d10faeb450e6b739756eb84f18493fea56a11923d8072c0b4d53d1ff6d"
+    }
+  ],
+  "fixturePath": "D:/知识图谱-worktrees/assistant-06-integration-test/docs/assistant-team/website/06-main-integration/Website-20260930T224635764/http-fixtures/samples.json",
+  "fixtureRawSha256": "7e99f07ea974b65bc894db0b65acad62f5249506c0ede95df894a406ef8e2639",
+  "acceptedPriorStage": "负责人本轮确认39文件汇集和离线验证；不代表真实环境验收"
+}

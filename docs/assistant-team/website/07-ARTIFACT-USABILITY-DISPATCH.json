@@ -1,0 +1,30 @@
+{
+  "dispatchedAtUtc": "2026-10-01 10:54:21 UTC",
+  "executor": "原07｜网站前端",
+  "originalDesktopChat": "智能助手 07｜网站前端",
+  "root": "D:/知识图谱-worktrees/assistant-07-web-ui",
+  "branch": "codex/assistant-07-web-ui",
+  "head": "8544b19f89bbcf477b9b458be7f48117775ff621",
+  "authorization": "负责人在成果审查与原07最小补修建议后回复继续",
+  "task": "07-ARTIFACT-USABILITY-TASK.md",
+  "taskRawSha256": "56b672b4f7776c8497fcb9f4c9e53ef0bbe161a09f359af416a54c74738c1e4f",
+  "baseline": "07-ARTIFACT-USABILITY-BASELINE.json",
+  "sentOnce": true,
+  "instructionRendered": true,
+  "original07RunningAtDispatch": true,
+  "desktopModelButtonObserved": "GPT-6.1 Sol 高",
+  "requiredModel": "gpt-6.1-sol / high",
+  "actualModel": "未独立核实",
+  "actualReasoningEffort": "未独立核实",
+  "allowedSourceFiles": [
+    "frontend/src/views/Assistant/AssistantView.vue",
+    "frontend/src/features/assistant/ArtifactPanel.vue",
+    "frontend/src/features/assistant/EvidenceDrawer.vue",
+    "frontend/src/features/assistant/presentation.ts"
+  ],
+  "allowedVerification": "一次受影响类型检查及一次构建；不跑浏览器/回归套件",
+  "mainProjectMerge": false,
+  "database": false,
+  "deployment": false,
+  "status": "delivery_reviewed_not_merged_or_served"
+}

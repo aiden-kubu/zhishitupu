@@ -1,0 +1,49 @@
+{
+  "date": "2026-10-01",
+  "executor": "原08｜只读宿主与 API",
+  "scope": "隔离只读启动接线与离线验证",
+  "authorization": {
+    "userMessage": "开始吧",
+    "source": "本项目总控对话"
+  },
+  "task": "D:/知识图谱/docs/assistant-team/website/08-READONLY-LAUNCHER-TASK.md",
+  "baseline": "D:/知识图谱/docs/assistant-team/website/08-READONLY-LAUNCHER-BASELINE.json",
+  "observation": {
+    "target": "智能助手 08｜只读宿主与 API",
+    "renderedFormalMessages": 1,
+    "modelButton": [
+      "GPT-6.1 Sol 高"
+    ],
+    "stopButtons": 1,
+    "mode": "read_only_confirmation_no_resend",
+    "observedAt": "2026-10-01T01:47:42.2917219+08:00",
+    "recentVisibleText": [
+      "我会读取本轮任务单、30 项依赖基线和真实联调计划，核对九个新目标路径后直接开发隔离验收入口。现有宿主保持只读；本轮仅用合成配置与证据做离线验证，完成后在本聊天回报并停止待命。",
+      " research.read_source 的真实错误分开映射：SOURCE_NOT_FOUND_OR_OUT_OF_SCOPE→404 NOT_FOUND；SOURCE_UNAVAILABLE→409 SOURCE_UNAVAILABLE；SOURCE_CHANGED_OR_UNAVAILABLE→503 同名；STALE_SOURCE→409 同名。读中 hash 变化继续使用领域 STALE_SOURCE，不在宿主重判。覆盖起读缺失、起读不可用、读中 metadata 消失/失效、chunk 消失、起读/读中陈旧七种情况，均无 data/正文及回退。原请求/执行中撤权、hash 请求不符、伪造指针、跨运行检查继续通过。",
+      " HostJson.parse 仅用于 HTTP UTF-8 字节边界，保留64KiB/4KiB、严格 JSON/深度约束；新增 internal 按 Java String.length 的原核心字符上限解析可信任务/ToolResult/Artifact，转换失败为500 INTERNAL_ERROR，不再错误表示客户端 INVALID_ARGUMENT。所有宿主内部相关调用改到该方法，原32000/16000上限不扩大。真实领域 provider/内存 Runtime 中文元数据回归中 ToolResult≤32000字符但>32000字节、Artifact≤16000字符但>16000字节；完整链及成果 HTTP投影通过。另验证恰32000字符中文 ToolResult可解析、超过核心上限继续拒绝、内部非对象JSON报500，中文HTTP超字节上限仍413。",
+      " 四项未接入能力为 unavailable：learning_preview/assessment_preview原因 NOT_IN_STAGE1_TEMPLATE，formal_assessment原因 FORMAL_SCORING_UNAVAILABLE，real_model原因 REAL_MODEL_NOT_CONNECTED。formalAvailable=false、模型调用0，未接入变成 unavailable 不代表启用。已接读取能力的 host或database开关关闭为 disabled；缺reader/身份/接线为 unavailable。三种关闭/缺接线状态另有回归，默认关闭/模型配置true零构造连接等原隔离检查保留。",
+      " Selection 保存经HTTP校验的不可变 documentOrder，Scope仍使用原集合；预检与计划编号/排列使用该列表，不从Set推断。A/B及B/A对调实际任务链编号与排列，两条链真实直接输入/成果保留。Runtime.parallelism恢复1，测试读取实际 worker pool确认1；IO槽位2和其余预算/内存/窗口均不变。原A/B部分与失败阻断回归继续通过，未改核心调度。"
+    ]
+  },
+  "dispatch": {
+    "sendInvocations": 1,
+    "renderedFormalMessages": 1,
+    "childAcknowledgementObserved": true,
+    "childRunningObserved": true,
+    "followupResends": 0,
+    "note": "首次派发命令在Send和观察后输出PS对象时出错；随后只读核对已渲染唯一正式指令、原08执行回应及Stop按钮1，未重新发送。"
+  },
+  "controllerWork": "准备任务和前像，向原08可视桌面会话发正式指令；未实现源码或运行测试",
+  "readerCredentialsRead": false,
+  "databaseConnected": false,
+  "realHostStarted": false,
+  "modelConnected": false,
+  "deployed": false,
+  "model": {
+    "required": "gpt-6.1-sol / high",
+    "desktopButton": "GPT-6.1 Sol 高",
+    "backendVerification": "实际模型未核实；实际推理强度未核实"
+  },
+  "otherTasksDispatched": false,
+  "realEnvironment06Authorized": false
+}

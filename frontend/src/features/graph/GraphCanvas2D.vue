@@ -10,6 +10,19 @@
       @pointerup="onPointerUp"
       @pointerleave="onPointerUp"
     >
+      <defs v-if="readOnly">
+        <marker
+          :id="arrowId"
+          viewBox="0 0 10 10"
+          refX="9"
+          refY="5"
+          markerWidth="7"
+          markerHeight="7"
+          orient="auto-start-reverse"
+        >
+          <path d="M 0 0 L 10 5 L 0 10 z" class="fill-brand-500 dark:fill-brand-400" />
+        </marker>
+      </defs>
       <g :transform="`translate(${transform.x},${transform.y}) scale(${transform.k})`">
         <!-- 边：标签只在选中/悬停相关边上出现（§6.3） -->
         <g>
@@ -19,6 +32,8 @@
               :y1="edge.y1"
               :x2="edge.x2"
               :y2="edge.y2"
+              :data-edge-id="readOnly ? edge.id : undefined"
+              :marker-end="readOnly ? `url(#${arrowId})` : undefined"
               :class="
                 edge.active
                   ? 'stroke-brand-400 dark:stroke-brand-400'
@@ -50,7 +65,8 @@
             :transform="`translate(${node.x},${node.y})`"
             class="cursor-pointer"
             @pointerdown.stop="onNodePointerDown(node, $event)"
-            @dblclick.stop.prevent="emit('expand', node.id)"
+            @dblclick.stop.prevent="!readOnly && emit('expand', node.id)"
+            :data-node-id="readOnly ? node.id : undefined"
             @pointerenter="hoveredId = node.id"
             @pointerleave="hoveredId = null"
           >
@@ -99,8 +115,8 @@
         {{ hoveredNode.name }}
       </p>
       <p class="mt-0.5 text-xs text-gray-500 dark:text-gray-400">
-        {{ NODE_TYPE_LABELS[hoveredNode.type] ?? hoveredNode.type }} ·
-        {{ hoveredNode.degree }} 个直接关联
+        {{ NODE_TYPE_LABELS[hoveredNode.type] ?? hoveredNode.type }} · {{ hoveredNode.degree }}
+        {{ readOnly ? '个本子图内关联' : '个直接关联' }}
       </p>
       <p
         v-if="hoveredNode.definition"
@@ -113,7 +129,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, onBeforeUnmount, onMounted, ref, watch } from 'vue'
+import { computed, onBeforeUnmount, onMounted, ref, useId, watch } from 'vue'
 import type { GraphEdgeDto, GraphNodeDto } from '@/services/types'
 import { NODE_TYPE_LABELS, nodeColor } from './graphTheme'
 
@@ -152,7 +168,18 @@ const props = defineProps<{
   edges: GraphEdgeDto[]
   selectedId: number | null
   centerId: number | null
+  readOnly?: boolean
+  highlightedEdgeIds?: number[]
 }>()
+const arrowId = `research-arrow-${useId()}`
+const pathNodeIds = computed(
+  () =>
+    new Set(
+      props.edges
+        .filter((e) => props.highlightedEdgeIds?.includes(e.id))
+        .flatMap((e) => [e.source, e.target]),
+    ),
+)
 
 const emit = defineEmits<{
   (e: 'select', nodeId: number | null): void
@@ -225,7 +252,11 @@ const renderedNodes = computed(() => {
     boxes.push(box)
   }
   return positions.value.map((node) => {
-    const dimmed = focusId !== null && node.id !== focusId && !neighborIds.value.has(node.id)
+    const dimmed =
+      focusId !== null &&
+      node.id !== focusId &&
+      !neighborIds.value.has(node.id) &&
+      !pathNodeIds.value.has(node.id)
     return { ...node, dimmed, showLabel: labelIds.has(node.id) }
   })
 })
@@ -238,7 +269,13 @@ const renderedEdges = computed<RenderedEdge[]>(() => {
     const source = posById.value.get(edge.source)
     const target = posById.value.get(edge.target)
     if (!source || !target) return []
-    const active = focusId !== null && (edge.source === focusId || edge.target === focusId)
+    const active =
+      !!props.highlightedEdgeIds?.includes(edge.id) ||
+      (focusId !== null && (edge.source === focusId || edge.target === focusId))
+    const dx = target.x - source.x,
+      dy = target.y - source.y
+    const distance = Math.hypot(dx, dy) || 1
+    const inset = props.readOnly ? target.radius + 4 : 0
     const labelX = (source.x + target.x) / 2
     const labelY = (source.y + target.y) / 2 - 7
     const labelWidth = estimateTextWidth(edge.relation, 11) + 10
@@ -260,8 +297,8 @@ const renderedEdges = computed<RenderedEdge[]>(() => {
         relation: edge.relation,
         x1: source.x,
         y1: source.y,
-        x2: target.x,
-        y2: target.y,
+        x2: target.x - (dx / distance) * inset,
+        y2: target.y - (dy / distance) * inset,
         active,
         showLabel,
         labelX,

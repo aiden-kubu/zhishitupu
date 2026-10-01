@@ -1,0 +1,39 @@
+{
+  "date": "2026-10-01",
+  "userAuthorization": "开始吧我看看",
+  "executor": "original06",
+  "sourceBase": "D:/知识图谱-worktrees/assistant-06-integration-test/docs/assistant-team/website/06-live-readonly/WebsiteLive-20261001T151755471",
+  "reusedHelpers": [
+    {
+      "relative": "database-guard-04.ps1",
+      "rawSha256": "6253ab502d46ba26303ba1a7fd83b8ad03eb890ba9ae72f318f28ce3d955b799",
+      "bytes": 21938
+    },
+    {
+      "relative": "ReaderIdentityProbe.java",
+      "rawSha256": "71f8f6a2538837f3d896f107b34383e21775c93210a9ee245d26faee39f3732e",
+      "bytes": 4214
+    },
+    {
+      "relative": "human-startup/launch-and-guard.py",
+      "rawSha256": "f79adb94733d95f78ca8f2a09a704edb62dd14e0bc3c7e8539a869f32f980cc5",
+      "bytes": 4592
+    }
+  ],
+  "newPublicDir": "manual-reopen-20261001",
+  "oldPendingAndReviewedEvidence": "Keep immutable; expired identity-04 never reused to start",
+  "mainSourceBaseline": "D:/知识图谱/docs/assistant-team/website/06-WEBSITE-LIVE-MANIFEST.json",
+  "expectedScope": {
+    "libraryIds": [
+      "7101"
+    ],
+    "documentIds": [
+      "7201",
+      "7202"
+    ],
+    "nodeIds": []
+  },
+  "humanWindowMinutes": 30,
+  "regressionRequested": false,
+  "scriptedBusinessTestsRequested": false
+}

@@ -1,0 +1,3894 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "08 Read-only host HTTP candidate contract",
+    "version": "08-stage1-v1",
+    "description": "2026-09-30 design only; production API not implemented. Preserves ApiResponse envelope."
+  },
+  "x-status": "design_pending_controller_review",
+  "x-base-commit": "8544b19f89bbcf477b9b458be7f48117775ff621",
+  "x-access-boundary": "Proposed isolated loopback acceptance host, single shared server owner/grant; no production authentication scheme selected, no multi-user isolation claim. Unapproved access context fails closed.",
+  "x-error-mapping": [
+    {
+      "httpStatus": 400,
+      "code": "INVALID_ARGUMENT"
+    },
+    {
+      "httpStatus": 401,
+      "code": "ACCESS_CONTEXT_UNAVAILABLE"
+    },
+    {
+      "httpStatus": 403,
+      "code": "SCOPE_NOT_ALLOWED"
+    },
+    {
+      "httpStatus": 404,
+      "code": "NOT_FOUND"
+    },
+    {
+      "httpStatus": 410,
+      "code": "RUN_EXPIRED"
+    },
+    {
+      "httpStatus": 409,
+      "code": "SELECTION_CHANGED"
+    },
+    {
+      "httpStatus": 409,
+      "code": "STALE_SOURCE"
+    },
+    {
+      "httpStatus": 409,
+      "code": "SOURCE_UNAVAILABLE"
+    },
+    {
+      "httpStatus": 409,
+      "code": "GRAPH_NOT_AVAILABLE"
+    },
+    {
+      "httpStatus": 429,
+      "code": "RUN_CAPACITY_EXCEEDED"
+    },
+    {
+      "httpStatus": 503,
+      "code": "ASSISTANT_DISABLED"
+    },
+    {
+      "httpStatus": 503,
+      "code": "CAPABILITY_UNAVAILABLE"
+    },
+    {
+      "httpStatus": 503,
+      "code": "READ_IDENTITY_UNVERIFIED"
+    },
+    {
+      "httpStatus": 503,
+      "code": "SOURCE_CHANGED_OR_UNAVAILABLE"
+    },
+    {
+      "httpStatus": 504,
+      "code": "DEADLINE_EXCEEDED"
+    },
+    {
+      "httpStatus": 500,
+      "code": "INTERNAL_ERROR"
+    },
+    {
+      "httpStatus": 405,
+      "code": "METHOD_NOT_ALLOWED"
+    },
+    {
+      "httpStatus": 413,
+      "code": "PAYLOAD_TOO_LARGE"
+    },
+    {
+      "httpStatus": 415,
+      "code": "UNSUPPORTED_MEDIA_TYPE"
+    }
+  ],
+  "x-current-ui-fallback": "404/NETWORK_ERROR/BAD_RESPONSE before host implementation means not connected; no fabricated success data.",
+  "paths": {
+    "/api/assistant/capabilities": {
+      "get": {
+        "operationId": "getCapabilities",
+        "summary": "Local capability readiness without database/model probes",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Success; proposed API only",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CapabilitiesEnvelope"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid argument",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "No approved access context",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Scope not allowed",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found or ownership mismatch",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Disabled, unavailable or unverified read identity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Sanitized host error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "405": {
+            "description": "Existing framework error envelope",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "Existing framework error envelope",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "Existing framework error envelope",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/assistant/templates": {
+      "get": {
+        "operationId": "listTemplates",
+        "summary": "One fixed deterministic template",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Success; proposed API only",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TemplateListEnvelope"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid argument",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "No approved access context",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Scope not allowed",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found or ownership mismatch",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Disabled, unavailable or unverified read identity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Sanitized host error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "405": {
+            "description": "Existing framework error envelope",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "Existing framework error envelope",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "Existing framework error envelope",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/assistant/scope/libraries": {
+      "get": {
+        "operationId": "listAllowedLibraries",
+        "summary": "Libraries allowed by current server grant",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 1000,
+              "default": 1
+            }
+          },
+          {
+            "in": "query",
+            "name": "pageSize",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 20,
+              "default": 20
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success; proposed API only",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LibraryPageEnvelope"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid argument",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "No approved access context",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Scope not allowed",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found or ownership mismatch",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Disabled, unavailable or unverified read identity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Sanitized host error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "405": {
+            "description": "Existing framework error envelope",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "Existing framework error envelope",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "Existing framework error envelope",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Independent read concurrency/admission budget full",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "Read query deadline exceeded",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/assistant/scope/documents": {
+      "get": {
+        "operationId": "listAllowedDocuments",
+        "summary": "Documents in allowed selected libraries",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "libraryIds",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/LongId"
+              },
+              "maxItems": 1000,
+              "minItems": 1,
+              "uniqueItems": true
+            }
+          },
+          {
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 1000,
+              "default": 1
+            }
+          },
+          {
+            "in": "query",
+            "name": "pageSize",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 20,
+              "default": 20
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success; proposed API only",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DocumentPageEnvelope"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid argument",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "No approved access context",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Scope not allowed",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found or ownership mismatch",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Disabled, unavailable or unverified read identity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Sanitized host error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "405": {
+            "description": "Existing framework error envelope",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "Existing framework error envelope",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "Existing framework error envelope",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Independent read concurrency/admission budget full",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "Read query deadline exceeded",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/assistant/runs": {
+      "post": {
+        "operationId": "createRun",
+        "summary": "Create an in-memory read-only server DAG",
+        "parameters": [],
+        "responses": {
+          "202": {
+            "description": "Success; proposed API only",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RunEnvelope"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid argument",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "No approved access context",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Scope not allowed",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found or ownership mismatch",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Disabled, unavailable or unverified read identity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Sanitized host error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Selection changed",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Run or memory capacity exceeded",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "405": {
+            "description": "Existing framework error envelope",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "Existing framework error envelope",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "Existing framework error envelope",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateRun"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/assistant/runs/{runId}": {
+      "get": {
+        "operationId": "getRun",
+        "summary": "Poll memory snapshot",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "runId",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success; proposed API only",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RunEnvelope"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid argument",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "No approved access context",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Scope not allowed",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found or ownership mismatch",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Disabled, unavailable or unverified read identity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Sanitized host error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "410": {
+            "description": "Expired in this host; unknown ID after restart is404",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "405": {
+            "description": "Existing framework error envelope",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "Existing framework error envelope",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "Existing framework error envelope",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/assistant/runs/{runId}/cancel": {
+      "post": {
+        "operationId": "cancelRun",
+        "summary": "Idempotent cooperative cancel; no domain job cancellation",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "runId",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success; proposed API only",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CancelEnvelope"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid argument",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "No approved access context",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Scope not allowed",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found or ownership mismatch",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Disabled, unavailable or unverified read identity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Sanitized host error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "410": {
+            "description": "Expired run",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "405": {
+            "description": "Existing framework error envelope",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "Existing framework error envelope",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "Existing framework error envelope",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/assistant/runs/{runId}/artifacts/{artifactId}": {
+      "get": {
+        "operationId": "getArtifact",
+        "summary": "Read original artifact in current run",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "runId",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/Id"
+            }
+          },
+          {
+            "in": "path",
+            "name": "artifactId",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success; proposed API only",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ArtifactEnvelope"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid argument",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "No approved access context",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Scope not allowed",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found or ownership mismatch",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Disabled, unavailable or unverified read identity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Sanitized host error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "410": {
+            "description": "Expired run",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "405": {
+            "description": "Existing framework error envelope",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "Existing framework error envelope",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "Existing framework error envelope",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/assistant/runs/{runId}/artifacts/{artifactId}/source-reread": {
+      "post": {
+        "operationId": "rereadArtifactSource",
+        "summary": "SELECT-only exact source reread from host-held pointer",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "runId",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/Id"
+            }
+          },
+          {
+            "in": "path",
+            "name": "artifactId",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success; proposed API only",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RereadEnvelope"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid argument",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "No approved access context",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Scope not allowed",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found or ownership mismatch",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Disabled, unavailable or unverified read identity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Sanitized host error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Stale or unavailable source; no body",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "410": {
+            "description": "Expired run",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "Reread deadline exceeded",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "405": {
+            "description": "Existing framework error envelope",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "Existing framework error envelope",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "Existing framework error envelope",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Independent read concurrency/admission budget full",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RereadRequest"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/assistant/runs/{runId}/artifacts/{artifactId}/graph": {
+      "get": {
+        "operationId": "getArtifactGraph",
+        "summary": "Stored bounded research subgraph; no legacy neighbor fallback",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "runId",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/Id"
+            }
+          },
+          {
+            "in": "path",
+            "name": "artifactId",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success; proposed API only",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GraphEnvelope"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid argument",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "No approved access context",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Scope not allowed",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found or ownership mismatch",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Disabled, unavailable or unverified read identity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Sanitized host error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Graph observation unavailable or wrong artifact kind",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "410": {
+            "description": "Expired run",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "405": {
+            "description": "Existing framework error envelope",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "Existing framework error envelope",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "Existing framework error envelope",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "LongId": {
+        "type": "string",
+        "pattern": "^[1-9][0-9]{0,18}$",
+        "maxLength": 19,
+        "description": "Canonical decimal string; server also checks <=9223372036854775807. Numeric JSON is rejected."
+      },
+      "LongValue": {
+        "type": "string",
+        "pattern": "^(0|[1-9][0-9]{0,18})$",
+        "maxLength": 19,
+        "description": "Nonnegative Java long count/size/degree; server checks <=9223372036854775807."
+      },
+      "Id": {
+        "type": "string",
+        "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$",
+        "maxLength": 128
+      },
+      "Hash": {
+        "type": "string",
+        "pattern": "^[0-9a-fA-F]{64}$"
+      },
+      "Scope": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "mode": {
+            "type": "string",
+            "enum": [
+              "project",
+              "selected"
+            ]
+          },
+          "libraryIds": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/LongId"
+            },
+            "maxItems": 1000,
+            "minItems": 0,
+            "uniqueItems": true
+          },
+          "documentIds": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/LongId"
+            },
+            "maxItems": 1000,
+            "minItems": 0,
+            "uniqueItems": true
+          },
+          "nodeIds": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/LongId"
+            },
+            "maxItems": 1000,
+            "minItems": 0,
+            "uniqueItems": true
+          }
+        },
+        "required": [
+          "mode",
+          "libraryIds",
+          "documentIds",
+          "nodeIds"
+        ],
+        "description": "Dimensions are conjunctive. project iff arrays all empty; selected requires a nonempty dimension. Empty dimension is unconstrained. Server-issued only; stage1 uses selected libraries/documents and no node scope."
+      },
+      "Usage": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "decisionCalls": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 256
+          },
+          "toolCalls": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 256
+          },
+          "modelCalls": {
+            "const": 0
+          },
+          "accountingMode": {
+            "const": "runtime_model_counter_as_decision_calls"
+          }
+        },
+        "required": [
+          "decisionCalls",
+          "toolCalls",
+          "modelCalls",
+          "accountingMode"
+        ]
+      },
+      "Coverage": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "completeCoverage": {
+            "type": "boolean"
+          },
+          "truncated": {
+            "type": "boolean"
+          },
+          "coverageKind": {
+            "type": "string",
+            "maxLength": 100
+          },
+          "uncoveredDocumentIds": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/LongId"
+            },
+            "maxItems": 1000,
+            "minItems": 0
+          },
+          "limitations": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "maxLength": 1000
+            },
+            "maxItems": 64,
+            "minItems": 0
+          }
+        },
+        "required": [
+          "completeCoverage",
+          "truncated",
+          "coverageKind",
+          "uncoveredDocumentIds",
+          "limitations"
+        ]
+      },
+      "Capability": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "enum": [
+              "ingestion_read",
+              "research_graph",
+              "citation_check",
+              "source_reread",
+              "learning_preview",
+              "assessment_preview",
+              "formal_assessment",
+              "real_model"
+            ]
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "available",
+              "disabled",
+              "unavailable"
+            ]
+          },
+          "reasonCodes": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "maxLength": 100
+            },
+            "maxItems": 16,
+            "minItems": 0
+          },
+          "readOnly": {
+            "const": true
+          },
+          "formalAvailable": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "id",
+          "status",
+          "reasonCodes",
+          "readOnly",
+          "formalAvailable"
+        ]
+      },
+      "Capabilities": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "contractVersion": {
+            "const": "08-stage1-v1"
+          },
+          "hostInstanceId": {
+            "$ref": "#/components/schemas/Id"
+          },
+          "observedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "executionMode": {
+            "const": "deterministic_tools"
+          },
+          "accessMode": {
+            "const": "isolated_local_single_owner"
+          },
+          "multiUserIsolation": {
+            "const": false
+          },
+          "databaseIdentityVerified": {
+            "type": "boolean"
+          },
+          "capabilities": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Capability"
+            },
+            "maxItems": 8,
+            "minItems": 8
+          },
+          "persistence": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "mode": {
+                "const": "memory"
+              },
+              "recoverableAfterRestart": {
+                "const": false
+              },
+              "recoverableAfterRefresh": {
+                "const": false
+              },
+              "terminalRetentionSeconds": {
+                "const": 1800
+              },
+              "maxRetainedRuns": {
+                "const": 32
+              },
+              "maxActiveRuns": {
+                "const": 8
+              }
+            },
+            "required": [
+              "mode",
+              "recoverableAfterRestart",
+              "recoverableAfterRefresh",
+              "terminalRetentionSeconds",
+              "maxRetainedRuns",
+              "maxActiveRuns"
+            ]
+          }
+        },
+        "required": [
+          "contractVersion",
+          "hostInstanceId",
+          "observedAt",
+          "executionMode",
+          "accessMode",
+          "multiUserIsolation",
+          "databaseIdentityVerified",
+          "capabilities",
+          "persistence"
+        ]
+      },
+      "Template": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "templateId": {
+            "const": "source_graph_citation_v1"
+          },
+          "label": {
+            "type": "string",
+            "maxLength": 100
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "available",
+              "disabled",
+              "unavailable"
+            ]
+          },
+          "reasonCodes": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "maxLength": 100
+            },
+            "maxItems": 16,
+            "minItems": 0
+          },
+          "minDocuments": {
+            "const": 1
+          },
+          "maxDocuments": {
+            "const": 2
+          },
+          "queryMinLength": {
+            "const": 2
+          },
+          "queryMaxLength": {
+            "const": 200
+          },
+          "goalPolicy": {
+            "const": "display_only_no_plan_change"
+          },
+          "executionMode": {
+            "const": "deterministic_tools"
+          },
+          "stages": {
+            "type": "array",
+            "minItems": 4,
+            "maxItems": 4,
+            "prefixItems": [
+              {
+                "const": "document_metadata"
+              },
+              {
+                "const": "source_read"
+              },
+              {
+                "const": "directed_graph"
+              },
+              {
+                "const": "citation_check"
+              }
+            ],
+            "items": false
+          }
+        },
+        "required": [
+          "templateId",
+          "label",
+          "status",
+          "reasonCodes",
+          "minDocuments",
+          "maxDocuments",
+          "queryMinLength",
+          "queryMaxLength",
+          "goalPolicy",
+          "executionMode",
+          "stages"
+        ]
+      },
+      "TemplateList": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Template"
+            },
+            "maxItems": 1,
+            "minItems": 1
+          },
+          "observedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "items",
+          "observedAt"
+        ]
+      },
+      "LibraryOption": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "libraryId": {
+            "$ref": "#/components/schemas/LongId"
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 400
+          },
+          "status": {
+            "type": "string",
+            "maxLength": 80
+          },
+          "selectable": {
+            "type": "boolean"
+          },
+          "reasonCodes": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "maxLength": 100
+            },
+            "maxItems": 16,
+            "minItems": 0
+          }
+        },
+        "required": [
+          "libraryId",
+          "name",
+          "status",
+          "selectable",
+          "reasonCodes"
+        ]
+      },
+      "DocumentOption": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "documentId": {
+            "$ref": "#/components/schemas/LongId"
+          },
+          "title": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 400
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "originalName": {
+            "type": "string",
+            "maxLength": 400
+          },
+          "visibleLibraryIds": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/LongId"
+            },
+            "maxItems": 1000,
+            "minItems": 0
+          },
+          "processingStatus": {
+            "type": "string",
+            "maxLength": 80
+          },
+          "lifecycleStatus": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 80
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "selectable": {
+            "type": "boolean"
+          },
+          "reasonCodes": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "maxLength": 100
+            },
+            "maxItems": 16,
+            "minItems": 0
+          }
+        },
+        "required": [
+          "documentId",
+          "title",
+          "originalName",
+          "visibleLibraryIds",
+          "processingStatus",
+          "lifecycleStatus",
+          "selectable",
+          "reasonCodes"
+        ]
+      },
+      "LibraryPage": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/LibraryOption"
+            },
+            "maxItems": 20,
+            "minItems": 0
+          },
+          "total": {
+            "$ref": "#/components/schemas/LongValue"
+          },
+          "page": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 1000
+          },
+          "pageSize": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 20
+          },
+          "hasMore": {
+            "type": "boolean"
+          },
+          "authorizedScope": {
+            "$ref": "#/components/schemas/Scope"
+          },
+          "observedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "coverage": {
+            "$ref": "#/components/schemas/Coverage"
+          }
+        },
+        "required": [
+          "items",
+          "total",
+          "page",
+          "pageSize",
+          "hasMore",
+          "authorizedScope",
+          "observedAt",
+          "coverage"
+        ]
+      },
+      "DocumentPage": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DocumentOption"
+            },
+            "maxItems": 20,
+            "minItems": 0
+          },
+          "total": {
+            "$ref": "#/components/schemas/LongValue"
+          },
+          "page": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 1000
+          },
+          "pageSize": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 20
+          },
+          "hasMore": {
+            "type": "boolean"
+          },
+          "authorizedScope": {
+            "$ref": "#/components/schemas/Scope"
+          },
+          "observedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "coverage": {
+            "$ref": "#/components/schemas/Coverage"
+          }
+        },
+        "required": [
+          "items",
+          "total",
+          "page",
+          "pageSize",
+          "hasMore",
+          "authorizedScope",
+          "observedAt",
+          "coverage"
+        ]
+      },
+      "CreateRun": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "templateId": {
+            "const": "source_graph_citation_v1"
+          },
+          "selection": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "libraryIds": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/LongId"
+                },
+                "maxItems": 1000,
+                "minItems": 1,
+                "uniqueItems": true
+              },
+              "documentIds": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/LongId"
+                },
+                "maxItems": 2,
+                "minItems": 1,
+                "uniqueItems": true
+              }
+            },
+            "required": [
+              "libraryIds",
+              "documentIds"
+            ]
+          },
+          "query": {
+            "type": "string",
+            "minLength": 2,
+            "maxLength": 200
+          },
+          "goal": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 4000
+          }
+        },
+        "required": [
+          "templateId",
+          "selection",
+          "query"
+        ],
+        "description": "Reject unknown fields/duplicate keys/duplicate IDs. Goal is display only. Resolve selection against current server grant and real library membership; no client roles/tools/dependencies/limits/artifacts or credentials."
+      },
+      "Task": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "taskId": {
+            "$ref": "#/components/schemas/Id"
+          },
+          "role": {
+            "type": "string",
+            "enum": [
+              "ingestion",
+              "quality_governance",
+              "graph_research",
+              "learning_coach",
+              "assessment_analysis"
+            ]
+          },
+          "stage": {
+            "type": "string",
+            "enum": [
+              "document_metadata",
+              "source_read",
+              "directed_graph",
+              "citation_check"
+            ]
+          },
+          "objective": {
+            "type": "string",
+            "maxLength": 4000
+          },
+          "authorizedScope": {
+            "$ref": "#/components/schemas/Scope"
+          },
+          "dependencyIds": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Id"
+            },
+            "maxItems": 32,
+            "minItems": 0
+          },
+          "inputArtifactIds": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Id"
+            },
+            "maxItems": 32,
+            "minItems": 0
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "pending",
+              "running",
+              "completed",
+              "partial",
+              "needs_input",
+              "failed",
+              "blocked",
+              "cancelled"
+            ]
+          },
+          "artifactId": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Id"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "errorCode": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 100
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "usage": {
+            "$ref": "#/components/schemas/Usage"
+          },
+          "startedAt": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "finishedAt": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "taskId",
+          "role",
+          "stage",
+          "objective",
+          "authorizedScope",
+          "dependencyIds",
+          "inputArtifactIds",
+          "status",
+          "artifactId",
+          "errorCode",
+          "usage",
+          "startedAt",
+          "finishedAt"
+        ]
+      },
+      "Run": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "runId": {
+            "$ref": "#/components/schemas/Id"
+          },
+          "hostInstanceId": {
+            "$ref": "#/components/schemas/Id"
+          },
+          "templateId": {
+            "const": "source_graph_citation_v1"
+          },
+          "query": {
+            "type": "string",
+            "maxLength": 200
+          },
+          "goal": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 4000
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "executionMode": {
+            "const": "deterministic_tools"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "running",
+              "cancelling",
+              "completed",
+              "partial",
+              "needs_input",
+              "failed",
+              "cancelled"
+            ]
+          },
+          "authorizedScope": {
+            "$ref": "#/components/schemas/Scope"
+          },
+          "tasks": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Task"
+            },
+            "maxItems": 8,
+            "minItems": 4
+          },
+          "usage": {
+            "$ref": "#/components/schemas/Usage"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "deadline": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "expiresAt": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "observedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "cancellationRequested": {
+            "type": "boolean"
+          },
+          "recoverableAfterRestart": {
+            "const": false
+          },
+          "recoverableAfterRefresh": {
+            "const": false
+          },
+          "limitations": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "maxLength": 1000
+            },
+            "maxItems": 64,
+            "minItems": 0
+          }
+        },
+        "required": [
+          "runId",
+          "hostInstanceId",
+          "templateId",
+          "query",
+          "goal",
+          "executionMode",
+          "status",
+          "authorizedScope",
+          "tasks",
+          "usage",
+          "createdAt",
+          "deadline",
+          "expiresAt",
+          "observedAt",
+          "cancellationRequested",
+          "recoverableAfterRestart",
+          "recoverableAfterRefresh",
+          "limitations"
+        ]
+      },
+      "Cancel": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "accepted": {
+            "type": "boolean"
+          },
+          "run": {
+            "$ref": "#/components/schemas/Run"
+          }
+        },
+        "required": [
+          "accepted",
+          "run"
+        ]
+      },
+      "ObjectRef": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "kind": {
+            "type": "string",
+            "maxLength": 80
+          },
+          "id": {
+            "type": "string",
+            "maxLength": 128
+          },
+          "version": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 256
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "kind",
+          "id",
+          "version"
+        ]
+      },
+      "SourcePointer": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "documentId": {
+            "$ref": "#/components/schemas/LongId"
+          },
+          "chunkId": {
+            "$ref": "#/components/schemas/LongId"
+          },
+          "contentHash": {
+            "$ref": "#/components/schemas/Hash"
+          }
+        },
+        "required": [
+          "documentId",
+          "chunkId",
+          "contentHash"
+        ]
+      },
+      "Evidence": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "sourceId": {
+            "type": "string",
+            "maxLength": 256
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "source",
+              "system_state",
+              "graph_fact"
+            ]
+          },
+          "object": {
+            "$ref": "#/components/schemas/ObjectRef"
+          },
+          "scope": {
+            "$ref": "#/components/schemas/Scope"
+          },
+          "locator": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 512
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "excerpt": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 2048
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "originTaskId": {
+            "$ref": "#/components/schemas/Id"
+          },
+          "originArtifactId": {
+            "$ref": "#/components/schemas/Id"
+          },
+          "observedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "rereadPointer": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/SourcePointer"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "sourceState": {
+            "type": "string",
+            "enum": [
+              "not_checked",
+              "current",
+              "truncated",
+              "stale",
+              "unavailable"
+            ]
+          }
+        },
+        "required": [
+          "sourceId",
+          "kind",
+          "object",
+          "scope",
+          "locator",
+          "excerpt",
+          "originTaskId",
+          "originArtifactId",
+          "observedAt",
+          "rereadPointer",
+          "sourceState"
+        ]
+      },
+      "Node": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "nodeId": {
+            "$ref": "#/components/schemas/LongId"
+          },
+          "name": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 400
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "nameEn": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 400
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "type": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 100
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "definition": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 400
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "definitionTruncated": {
+            "type": "boolean"
+          },
+          "status": {
+            "type": "string",
+            "maxLength": 80
+          },
+          "updatedAt": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 80
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "versionKind": {
+            "const": "updatedAt_not_strong_version"
+          },
+          "libraryIds": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/LongId"
+            },
+            "maxItems": 1000,
+            "minItems": 0
+          },
+          "aliases": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "maxLength": 400
+            },
+            "maxItems": 100,
+            "minItems": 0
+          },
+          "origin": {
+            "type": "string",
+            "maxLength": 100
+          },
+          "reviewStatus": {
+            "type": "string",
+            "maxLength": 100
+          },
+          "matchedBy": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 80
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "sourceEvidenceAvailable": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "nodeId",
+          "name",
+          "nameEn",
+          "type",
+          "definition",
+          "definitionTruncated",
+          "status",
+          "updatedAt",
+          "versionKind",
+          "libraryIds",
+          "aliases",
+          "origin",
+          "reviewStatus",
+          "matchedBy",
+          "sourceEvidenceAvailable"
+        ]
+      },
+      "Edge": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "edgeId": {
+            "$ref": "#/components/schemas/LongId"
+          },
+          "sourceNodeId": {
+            "$ref": "#/components/schemas/LongId"
+          },
+          "targetNodeId": {
+            "$ref": "#/components/schemas/LongId"
+          },
+          "relationType": {
+            "type": "string",
+            "maxLength": 100
+          },
+          "status": {
+            "type": "string",
+            "maxLength": 80
+          },
+          "updatedAt": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 80
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "origin": {
+            "type": "string",
+            "maxLength": 100
+          },
+          "reviewStatus": {
+            "type": "string",
+            "maxLength": 100
+          },
+          "sourceEvidenceAvailable": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "edgeId",
+          "sourceNodeId",
+          "targetNodeId",
+          "relationType",
+          "status",
+          "updatedAt",
+          "origin",
+          "reviewStatus",
+          "sourceEvidenceAvailable"
+        ]
+      },
+      "Claim": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "claimId": {
+            "$ref": "#/components/schemas/Id"
+          },
+          "text": {
+            "type": "string",
+            "maxLength": 1000
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "source_fact",
+              "graph_fact",
+              "model_explanation",
+              "conflict",
+              "gap"
+            ]
+          },
+          "sourceIds": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "maxLength": 256
+            },
+            "maxItems": 20,
+            "minItems": 0
+          },
+          "originTaskId": {
+            "$ref": "#/components/schemas/Id"
+          },
+          "originArtifactId": {
+            "$ref": "#/components/schemas/Id"
+          },
+          "semanticSupport": {
+            "const": "not_evaluated"
+          }
+        },
+        "required": [
+          "claimId",
+          "text",
+          "kind",
+          "sourceIds",
+          "originTaskId",
+          "originArtifactId",
+          "semanticSupport"
+        ]
+      },
+      "ChunkView": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "documentId": {
+            "$ref": "#/components/schemas/LongId"
+          },
+          "chunkId": {
+            "$ref": "#/components/schemas/LongId"
+          },
+          "contentHash": {
+            "$ref": "#/components/schemas/Hash"
+          },
+          "sourceId": {
+            "type": "string",
+            "maxLength": 256
+          },
+          "unitId": {
+            "$ref": "#/components/schemas/LongId"
+          },
+          "unitIndex": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 1000000
+          },
+          "unitType": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 80
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "sourceLocator": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 512
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "content": {
+            "type": "string",
+            "maxLength": 1200
+          },
+          "bodyTruncated": {
+            "type": "boolean"
+          },
+          "matchScore": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 2147483647
+          }
+        },
+        "required": [
+          "documentId",
+          "chunkId",
+          "contentHash",
+          "sourceId",
+          "unitId",
+          "unitIndex",
+          "unitType",
+          "sourceLocator",
+          "content",
+          "bodyTruncated",
+          "matchScore"
+        ]
+      },
+      "Graph": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "runId": {
+            "$ref": "#/components/schemas/Id"
+          },
+          "taskId": {
+            "$ref": "#/components/schemas/Id"
+          },
+          "artifactId": {
+            "$ref": "#/components/schemas/Id"
+          },
+          "authorizedScope": {
+            "$ref": "#/components/schemas/Scope"
+          },
+          "observedScopes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Scope"
+            },
+            "maxItems": 256,
+            "minItems": 0
+          },
+          "observedAt": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "empty": {
+            "type": "boolean"
+          },
+          "direction": {
+            "const": "stored_source_to_target"
+          },
+          "neighborhoodTraversal": {
+            "const": "incident_edges"
+          },
+          "pathTraversal": {
+            "const": "outgoing_edges"
+          },
+          "nodes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Node"
+            },
+            "maxItems": 10,
+            "minItems": 0
+          },
+          "edges": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Edge"
+            },
+            "maxItems": 10,
+            "minItems": 0
+          },
+          "paths": {
+            "type": "array",
+            "items": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/LongId"
+              },
+              "maxItems": 2,
+              "minItems": 1
+            },
+            "maxItems": 3,
+            "minItems": 0
+          },
+          "evidence": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Evidence"
+            },
+            "maxItems": 256,
+            "minItems": 0
+          },
+          "coverage": {
+            "$ref": "#/components/schemas/Coverage"
+          },
+          "noPathWithinDepth": {
+            "type": [
+              "boolean",
+              "null"
+            ]
+          },
+          "pathTruncated": {
+            "type": [
+              "boolean",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "runId",
+          "taskId",
+          "artifactId",
+          "authorizedScope",
+          "observedScopes",
+          "observedAt",
+          "empty",
+          "direction",
+          "neighborhoodTraversal",
+          "pathTraversal",
+          "nodes",
+          "edges",
+          "paths",
+          "evidence",
+          "coverage",
+          "noPathWithinDepth",
+          "pathTruncated"
+        ],
+        "description": "Stored research projection, never legacy neighbor fallback. Both endpoints must be original and included. Paths hold original directed edge IDs in order. No synthetic nodes or sources; null observedAt iff no graph observation."
+      },
+      "MetadataPayload": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "kind": {
+            "const": "document_metadata"
+          },
+          "documentId": {
+            "$ref": "#/components/schemas/LongId"
+          },
+          "visibleLibraryIds": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/LongId"
+            },
+            "maxItems": 1000,
+            "minItems": 0
+          },
+          "title": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 400
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "processingStatus": {
+            "type": "string",
+            "maxLength": 80
+          },
+          "lifecycleStatus": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 80
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "sourceFilePresent": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "kind",
+          "documentId",
+          "visibleLibraryIds",
+          "title",
+          "processingStatus",
+          "lifecycleStatus",
+          "sourceFilePresent"
+        ]
+      },
+      "SourcePayload": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "kind": {
+            "const": "source_read"
+          },
+          "documentId": {
+            "$ref": "#/components/schemas/LongId"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ChunkView"
+            },
+            "maxItems": 2,
+            "minItems": 0
+          },
+          "coverage": {
+            "$ref": "#/components/schemas/Coverage"
+          }
+        },
+        "required": [
+          "kind",
+          "documentId",
+          "items",
+          "coverage"
+        ]
+      },
+      "StudyPayload": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "kind": {
+            "const": "document_research"
+          },
+          "documentId": {
+            "$ref": "#/components/schemas/LongId"
+          },
+          "claims": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Claim"
+            },
+            "maxItems": 10,
+            "minItems": 0
+          },
+          "graph": {
+            "$ref": "#/components/schemas/Graph"
+          },
+          "coverage": {
+            "$ref": "#/components/schemas/Coverage"
+          }
+        },
+        "required": [
+          "kind",
+          "documentId",
+          "claims",
+          "graph",
+          "coverage"
+        ]
+      },
+      "SourceCheck": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "chunkId": {
+            "$ref": "#/components/schemas/LongId"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "CURRENT",
+              "TRUNCATED",
+              "STALE",
+              "MISSING",
+              "WRONG_DOCUMENT",
+              "OUT_OF_SCOPE_OR_MISSING",
+              "IDENTITY_MISMATCH",
+              "UNIT_UNAVAILABLE",
+              "INVALID_POINTER"
+            ]
+          },
+          "expectedHash": {
+            "$ref": "#/components/schemas/Hash"
+          },
+          "actualHash": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Hash"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "unitIndex": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 2147483647
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "locator": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 512
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "content": {
+            "type": "null"
+          },
+          "truncated": {
+            "type": "boolean"
+          },
+          "originalSourceId": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 256
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "status"
+        ],
+        "description": "INVALID_POINTER can contain status only; missing identity is never fabricated."
+      },
+      "ClaimCheck": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "claimId": {
+            "$ref": "#/components/schemas/Id"
+          },
+          "referenceStatus": {
+            "type": "string",
+            "enum": [
+              "CURRENT",
+              "UNVERIFIED",
+              "UNKNOWN_CLAIM",
+              "INVALID_SOURCE_COUNT"
+            ]
+          },
+          "semanticSupport": {
+            "const": "not_evaluated"
+          },
+          "sources": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SourceCheck"
+            },
+            "maxItems": 2,
+            "minItems": 0
+          }
+        },
+        "required": [
+          "claimId",
+          "referenceStatus",
+          "semanticSupport"
+        ]
+      },
+      "CitationPayload": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "kind": {
+            "const": "citation_check"
+          },
+          "checkedArtifactId": {
+            "$ref": "#/components/schemas/Id"
+          },
+          "producerTaskId": {
+            "$ref": "#/components/schemas/Id"
+          },
+          "checks": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ClaimCheck"
+            },
+            "maxItems": 10,
+            "minItems": 0
+          },
+          "uncheckedClaims": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "claimId": {
+                  "$ref": "#/components/schemas/Id"
+                },
+                "reasonCode": {
+                  "type": "string",
+                  "maxLength": 100
+                }
+              },
+              "required": [
+                "claimId",
+                "reasonCode"
+              ]
+            },
+            "maxItems": 10,
+            "minItems": 0
+          },
+          "currentClaims": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 10
+          },
+          "requestedClaims": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 10
+          },
+          "completeCoverage": {
+            "type": "boolean"
+          },
+          "coverageBasis": {
+            "const": "requested_claims_only"
+          },
+          "semanticSupport": {
+            "const": "not_evaluated"
+          },
+          "observedAt": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "kind",
+          "checkedArtifactId",
+          "producerTaskId",
+          "checks",
+          "uncheckedClaims",
+          "currentClaims",
+          "requestedClaims",
+          "completeCoverage",
+          "coverageBasis",
+          "semanticSupport",
+          "observedAt"
+        ]
+      },
+      "ObservationSummary": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "toolCallId": {
+            "$ref": "#/components/schemas/Id"
+          },
+          "operation": {
+            "type": "string",
+            "enum": [
+              "get_document",
+              "retrieve_chunks",
+              "search_nodes",
+              "get_node",
+              "get_neighbors",
+              "find_paths",
+              "verify_artifact_claims"
+            ]
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "ok",
+              "partial",
+              "error"
+            ]
+          },
+          "effectiveScope": {
+            "$ref": "#/components/schemas/Scope"
+          },
+          "observedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "errorCode": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 100
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "limitations": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "maxLength": 1000
+            },
+            "maxItems": 40,
+            "minItems": 0
+          }
+        },
+        "required": [
+          "toolCallId",
+          "operation",
+          "status",
+          "effectiveScope",
+          "observedAt",
+          "errorCode",
+          "limitations"
+        ]
+      },
+      "Artifact": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "artifactId": {
+            "$ref": "#/components/schemas/Id"
+          },
+          "runId": {
+            "$ref": "#/components/schemas/Id"
+          },
+          "producerTaskId": {
+            "$ref": "#/components/schemas/Id"
+          },
+          "inputArtifactIds": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Id"
+            },
+            "maxItems": 32,
+            "minItems": 0
+          },
+          "authorizedScope": {
+            "$ref": "#/components/schemas/Scope"
+          },
+          "observedScopes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Scope"
+            },
+            "maxItems": 256,
+            "minItems": 0
+          },
+          "outcome": {
+            "type": "string",
+            "enum": [
+              "completed",
+              "partial",
+              "needs_input",
+              "failed"
+            ]
+          },
+          "summary": {
+            "type": "string",
+            "maxLength": 4000
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "scopeMatched": {
+            "type": "boolean"
+          },
+          "executionReceipt": {
+            "const": false
+          },
+          "actionProposals": {
+            "type": "array",
+            "items": {},
+            "maxItems": 0,
+            "minItems": 0
+          },
+          "evidence": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Evidence"
+            },
+            "maxItems": 256,
+            "minItems": 0
+          },
+          "observations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ObservationSummary"
+            },
+            "maxItems": 32,
+            "minItems": 0
+          },
+          "coverage": {
+            "$ref": "#/components/schemas/Coverage"
+          },
+          "payload": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/MetadataPayload"
+              },
+              {
+                "$ref": "#/components/schemas/SourcePayload"
+              },
+              {
+                "$ref": "#/components/schemas/StudyPayload"
+              },
+              {
+                "$ref": "#/components/schemas/CitationPayload"
+              }
+            ]
+          },
+          "limitations": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "maxLength": 1000
+            },
+            "maxItems": 64,
+            "minItems": 0
+          }
+        },
+        "required": [
+          "artifactId",
+          "runId",
+          "producerTaskId",
+          "inputArtifactIds",
+          "authorizedScope",
+          "observedScopes",
+          "outcome",
+          "summary",
+          "createdAt",
+          "scopeMatched",
+          "executionReceipt",
+          "actionProposals",
+          "evidence",
+          "observations",
+          "coverage",
+          "payload",
+          "limitations"
+        ]
+      },
+      "RereadRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "sourceId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 256
+          },
+          "expectedContentHash": {
+            "$ref": "#/components/schemas/Hash"
+          },
+          "maxChars": {
+            "type": "integer",
+            "minimum": 200,
+            "maximum": 4000
+          }
+        },
+        "required": [
+          "sourceId",
+          "expectedContentHash"
+        ]
+      },
+      "Reread": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "runId": {
+            "$ref": "#/components/schemas/Id"
+          },
+          "artifactId": {
+            "$ref": "#/components/schemas/Id"
+          },
+          "originalSourceId": {
+            "type": "string",
+            "maxLength": 256
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "ok",
+              "partial"
+            ]
+          },
+          "effectiveScope": {
+            "$ref": "#/components/schemas/Scope"
+          },
+          "observedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "documentId": {
+            "$ref": "#/components/schemas/LongId"
+          },
+          "chunkId": {
+            "$ref": "#/components/schemas/LongId"
+          },
+          "unitId": {
+            "$ref": "#/components/schemas/LongId"
+          },
+          "unitIndex": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 2147483647
+          },
+          "unitType": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 80
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "sourceLocator": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 512
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "chunkIndex": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 2147483647
+          },
+          "startOffset": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 2147483647
+          },
+          "endOffset": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 2147483647
+          },
+          "contentHash": {
+            "$ref": "#/components/schemas/Hash"
+          },
+          "content": {
+            "type": "string",
+            "maxLength": 4000
+          },
+          "bodyTruncated": {
+            "type": "boolean"
+          },
+          "formalAvailable": {
+            "const": true
+          },
+          "semanticSupport": {
+            "const": "not_evaluated"
+          },
+          "evidence": {
+            "$ref": "#/components/schemas/Evidence"
+          },
+          "limitations": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "maxLength": 1000
+            },
+            "maxItems": 40,
+            "minItems": 0
+          }
+        },
+        "required": [
+          "runId",
+          "artifactId",
+          "originalSourceId",
+          "status",
+          "effectiveScope",
+          "observedAt",
+          "documentId",
+          "chunkId",
+          "unitId",
+          "unitIndex",
+          "unitType",
+          "sourceLocator",
+          "chunkIndex",
+          "startOffset",
+          "endOffset",
+          "contentHash",
+          "content",
+          "bodyTruncated",
+          "formalAvailable",
+          "semanticSupport",
+          "evidence",
+          "limitations"
+        ]
+      },
+      "Error": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "code": {
+            "type": "string",
+            "enum": [
+              "INVALID_ARGUMENT",
+              "ACCESS_CONTEXT_UNAVAILABLE",
+              "SCOPE_NOT_ALLOWED",
+              "NOT_FOUND",
+              "RUN_EXPIRED",
+              "SELECTION_CHANGED",
+              "STALE_SOURCE",
+              "SOURCE_UNAVAILABLE",
+              "GRAPH_NOT_AVAILABLE",
+              "RUN_CAPACITY_EXCEEDED",
+              "ASSISTANT_DISABLED",
+              "CAPABILITY_UNAVAILABLE",
+              "READ_IDENTITY_UNVERIFIED",
+              "SOURCE_CHANGED_OR_UNAVAILABLE",
+              "DEADLINE_EXCEEDED",
+              "INTERNAL_ERROR",
+              "METHOD_NOT_ALLOWED",
+              "PAYLOAD_TOO_LARGE",
+              "UNSUPPORTED_MEDIA_TYPE"
+            ]
+          },
+          "message": {
+            "type": "string",
+            "maxLength": 1000
+          },
+          "requestId": {
+            "type": "string",
+            "maxLength": 128
+          },
+          "details": {
+            "type": "object",
+            "description": "Optional sanitized details; preserves existing validation field errors as well as reasonCodes/retryable.",
+            "properties": {
+              "reasonCodes": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "maxLength": 100
+                },
+                "maxItems": 16
+              },
+              "retryable": {
+                "type": "boolean"
+              }
+            },
+            "additionalProperties": true
+          }
+        },
+        "required": [
+          "code",
+          "message",
+          "requestId"
+        ]
+      },
+      "CapabilitiesEnvelope": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "code": {
+            "const": 0
+          },
+          "message": {
+            "const": "ok"
+          },
+          "data": {
+            "$ref": "#/components/schemas/Capabilities"
+          },
+          "requestId": {
+            "type": "string",
+            "maxLength": 128
+          }
+        },
+        "required": [
+          "code",
+          "message",
+          "data",
+          "requestId"
+        ]
+      },
+      "TemplateListEnvelope": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "code": {
+            "const": 0
+          },
+          "message": {
+            "const": "ok"
+          },
+          "data": {
+            "$ref": "#/components/schemas/TemplateList"
+          },
+          "requestId": {
+            "type": "string",
+            "maxLength": 128
+          }
+        },
+        "required": [
+          "code",
+          "message",
+          "data",
+          "requestId"
+        ]
+      },
+      "LibraryPageEnvelope": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "code": {
+            "const": 0
+          },
+          "message": {
+            "const": "ok"
+          },
+          "data": {
+            "$ref": "#/components/schemas/LibraryPage"
+          },
+          "requestId": {
+            "type": "string",
+            "maxLength": 128
+          }
+        },
+        "required": [
+          "code",
+          "message",
+          "data",
+          "requestId"
+        ]
+      },
+      "DocumentPageEnvelope": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "code": {
+            "const": 0
+          },
+          "message": {
+            "const": "ok"
+          },
+          "data": {
+            "$ref": "#/components/schemas/DocumentPage"
+          },
+          "requestId": {
+            "type": "string",
+            "maxLength": 128
+          }
+        },
+        "required": [
+          "code",
+          "message",
+          "data",
+          "requestId"
+        ]
+      },
+      "RunEnvelope": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "code": {
+            "const": 0
+          },
+          "message": {
+            "const": "ok"
+          },
+          "data": {
+            "$ref": "#/components/schemas/Run"
+          },
+          "requestId": {
+            "type": "string",
+            "maxLength": 128
+          }
+        },
+        "required": [
+          "code",
+          "message",
+          "data",
+          "requestId"
+        ]
+      },
+      "CancelEnvelope": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "code": {
+            "const": 0
+          },
+          "message": {
+            "const": "ok"
+          },
+          "data": {
+            "$ref": "#/components/schemas/Cancel"
+          },
+          "requestId": {
+            "type": "string",
+            "maxLength": 128
+          }
+        },
+        "required": [
+          "code",
+          "message",
+          "data",
+          "requestId"
+        ]
+      },
+      "ArtifactEnvelope": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "code": {
+            "const": 0
+          },
+          "message": {
+            "const": "ok"
+          },
+          "data": {
+            "$ref": "#/components/schemas/Artifact"
+          },
+          "requestId": {
+            "type": "string",
+            "maxLength": 128
+          }
+        },
+        "required": [
+          "code",
+          "message",
+          "data",
+          "requestId"
+        ]
+      },
+      "GraphEnvelope": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "code": {
+            "const": 0
+          },
+          "message": {
+            "const": "ok"
+          },
+          "data": {
+            "$ref": "#/components/schemas/Graph"
+          },
+          "requestId": {
+            "type": "string",
+            "maxLength": 128
+          }
+        },
+        "required": [
+          "code",
+          "message",
+          "data",
+          "requestId"
+        ]
+      },
+      "RereadEnvelope": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "code": {
+            "const": 0
+          },
+          "message": {
+            "const": "ok"
+          },
+          "data": {
+            "$ref": "#/components/schemas/Reread"
+          },
+          "requestId": {
+            "type": "string",
+            "maxLength": 128
+          }
+        },
+        "required": [
+          "code",
+          "message",
+          "data",
+          "requestId"
+        ]
+      }
+    }
+  }
+}

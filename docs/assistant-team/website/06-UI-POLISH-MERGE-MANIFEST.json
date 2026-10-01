@@ -1,0 +1,129 @@
+{
+  "date": "2026-10-01",
+  "executor": "原06",
+  "executorRoot": "D:/知识图谱-worktrees/assistant-06-integration-test",
+  "branch": "codex/assistant-06-integration-test",
+  "head": "86d1e1fcff6b7b492faec3d499837a42246df320",
+  "status": "prepared_not_dispatched",
+  "files": [
+    {
+      "path": "frontend/src/views/Assistant/AssistantView.vue",
+      "sourceRoot": "D:/知识图谱-worktrees/assistant-07-web-ui",
+      "targetRoot": "D:/知识图谱",
+      "beforeRawSha256": "2e1575112b2e6b4f354af128b0cfd937b34fda9699b6b8eb7cdbe0a549a47ef1",
+      "afterRawSha256": "c3949984df76ba02f6b084b9ed0148a9958b273c7f495d672a678b122d173a49",
+      "afterBytes": 32322
+    },
+    {
+      "path": "frontend/src/features/assistant/ArtifactPanel.vue",
+      "sourceRoot": "D:/知识图谱-worktrees/assistant-07-web-ui",
+      "targetRoot": "D:/知识图谱",
+      "beforeRawSha256": "7617850b36c665edec80baf9956be2b58d89dfcf7ee6da690aa5ea5e7e760f92",
+      "afterRawSha256": "c3bb763f2b52fe3bc5852035c994af6a3710c4339b23ec21bf141c0f28398a02",
+      "afterBytes": 13011
+    },
+    {
+      "path": "frontend/src/features/assistant/EvidenceDrawer.vue",
+      "sourceRoot": "D:/知识图谱-worktrees/assistant-07-web-ui",
+      "targetRoot": "D:/知识图谱",
+      "beforeRawSha256": "1648f0f2a80d21f340fab2ff40bbc122c1288aebba60d01ad0c797f6cd8dcbb4",
+      "afterRawSha256": "248caf21e6e1e847b242610ef881a677abea740f6ba790761be050e88bf3c2f4",
+      "afterBytes": 9743
+    },
+    {
+      "path": "frontend/src/features/assistant/presentation.ts",
+      "sourceRoot": "D:/知识图谱-worktrees/assistant-07-web-ui",
+      "targetRoot": "D:/知识图谱",
+      "beforeRawSha256": "97082ab1925ac92833da9f90e0673035a7ae599c3ae2d2bcbedb80332fad9d08",
+      "afterRawSha256": "35f8981ea406b7703d75e575e69ca50461c40beddbf1fb56f3c04ce743c93f3d",
+      "afterBytes": 6086
+    }
+  ],
+  "readonlyTargetFiles": [
+    {
+      "path": "frontend/src/features/assistant/useAssistantWorkbench.ts",
+      "targetRawSha256": "438687160130abf6d879f842d1811e305f1717ad1c33c0a1ca9ca502ea7e23dc"
+    },
+    {
+      "path": "frontend/src/services/assistantApi.ts",
+      "targetRawSha256": "b3e15646f44b2b99fc3611a1f04f56dbaf74c1dacd195b345921c76ab4fed683"
+    },
+    {
+      "path": "frontend/src/services/assistantTypes.ts",
+      "targetRawSha256": "ece99c6e58e7773900059a5acc09786d45cf1a1819bc5a41219dedfb97303e9b"
+    },
+    {
+      "path": "frontend/src/features/assistant/responseValidation.ts",
+      "targetRawSha256": "5a3c3f64a415eee5f111eb08df067431684b853e2050b7926997c4c231cb1dc7"
+    },
+    {
+      "path": "frontend/src/components/ui/Modal.vue",
+      "targetRawSha256": "5b56eec402f90f729afe67a33e9ebe045a114ed6943db45a856e1ec3ac622c72"
+    },
+    {
+      "path": "frontend/src/components/ui/Button.vue",
+      "targetRawSha256": "d9db07a9ce8c311776b8924938520f8f715142887492674803f643699c0ee34c"
+    },
+    {
+      "path": "frontend/src/router/index.ts",
+      "targetRawSha256": "3106f32a0228dcba2e98b1a3f6a2664abbd8d836a6ffbf74747569977b0e10ae"
+    },
+    {
+      "path": "frontend/package.json",
+      "targetRawSha256": "6c4e1131279875f15a055b0c3202beef8dbb5272d5aad9ffe1ed6639d389b31c"
+    },
+    {
+      "path": "frontend/package-lock.json",
+      "targetRawSha256": "19597f0b5766c8e5f4a55f60010715ea94959350e5f52efe2ac51d9a49a054c2"
+    },
+    {
+      "path": "frontend/vite.config.ts",
+      "targetRawSha256": "fbc0040d61761d1ea1fdb6eac89a0de103e9af6c74fdfccc56f64f760dec0b17"
+    },
+    {
+      "path": "frontend/tsconfig.app.json",
+      "targetRawSha256": "328e91d10faeb450e6b739756eb84f18493fea56a11923d8072c0b4d53d1ff6d"
+    },
+    {
+      "path": "frontend/src/views/Graph/GraphView.vue",
+      "targetRawSha256": "fcb0a1c37bdf9e97d0324d018a0be63baaaa0f7b61c2d932ac772c051da6e330"
+    },
+    {
+      "path": "frontend/src/composables/useGraphWorkspace.ts",
+      "targetRawSha256": "d0de3be3fcdc7d9f7293e657a39470332b03d314bc396edaf08d5a048d6790f6"
+    },
+    {
+      "path": "frontend/src/features/graph/GraphToolbar.vue",
+      "targetRawSha256": "91703455b454e841f42a2fa80f67b035b277e5f1599744f772c2bf2674adac26"
+    },
+    {
+      "path": "frontend/src/features/graph/GraphCanvas2D.vue",
+      "targetRawSha256": "53899aab4bf0dc45ccd5ebdfc29ab27eb29a3e5c88cb9173f4c7dc6fabf389d1"
+    },
+    {
+      "path": "frontend/src/features/graph/GraphCanvas3D.vue",
+      "targetRawSha256": "c6df0e109467ecb2a67e94a76f4f594b0dfbc43d7562816150f22361a5ac985f"
+    },
+    {
+      "path": "frontend/src/composables/useResearchGraph.ts",
+      "targetRawSha256": "5fbdf8bb92c10b1d9f763cba0cddc317ef3e56b23a16fbb7b95eccca04eeefa3"
+    },
+    {
+      "path": "frontend/src/features/graph/ResearchResultPanel.vue",
+      "targetRawSha256": "95baba79a7910998e048623867cc0d1759e444c3fc917d82601039be53c317ff"
+    }
+  ],
+  "fixturePath": "D:/知识图谱-worktrees/assistant-06-integration-test/docs/assistant-team/website/06-main-integration/Website-20260930T224635764/http-fixtures/samples.json",
+  "fixtureRawSha256": "7e99f07ea974b65bc894db0b65acad62f5249506c0ede95df894a406ef8e2639",
+  "sourceReview": "D:/知识图谱/docs/assistant-team/website/07-UI-POLISH-REVIEW.md",
+  "sourceOverlayPath": "D:/知识图谱-worktrees/assistant-07-web-ui/docs/assistant-team/website/07-ui-polish/overlay.json",
+  "sourceOverlayRawSha256": "2890d760dac6f1f5242fb023458a3ffaee4d4bef603dc9c7fd7cb9f552f4b081",
+  "sourceReportPath": "D:/知识图谱-worktrees/assistant-07-web-ui/docs/assistant-team/reports/07-web-ui-polish.md",
+  "sourceReportRawSha256": "ccde4ef4e61e733a6678b26d38ed70e191c8daa68c7c794a799f78bdad4ea77f",
+  "sourceRunnerPath": "D:/知识图谱-worktrees/assistant-07-web-ui/docs/assistant-team/website/07-ui-polish/verify.cjs",
+  "sourceRunnerRawSha256": "f1cc8f1319b764e8382bc0625dd913d5ccce7e06dbafd9ea602db80a030d5b3f",
+  "databaseAuthorized": false,
+  "modelAuthorized": false,
+  "realBackendAuthorized": false,
+  "deploymentAuthorized": false
+}

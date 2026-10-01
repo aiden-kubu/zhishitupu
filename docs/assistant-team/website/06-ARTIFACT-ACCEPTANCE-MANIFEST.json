@@ -1,0 +1,223 @@
+{
+  "date": "2026-10-01",
+  "executor": "original06",
+  "worktree": "D:/知识图谱-worktrees/assistant-06-integration-test",
+  "branch": "codex/assistant-06-integration-test",
+  "head": "86d1e1fcff6b7b492faec3d499837a42246df320",
+  "authorizations": [
+    "负责人：不要人工验收了你验收吧最后报告给我"
+  ],
+  "files": [
+    {
+      "path": "frontend/src/views/Assistant/AssistantView.vue",
+      "sourceRoot": "D:/知识图谱-worktrees/assistant-07-web-ui",
+      "targetRoot": "D:/知识图谱",
+      "beforeRawSha256": "c3949984df76ba02f6b084b9ed0148a9958b273c7f495d672a678b122d173a49",
+      "afterRawSha256": "0dd131d4058032d77e8e5e724094fa3af8e26e37152788861bf354d0656b0181",
+      "afterBytes": 35435
+    },
+    {
+      "path": "frontend/src/features/assistant/ArtifactPanel.vue",
+      "sourceRoot": "D:/知识图谱-worktrees/assistant-07-web-ui",
+      "targetRoot": "D:/知识图谱",
+      "beforeRawSha256": "c3bb763f2b52fe3bc5852035c994af6a3710c4339b23ec21bf141c0f28398a02",
+      "afterRawSha256": "7fae1ee915108a8d4714183656770d57c9e222a0ad8cf393960eb2fe2845d426",
+      "afterBytes": 13621
+    },
+    {
+      "path": "frontend/src/features/assistant/EvidenceDrawer.vue",
+      "sourceRoot": "D:/知识图谱-worktrees/assistant-07-web-ui",
+      "targetRoot": "D:/知识图谱",
+      "beforeRawSha256": "248caf21e6e1e847b242610ef881a677abea740f6ba790761be050e88bf3c2f4",
+      "afterRawSha256": "cebee942686e28609e2c732c0aef2e2d0c5e9b44a554d65126abc0292729f8b2",
+      "afterBytes": 11161
+    },
+    {
+      "path": "frontend/src/features/assistant/presentation.ts",
+      "sourceRoot": "D:/知识图谱-worktrees/assistant-07-web-ui",
+      "targetRoot": "D:/知识图谱",
+      "beforeRawSha256": "35f8981ea406b7703d75e575e69ca50461c40beddbf1fb56f3c04ce743c93f3d",
+      "afterRawSha256": "f0a0d22983537d90d77ecec3b41a3dc0d33b0ca8559455f31eb29c3379a62d3e",
+      "afterBytes": 6665
+    }
+  ],
+  "readonlyMainFrontend": [
+    {
+      "path": "frontend/src/features/assistant/useAssistantWorkbench.ts",
+      "rawSha256": "438687160130abf6d879f842d1811e305f1717ad1c33c0a1ca9ca502ea7e23dc"
+    },
+    {
+      "path": "frontend/src/services/assistantApi.ts",
+      "rawSha256": "b3e15646f44b2b99fc3611a1f04f56dbaf74c1dacd195b345921c76ab4fed683"
+    },
+    {
+      "path": "frontend/src/services/assistantTypes.ts",
+      "rawSha256": "ece99c6e58e7773900059a5acc09786d45cf1a1819bc5a41219dedfb97303e9b"
+    },
+    {
+      "path": "frontend/src/features/assistant/responseValidation.ts",
+      "rawSha256": "5a3c3f64a415eee5f111eb08df067431684b853e2050b7926997c4c231cb1dc7"
+    },
+    {
+      "path": "frontend/src/components/ui/Modal.vue",
+      "rawSha256": "5b56eec402f90f729afe67a33e9ebe045a114ed6943db45a856e1ec3ac622c72"
+    },
+    {
+      "path": "frontend/src/components/ui/Button.vue",
+      "rawSha256": "d9db07a9ce8c311776b8924938520f8f715142887492674803f643699c0ee34c"
+    },
+    {
+      "path": "frontend/src/router/index.ts",
+      "rawSha256": "3106f32a0228dcba2e98b1a3f6a2664abbd8d836a6ffbf74747569977b0e10ae"
+    },
+    {
+      "path": "frontend/package.json",
+      "rawSha256": "6c4e1131279875f15a055b0c3202beef8dbb5272d5aad9ffe1ed6639d389b31c"
+    },
+    {
+      "path": "frontend/package-lock.json",
+      "rawSha256": "19597f0b5766c8e5f4a55f60010715ea94959350e5f52efe2ac51d9a49a054c2"
+    },
+    {
+      "path": "frontend/vite.config.ts",
+      "rawSha256": "fbc0040d61761d1ea1fdb6eac89a0de103e9af6c74fdfccc56f64f760dec0b17"
+    },
+    {
+      "path": "frontend/tsconfig.app.json",
+      "rawSha256": "328e91d10faeb450e6b739756eb84f18493fea56a11923d8072c0b4d53d1ff6d"
+    },
+    {
+      "path": "frontend/src/views/Graph/GraphView.vue",
+      "rawSha256": "fcb0a1c37bdf9e97d0324d018a0be63baaaa0f7b61c2d932ac772c051da6e330"
+    },
+    {
+      "path": "frontend/src/composables/useGraphWorkspace.ts",
+      "rawSha256": "d0de3be3fcdc7d9f7293e657a39470332b03d314bc396edaf08d5a048d6790f6"
+    },
+    {
+      "path": "frontend/src/features/graph/GraphToolbar.vue",
+      "rawSha256": "91703455b454e841f42a2fa80f67b035b277e5f1599744f772c2bf2674adac26"
+    },
+    {
+      "path": "frontend/src/features/graph/GraphCanvas2D.vue",
+      "rawSha256": "53899aab4bf0dc45ccd5ebdfc29ab27eb29a3e5c88cb9173f4c7dc6fabf389d1"
+    },
+    {
+      "path": "frontend/src/features/graph/GraphCanvas3D.vue",
+      "rawSha256": "c6df0e109467ecb2a67e94a76f4f594b0dfbc43d7562816150f22361a5ac985f"
+    },
+    {
+      "path": "frontend/src/composables/useResearchGraph.ts",
+      "rawSha256": "5fbdf8bb92c10b1d9f763cba0cddc317ef3e56b23a16fbb7b95eccca04eeefa3"
+    },
+    {
+      "path": "frontend/src/features/graph/ResearchResultPanel.vue",
+      "rawSha256": "95baba79a7910998e048623867cc0d1759e444c3fc917d82601039be53c317ff"
+    }
+  ],
+  "runtimeSources": [
+    {
+      "path": "backend-java/src/main/java/com/knowledgegraph/assistant/host/AssistantReadAcceptanceApplication.java",
+      "owner": "08",
+      "rawSha256": "fe016eb01aca5e704c39fb1f51fd58e953920bd0bc680db7a06058fe0dd2ffd0"
+    },
+    {
+      "path": "backend-java/src/main/java/com/knowledgegraph/assistant/host/AssistantReadAcceptanceConfig.java",
+      "owner": "08",
+      "rawSha256": "a29d9abcf5c6a90d28b6f848ebe0a5c4812244122da2cf5ae77de7c3c1474bda"
+    },
+    {
+      "path": "backend-java/src/main/java/com/knowledgegraph/assistant/host/AssistantReadAcceptanceEvidence.java",
+      "owner": "08",
+      "rawSha256": "90dbce8ab57e5b21df6b24772ee4a08f11bd51445ea268fbe47b14c6aaf54ae6"
+    },
+    {
+      "path": "backend-java/src/main/java/com/knowledgegraph/assistant/host/AssistantReadAcceptanceDataSource.java",
+      "owner": "08",
+      "rawSha256": "addb5bf00c0ea0bb4bd2cc171482845f3de4351c319a6ad82523240d601b0abf"
+    },
+    {
+      "path": "backend-java/src/test/java/com/knowledgegraph/assistant/host/AssistantReadAcceptanceTest.java",
+      "owner": "08",
+      "rawSha256": "d1267dfeef9cb9b3b94c8564af4d8ef39cb6a9525335e70ba508674219521bd8"
+    },
+    {
+      "path": "backend-java/src/test/java/com/knowledgegraph/assistant/host/AssistantReadAcceptanceDataSourceTest.java",
+      "owner": "08",
+      "rawSha256": "d07481f7425569a0555accdcb23deb4abd14576326c1b134512ad79be8d2e853"
+    }
+  ],
+  "reusedHelpers": [
+    {
+      "path": "D:\\知识图谱-worktrees\\assistant-06-integration-test\\docs\\assistant-team\\website\\06-live-readonly\\WebsiteLive-20261001T151755471\\manual-reopen-20261001\\database-guard.ps1",
+      "rawSha256": "663fdb0011b4b3d711678dcbd3bebc6fe6d64751351e90ab70d745e8ba83027f"
+    },
+    {
+      "path": "D:\\知识图谱-worktrees\\assistant-06-integration-test\\docs\\assistant-team\\website\\06-live-readonly\\WebsiteLive-20261001T151755471\\manual-reopen-20261001\\launch-and-guard.py",
+      "rawSha256": "352090faad7fa3f0635775365f19280c4c200df39705a666cb3db2d1c05583f4"
+    },
+    {
+      "path": "D:\\知识图谱-worktrees\\assistant-06-integration-test\\docs\\assistant-team\\website\\06-live-readonly\\WebsiteLive-20261001T151755471\\manual-reopen-20261001\\stop-file-bridge.ps1",
+      "rawSha256": "19f0defd7e516082a15351e78a1eee7dcd5cadf5775afa888017411eb2e14508"
+    },
+    {
+      "path": "D:\\知识图谱-worktrees\\assistant-06-integration-test\\docs\\assistant-team\\website\\06-live-readonly\\WebsiteLive-20261001T151755471\\ReaderIdentityProbe.java",
+      "rawSha256": "71f8f6a2538837f3d896f107b34383e21775c93210a9ee245d26faee39f3732e"
+    },
+    {
+      "path": "D:/知识图谱-worktrees/assistant-06-integration-test/docs/assistant-team/website/06-ui-polish-merge/UIPolish-20261001T002724731/verify.cjs",
+      "rawSha256": "b9d6b2fd7a1cecb4115dd49ef2a5413ad8e6447538e4baf90cb894a982f4e5db"
+    }
+  ],
+  "sourceReport": {
+    "path": "D:/知识图谱-worktrees/assistant-07-web-ui/docs/assistant-team/reports/07-artifact-usability.md",
+    "rawSha256": "b817f7a8dfa45555ec088def39c97d2f6073da628be9610a2295d5587e274be4"
+  },
+  "sourceOverlay": {
+    "path": "D:/知识图谱-worktrees/assistant-07-web-ui/docs/assistant-team/website/07-artifact-usability/overlay.json",
+    "rawSha256": "b04f7911ea3dcc94812ac1d3242769ae30bc6c022d0f33dfd054d3bae31b06e1"
+  },
+  "environment": {
+    "version": "8.4.11",
+    "uuid": "8c6cfcb3-ba49-11f1-bf64-005056c00001",
+    "host": "127.0.0.1",
+    "port": 33078,
+    "database": "kg_assistant_i2_20260927_r01",
+    "account": "kg_i2_reader",
+    "scope": {
+      "libraryIds": [
+        "7101"
+      ],
+      "documentIds": [
+        "7201",
+        "7202"
+      ],
+      "nodeIds": []
+    },
+    "connectTimeoutMs": 3000,
+    "socketTimeoutMs": 4000,
+    "statementSeconds": 2,
+    "sessionMaxExecutionMs": 1500,
+    "proofMinutes": 60,
+    "maximumWindowMinutes": 30
+  },
+  "output": "docs/assistant-team/website/06-artifact-acceptance/<uniqueRunId>/**",
+  "report": "docs/assistant-team/reports/06-artifact-acceptance.md",
+  "mainBuild": "frontend/dist/06-artifact-acceptance-<uniqueRunId>/**",
+  "restricted": "D:/知识图谱-i2-env/restricted-evidence/website/06-artifact-acceptance/<uniqueRunId>/**",
+  "controllerApproval": "D:/知识图谱/docs/assistant-team/website/06-artifact-approvals/<uniqueRunId>.json",
+  "limits": {
+    "browserDefinitions": 5,
+    "positiveRunCount": 1,
+    "negativeRunCount": 1,
+    "maxRereadRequests": 1,
+    "normalReplays": 0,
+    "typeCheck": 1,
+    "build": 1,
+    "performanceSampling": 0,
+    "explain": 0,
+    "businessWrites": 0,
+    "backendCompile": 0
+  },
+  "preparationErrors": []
+}

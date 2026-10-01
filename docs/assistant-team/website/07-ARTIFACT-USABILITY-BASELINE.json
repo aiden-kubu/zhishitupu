@@ -1,0 +1,97 @@
+{
+  "date": "2026-10-01",
+  "executor": "原07",
+  "root": "D:/知识图谱-worktrees/assistant-07-web-ui",
+  "branch": "codex/assistant-07-web-ui",
+  "head": "8544b19f89bbcf477b9b458be7f48117775ff621",
+  "normalization": "raw SHA-256; existing historical expected hashes remain unchanged",
+  "files": [
+    {
+      "path": "frontend/src/views/Assistant/AssistantView.vue",
+      "rawSha256": "c3949984df76ba02f6b084b9ed0148a9958b273c7f495d672a678b122d173a49",
+      "mainRawSha256": "c3949984df76ba02f6b084b9ed0148a9958b273c7f495d672a678b122d173a49"
+    },
+    {
+      "path": "frontend/src/features/assistant/ArtifactPanel.vue",
+      "rawSha256": "c3bb763f2b52fe3bc5852035c994af6a3710c4339b23ec21bf141c0f28398a02",
+      "mainRawSha256": "c3bb763f2b52fe3bc5852035c994af6a3710c4339b23ec21bf141c0f28398a02"
+    },
+    {
+      "path": "frontend/src/features/assistant/EvidenceDrawer.vue",
+      "rawSha256": "248caf21e6e1e847b242610ef881a677abea740f6ba790761be050e88bf3c2f4",
+      "mainRawSha256": "248caf21e6e1e847b242610ef881a677abea740f6ba790761be050e88bf3c2f4"
+    },
+    {
+      "path": "frontend/src/features/assistant/presentation.ts",
+      "rawSha256": "35f8981ea406b7703d75e575e69ca50461c40beddbf1fb56f3c04ce743c93f3d",
+      "mainRawSha256": "35f8981ea406b7703d75e575e69ca50461c40beddbf1fb56f3c04ce743c93f3d"
+    }
+  ],
+  "readonlyDependencies": [
+    {
+      "path": "frontend/src/features/assistant/useAssistantWorkbench.ts",
+      "rawSha256": "438687160130abf6d879f842d1811e305f1717ad1c33c0a1ca9ca502ea7e23dc",
+      "mainRawSha256": "438687160130abf6d879f842d1811e305f1717ad1c33c0a1ca9ca502ea7e23dc"
+    },
+    {
+      "path": "frontend/src/services/assistantApi.ts",
+      "rawSha256": "b3e15646f44b2b99fc3611a1f04f56dbaf74c1dacd195b345921c76ab4fed683",
+      "mainRawSha256": "b3e15646f44b2b99fc3611a1f04f56dbaf74c1dacd195b345921c76ab4fed683"
+    },
+    {
+      "path": "frontend/src/services/assistantTypes.ts",
+      "rawSha256": "ece99c6e58e7773900059a5acc09786d45cf1a1819bc5a41219dedfb97303e9b",
+      "mainRawSha256": "ece99c6e58e7773900059a5acc09786d45cf1a1819bc5a41219dedfb97303e9b"
+    },
+    {
+      "path": "frontend/src/features/assistant/responseValidation.ts",
+      "rawSha256": "5a3c3f64a415eee5f111eb08df067431684b853e2050b7926997c4c231cb1dc7",
+      "mainRawSha256": "5a3c3f64a415eee5f111eb08df067431684b853e2050b7926997c4c231cb1dc7"
+    },
+    {
+      "path": "frontend/src/components/ui/Modal.vue",
+      "rawSha256": "5b56eec402f90f729afe67a33e9ebe045a114ed6943db45a856e1ec3ac622c72",
+      "mainRawSha256": "5b56eec402f90f729afe67a33e9ebe045a114ed6943db45a856e1ec3ac622c72"
+    },
+    {
+      "path": "frontend/src/components/ui/Button.vue",
+      "rawSha256": "d9db07a9ce8c311776b8924938520f8f715142887492674803f643699c0ee34c",
+      "mainRawSha256": "d9db07a9ce8c311776b8924938520f8f715142887492674803f643699c0ee34c"
+    },
+    {
+      "path": "frontend/src/router/index.ts",
+      "rawSha256": "9f6f565ebb1a7011f9fadfe0cca5507facc9ec345b96a5193ddc70151a5eae86",
+      "mainRawSha256": "3106f32a0228dcba2e98b1a3f6a2664abbd8d836a6ffbf74747569977b0e10ae"
+    },
+    {
+      "path": "frontend/package.json",
+      "rawSha256": "6c4e1131279875f15a055b0c3202beef8dbb5272d5aad9ffe1ed6639d389b31c",
+      "mainRawSha256": "6c4e1131279875f15a055b0c3202beef8dbb5272d5aad9ffe1ed6639d389b31c"
+    },
+    {
+      "path": "frontend/package-lock.json",
+      "rawSha256": "19597f0b5766c8e5f4a55f60010715ea94959350e5f52efe2ac51d9a49a054c2",
+      "mainRawSha256": "19597f0b5766c8e5f4a55f60010715ea94959350e5f52efe2ac51d9a49a054c2"
+    },
+    {
+      "path": "frontend/vite.config.ts",
+      "rawSha256": "fbc0040d61761d1ea1fdb6eac89a0de103e9af6c74fdfccc56f64f760dec0b17",
+      "mainRawSha256": "fbc0040d61761d1ea1fdb6eac89a0de103e9af6c74fdfccc56f64f760dec0b17"
+    },
+    {
+      "path": "frontend/tsconfig.app.json",
+      "rawSha256": "328e91d10faeb450e6b739756eb84f18493fea56a11923d8072c0b4d53d1ff6d",
+      "mainRawSha256": "328e91d10faeb450e6b739756eb84f18493fea56a11923d8072c0b4d53d1ff6d"
+    }
+  ],
+  "scope": "Only four frontend presentation files; no backend/workbench/API/schema changes",
+  "review": "D:/知识图谱/docs/assistant-team/website/ARTIFACT-TARGETED-REVIEW.md",
+  "allowedNewReport": "docs/assistant-team/reports/07-artifact-usability.md",
+  "allowedNewEvidence": "docs/assistant-team/website/07-artifact-usability/**",
+  "allowedOutput": "frontend/dist/07-artifact-usability-<uniqueRunId>/**",
+  "testLimit": "One scoped type-check and one build; no browser/regression suite or new test framework",
+  "mainProjectWriteAuthorized": false,
+  "databaseAuthorized": false,
+  "modelConnectionAuthorized": false,
+  "deploymentAuthorized": false
+}

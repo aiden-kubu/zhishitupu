@@ -1,0 +1,85 @@
+{
+  "schemaVersion": "controller-website-startup-review-v1",
+  "runId": "WebsiteLive-20261001T151755471",
+  "reviewer": "controller",
+  "result": "APPROVED",
+  "reviewedAt": "2026-10-01T08:18:35.2170179+00:00",
+  "userInstruction": "我不希望大量的脚本测试，我希望你告诉我该怎么测试，由我去测试，告诉你结果",
+  "executionOwner": "original06",
+  "authorityReviewScope": "Existing readonly identity-04 evidence and pinned static build; startup for human acceptance only",
+  "identity": {
+    "address": "127.0.0.1",
+    "port": 33078,
+    "version": "8.4.11",
+    "uuid": "8c6cfcb3-ba49-11f1-bf64-005056c00001",
+    "database": "kg_assistant_i2_20260927_r01",
+    "account": "kg_i2_reader@127.0.0.1",
+    "roles": "NONE",
+    "loaderLocked": true
+  },
+  "grant": {
+    "mode": "selected",
+    "libraryIds": [
+      "7101"
+    ],
+    "documentIds": [
+      "7201",
+      "7202"
+    ],
+    "nodeIds": []
+  },
+  "unchangedBudget": {
+    "connectTimeoutMs": 3000,
+    "socketTimeoutMs": 4000,
+    "statementSeconds": 2,
+    "sessionMaxExecutionTimeMs": 1500
+  },
+  "reviewedOriginalHashes": {
+    "instance": "a79d2fd9227c749882de40cdc9915f60d1c79fd1019607163e5e6ce0159671ed",
+    "grants": "20675f0281b1ef833af2081fdb4e59a610e7646da7f1c3e002740ed59c359d53",
+    "observation": "298cd877923dbf981b8e357f004ccf1ed45f729831159f9c85a999946c2ef375",
+    "buildManifest": "46b1f4d3a7b03515cae1941b612108b52b4a89035b1cf577f05f0169f578c59e",
+    "pendingEvidence": "f88d8809f2f5fb8e108095ca468449e0b857df716b570936f3199573923ab7a0",
+    "pendingConfig": "158e34bc14dc96dbfcfbed094faa4c8d096b4327b272b220559ca87a15621e27"
+  },
+  "findings": [
+    "Seven current authority files independently matched recorded byte counts and raw hashes; ACLs allow only current owner",
+    "Actual original GRANTS contain USAGE and SELECT only, with 21 full-table SELECT grants plus two pre-existing sensitive column grants; no roles, no expansion. Sensitive tables remain excluded from host selectTables.",
+    "Actual reader and observer instance identities match approved isolated instance; current config grant/listen/static directory agree with evidence and approved manifest",
+    "Old pending draft files remain unchanged; approved derivative files are not created at review time",
+    "Completed 165-case regression reused; no new regression or scripted UI batch requested"
+  ],
+  "frontendDirectory": "D:/知识图谱/frontend/dist/06-ui-polish-UIPolish-20261001T002724731/site",
+  "approvedEvidencePath": "D:\\知识图谱-i2-env\\restricted-evidence\\website\\WebsiteLive-20261001T151755471\\identity-04\\controller-reviewed-evidence.json",
+  "approvedEvidenceRawSha256": "7462c6df0f90b9fee000dbc2c63f5fbd406e5c13ea68ac25ad8f1069b92158c0",
+  "approvedConfigPath": "D:\\知识图谱-i2-env\\restricted-evidence\\website\\WebsiteLive-20261001T151755471\\identity-04\\controller-reviewed-config.json",
+  "controllerApprovedConfigSha256": "be40eec4da5dfa0850dc1940ed0c2176113520e05eb586a93b56ffa017475e10",
+  "exactDerivativeRecipe": {
+    "encoding": "UTF-8 without BOM",
+    "newlines": "Normalize CRLF to LF, remove terminal CR/LF and append exactly one LF",
+    "evidence": "From pinned pending evidence.json, replace reviewedAt null with this reviewedAt string; reference pending_batch_technical_review with this record absolute slash path; result PENDING_CONTROLLER_REVIEW with APPROVED. No other field changes.",
+    "config": "From pinned pending config.json, replace evidence.file evidence.json with controller-reviewed-evidence.json and replace its pending evidence.sha256 with approvedEvidenceRawSha256. Preserve all other bytes after stated newline normalization, including password without printing it."
+  },
+  "proofValidUntil": "2026-10-01T16:43:13.3023037+08:00",
+  "deadlineMustNotBeExtended": true,
+  "startupAuthorizedOnlyIfExactDerivativeHashesMatch": true,
+  "humanWindowMaximumMinutes": 30,
+  "doNotRun": [
+    "offline regression again",
+    "six-group scripted business/browser batch",
+    "performance/concurrency/explain",
+    "models",
+    "writes",
+    "deployment"
+  ],
+  "startupFailurePolicy": "One startup attempt; report real error and safely close owned processes; do not hot-fix or add diagnostic loops",
+  "notProvenByThisReview": [
+    "Host actually started",
+    "Human website acceptance",
+    "Current window final zero-write comparison",
+    "Full I2 complete",
+    "Five domains/model/formal assessment usable"
+  ],
+  "modelRequirement": "gpt-6.1-sol / high",
+  "actualModel": "实际模型未核实；实际推理强度未核实"
+}

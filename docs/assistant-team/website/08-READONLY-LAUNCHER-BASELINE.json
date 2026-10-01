@@ -1,0 +1,371 @@
+{
+  "date": "2026-10-01",
+  "root": "D:\\知识图谱-worktrees\\assistant-08-host-api",
+  "mainRoot": "D:\\知识图谱",
+  "branch": "codex/assistant-08-host-api",
+  "head": "8544b19f89bbcf477b9b458be7f48117775ff621",
+  "gitStatus": [
+    "?? backend-java/src/main/java/com/knowledgegraph/assistant/host/",
+    "?? backend-java/src/test/java/com/knowledgegraph/assistant/host/",
+    "?? docs/assistant-team/reports/",
+    "?? docs/assistant-team/website/"
+  ],
+  "files": [
+    {
+      "path": "backend-java/mvnw.cmd",
+      "worktreeRawSha256": "46eedb8419bd14fe70d5bb2916d7b6f51806e51b39d5b76a42610384ca929c1c",
+      "mainRawSha256": "46eedb8419bd14fe70d5bb2916d7b6f51806e51b39d5b76a42610384ca929c1c",
+      "bytes": 8481,
+      "identical": true,
+      "worktreeNormalizedSha256": null,
+      "mainNormalizedSha256": null,
+      "normalizedIdentical": true
+    },
+    {
+      "path": "backend-java/pom.xml",
+      "worktreeRawSha256": "9714945169562634475a9ce74f6cba1609c1e7d75829f410a8791334304b78ec",
+      "mainRawSha256": "9714945169562634475a9ce74f6cba1609c1e7d75829f410a8791334304b78ec",
+      "bytes": 2771,
+      "identical": true,
+      "worktreeNormalizedSha256": null,
+      "mainNormalizedSha256": null,
+      "normalizedIdentical": true
+    },
+    {
+      "path": "backend-java/src/main/java/com/knowledgegraph/assistant/contract/AssistantContracts.java",
+      "worktreeRawSha256": "ee399f26106df94fd62f497ad7a0339cc6c8f33a4e356f0606fed1011516b23c",
+      "mainRawSha256": "9ad6cc545c5306e4a875280537428f1c6d9426e175bc7264189ef3893c6bee19",
+      "bytes": 11456,
+      "identical": false,
+      "worktreeNormalizedSha256": "9ad6cc545c5306e4a875280537428f1c6d9426e175bc7264189ef3893c6bee19",
+      "mainNormalizedSha256": "9ad6cc545c5306e4a875280537428f1c6d9426e175bc7264189ef3893c6bee19",
+      "normalizedIdentical": true
+    },
+    {
+      "path": "backend-java/src/main/java/com/knowledgegraph/assistant/host/AssistantObservationProjection.java",
+      "worktreeRawSha256": "13b06263c1172ea87ec269d3cdb8b7ab8521ca497ef26e8f79d4922a784cf3e2",
+      "mainRawSha256": "13b06263c1172ea87ec269d3cdb8b7ab8521ca497ef26e8f79d4922a784cf3e2",
+      "bytes": 14648,
+      "identical": true,
+      "worktreeNormalizedSha256": null,
+      "mainNormalizedSha256": null,
+      "normalizedIdentical": true
+    },
+    {
+      "path": "backend-java/src/main/java/com/knowledgegraph/assistant/host/AssistantReadAccessContext.java",
+      "worktreeRawSha256": "a29e00276c32f192d9f1a4ca6c1dac31bd0f72922a9a1ef8771f359ad8a16406",
+      "mainRawSha256": "a29e00276c32f192d9f1a4ca6c1dac31bd0f72922a9a1ef8771f359ad8a16406",
+      "bytes": 885,
+      "identical": true,
+      "worktreeNormalizedSha256": null,
+      "mainNormalizedSha256": null,
+      "normalizedIdentical": true
+    },
+    {
+      "path": "backend-java/src/main/java/com/knowledgegraph/assistant/host/AssistantReadBoundaryFilter.java",
+      "worktreeRawSha256": "ece024c361f0ebc995114233a50f01dcd9ad02ee2c0b2ac97e15213e83aaed2e",
+      "mainRawSha256": "ece024c361f0ebc995114233a50f01dcd9ad02ee2c0b2ac97e15213e83aaed2e",
+      "bytes": 2358,
+      "identical": true,
+      "worktreeNormalizedSha256": null,
+      "mainNormalizedSha256": null,
+      "normalizedIdentical": true
+    },
+    {
+      "path": "backend-java/src/main/java/com/knowledgegraph/assistant/host/AssistantReadDataSource.java",
+      "worktreeRawSha256": "7f23f4ad8ffa7655b193c00ba9a37dc891d9950415d6ffaa75ac61abb82dd3bd",
+      "mainRawSha256": "7f23f4ad8ffa7655b193c00ba9a37dc891d9950415d6ffaa75ac61abb82dd3bd",
+      "bytes": 4290,
+      "identical": true,
+      "worktreeNormalizedSha256": null,
+      "mainNormalizedSha256": null,
+      "normalizedIdentical": true
+    },
+    {
+      "path": "backend-java/src/main/java/com/knowledgegraph/assistant/host/AssistantReadHostApplication.java",
+      "worktreeRawSha256": "ca2a56908879ab39fe4958b5e786f05b21c8006b62cea89e7782a12d53f30d10",
+      "mainRawSha256": "ca2a56908879ab39fe4958b5e786f05b21c8006b62cea89e7782a12d53f30d10",
+      "bytes": 3400,
+      "identical": true,
+      "worktreeNormalizedSha256": null,
+      "mainNormalizedSha256": null,
+      "normalizedIdentical": true
+    },
+    {
+      "path": "backend-java/src/main/java/com/knowledgegraph/assistant/host/AssistantReadHostController.java",
+      "worktreeRawSha256": "5627164b2307a4026cceaa23cb4c712b4aef027c533b2b4f873e332af99cf4b9",
+      "mainRawSha256": "5627164b2307a4026cceaa23cb4c712b4aef027c533b2b4f873e332af99cf4b9",
+      "bytes": 5303,
+      "identical": true,
+      "worktreeNormalizedSha256": null,
+      "mainNormalizedSha256": null,
+      "normalizedIdentical": true
+    },
+    {
+      "path": "backend-java/src/main/java/com/knowledgegraph/assistant/host/AssistantReadHostErrors.java",
+      "worktreeRawSha256": "bd282c0089ebe1793acbdca4c5edd6c63321128b8b9bc344cc8471b45421e9c3",
+      "mainRawSha256": "bd282c0089ebe1793acbdca4c5edd6c63321128b8b9bc344cc8471b45421e9c3",
+      "bytes": 771,
+      "identical": true,
+      "worktreeNormalizedSha256": null,
+      "mainNormalizedSha256": null,
+      "normalizedIdentical": true
+    },
+    {
+      "path": "backend-java/src/main/java/com/knowledgegraph/assistant/host/AssistantReadHostProperties.java",
+      "worktreeRawSha256": "740f1288c71f92514cdfbe37bf402cc4cc298c1a53e7a073279c0b742e2eb4ea",
+      "mainRawSha256": "740f1288c71f92514cdfbe37bf402cc4cc298c1a53e7a073279c0b742e2eb4ea",
+      "bytes": 923,
+      "identical": true,
+      "worktreeNormalizedSha256": null,
+      "mainNormalizedSha256": null,
+      "normalizedIdentical": true
+    },
+    {
+      "path": "backend-java/src/main/java/com/knowledgegraph/assistant/host/AssistantReadHostService.java",
+      "worktreeRawSha256": "99519cec76230f300901c4c34e6a17bc4d454d24e7ce96072637c709a2f3d667",
+      "mainRawSha256": "99519cec76230f300901c4c34e6a17bc4d454d24e7ce96072637c709a2f3d667",
+      "bytes": 15999,
+      "identical": true,
+      "worktreeNormalizedSha256": null,
+      "mainNormalizedSha256": null,
+      "normalizedIdentical": true
+    },
+    {
+      "path": "backend-java/src/main/java/com/knowledgegraph/assistant/host/AssistantReadWiring.java",
+      "worktreeRawSha256": "1d4b3f4d3f827b93a554afb689c96915e398d9151565f6cf6b164de0f5b0cb79",
+      "mainRawSha256": "1d4b3f4d3f827b93a554afb689c96915e398d9151565f6cf6b164de0f5b0cb79",
+      "bytes": 6373,
+      "identical": true,
+      "worktreeNormalizedSha256": null,
+      "mainNormalizedSha256": null,
+      "normalizedIdentical": true
+    },
+    {
+      "path": "backend-java/src/main/java/com/knowledgegraph/assistant/host/AssistantRunStore.java",
+      "worktreeRawSha256": "ef06fb40c2f1d5fd050ce8eb1b17999b980ddf00f890ef478c4527a12f82ce73",
+      "mainRawSha256": "ef06fb40c2f1d5fd050ce8eb1b17999b980ddf00f890ef478c4527a12f82ce73",
+      "bytes": 7540,
+      "identical": true,
+      "worktreeNormalizedSha256": null,
+      "mainNormalizedSha256": null,
+      "normalizedIdentical": true
+    },
+    {
+      "path": "backend-java/src/main/java/com/knowledgegraph/assistant/host/AssistantTemplatePlanner.java",
+      "worktreeRawSha256": "90154b7cfcc1e82fccba731270fe0043c25d58d5f5967d0430bb63d7467675fa",
+      "mainRawSha256": "90154b7cfcc1e82fccba731270fe0043c25d58d5f5967d0430bb63d7467675fa",
+      "bytes": 3609,
+      "identical": true,
+      "worktreeNormalizedSha256": null,
+      "mainNormalizedSha256": null,
+      "normalizedIdentical": true
+    },
+    {
+      "path": "backend-java/src/main/java/com/knowledgegraph/assistant/host/DeterministicTemplateDecisionProvider.java",
+      "worktreeRawSha256": "f7f35c18cd2378147412c15af75a351751b317671baf2d199bfa738661fa7007",
+      "mainRawSha256": "f7f35c18cd2378147412c15af75a351751b317671baf2d199bfa738661fa7007",
+      "bytes": 12506,
+      "identical": true,
+      "worktreeNormalizedSha256": null,
+      "mainNormalizedSha256": null,
+      "normalizedIdentical": true
+    },
+    {
+      "path": "backend-java/src/main/java/com/knowledgegraph/assistant/host/HostJson.java",
+      "worktreeRawSha256": "1cb160d7856d42a012b308997e72530f367d2e1f3a0d5cb8886104284adbefce",
+      "mainRawSha256": "1cb160d7856d42a012b308997e72530f367d2e1f3a0d5cb8886104284adbefce",
+      "bytes": 5519,
+      "identical": true,
+      "worktreeNormalizedSha256": null,
+      "mainNormalizedSha256": null,
+      "normalizedIdentical": true
+    },
+    {
+      "path": "backend-java/src/main/java/com/knowledgegraph/assistant/host/HostQualityArtifactReader.java",
+      "worktreeRawSha256": "24b8e756d2fe066c63c61637204d07527b5fba3f0d6727c031696cc145869d79",
+      "mainRawSha256": "24b8e756d2fe066c63c61637204d07527b5fba3f0d6727c031696cc145869d79",
+      "bytes": 1168,
+      "identical": true,
+      "worktreeNormalizedSha256": null,
+      "mainNormalizedSha256": null,
+      "normalizedIdentical": true
+    },
+    {
+      "path": "backend-java/src/main/java/com/knowledgegraph/assistant/host/HostReadIo.java",
+      "worktreeRawSha256": "1f27117c0a25b97500a2db9785f9d7535df0f2769394783d97c7bf0b7cc37598",
+      "mainRawSha256": "1f27117c0a25b97500a2db9785f9d7535df0f2769394783d97c7bf0b7cc37598",
+      "bytes": 2146,
+      "identical": true,
+      "worktreeNormalizedSha256": null,
+      "mainNormalizedSha256": null,
+      "normalizedIdentical": true
+    },
+    {
+      "path": "backend-java/src/main/java/com/knowledgegraph/assistant/host/StandaloneHostOnly.java",
+      "worktreeRawSha256": "4b453d9b0d73cbc181a1812a7c8fc3d643e810387d3b10adee36f852c1d465ed",
+      "mainRawSha256": "4b453d9b0d73cbc181a1812a7c8fc3d643e810387d3b10adee36f852c1d465ed",
+      "bytes": 572,
+      "identical": true,
+      "worktreeNormalizedSha256": null,
+      "mainNormalizedSha256": null,
+      "normalizedIdentical": true
+    },
+    {
+      "path": "backend-java/src/main/java/com/knowledgegraph/assistant/ingestion/JdbcIngestionReadRepository.java",
+      "worktreeRawSha256": "da4f99010e662f8023c562e99249ddd318957ad710a2a77c919ad33fe63e5341",
+      "mainRawSha256": "715af87d60c765152628c81cd4c6a6bbf0a1f2b6dc985e2fe58a25696a7c2f43",
+      "bytes": 12963,
+      "identical": false,
+      "worktreeNormalizedSha256": "715af87d60c765152628c81cd4c6a6bbf0a1f2b6dc985e2fe58a25696a7c2f43",
+      "mainNormalizedSha256": "715af87d60c765152628c81cd4c6a6bbf0a1f2b6dc985e2fe58a25696a7c2f43",
+      "normalizedIdentical": true
+    },
+    {
+      "path": "backend-java/src/main/java/com/knowledgegraph/assistant/quality/JdbcQualityReadRepository.java",
+      "worktreeRawSha256": "227ef9789aedcb0a8b1db69d17ae5409fd35d42ef4ed11c1d2cae7b3a83bc366",
+      "mainRawSha256": "6a17642e64bbfdb5f0d3bffa13ad9cde4ddbe6384e3b2d5f1a2e592a4db0d740",
+      "bytes": 15310,
+      "identical": false,
+      "worktreeNormalizedSha256": "6a17642e64bbfdb5f0d3bffa13ad9cde4ddbe6384e3b2d5f1a2e592a4db0d740",
+      "mainNormalizedSha256": "6a17642e64bbfdb5f0d3bffa13ad9cde4ddbe6384e3b2d5f1a2e592a4db0d740",
+      "normalizedIdentical": true
+    },
+    {
+      "path": "backend-java/src/main/java/com/knowledgegraph/assistant/research/JdbcResearchReadRepository.java",
+      "worktreeRawSha256": "2d3614bc0e17246feac6ba87f92ffbd83dc77e99cba16d719f9a076413ab637e",
+      "mainRawSha256": "7107873c220e44e5eb3e9638e98c70606503d6504fb6a99080e11e84f9c10c26",
+      "bytes": 15846,
+      "identical": false,
+      "worktreeNormalizedSha256": "7107873c220e44e5eb3e9638e98c70606503d6504fb6a99080e11e84f9c10c26",
+      "mainNormalizedSha256": "7107873c220e44e5eb3e9638e98c70606503d6504fb6a99080e11e84f9c10c26",
+      "normalizedIdentical": true
+    },
+    {
+      "path": "backend-java/src/main/java/com/knowledgegraph/assistant/source/JdbcSourceLocator.java",
+      "worktreeRawSha256": "3390c9a20d005d3a0100d587d4d0ea09dbc036f5d2ee8b33412a6bb80cc335e6",
+      "mainRawSha256": "0e2cec0cbcdbc28f45cf504955df1c22c4bd64ebd45197fa6c419fa9491dda53",
+      "bytes": 4934,
+      "identical": false,
+      "worktreeNormalizedSha256": "0e2cec0cbcdbc28f45cf504955df1c22c4bd64ebd45197fa6c419fa9491dda53",
+      "mainNormalizedSha256": "0e2cec0cbcdbc28f45cf504955df1c22c4bd64ebd45197fa6c419fa9491dda53",
+      "normalizedIdentical": true
+    },
+    {
+      "path": "backend-java/src/test/java/com/knowledgegraph/assistant/host/ApprovedSchema.java",
+      "worktreeRawSha256": "910a9b220151f42fea6dfc590b58a4388318bb4ba631fe8cf75d5ba32e58c5c1",
+      "mainRawSha256": "910a9b220151f42fea6dfc590b58a4388318bb4ba631fe8cf75d5ba32e58c5c1",
+      "bytes": 4236,
+      "identical": true,
+      "worktreeNormalizedSha256": null,
+      "mainNormalizedSha256": null,
+      "normalizedIdentical": true
+    },
+    {
+      "path": "backend-java/src/test/java/com/knowledgegraph/assistant/host/AssistantReadHostReviewRegressionTest.java",
+      "worktreeRawSha256": "4ee9c6136508564549dda3834b2000783df4f7d2189272412a978e20ae76d3e0",
+      "mainRawSha256": "4ee9c6136508564549dda3834b2000783df4f7d2189272412a978e20ae76d3e0",
+      "bytes": 13818,
+      "identical": true,
+      "worktreeNormalizedSha256": null,
+      "mainNormalizedSha256": null,
+      "normalizedIdentical": true
+    },
+    {
+      "path": "backend-java/src/test/java/com/knowledgegraph/assistant/host/AssistantReadHostTest.java",
+      "worktreeRawSha256": "9d39c8a18173827f94c37fa1fd61327dbfa83b67cf81dac2668732b7d8a8af2c",
+      "mainRawSha256": "9d39c8a18173827f94c37fa1fd61327dbfa83b67cf81dac2668732b7d8a8af2c",
+      "bytes": 19463,
+      "identical": true,
+      "worktreeNormalizedSha256": null,
+      "mainNormalizedSha256": null,
+      "normalizedIdentical": true
+    },
+    {
+      "path": "backend-java/src/test/java/com/knowledgegraph/assistant/host/AssistantReadIsolationTest.java",
+      "worktreeRawSha256": "4eae347b87ba1535d7acb94bf5ceaa43cd8cdd912793d3de77029d760ff18798",
+      "mainRawSha256": "4eae347b87ba1535d7acb94bf5ceaa43cd8cdd912793d3de77029d760ff18798",
+      "bytes": 6584,
+      "identical": true,
+      "worktreeNormalizedSha256": null,
+      "mainNormalizedSha256": null,
+      "normalizedIdentical": true
+    },
+    {
+      "path": "backend-java/src/test/java/com/knowledgegraph/assistant/host/HostTestFixture.java",
+      "worktreeRawSha256": "f5da496e44a665581c1d9465ea92ebc17b55a5875f28c03676ee5d4d6e4ca97b",
+      "mainRawSha256": "f5da496e44a665581c1d9465ea92ebc17b55a5875f28c03676ee5d4d6e4ca97b",
+      "bytes": 6377,
+      "identical": true,
+      "worktreeNormalizedSha256": null,
+      "mainNormalizedSha256": null,
+      "normalizedIdentical": true
+    },
+    {
+      "path": "docs/assistant-team/website/08-stage1/http-contract.json",
+      "worktreeRawSha256": "5b4fa0049a1a886734f9448cca6d163a6d7a00308f7ab66bdf10c84e3c635e32",
+      "mainRawSha256": "5b4fa0049a1a886734f9448cca6d163a6d7a00308f7ab66bdf10c84e3c635e32",
+      "bytes": 100302,
+      "identical": true,
+      "worktreeNormalizedSha256": null,
+      "mainNormalizedSha256": null,
+      "normalizedIdentical": true
+    }
+  ],
+  "newPaths": [
+    {
+      "path": "backend-java/src/main/java/com/knowledgegraph/assistant/host/AssistantReadAcceptanceApplication.java",
+      "worktreeExists": false,
+      "mainExists": false
+    },
+    {
+      "path": "backend-java/src/main/java/com/knowledgegraph/assistant/host/AssistantReadAcceptanceConfig.java",
+      "worktreeExists": false,
+      "mainExists": false
+    },
+    {
+      "path": "backend-java/src/main/java/com/knowledgegraph/assistant/host/AssistantReadAcceptanceEvidence.java",
+      "worktreeExists": false,
+      "mainExists": false
+    },
+    {
+      "path": "backend-java/src/main/java/com/knowledgegraph/assistant/host/AssistantReadAcceptanceDataSource.java",
+      "worktreeExists": false,
+      "mainExists": false
+    },
+    {
+      "path": "backend-java/src/test/java/com/knowledgegraph/assistant/host/AssistantReadAcceptanceTest.java",
+      "worktreeExists": false,
+      "mainExists": false
+    },
+    {
+      "path": "backend-java/src/test/java/com/knowledgegraph/assistant/host/AssistantReadAcceptanceDataSourceTest.java",
+      "worktreeExists": false,
+      "mainExists": false
+    },
+    {
+      "path": "docs/assistant-team/reports/08-readonly-acceptance-launcher.md",
+      "worktreeExists": false,
+      "mainExists": false
+    },
+    {
+      "path": "docs/assistant-team/website/08-readonly-acceptance-launcher/STARTUP-HANDOFF.md",
+      "worktreeExists": false,
+      "mainExists": false
+    },
+    {
+      "path": "docs/assistant-team/website/08-readonly-acceptance-launcher/overlay.json",
+      "worktreeExists": false,
+      "mainExists": false
+    }
+  ],
+  "authorization": {
+    "date": "2026-10-01",
+    "userMessage": "开始吧",
+    "scope": "原08隔离只读启动接线及离线验证；不授权06真实环境执行"
+  },
+  "hashPolicy": "raw SHA-256 on each root separately; CRLF->LF normalized equivalence is recorded only for five differing raw dependency files, without trim",
+  "allowedExistingChanges": [],
+  "scope": "new acceptance launcher/config/evidence/data-source files; existing host, core/domain, API contract and frontend read-only",
+  "requireSerial": true
+}

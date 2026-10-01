@@ -1,0 +1,14 @@
+{
+  "date": "2026-10-01",
+  "userMessage": "继续批准",
+  "executor": "original06",
+  "task": "D:/知识图谱/docs/assistant-team/website/06-WEBSITE-LIVE-TASK.md",
+  "manifest": "D:/知识图谱/docs/assistant-team/website/06-WEBSITE-LIVE-MANIFEST.json",
+  "preparedTaskRawSha256": "ae9c87c2545b9ace01871f780942254ad47ad87aee5890a6696ac2615602f4ce",
+  "preparedManifestRawSha256": "6e744cc44e8f8a6e2f7e93846db02b697c5bc1094b43759ee49a70cf921b5997",
+  "changesFromPrepared": "Authorization/header/status only; six source hashes, 38 protected hashes, 144 site hashes and all safety/test boundaries unchanged",
+  "authorizedScope": "controlled exact-file merge, selected offline regression, original isolated MySQL identity and readonly website live batch",
+  "controllerInternalGate": "review actual identity/GRANTS/config evidence and externally pin config before host startup; no second user authorization for unchanged approved scope",
+  "doesNotAuthorize": ["domain or host/frontend hot fixes", "loader writes or data reset", "permissions/index/migration/budget changes", "models", "deployment", "remaining I2", "I3", "W2"],
+  "dispatchAndExecution": "Recorded separately after actual observation; this authorization record does not assert dispatch, tests or database connection"
+}

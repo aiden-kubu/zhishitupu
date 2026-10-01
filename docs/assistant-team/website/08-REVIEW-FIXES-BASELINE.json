@@ -1,0 +1,60 @@
+{
+  "date": "2026-09-30",
+  "root": "D:/知识图谱-worktrees/assistant-08-host-api",
+  "branch": "codex/assistant-08-host-api",
+  "head": "8544b19f89bbcf477b9b458be7f48117775ff621",
+  "originalReceiptRaw": "4bdc79873357ee0b510df0899d2c9d8380c9e1858902f704e0b5b73f8b4de72b",
+  "originalReportRaw": "eeb371da72ccf2354c1c4b8a2189d1ec8ef9bfed942d88939e52248f31792143",
+  "files": [
+    {
+      "path": "backend-java/src/main/java/com/knowledgegraph/assistant/host/AssistantObservationProjection.java",
+      "rawSha256": "ffb5f3ad9e5bcd01ccdd6a78c0a3f5bb26cee055fc759a04053cadeb56ca66a0",
+      "bytes": 14642
+    },
+    {
+      "path": "backend-java/src/main/java/com/knowledgegraph/assistant/host/AssistantReadBoundaryFilter.java",
+      "rawSha256": "7d4f7eaafba777355fadf3d063fd9c21c48debd395f19ca45fdc2189147aa991",
+      "bytes": 1964
+    },
+    {
+      "path": "backend-java/src/main/java/com/knowledgegraph/assistant/host/AssistantReadHostController.java",
+      "rawSha256": "5627164b2307a4026cceaa23cb4c712b4aef027c533b2b4f873e332af99cf4b9",
+      "bytes": 5303
+    },
+    {
+      "path": "backend-java/src/main/java/com/knowledgegraph/assistant/host/AssistantReadHostService.java",
+      "rawSha256": "d51805a4c717fe188d744421d80ea4320643809c14f65828662c2d94a54c3a52",
+      "bytes": 15193
+    },
+    {
+      "path": "backend-java/src/main/java/com/knowledgegraph/assistant/host/AssistantTemplatePlanner.java",
+      "rawSha256": "2479e3389afc2125606a07e96198eddcfbff2128a05c2410a77c34d6b9140498",
+      "bytes": 3187
+    },
+    {
+      "path": "backend-java/src/main/java/com/knowledgegraph/assistant/host/DeterministicTemplateDecisionProvider.java",
+      "rawSha256": "9178d05881e0f7481a0e4acc1061c240fc292f8b7fcf8d00a7a31060d10dc4b8",
+      "bytes": 12497
+    },
+    {
+      "path": "backend-java/src/main/java/com/knowledgegraph/assistant/host/HostJson.java",
+      "rawSha256": "852ecd1e5446aff4bd06687d519a07229fd4aa8c4a8ccf9b27a964518e9662eb",
+      "bytes": 5018
+    },
+    {
+      "path": "backend-java/src/test/java/com/knowledgegraph/assistant/host/AssistantReadHostTest.java",
+      "rawSha256": "aa9ab6636c1ad966867ee49677b8cdfd5118dbb8de5b446ec3b45e7a9c39bd2d",
+      "bytes": 19956
+    },
+    {
+      "path": "backend-java/src/test/java/com/knowledgegraph/assistant/host/AssistantReadIsolationTest.java",
+      "rawSha256": "4eae347b87ba1535d7acb94bf5ceaa43cd8cdd912793d3de77029d760ff18798",
+      "bytes": 6584
+    },
+    {
+      "path": "backend-java/src/test/java/com/knowledgegraph/assistant/host/HostTestFixture.java",
+      "rawSha256": "f5da496e44a665581c1d9465ea92ebc17b55a5875f28c03676ee5d4d6e4ca97b",
+      "bytes": 6377
+    }
+  ]
+}

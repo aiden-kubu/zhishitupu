@@ -165,8 +165,11 @@ interface MenuGroup {
 // §4.1 左侧导航：只放模块，不放重复操作
 const menuGroups: MenuGroup[] = [
   {
-    title: '主工作区',
-    items: [{ icon: LayoutDashboardIcon, name: '图谱工作台', path: '/' }],
+    title: '工作空间',
+    items: [
+      { icon: LayoutDashboardIcon, name: '图谱工作台', path: '/' },
+      { icon: ChatIcon, name: '助手工作台', path: '/assistant' },
+    ],
   },
   {
     title: '智能学习',
@@ -174,7 +177,6 @@ const menuGroups: MenuGroup[] = [
       { icon: ListIcon, name: '学习路径', path: '/learning-path' },
       { icon: CheckIcon, name: '智能测评', path: '/assessment' },
       { icon: PieChartIcon, name: '学习进度', path: '/learning-progress' },
-      { icon: ChatIcon, name: '智能助手', path: '/assistant' },
     ],
   },
   {

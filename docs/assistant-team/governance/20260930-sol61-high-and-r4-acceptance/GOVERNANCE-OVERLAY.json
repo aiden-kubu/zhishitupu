@@ -1,0 +1,152 @@
+{
+  "kind": "owner-approved model configuration governance increment and bounded I2-R4 stage acceptance",
+  "recordedOn": "2026-09-30",
+  "editor": "controller",
+  "authority": {
+    "model": "Owner said all subtasks now use 6.1sol high, then confirmed 确认修改成6.1sol high，以及确认本阶段",
+    "stage": "Acceptance follows controller review of completed R4 work and explicit preserved Scope/performance gaps; not full I2 or next-stage authorization"
+  },
+  "activeModel": {
+    "tasks": [
+      "01",
+      "02",
+      "03",
+      "04",
+      "05",
+      "06"
+    ],
+    "display": "GPT-6.1 Sol / High",
+    "configuration": "gpt-6.1-sol / high",
+    "confirmationSource": "project owner in this conversation",
+    "confirmationDate": "2026-09-30",
+    "toolIndependentReadback": "actual model and reasoning effort unverified",
+    "historicRunModelsNotInferredOrRewritten": true
+  },
+  "changedFiles": [
+    {
+      "originalPath": "D:/知识图谱/docs/assistant-team/06-INTEGRATION-TEST-CHARTER.md",
+      "archivePath": "D:/知识图谱/docs/assistant-team/governance/20260930-sol61-high-and-r4-acceptance/06-INTEGRATION-TEST-CHARTER.md.before.json",
+      "archiveRawSha256": "44fb36dde63018bc0fdaf0c2048f76ebe10de42fc729c9d9af9e8e91c9ec9d0b",
+      "beforeRawSha256": "42945524cf102ca2b9a2febb8ebc60235ff3760dd55e600cd410554f6caf11ad",
+      "beforeBytes": 6069,
+      "archiveVerified": true,
+      "after": {
+        "path": "D:/知识图谱/docs/assistant-team/06-INTEGRATION-TEST-CHARTER.md",
+        "bytes": 6228,
+        "rawSha256": "abc11107f5a0b3cdcbee2c480d226f5ef213c99c4eb4e869d43c7700cd75b0f1"
+      }
+    },
+    {
+      "originalPath": "D:/知识图谱/AGENTS.md",
+      "archivePath": "D:/知识图谱/docs/assistant-team/governance/20260930-sol61-high-and-r4-acceptance/AGENTS.md.before.json",
+      "archiveRawSha256": "c35f9f838b0f79310e355d8206c78a93b4ebecdbc820ddedcd7b18a49a6472a2",
+      "beforeRawSha256": "4d8aaaba19277bb0bc2f67255399d28206ce00e898ab6cf7b92ca54341d9a36d",
+      "beforeBytes": 4214,
+      "archiveVerified": true,
+      "after": {
+        "path": "D:/知识图谱/AGENTS.md",
+        "bytes": 4318,
+        "rawSha256": "a226474d6cbbf4ef96586f9052690d8318b96221d0721272c418c1b9bedefa8b"
+      }
+    },
+    {
+      "originalPath": "D:/知识图谱/docs/assistant-team/CONTROLLER-RULES.md",
+      "archivePath": "D:/知识图谱/docs/assistant-team/governance/20260930-sol61-high-and-r4-acceptance/CONTROLLER-RULES.md.before.json",
+      "archiveRawSha256": "745da8feae65ebc6082b56853ff164cf8995d50fc676f1a70215797970bcf46e",
+      "beforeRawSha256": "92cc0f2cc2ddec5e29d1dd7f2e4fc2eb7b22735c854dc9eb9a8b279c4d4844bc",
+      "beforeBytes": 27401,
+      "archiveVerified": true,
+      "after": {
+        "path": "D:/知识图谱/docs/assistant-team/CONTROLLER-RULES.md",
+        "bytes": 27784,
+        "rawSha256": "d7bbd0c0810fedb5ff3a40b859066769a3064f35e5c2275c03d560c7995eb8bc"
+      }
+    },
+    {
+      "originalPath": "D:/知识图谱/docs/assistant-team/COORDINATION.md",
+      "archivePath": "D:/知识图谱/docs/assistant-team/governance/20260930-sol61-high-and-r4-acceptance/COORDINATION.md.before.json",
+      "archiveRawSha256": "a7a4fe27df7f943f5a8300e85fba16018572b7f4bf025cbfb914497457a03768",
+      "beforeRawSha256": "17d3d297b988938442d383dbca3b5f88e65a2e37a5d45ec43fec3ed2c1a99d8e",
+      "beforeBytes": 14125,
+      "archiveVerified": true,
+      "after": {
+        "path": "D:/知识图谱/docs/assistant-team/COORDINATION.md",
+        "bytes": 14482,
+        "rawSha256": "e517285f70d4aa57993fffffbe34b771bc15170b8ac9884df3582c9ffd269f26"
+      }
+    },
+    {
+      "originalPath": "D:/知识图谱/docs/assistant-team/LONG-TERM-RULES.md",
+      "archivePath": "D:/知识图谱/docs/assistant-team/governance/20260930-sol61-high-and-r4-acceptance/LONG-TERM-RULES.md.before.json",
+      "archiveRawSha256": "a9b82f5eecb5df0864b1d8abdcbd2e43fcefe656e7b03e805cfc3f9b7554e060",
+      "beforeRawSha256": "1f1941afae07168a873ab9524e3d222fd01926b87c8bb2d6045f0ecc31e26ffd",
+      "beforeBytes": 5305,
+      "archiveVerified": true,
+      "after": {
+        "path": "D:/知识图谱/docs/assistant-team/LONG-TERM-RULES.md",
+        "bytes": 5517,
+        "rawSha256": "bcf1066627d44c86e54657f6fa38db216b30452450f95d01f32600762491fa13"
+      }
+    }
+  ],
+  "addedAcceptance": {
+    "path": "D:/知识图谱/docs/assistant-team/integration/I2/I2-R4-OWNER-ACCEPTANCE-20260930.md",
+    "bytes": 4198,
+    "rawSha256": "c9092231f6f3667d04c97ac3669b2177d5616c5879720f5264817809be62ed7a"
+  },
+  "sourceEvidence": [
+    {
+      "path": "D:/知识图谱-worktrees/assistant-06-integration-test/docs/assistant-team/integration/I2/R4-VERIFY/evidence/R4Verify-20260930T104031320/DELIVERY-INDEX.json",
+      "rawSha256": "10b5334bb9290c40006fae2397cb795e808deeeffd6a0c2249c25fcf1dfa39a6"
+    },
+    {
+      "path": "D:/知识图谱-worktrees/assistant-06-integration-test/docs/assistant-team/reports/06-integration-I2-R4-verification.md",
+      "rawSha256": "e77e79952be67a2e4ed77bb9021ec3bca2ef744548631af2fd76ef5cd6bddd87"
+    }
+  ],
+  "stageAccepted": {
+    "runId": "R4Verify-20260930T104031320",
+    "ownerAcceptedCompletedScope": true,
+    "offlineDefinitions": 175,
+    "offlineExpandedPassed": 203,
+    "matrixBusinessPassed": 14,
+    "matrixExplainPassed": 14,
+    "blockedCases": [
+      "V14",
+      "V15",
+      "V16"
+    ],
+    "realExpanded": {
+      "passed": 54,
+      "scopeBlockedFailures": 3,
+      "total": 57,
+      "skipped": 0
+    },
+    "oldPerformance": {
+      "samples": 40,
+      "singleP95Ms": 1355,
+      "concurrentP95Ms": 1920,
+      "limitMs": 3000
+    },
+    "newPerformanceSamples": 0,
+    "newPerformanceValidated": false,
+    "fullI2Accepted": false
+  },
+  "preservation": {
+    "preimages": "Five before.json files encode exact raw original bytes in contentBase64; verify decoded SHA-256 against beforeRawSha256",
+    "historicalExpectedHashesChanged": false,
+    "priorReportsOrEvidenceChanged": false,
+    "sourceAndTestCodeChanged": false,
+    "longTermRuleCount": 13,
+    "ruleChange": "Only current model configuration and confirmation metadata; other principles unchanged"
+  },
+  "handoff": {
+    "createdOrStartedTasks": false,
+    "testsRun": false,
+    "databaseConnected": false,
+    "nextTaskAuthorized": false,
+    "original06": "standby",
+    "futureCandidateExecutor": "original 06, only after owner approves a corrected bounded plan",
+    "futureGate": "Explicitly bridge these five file deltas, five archives, acceptance record and this overlay in a new baseline. Do not edit old expected hashes or disable old checks."
+  }
+}

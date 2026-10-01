@@ -1,0 +1,69 @@
+{
+  "schemaVersion": "controller-website-startup-review-v1",
+  "runId": "LocalView-20261001T235324868",
+  "reviewer": "controller",
+  "result": "APPROVED",
+  "reviewedAt": "2026-10-01T15:58:52.5689529+00:00",
+  "userAuthorization": "负责人：我现在要登录本地端查看",
+  "executor": "original06",
+  "launchId": "c1df992e-9ccd-4270-8157-40ac51a526e8",
+  "approvedIdentity": {
+    "version": "8.4.11",
+    "role": "NONE",
+    "port": 33078,
+    "uuid": "8c6cfcb3-ba49-11f1-bf64-005056c00001",
+    "database": "kg_assistant_i2_20260927_r01",
+    "readerAccount": "kg_i2_reader",
+    "address": "127.0.0.1"
+  },
+  "scope": {
+    "documentIds": [
+      "7201",
+      "7202"
+    ],
+    "libraryIds": [
+      "7101"
+    ],
+    "nodeIds": [],
+    "mode": "selected"
+  },
+  "findings": [
+    "Seven fresh authority files independently match hash/size and owner-only ACL",
+    "Original instance and new loopback listener PID match; host not yet started",
+    "Reader frozen SELECT grants, role NONE, loader lock, scope, budgets unchanged",
+    "144 existing static assets and previously accepted host classes unchanged; no rebuild",
+    "Script delta limited to batch paths, runId,30-minute human window and metadata",
+    "Known prior credential argv exposure remains recorded; no credential rotation authorized or claimed"
+  ],
+  "pendingEvidenceRawSha256": "258c104a6ce4d81c2cce30befc35f10fc1b555332499a824f3918ffcfce474d6",
+  "pendingConfigRawSha256": "85f576e2c1078395a215989723c60e285b1e433f9659a61d456e3bd2026f73ef",
+  "buildManifestRawSha256": "0626b6d27878ea58f074aad14d0f64d3ae14b2a258a5f8298291006de61679cc",
+  "approvedEvidencePath": "D:/知识图谱-i2-env/restricted-evidence/website/06-local-view/LocalView-20261001T235324868/controller-reviewed-evidence.json",
+  "approvedEvidenceRawSha256": "9b6273d495e97c8fde5beeff4c5790290e392a4ce322b507c1dd22d9fa4abcea",
+  "approvedConfigPath": "D:/知识图谱-i2-env/restricted-evidence/website/06-local-view/LocalView-20261001T235324868/controller-reviewed-config.json",
+  "controllerApprovedConfigSha256": "33372413a043575f39a732f3ffed943c10556b0e971aece2d167a3112b3ee0aa",
+  "exactDerivativeRecipe": {
+    "newlines": "Normalize CRLF to LF, remove terminal CR/LF and append exactly one LF",
+    "config": "From pinned pending config.json replace evidence.file evidence.json with controller-reviewed-evidence.json and its evidence.sha256 with approvedEvidenceRawSha256. No other field changes, never print password.",
+    "encoding": "UTF-8 without BOM",
+    "evidence": "From pinned pending evidence.json replace reviewedAt null with this reviewedAt, reference pending_batch_technical_review with this record absolute slash path, result PENDING_CONTROLLER_REVIEW with APPROVED. No other field changes."
+  },
+  "proofValidUntil": "2026-10-01T16:54:45.1532183+00:00",
+  "maximumWindowMinutes": 30,
+  "readyFile": "D:/知识图谱-worktrees/assistant-06-integration-test/docs/assistant-team/website/06-local-view/LocalView-20261001T235324868/ready.json",
+  "constraints": [
+    "CreateNew exact private derivatives; no secret process arguments/public input/output",
+    "Single startup and one page/capability reachability; no tests,Run creation,EXPLAIN,build or replay",
+    "30-minute local viewing window from ready, within60-minute fresh proof; no auto renewal",
+    "Normal close on user stop or expiry; no force kill",
+    "No code,SQL,data,index,migration,account,grant,model,budget,production or I2/I3/W2 changes"
+  ],
+  "notClaimed": [
+    "Host started",
+    "Full research workflow accepted",
+    "Prior credential exposure resolved",
+    "Final zero-write after user viewing"
+  ],
+  "modelRequirement": "gpt-6.1-sol / high",
+  "actualModelAndEffort": "实际模型未核实；实际推理强度未核实"
+}

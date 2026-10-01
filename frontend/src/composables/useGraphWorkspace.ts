@@ -1,4 +1,4 @@
-import { computed, ref, watch } from 'vue'
+import { computed, ref, watch, type Ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { graphApi } from '@/services/graphApi'
 import { ApiError } from '@/services/http'
@@ -10,7 +10,7 @@ export type RenderMode = '2d' | '3d'
 /**
  * 图谱工作台状态（§6）：搜索聚焦、全局/局部/聚焦模式、URL 同步（§6.2.4）。
  */
-export function useGraphWorkspace() {
+export function useGraphWorkspace(enabled: Readonly<Ref<boolean>> = ref(true)) {
   const route = useRoute()
   const router = useRouter()
 
@@ -24,6 +24,16 @@ export function useGraphWorkspace() {
   const loading = ref(false)
   const error = ref<string | null>(null)
   const selectedNodeId = ref<number | null>(null)
+  let readGeneration = 0
+  watch(
+    enabled,
+    () => {
+      readGeneration++
+      subgraph.value = null
+      selectedNodeId.value = null
+    },
+    { flush: 'sync' },
+  )
 
   const centerNode = computed<GraphNodeDto | null>(() => {
     const id = subgraph.value?.centerNodeId
@@ -44,28 +54,37 @@ export function useGraphWorkspace() {
   const extendedCount = computed(() => Math.max((subgraph.value?.totalNodes ?? 1) - 1, 0))
 
   async function loadOverview() {
+    if (!enabled.value) return
+    const version = ++readGeneration
     loading.value = true
     error.value = null
     selectedNodeId.value = null
     try {
-      subgraph.value = await graphApi.getOverview(libraryId.value, 300)
+      const data = await graphApi.getOverview(libraryId.value, 300)
+      if (enabled.value && version === readGeneration) subgraph.value = data
     } catch (err) {
+      if (!enabled.value || version !== readGeneration) return
       subgraph.value = null
       error.value = err instanceof ApiError ? err.message : '图谱加载失败，请稍后重试'
     } finally {
-      loading.value = false
+      if (enabled.value && version === readGeneration) loading.value = false
     }
   }
 
   async function focusNode(nodeId: number, targetDepth: 1 | 2) {
+    if (!enabled.value) return
+    const version = ++readGeneration
     loading.value = true
     error.value = null
     try {
-      subgraph.value = await graphApi.getNeighbors(nodeId, targetDepth, 500)
+      const data = await graphApi.getNeighbors(nodeId, targetDepth, 500)
+      if (!enabled.value || version !== readGeneration) return
+      subgraph.value = data
       mode.value = targetDepth === 2 ? 'local' : 'focus'
       // 邻域加载成功后对齐选中节点到实际中心，避免上次子图的选中残留
       selectedNodeId.value = subgraph.value.centerNodeId ?? nodeId
     } catch (err) {
+      if (!enabled.value || version !== readGeneration) return
       subgraph.value = null
       selectedNodeId.value = null
       if (err instanceof ApiError && err.code === 'NOT_FOUND') {
@@ -74,22 +93,25 @@ export function useGraphWorkspace() {
       }
       error.value = err instanceof ApiError ? err.message : '子图加载失败，请稍后重试'
     } finally {
-      loading.value = false
+      if (enabled.value && version === readGeneration) loading.value = false
     }
   }
 
   /** 画布单击：只更新选中与 AI 上下文，不重载子图（§6.5 浏览模式） */
   function selectNode(nodeId: number | null) {
+    if (!enabled.value) return
     selectedNodeId.value = nodeId
   }
 
   /** 画布双击：按需加载下一层邻居并同步 URL（§6.3） */
   function expandNode(nodeId: number) {
+    if (!enabled.value) return
     void router.push({ path: '/', query: { node: String(nodeId), depth: '2', mode: 'local' } })
   }
 
   /** 搜索命中（含顶部搜索与同名选择）：定位具体节点，固定聚焦一层 */
   function focusFromSearch(nodeId: number) {
+    if (!enabled.value) return
     void router.push({
       path: '/',
       query: { node: String(nodeId), depth: '1', mode: 'focus' },
@@ -97,6 +119,7 @@ export function useGraphWorkspace() {
   }
 
   function setMode(next: WorkspaceMode) {
+    if (!enabled.value) return
     if (next === 'global') {
       mode.value = next
       void router.push({ path: '/' })
@@ -118,11 +141,17 @@ export function useGraphWorkspace() {
   }
 
   function resetView() {
+    if (!enabled.value) return
     void router.push({ path: '/' })
   }
 
   /** 根据 URL query 加载对应视图（首次进入与路由变化时调用）；深度由模式固定，冲突/缺失时先规范化 URL */
   async function applyRouteQuery() {
+    if (!enabled.value) {
+      subgraph.value = null
+      selectedNodeId.value = null
+      return
+    }
     const nodeParam = Number(route.query.node)
     if (!Number.isFinite(nodeParam) || nodeParam <= 0) {
       mode.value = 'global'

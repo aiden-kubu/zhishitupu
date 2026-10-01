@@ -1,0 +1,458 @@
+{
+  "date": "2026-09-30",
+  "worktree": "D:/知识图谱-worktrees/assistant-08-host-api",
+  "branch": "codex/assistant-08-host-api",
+  "head": "8544b19f89bbcf477b9b458be7f48117775ff621",
+  "normalization": "UTF-8 decode; CRLF to LF; preserve trailing newline; no trim",
+  "assistantJavaCount": 66,
+  "files": [
+    {
+      "worktreeRawSha256": "01c57b3b5fbcbe0c04d7d1d52b29ae0c7afcba9db5def435f77c71f3969cdf91",
+      "path": "backend-java/src/test/java/com/knowledgegraph/assistant/runtime/DecisionParserTest.java",
+      "mainRawSha256": "323f4668eedb8a86f18e76c5d48188e28bb299d540f1aa8fbaffd6091b02acd0",
+      "normalizedSha256": "323f4668eedb8a86f18e76c5d48188e28bb299d540f1aa8fbaffd6091b02acd0"
+    },
+    {
+      "worktreeRawSha256": "58412c7438ebe2ba08858f63027c2c09e7ebdf699e78b510eeb557042f32ad24",
+      "path": "backend-java/src/test/java/com/knowledgegraph/assistant/runtime/AssistantRuntimeTest.java",
+      "mainRawSha256": "c050179d9e55f1427860f8c154a41ef6e230121d51bca10520c4ef18c9b0c808",
+      "normalizedSha256": "c050179d9e55f1427860f8c154a41ef6e230121d51bca10520c4ef18c9b0c808"
+    },
+    {
+      "worktreeRawSha256": "ec61521b00d104520f4517b24b69bade8e7a365a6b019e1ccd900aeef9bcfae6",
+      "path": "backend-java/src/test/java/com/knowledgegraph/assistant/research/ResearchDraftValidatorTest.java",
+      "mainRawSha256": "e9c2316cd982f2ec4ccfb0f96fee0d693cdfffdca4d58f980e7b44c983a7fb93",
+      "normalizedSha256": "e9c2316cd982f2ec4ccfb0f96fee0d693cdfffdca4d58f980e7b44c983a7fb93"
+    },
+    {
+      "worktreeRawSha256": "350b034aa42a0396fb038ff64b2cda3176216efa2edadcc9d454feee46e00b65",
+      "path": "backend-java/src/test/java/com/knowledgegraph/assistant/research/ResearchComparisonTest.java",
+      "mainRawSha256": "6f2df4ad7c2dbde2832106f0b1fe82344d631102944343909957ae31fd7d552a",
+      "normalizedSha256": "6f2df4ad7c2dbde2832106f0b1fe82344d631102944343909957ae31fd7d552a"
+    },
+    {
+      "worktreeRawSha256": "bf41a7cf0023314297f9ef0d9e38ccb7c8577383561f6863f1c8720db92b7f5d",
+      "path": "backend-java/src/test/java/com/knowledgegraph/assistant/research/ResearchAgentToolProviderTest.java",
+      "mainRawSha256": "dbe049de45f0257477b05935f90619a919b55fddd550e202717f3c40028f30ec",
+      "normalizedSha256": "dbe049de45f0257477b05935f90619a919b55fddd550e202717f3c40028f30ec"
+    },
+    {
+      "worktreeRawSha256": "ce48db634f1c101e6cf0eea10b3886de94f954e967db56b59a8e735144714afa",
+      "path": "backend-java/src/test/java/com/knowledgegraph/assistant/research/JdbcResearchReadRepositoryTest.java",
+      "mainRawSha256": "2381dad233b3e22ff52209e59a1194d2954fb739855685b8268b2f774811f386",
+      "normalizedSha256": "2381dad233b3e22ff52209e59a1194d2954fb739855685b8268b2f774811f386"
+    },
+    {
+      "worktreeRawSha256": "8988cebd77ec309ab20d3d0eb870f177d26745fa3a7fa4b27b91e456e2993668",
+      "path": "backend-java/src/test/java/com/knowledgegraph/assistant/research/JdbcResearchEdgeQueryPerformanceRegressionTest.java",
+      "mainRawSha256": "39a8c48684640ca28ae7cc78cab2b3d45a6bf002eacf020d07a43219d6768ed2",
+      "normalizedSha256": "39a8c48684640ca28ae7cc78cab2b3d45a6bf002eacf020d07a43219d6768ed2"
+    },
+    {
+      "worktreeRawSha256": "8f1f483d2b4d5a98b23b4ba5419830b13b7d57250c3dce827e67baced11edf0a",
+      "path": "backend-java/src/test/java/com/knowledgegraph/assistant/ingestion/JdbcIngestionReadRepositoryTest.java",
+      "mainRawSha256": "a3b0c9244600cb3eaf142615c8a3dc019c813aeb2c31d506882091518a34191f",
+      "normalizedSha256": "a3b0c9244600cb3eaf142615c8a3dc019c813aeb2c31d506882091518a34191f"
+    },
+    {
+      "worktreeRawSha256": "5c534496e5a833f642bbee3e9a38eaf8970f3a1b43883c1300c4f823919df3ba",
+      "path": "backend-java/src/test/java/com/knowledgegraph/assistant/ingestion/IngestionAgentToolProviderTest.java",
+      "mainRawSha256": "1fcec8faf64424acc108e42771729004eed7b71921db45ce3b0355de7484cbef",
+      "normalizedSha256": "1fcec8faf64424acc108e42771729004eed7b71921db45ce3b0355de7484cbef"
+    },
+    {
+      "worktreeRawSha256": "74a63c6b873c59abac45530ec9c179b685a1fd5ae3e922bb853db980adc9865d",
+      "path": "backend-java/src/test/java/com/knowledgegraph/assistant/quality/QualityEvidenceVerifierTest.java",
+      "mainRawSha256": "bc2ba87cd4296e500a1674a1111cc7be594c774c44fce3174ec378ab97d5c2f2",
+      "normalizedSha256": "bc2ba87cd4296e500a1674a1111cc7be594c774c44fce3174ec378ab97d5c2f2"
+    },
+    {
+      "worktreeRawSha256": "7ff7e0b66182a36c693eff659e8628a87354413a2d8dad76f9d3d8db459f30dc",
+      "path": "backend-java/src/test/java/com/knowledgegraph/assistant/quality/QualityAgentToolProviderTest.java",
+      "mainRawSha256": "d8540b83fb61906fe5460d81391e99ad0ee872cd180e1fffb0db2bda1ccbb6d2",
+      "normalizedSha256": "d8540b83fb61906fe5460d81391e99ad0ee872cd180e1fffb0db2bda1ccbb6d2"
+    },
+    {
+      "worktreeRawSha256": "e9122fee5a5c8236bbd2e0359efd8e30fe2ca9abc8c9af38663b6167ba532701",
+      "path": "backend-java/src/test/java/com/knowledgegraph/assistant/quality/JdbcQualityReadRepositoryTest.java",
+      "mainRawSha256": "c99ac56054eee8f01d20aa3cac9f9f11be3c3a663d5aaeb5919bb5c956b9dabc",
+      "normalizedSha256": "c99ac56054eee8f01d20aa3cac9f9f11be3c3a663d5aaeb5919bb5c956b9dabc"
+    },
+    {
+      "worktreeRawSha256": "1d27f1e364cbea8d2a7c02d1d522d7584c927b3bf7390be3bc110ab448df1d2b",
+      "path": "backend-java/src/test/java/com/knowledgegraph/assistant/quality/JdbcQualityInsightRankingRegressionTest.java",
+      "mainRawSha256": "8c6c40ff5fc28254f7226a4013d45b04fe67972557de11814af51952eb2c9ced",
+      "normalizedSha256": "8c6c40ff5fc28254f7226a4013d45b04fe67972557de11814af51952eb2c9ced"
+    },
+    {
+      "worktreeRawSha256": "53f94e90372a088afdb4e1839e9f749f39e280efc999dfad2c3216874e093a86",
+      "path": "backend-java/src/test/java/com/knowledgegraph/assistant/quality/JdbcQualityInsightPerformanceRegressionTest.java",
+      "mainRawSha256": "5bcdee1ee353d22b6770242bf8683d502dc77f4bdb2a8e1b789306c523c3724f",
+      "normalizedSha256": "5bcdee1ee353d22b6770242bf8683d502dc77f4bdb2a8e1b789306c523c3724f"
+    },
+    {
+      "worktreeRawSha256": "bbd92454a72bf62bab6b493780cd5fbd8c16edd20e7f1766f874d2b25cf5f357",
+      "path": "backend-java/src/test/java/com/knowledgegraph/assistant/quality/JdbcQualityInsightIsolatedCountRegressionTest.java",
+      "mainRawSha256": "10f46f136fc13a1ff7cf50f4e90c3ac0e9c0ffb74a7577619f1558eadddbfff9",
+      "normalizedSha256": "10f46f136fc13a1ff7cf50f4e90c3ac0e9c0ffb74a7577619f1558eadddbfff9"
+    },
+    {
+      "worktreeRawSha256": "9c660f1af228e8a68a5775cc6cccb5f9444ec6cb16e6fdcdf7a85868a238615c",
+      "path": "backend-java/src/test/java/com/knowledgegraph/assistant/learning/LearningAgentToolProviderTest.java",
+      "mainRawSha256": "44af2c7e7ce0ffd8981bff94a8a7c45129142c7ef112238105fdeeaa112ed7aa",
+      "normalizedSha256": "44af2c7e7ce0ffd8981bff94a8a7c45129142c7ef112238105fdeeaa112ed7aa"
+    },
+    {
+      "worktreeRawSha256": "e2f0b545b4825df5e3a782ec35525d18775b1c1e2308dbff3ddcadc02f790ce8",
+      "path": "backend-java/src/test/java/com/knowledgegraph/assistant/learning/JdbcLearningReadRepositoryTest.java",
+      "mainRawSha256": "799ac78d5d560e34868b765f4f8ca49b8664d1c02e612c3f18219563f20316da",
+      "normalizedSha256": "799ac78d5d560e34868b765f4f8ca49b8664d1c02e612c3f18219563f20316da"
+    },
+    {
+      "worktreeRawSha256": "41796dffebf594d1a0cca7170c440a0e169affc71cd9a6221623b9da2dfdc17d",
+      "path": "backend-java/src/test/java/com/knowledgegraph/assistant/learning/LearningArtifactHandoffTest.java",
+      "mainRawSha256": "f00f0b14bfe986cc93582df41db53a0cc9c0059ed6c1e99c8feb15dfe0c92ced",
+      "normalizedSha256": "f00f0b14bfe986cc93582df41db53a0cc9c0059ed6c1e99c8feb15dfe0c92ced"
+    },
+    {
+      "worktreeRawSha256": "42f1872254e74d6889a130e2fb3c2cb8e840b15e5ae1531397dfc86286354541",
+      "path": "backend-java/src/test/java/com/knowledgegraph/assistant/learning/LearningDraftValidatorTest.java",
+      "mainRawSha256": "85d36d07f6ad7f410a65bf6c6c44391670adf32803704c8761a3ae832d6c5c96",
+      "normalizedSha256": "85d36d07f6ad7f410a65bf6c6c44391670adf32803704c8761a3ae832d6c5c96"
+    },
+    {
+      "worktreeRawSha256": "70049048891d7ef913476606ba04750d4e8f8063a9a1d358185800aa3b5e1691",
+      "path": "backend-java/src/test/java/com/knowledgegraph/assistant/assessment/JdbcAssessmentReadRepositoryTest.java",
+      "mainRawSha256": "9383f0738fa1f28323330683facb6d38155deef0d501c2e0151e02857814117f",
+      "normalizedSha256": "9383f0738fa1f28323330683facb6d38155deef0d501c2e0151e02857814117f"
+    },
+    {
+      "worktreeRawSha256": "81ad56d04ab5824605fec3f7ba7795035d07122028d4ba4881be5d7e6199b13b",
+      "path": "backend-java/src/test/java/com/knowledgegraph/assistant/assessment/AssessmentDraftValidatorTest.java",
+      "mainRawSha256": "6f45f11c8308a698a46a5ccee02fded3fa40f6c0364a72177301c0b3984e82a5",
+      "normalizedSha256": "6f45f11c8308a698a46a5ccee02fded3fa40f6c0364a72177301c0b3984e82a5"
+    },
+    {
+      "worktreeRawSha256": "1f840508bdab550ed2e0a3fbd15bb6a18cec161d07d2cee1437e91752dbda548",
+      "path": "backend-java/src/test/java/com/knowledgegraph/assistant/assessment/AssessmentArtifactHandoffTest.java",
+      "mainRawSha256": "16a86aa58f34e5508f3e5364056998e05ed7c12b90008633e62bf785496fc717",
+      "normalizedSha256": "16a86aa58f34e5508f3e5364056998e05ed7c12b90008633e62bf785496fc717"
+    },
+    {
+      "worktreeRawSha256": "d13c0b2843a9a3e23c4ae7f5684e4d3f6a96ad87000c7877d0fa55a6d8481ac9",
+      "path": "backend-java/src/test/java/com/knowledgegraph/assistant/assessment/AssessmentAgentToolProviderTest.java",
+      "mainRawSha256": "71cd1763c359fb16dfe349924f42fad51c2e0461c1fd13af8c1c9d05cf303818",
+      "normalizedSha256": "71cd1763c359fb16dfe349924f42fad51c2e0461c1fd13af8c1c9d05cf303818"
+    },
+    {
+      "worktreeRawSha256": "79c84ab3423e60546f73feedab51b4d92a39a9ec47804bb84d74be3802722a72",
+      "path": "backend-java/src/main/java/com/knowledgegraph/assistant/tool/ToolRegistry.java",
+      "mainRawSha256": "c1df65d6649652da50d893add7db5065eb6a1900155a0cfeaca3d34cfe10a41c",
+      "normalizedSha256": "c1df65d6649652da50d893add7db5065eb6a1900155a0cfeaca3d34cfe10a41c"
+    },
+    {
+      "worktreeRawSha256": "703aa2a830283e99d788878e622e0258714849812dcab1dd9c51ff1ec6a012a5",
+      "path": "backend-java/src/main/java/com/knowledgegraph/assistant/tool/AssistantTool.java",
+      "mainRawSha256": "206ff5e055bcb8e0357d0a4800e04372cbe57ba011e3d4ad2e493541423dde64",
+      "normalizedSha256": "206ff5e055bcb8e0357d0a4800e04372cbe57ba011e3d4ad2e493541423dde64"
+    },
+    {
+      "worktreeRawSha256": "25babd26c335c0fb293df3b58478252a40353a181313fe4e8bb8d7e61927f88f",
+      "path": "backend-java/src/main/java/com/knowledgegraph/assistant/source/SourceLocator.java",
+      "mainRawSha256": "3beef2917ad840293217b6930e8d649d1f3568f8465a8e48efbde137e862127b",
+      "normalizedSha256": "3beef2917ad840293217b6930e8d649d1f3568f8465a8e48efbde137e862127b"
+    },
+    {
+      "worktreeRawSha256": "3390c9a20d005d3a0100d587d4d0ea09dbc036f5d2ee8b33412a6bb80cc335e6",
+      "path": "backend-java/src/main/java/com/knowledgegraph/assistant/source/JdbcSourceLocator.java",
+      "mainRawSha256": "0e2cec0cbcdbc28f45cf504955df1c22c4bd64ebd45197fa6c419fa9491dda53",
+      "normalizedSha256": "0e2cec0cbcdbc28f45cf504955df1c22c4bd64ebd45197fa6c419fa9491dda53"
+    },
+    {
+      "worktreeRawSha256": "d45767331612597939cf22bd9487e8a4e33e1810cfbc70055a1c4d319b5438f6",
+      "path": "backend-java/src/main/java/com/knowledgegraph/assistant/learning/LearningReadRepository.java",
+      "mainRawSha256": "94a8dc95150d4b4579cfc3d2aef00b3e7e1adefdb04bf5acea0119cf24631fa4",
+      "normalizedSha256": "94a8dc95150d4b4579cfc3d2aef00b3e7e1adefdb04bf5acea0119cf24631fa4"
+    },
+    {
+      "worktreeRawSha256": "dae0481f8b49142a6871b4f16d30bd5d40dbfa24afa37112b44cb124e5b17f0e",
+      "path": "backend-java/src/main/java/com/knowledgegraph/assistant/learning/LearningMaterials.java",
+      "mainRawSha256": "9ade83200ba7f75a93ecbf10be40a0bf0ef8699d5e6037be4c6bfe04b3aec4b9",
+      "normalizedSha256": "9ade83200ba7f75a93ecbf10be40a0bf0ef8699d5e6037be4c6bfe04b3aec4b9"
+    },
+    {
+      "worktreeRawSha256": "e9c40bd5be0dea306e2e0d751aaf40c886a73875a96587810c2a60891326296b",
+      "path": "backend-java/src/main/java/com/knowledgegraph/assistant/learning/LearningJson.java",
+      "mainRawSha256": "2dcec54eebfe40cf711e5fe180946184d99a5207c6cbe5265229481be8f9177d",
+      "normalizedSha256": "2dcec54eebfe40cf711e5fe180946184d99a5207c6cbe5265229481be8f9177d"
+    },
+    {
+      "worktreeRawSha256": "f0caeca2f0baa83b751088e421374f31308077a4a474e871a763ba5207ca769d",
+      "path": "backend-java/src/main/java/com/knowledgegraph/assistant/learning/LearningEvidence.java",
+      "mainRawSha256": "efa0136c9ead4e2dc04179be3f62ebea8d24886984a8df8260b9dcfd2985604d",
+      "normalizedSha256": "efa0136c9ead4e2dc04179be3f62ebea8d24886984a8df8260b9dcfd2985604d"
+    },
+    {
+      "worktreeRawSha256": "0a9e2bb1a5167c75af443361c557fcce6d47642305f827f619c57d61c090c78d",
+      "path": "backend-java/src/main/java/com/knowledgegraph/assistant/learning/LearningDraftValidator.java",
+      "mainRawSha256": "eb97266bcd2577f34790a295b0fc4a1945ff0574aa7f7c644c41c8fb667a3b2a",
+      "normalizedSha256": "eb97266bcd2577f34790a295b0fc4a1945ff0574aa7f7c644c41c8fb667a3b2a"
+    },
+    {
+      "worktreeRawSha256": "03f1a009be21ce6d6f7d191b7d720cdc62033042abc5fca047101a1847a40585",
+      "path": "backend-java/src/main/java/com/knowledgegraph/assistant/learning/LearningContextReader.java",
+      "mainRawSha256": "e0fded67dd3dca61fa10b8cda22167bbe80bc5b4de0f7e0245499da0fc474102",
+      "normalizedSha256": "e0fded67dd3dca61fa10b8cda22167bbe80bc5b4de0f7e0245499da0fc474102"
+    },
+    {
+      "worktreeRawSha256": "ee18507c701e4f0187582660eef60e3c770d6ed6b0570ebb92bffc191e22d4a2",
+      "path": "backend-java/src/main/java/com/knowledgegraph/assistant/learning/LearningAgentToolProvider.java",
+      "mainRawSha256": "c6fe8416b3b88e7f62261cc98dd776128df7d7d4efb48b6ac58bb1fe0f3d8f2c",
+      "normalizedSha256": "c6fe8416b3b88e7f62261cc98dd776128df7d7d4efb48b6ac58bb1fe0f3d8f2c"
+    },
+    {
+      "worktreeRawSha256": "6cf6a007ecf22f3976c8d5785fbc7d2e33a89bb120aeb15877aa1c260ad4edee",
+      "path": "backend-java/src/main/java/com/knowledgegraph/assistant/learning/JdbcLearningReadRepository.java",
+      "mainRawSha256": "cbbec3f35630758847c9c0a31da798a0ed624b7b8c7f8f9f29c5f5a2b87c377b",
+      "normalizedSha256": "cbbec3f35630758847c9c0a31da798a0ed624b7b8c7f8f9f29c5f5a2b87c377b"
+    },
+    {
+      "worktreeRawSha256": "9af2a170446ebb89f62a3ff7f7a82d0de97185b12aa2fb3b51ee5741bf638b52",
+      "path": "backend-java/src/main/java/com/knowledgegraph/assistant/runtime/RunBudget.java",
+      "mainRawSha256": "c0ccbc5df9d03ac5b79a6ada53b6f74f8378a98055a282b9793cbe2d476747c9",
+      "normalizedSha256": "c0ccbc5df9d03ac5b79a6ada53b6f74f8378a98055a282b9793cbe2d476747c9"
+    },
+    {
+      "worktreeRawSha256": "b0cb94326dc480631c0bc79067a9e24a2a7a4cfbdd5e91a8ae533b47650177bf",
+      "path": "backend-java/src/main/java/com/knowledgegraph/assistant/runtime/ProposalValidator.java",
+      "mainRawSha256": "c9446b396438c468d36cbf563393576f369a4833c4237be1e87233a6a71ea30a",
+      "normalizedSha256": "c9446b396438c468d36cbf563393576f369a4833c4237be1e87233a6a71ea30a"
+    },
+    {
+      "worktreeRawSha256": "c8e929c8f9c03b4aaf1d0a4c09f4c64c83105713e25db8a10c61ba80813ce6ab",
+      "path": "backend-java/src/main/java/com/knowledgegraph/assistant/runtime/DecisionProvider.java",
+      "mainRawSha256": "a09142a528df6366b3448f3258e4b8f1b3e709b3e7b7c76c96ca7259f7f846dc",
+      "normalizedSha256": "a09142a528df6366b3448f3258e4b8f1b3e709b3e7b7c76c96ca7259f7f846dc"
+    },
+    {
+      "worktreeRawSha256": "8eeebee227171b256099d00f3ed86a56b0723d2970ef0ddc71ef153a34b5ff4c",
+      "path": "backend-java/src/main/java/com/knowledgegraph/assistant/runtime/DecisionParser.java",
+      "mainRawSha256": "f29bf1fb1c7e59f183d9a142bed234b933cb61a26f7c9433dd8af5712f476eb3",
+      "normalizedSha256": "f29bf1fb1c7e59f183d9a142bed234b933cb61a26f7c9433dd8af5712f476eb3"
+    },
+    {
+      "worktreeRawSha256": "02a6a463b6babb0f6d85f9c5ef14fdb663de9fb0056b82a3cd1c568f23c46d45",
+      "path": "backend-java/src/main/java/com/knowledgegraph/assistant/runtime/AssistantRuntime.java",
+      "mainRawSha256": "2980b98c0a7d0ca1d5f3475aadb7166369b3e822b7f60baa2d9c86ac694f1f90",
+      "normalizedSha256": "2980b98c0a7d0ca1d5f3475aadb7166369b3e822b7f60baa2d9c86ac694f1f90"
+    },
+    {
+      "worktreeRawSha256": "af32d0f7c347fdde670924ac9161a401f1fb6dc29706f3f033a45b615b61c5e3",
+      "path": "backend-java/src/main/java/com/knowledgegraph/assistant/runtime/AgentRunner.java",
+      "mainRawSha256": "20dc1c2260f9c44f724437f3c74855d09133a23f44fffe7046f919b7a0c4d0ab",
+      "normalizedSha256": "20dc1c2260f9c44f724437f3c74855d09133a23f44fffe7046f919b7a0c4d0ab"
+    },
+    {
+      "worktreeRawSha256": "da4f99010e662f8023c562e99249ddd318957ad710a2a77c919ad33fe63e5341",
+      "path": "backend-java/src/main/java/com/knowledgegraph/assistant/ingestion/JdbcIngestionReadRepository.java",
+      "mainRawSha256": "715af87d60c765152628c81cd4c6a6bbf0a1f2b6dc985e2fe58a25696a7c2f43",
+      "normalizedSha256": "715af87d60c765152628c81cd4c6a6bbf0a1f2b6dc985e2fe58a25696a7c2f43"
+    },
+    {
+      "worktreeRawSha256": "8ed7bdf4c3723573947a3899f148957ff4e007f73a2a0f5253337491fb012657",
+      "path": "backend-java/src/main/java/com/knowledgegraph/assistant/research/ResearchReadRepository.java",
+      "mainRawSha256": "8f47484f79cdfcc170ed1a64a3c883da20a1e9d94791bbc37286d04db77f2338",
+      "normalizedSha256": "8f47484f79cdfcc170ed1a64a3c883da20a1e9d94791bbc37286d04db77f2338"
+    },
+    {
+      "worktreeRawSha256": "2666562c0ae8d0b3e065e20b10498e5657e7d1e2e28bb455a3ce3cce40381911",
+      "path": "backend-java/src/main/java/com/knowledgegraph/assistant/ingestion/IngestionRecoveryAdvisor.java",
+      "mainRawSha256": "8ef5bba906ca7a9babda97f2fe117ea3c6f114694a4fe3093f8b4b07ca0f608e",
+      "normalizedSha256": "8ef5bba906ca7a9babda97f2fe117ea3c6f114694a4fe3093f8b4b07ca0f608e"
+    },
+    {
+      "worktreeRawSha256": "a68b4d3415afd7ffd4d3f7996cc589475cf9518cda6335880e219ac0f9db2e18",
+      "path": "backend-java/src/main/java/com/knowledgegraph/assistant/research/ResearchEvidence.java",
+      "mainRawSha256": "ae72850989b05a7396330f835e9754e5b416b6d532089067c65d3161647feca5",
+      "normalizedSha256": "ae72850989b05a7396330f835e9754e5b416b6d532089067c65d3161647feca5"
+    },
+    {
+      "worktreeRawSha256": "75b07928ee5dac76c9d30a90826c11086b5fe8b17e0647df70b13193e42761e8",
+      "path": "backend-java/src/main/java/com/knowledgegraph/assistant/ingestion/IngestionReadRepository.java",
+      "mainRawSha256": "5006737f5c86712ec06602c8170f43100ea3a95113c116b8ffe32ffa0c812fe5",
+      "normalizedSha256": "5006737f5c86712ec06602c8170f43100ea3a95113c116b8ffe32ffa0c812fe5"
+    },
+    {
+      "worktreeRawSha256": "3b905a0c0f313faa75857b441109d8f94331beb9f2b6327b27ae4744b69daaee",
+      "path": "backend-java/src/main/java/com/knowledgegraph/assistant/research/ResearchDraftValidator.java",
+      "mainRawSha256": "7763871dacf07b4ba24d8f23779a371373661c15dc03ff1807b7672adf2a61b5",
+      "normalizedSha256": "7763871dacf07b4ba24d8f23779a371373661c15dc03ff1807b7672adf2a61b5"
+    },
+    {
+      "worktreeRawSha256": "d8d1d02fec69355a847463234ae277b0d6dbfd3f9857a1e66f3832ccfd4b42a5",
+      "path": "backend-java/src/main/java/com/knowledgegraph/assistant/ingestion/IngestionProposalValidator.java",
+      "mainRawSha256": "f07eabb2923b7e190ff4ef4f6f10da71e09467c912f06a973638b6723239b799",
+      "normalizedSha256": "f07eabb2923b7e190ff4ef4f6f10da71e09467c912f06a973638b6723239b799"
+    },
+    {
+      "worktreeRawSha256": "94d377c0a9881f0044b2aaabb922c103edd16d22db431395a303c57aa76fbe83",
+      "path": "backend-java/src/main/java/com/knowledgegraph/assistant/research/ResearchArtifacts.java",
+      "mainRawSha256": "41d2e1f34da841e0ec8e3c530aa222d2d9c1bbdcf01173d9791a8aa206d54772",
+      "normalizedSha256": "41d2e1f34da841e0ec8e3c530aa222d2d9c1bbdcf01173d9791a8aa206d54772"
+    },
+    {
+      "worktreeRawSha256": "cd6f0e0d16917267ace22f7a50afc27d3aebf12ab7a75613d21ce8d0ef72fe4d",
+      "path": "backend-java/src/main/java/com/knowledgegraph/assistant/ingestion/IngestionAgentToolProvider.java",
+      "mainRawSha256": "cc68eee0ba643ec585b69b9620e300c8025d775af7bc4065245dee9688c51f67",
+      "normalizedSha256": "cc68eee0ba643ec585b69b9620e300c8025d775af7bc4065245dee9688c51f67"
+    },
+    {
+      "worktreeRawSha256": "2338767775b8965f6b4ef5126c690547d95f1e102786b9698297c1b3be2ededd",
+      "path": "backend-java/src/main/java/com/knowledgegraph/assistant/research/ResearchAgentToolProvider.java",
+      "mainRawSha256": "65c53ea2ec0238a126126131896bdb4e6fe48727c1976fc6acc27cea548cf219",
+      "normalizedSha256": "65c53ea2ec0238a126126131896bdb4e6fe48727c1976fc6acc27cea548cf219"
+    },
+    {
+      "worktreeRawSha256": "2d3614bc0e17246feac6ba87f92ffbd83dc77e99cba16d719f9a076413ab637e",
+      "path": "backend-java/src/main/java/com/knowledgegraph/assistant/research/JdbcResearchReadRepository.java",
+      "mainRawSha256": "7107873c220e44e5eb3e9638e98c70606503d6504fb6a99080e11e84f9c10c26",
+      "normalizedSha256": "7107873c220e44e5eb3e9638e98c70606503d6504fb6a99080e11e84f9c10c26"
+    },
+    {
+      "worktreeRawSha256": "25c82191824056e325614383a538cc14622190fe9c5863de808725979010eac2",
+      "path": "backend-java/src/main/java/com/knowledgegraph/assistant/quality/QualityReadRepository.java",
+      "mainRawSha256": "04714f9741bacd10a14c4c8b6ce5a6c4cbf3b868eb70a2e3a7f39f3e35c48d20",
+      "normalizedSha256": "04714f9741bacd10a14c4c8b6ce5a6c4cbf3b868eb70a2e3a7f39f3e35c48d20"
+    },
+    {
+      "worktreeRawSha256": "87f15e5c8af151894d042917b325651190da1037ea6ba116e3c66afbdad4418d",
+      "path": "backend-java/src/main/java/com/knowledgegraph/assistant/quality/QualityEvidenceVerifier.java",
+      "mainRawSha256": "fb081b24933d14f293c0dc54c55d23286ac462e1587ccf907f9b2d12457d4f27",
+      "normalizedSha256": "fb081b24933d14f293c0dc54c55d23286ac462e1587ccf907f9b2d12457d4f27"
+    },
+    {
+      "worktreeRawSha256": "56eda4a092d127ef2397f7825a8e80af6c6e8cf45d14b606ab32230b59b67be1",
+      "path": "backend-java/src/main/java/com/knowledgegraph/assistant/quality/QualityArtifactReader.java",
+      "mainRawSha256": "003bfd2225d5e26fd5b954d3aec7acd340c288085e36140451a129276145c84a",
+      "normalizedSha256": "003bfd2225d5e26fd5b954d3aec7acd340c288085e36140451a129276145c84a"
+    },
+    {
+      "worktreeRawSha256": "b181b55df7463abcfc7519e6ce261a664a163534a094af662fa623d2f60ab491",
+      "path": "backend-java/src/main/java/com/knowledgegraph/assistant/quality/QualityAgentToolProvider.java",
+      "mainRawSha256": "541ffd4f031cdc695a82dcaa29a3c91bf96733fa7b6ff32e3abc4e538a83cbb2",
+      "normalizedSha256": "541ffd4f031cdc695a82dcaa29a3c91bf96733fa7b6ff32e3abc4e538a83cbb2"
+    },
+    {
+      "worktreeRawSha256": "227ef9789aedcb0a8b1db69d17ae5409fd35d42ef4ed11c1d2cae7b3a83bc366",
+      "path": "backend-java/src/main/java/com/knowledgegraph/assistant/quality/JdbcQualityReadRepository.java",
+      "mainRawSha256": "6a17642e64bbfdb5f0d3bffa13ad9cde4ddbe6384e3b2d5f1a2e592a4db0d740",
+      "normalizedSha256": "6a17642e64bbfdb5f0d3bffa13ad9cde4ddbe6384e3b2d5f1a2e592a4db0d740"
+    },
+    {
+      "worktreeRawSha256": "ee399f26106df94fd62f497ad7a0339cc6c8f33a4e356f0606fed1011516b23c",
+      "path": "backend-java/src/main/java/com/knowledgegraph/assistant/contract/AssistantContracts.java",
+      "mainRawSha256": "9ad6cc545c5306e4a875280537428f1c6d9426e175bc7264189ef3893c6bee19",
+      "normalizedSha256": "9ad6cc545c5306e4a875280537428f1c6d9426e175bc7264189ef3893c6bee19"
+    },
+    {
+      "worktreeRawSha256": "9ddceebbeb02332b1b94c1d765da5b84cfa0aa79c59fded9ae6bad5d5ff1c98a",
+      "path": "backend-java/src/main/java/com/knowledgegraph/assistant/assessment/JdbcAssessmentReadRepository.java",
+      "mainRawSha256": "e501e2dbe8e6a4a0b6478f175d457aabedd9dd942ff337bd1b0c31a7d85b6570",
+      "normalizedSha256": "e501e2dbe8e6a4a0b6478f175d457aabedd9dd942ff337bd1b0c31a7d85b6570"
+    },
+    {
+      "worktreeRawSha256": "c10f102236bdc588059856c50388faf96d0e09ffdddd71f9789add5ff7cafee5",
+      "path": "backend-java/src/main/java/com/knowledgegraph/assistant/assessment/AssessmentReadRepository.java",
+      "mainRawSha256": "80f1c67e3f75deafade9700601e6806531833db0a8f30e010f3d500dbda5bd51",
+      "normalizedSha256": "80f1c67e3f75deafade9700601e6806531833db0a8f30e010f3d500dbda5bd51"
+    },
+    {
+      "worktreeRawSha256": "e03b4670c9a54d6dc9d2d1f244624ebf4c8347e5a856186193962d398a528781",
+      "path": "backend-java/src/main/java/com/knowledgegraph/assistant/assessment/AssessmentMaterials.java",
+      "mainRawSha256": "b9abaf77dea91a53f73481bcc4842e214b98dc1e4ef36b066e3e36f159840fce",
+      "normalizedSha256": "b9abaf77dea91a53f73481bcc4842e214b98dc1e4ef36b066e3e36f159840fce"
+    },
+    {
+      "worktreeRawSha256": "deb0334ad72325b19db5f035793ac8a89555ff922256434d478101054b9fcecb",
+      "path": "backend-java/src/main/java/com/knowledgegraph/assistant/assessment/AssessmentJson.java",
+      "mainRawSha256": "5381e526ef698ad321efe6a6cd7eaabe094d0596c52d197e7ec9ed13b754c6be",
+      "normalizedSha256": "5381e526ef698ad321efe6a6cd7eaabe094d0596c52d197e7ec9ed13b754c6be"
+    },
+    {
+      "worktreeRawSha256": "5e99cc2dbf135ddedb95fdfb437871ca69244e2a4314a2bdda8b6fee024715c0",
+      "path": "backend-java/src/main/java/com/knowledgegraph/assistant/assessment/AssessmentEvidence.java",
+      "mainRawSha256": "3c9b4bd53a821e58fcda44822f8de349a6902a4cd8fcb559fbcc06cc2adc2aec",
+      "normalizedSha256": "3c9b4bd53a821e58fcda44822f8de349a6902a4cd8fcb559fbcc06cc2adc2aec"
+    },
+    {
+      "worktreeRawSha256": "933b9f7ddeb91a676cd676866fdf48ebfd5fcfb46c30adee435d2e458e4cf04d",
+      "path": "backend-java/src/main/java/com/knowledgegraph/assistant/assessment/AssessmentDraftValidator.java",
+      "mainRawSha256": "4c0689cf43d57e14953655f471e676f31abba4115552b108200b4a25b3596f7b",
+      "normalizedSha256": "4c0689cf43d57e14953655f471e676f31abba4115552b108200b4a25b3596f7b"
+    },
+    {
+      "worktreeRawSha256": "1d0cd6f675c61dda39ffe2f29787788afedc2e79f6f186a1d2a0c38da2a6d0ce",
+      "path": "backend-java/src/main/java/com/knowledgegraph/assistant/assessment/AssessmentContextReader.java",
+      "mainRawSha256": "1a742969602263f7da1e086e2b31dae0820d3c7db94cb33db718128a327f7f28",
+      "normalizedSha256": "1a742969602263f7da1e086e2b31dae0820d3c7db94cb33db718128a327f7f28"
+    },
+    {
+      "worktreeRawSha256": "c223c937cb3e270b9ae6e9afd07904274d6b266826014b4e0e3ce19b240e16b6",
+      "path": "backend-java/src/main/java/com/knowledgegraph/assistant/assessment/AssessmentAgentToolProvider.java",
+      "mainRawSha256": "b2a3acaa2db1acc1010b042a2fa559bb34e14650667f524759a87f62fb17cd9b",
+      "normalizedSha256": "b2a3acaa2db1acc1010b042a2fa559bb34e14650667f524759a87f62fb17cd9b"
+    },
+    {
+      "worktreeRawSha256": "9714945169562634475a9ce74f6cba1609c1e7d75829f410a8791334304b78ec",
+      "path": "backend-java/pom.xml",
+      "mainRawSha256": "9714945169562634475a9ce74f6cba1609c1e7d75829f410a8791334304b78ec",
+      "normalizedSha256": "947632d4d0ff0fd6965e9905dd9648d6826119898f2d758d9f616b26196880ff"
+    },
+    {
+      "worktreeRawSha256": "f9aaf5271d2f51916db8f551b0646efeffa72c7f1cbc47e8e36dc95812e42762",
+      "path": "backend-java/src/main/java/com/knowledgegraph/settings/SettingsService.java",
+      "mainRawSha256": "f9aaf5271d2f51916db8f551b0646efeffa72c7f1cbc47e8e36dc95812e42762",
+      "normalizedSha256": "3f66c8affa0dd716439e07c8e2e17a6266d38846612d8d8dc50e8aa02f07c63c"
+    },
+    {
+      "worktreeRawSha256": "85b58a3cfee1d33b41f29b43e27b58b7b17f9a14ec843214d37f598696e4e440",
+      "path": "backend-java/src/main/java/com/knowledgegraph/settings/SecretCipher.java",
+      "mainRawSha256": "85b58a3cfee1d33b41f29b43e27b58b7b17f9a14ec843214d37f598696e4e440",
+      "normalizedSha256": "851fda7a9733e2843292ca828a7267488a5db340a507c0d8b4b9e1dc4046c848"
+    },
+    {
+      "worktreeRawSha256": "37694691a201df75d8673a5d96eff08646260bdaa705f06fed9dbbcd4231c3ac",
+      "path": "backend-java/src/main/java/com/knowledgegraph/config/AppProperties.java",
+      "mainRawSha256": "37694691a201df75d8673a5d96eff08646260bdaa705f06fed9dbbcd4231c3ac",
+      "normalizedSha256": "30289e26829c9aac26acde38c33bf2d2e21c116a923745f6f19e18e3d36bee48"
+    },
+    {
+      "worktreeRawSha256": "a22acd1864c5eee2e348a0d1bdf19eb328fe6d5f6238fa05c4ba0fe609c064e7",
+      "path": "backend-java/src/main/java/com/knowledgegraph/common/ApiResponse.java",
+      "mainRawSha256": "a22acd1864c5eee2e348a0d1bdf19eb328fe6d5f6238fa05c4ba0fe609c064e7",
+      "normalizedSha256": "2817760fafd38363b2165afa927c0334c2a41ba7acd942ddeb30ba437d9cb3bc"
+    },
+    {
+      "worktreeRawSha256": "f04a1b1e0160509c4760ba7a56f315320b25d04e34ad1a0d400ba088bc1b2481",
+      "path": "backend-java/src/main/java/com/knowledgegraph/common/ApiException.java",
+      "mainRawSha256": "f04a1b1e0160509c4760ba7a56f315320b25d04e34ad1a0d400ba088bc1b2481",
+      "normalizedSha256": "f262e6144876685db58530e94aff3484073e4dee6fa16ad58d580e2730b32f14"
+    },
+    {
+      "worktreeRawSha256": "0acdb68dced8dab78fe0bc2828c278c7725e00c7b026f991a2b0ea99c4de12f3",
+      "path": "backend-java/src/main/java/com/knowledgegraph/common/RequestIdFilter.java",
+      "mainRawSha256": "0acdb68dced8dab78fe0bc2828c278c7725e00c7b026f991a2b0ea99c4de12f3",
+      "normalizedSha256": "1d2ca2aa1b354e54da60a2f519bfc013e2694fe862ae33142f1db4a40ea98494"
+    },
+    {
+      "worktreeRawSha256": "6af1fcabb529f8b4254180a4250a8b76e13b5100bdeceb17991652963fed06ba",
+      "path": "backend-java/src/main/java/com/knowledgegraph/common/GlobalExceptionHandler.java",
+      "mainRawSha256": "6af1fcabb529f8b4254180a4250a8b76e13b5100bdeceb17991652963fed06ba",
+      "normalizedSha256": "956cd988f38c96696bc6a9899166bb945eb8ca5d5fc4d5b31feb895cac457c58"
+    }
+  ],
+  "newSourceDirectory": "backend-java/src/main/java/com/knowledgegraph/assistant/host",
+  "newTestDirectory": "backend-java/src/test/java/com/knowledgegraph/assistant/host",
+  "sourceDirectoryAbsent": true,
+  "testDirectoryAbsent": true
+}

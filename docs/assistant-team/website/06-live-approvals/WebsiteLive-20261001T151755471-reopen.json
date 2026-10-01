@@ -1,0 +1,69 @@
+{
+  "schemaVersion": "controller-website-startup-review-v1",
+  "runId": "WebsiteLive-20261001T151755471-reopen",
+  "reviewer": "controller",
+  "result": "APPROVED",
+  "reviewedAt": "2026-10-01T09:27:01.7832310+00:00",
+  "userAuthorization": "开始吧我看看",
+  "executor": "original06",
+  "launchId": "8d86b4f0-8446-4a74-a441-8bd3c82c4b31",
+  "approvedIdentity": {
+    "version": "8.4.11",
+    "uuid": "8c6cfcb3-ba49-11f1-bf64-005056c00001",
+    "address": "127.0.0.1",
+    "port": 33078,
+    "database": "kg_assistant_i2_20260927_r01",
+    "readerAccount": "kg_i2_reader",
+    "role": "NONE"
+  },
+  "scope": {
+    "mode": "selected",
+    "libraryIds": [
+      "7101"
+    ],
+    "documentIds": [
+      "7201",
+      "7202"
+    ],
+    "nodeIds": []
+  },
+  "findings": [
+    "New seven authority files match raw hashes/bytes and allow current owner only",
+    "New actual GRANTS equal previous frozen GRANTS; same SELECT/USAGE only, no roles, loader locked, sensitive legacy column tables excluded from host",
+    "New instance/raw reader identity matches original UUID/version/database; current listener PID42784 at127.0.0.1:33078, no18088 listener at audit",
+    "New config grant/listen/static root/password/table allowlist unchanged apart from launch/evidence fields",
+    "New build manifest JSON item order changed; all144 entries match approved hashes/bytes; no build changes"
+  ],
+  "pendingEvidenceRawSha256": "48b8dbcf4c8de32298481c72f1f47b865ea7e37a4aebc4eb60805a219d4dda25",
+  "pendingConfigRawSha256": "16c27053c91af52174f57a025fcfd32351679cc4c74ea4bc25570e3bb0b25fb1",
+  "buildManifestRawSha256": "41870539e1495e430043d9b77f0c77d76385918c98c1d5a1dfa18b15c81f5dbe",
+  "approvedEvidencePath": "D:\\知识图谱-i2-env\\restricted-evidence\\website\\WebsiteLive-20261001T151755471\\manual-reopen-20261001\\controller-reviewed-evidence.json",
+  "approvedEvidenceRawSha256": "09bb36a166f48c5417e59ae851ea8c1caa3720eab4637be8595238a611f329fb",
+  "approvedConfigPath": "D:\\知识图谱-i2-env\\restricted-evidence\\website\\WebsiteLive-20261001T151755471\\manual-reopen-20261001\\controller-reviewed-config.json",
+  "controllerApprovedConfigSha256": "ade22c0cf2ad11b7e703819ffedb625cedab48a78080f967137c7d0695ed0386",
+  "exactDerivativeRecipe": {
+    "encoding": "UTF-8 without BOM",
+    "newlines": "Normalize CRLF to LF, remove terminal CR/LF and append exactly one LF",
+    "evidence": "From pinned pending evidence.json replace reviewedAt null with this reviewedAt, reference pending_batch_technical_review with this record absolute slash path, result PENDING_CONTROLLER_REVIEW with APPROVED. No other field changes.",
+    "config": "From pinned pending config.json replace evidence.file evidence.json with controller-reviewed-evidence.json and its evidence.sha256 with approvedEvidenceRawSha256. No other field changes, never print password."
+  },
+  "proofValidUntil": "2026-10-01T10:23:00.4468802+00:00",
+  "humanWindowMinutes": 30,
+  "humanWindowStarts": "actual page ready and URL delivery, not proof generation",
+  "readyFile": "D:/知识图谱-worktrees/assistant-06-integration-test/docs/assistant-team/website/06-live-readonly/WebsiteLive-20261001T151755471/manual-reopen-20261001/ready.json",
+  "constraints": [
+    "Match fixed raw hashes before one startup",
+    "No expired proof/authority reuse or deadline extension",
+    "No regression/scripted business tests/performance/EXPLAIN",
+    "No source/SQL/permissions/index/data/model/deployment changes",
+    "Normal owned-process stop on user stop/completion or window end"
+  ],
+  "notClaimed": [
+    "New reviewed derivative files already exist",
+    "Website already started",
+    "Human acceptance complete",
+    "Current window zero-write final comparison complete"
+  ],
+  "modelRequirement": "gpt-6.1-sol / high",
+  "actualModelAndEffort": "实际模型未核实；实际推理强度未核实"
+}
