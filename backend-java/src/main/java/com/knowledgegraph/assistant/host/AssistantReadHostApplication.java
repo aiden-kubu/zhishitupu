@@ -10,6 +10,9 @@ import org.springframework.boot.autoconfigure.flyway.FlywayAutoConfiguration;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.support.GenericApplicationContext;
 import org.springframework.core.env.*;
+import jakarta.servlet.Filter;
+import java.nio.file.Path;
+import java.time.Clock;
 import java.util.Map;
 
 /** Explicit isolated entry point. It has no component/configuration stereotype or package scan. */
@@ -17,6 +20,14 @@ import java.util.Map;
         SqlInitializationAutoConfiguration.class,FlywayAutoConfiguration.class,LiquibaseAutoConfiguration.class})
 public final class AssistantReadHostApplication {
     private AssistantReadHostApplication(){}
+    /** Website composition reuses the reviewed I2 trust chain; never accepts a legacy DataSource. */
+    public static AssistantReadHostService reviewedWebsiteHost(Path file,String controllerApprovedConfigSha256) {
+        var config=AssistantReadAcceptanceConfig.load(file,controllerApprovedConfigSha256);
+        var evidence=AssistantReadAcceptanceEvidence.load(config,Clock.systemUTC());
+        return AssistantReadAcceptanceApplication.host(config,evidence,new AssistantReadAcceptanceDataSource(config,evidence));
+    }
+    /** Reuse the unchanged execution boundary; callers must not turn proxy headers into local identity. */
+    public static Filter localReadBoundary(){return new AssistantReadBoundaryFilter();}
     static void install(GenericApplicationContext context,AssistantReadHostService host) {
         context.getBeanFactory().registerSingleton(StandaloneHostOnly.MARKER,new Object());
         context.registerBean(AssistantReadHostService.class,()->host,definition->definition.setDestroyMethodName("close"));

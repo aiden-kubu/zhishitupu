@@ -21,12 +21,28 @@ public final class AssistantReadHostService implements AutoCloseable {
     final AssistantRunStore store;
     private final String instance=UUID.randomUUID().toString();
     private final AssistantObservationProjection projection=new AssistantObservationProjection(instance);
-    private final AssistantReadWiring.Bindings bindings;
-    private final ToolRegistry registry;
-    private final AssistantRuntime runtime;
+    private AssistantReadWiring.Bindings bindings;
+    private ToolRegistry registry;
+    private AssistantRuntime runtime;
+    private Supplier<AssistantReadWiring.VerifiedReader> websiteReader;
+    private String accessMode="isolated_local_single_owner";
 
     public static AssistantReadHostService disabled() {
         return new AssistantReadHostService(AssistantReadHostProperties.disabled(),()->null,Clock.systemUTC(),null);
+    }
+    /** Explicit missing/rejected trust source: metadata reports unavailable; no reader or tools exist. */
+    public static AssistantReadHostService unavailable() {
+        return new AssistantReadHostService(new AssistantReadHostProperties(true,true,false,8,32,Duration.ofSeconds(1800),2L*1024*1024),
+                ()->null,Clock.systemUTC(),null);
+    }
+    /** Website only: authenticate at the HTTP boundary before this lazy JDBC verification is reached. */
+    static AssistantReadHostService website(Supplier<AssistantReadWiring.VerifiedReader> reader,Supplier<AssistantReadAccessContext> access) {
+        var host=new AssistantReadHostService(new AssistantReadHostProperties(true,true,false,8,32,Duration.ofSeconds(1800),2L*1024*1024),access,Clock.systemUTC(),null);
+        host.websiteReader=Objects.requireNonNull(reader);host.accessMode="website_demo_single_owner";return host;
+    }
+    private synchronized void initializeWebsite() {
+        if(websiteReader!=null && bindings==null)try {install(AssistantReadWiring.production(websiteReader.get(),io,store,clock));}
+        catch(RuntimeException rejected){bindings=null;registry=null;runtime=null;throw HostJson.error(503,"READ_IDENTITY_UNVERIFIED");}
     }
     /** Future approved server wiring must supply verified reader evidence separately from flags. */
     static AssistantReadHostService production(AssistantReadHostProperties p,Supplier<AssistantReadAccessContext> access,
@@ -38,7 +54,11 @@ public final class AssistantReadHostService implements AutoCloseable {
         store=new AssistantRunStore(p,clock);
         // Disabled or model-enabled gates do not even invoke the private reader factory.
         bindings=p.enabled()&&p.databaseEnabled()&&!p.modelEnabled()&&factory!=null?factory.create(io,store,clock):null;
-        if(bindings==null) {registry=null;runtime=null;return;}
+        if(bindings==null)return;
+        install(bindings);
+    }
+    private void install(AssistantReadWiring.Bindings bindings) {
+        this.bindings=bindings;
         List<AssistantTool> tools=bindings.tools().stream().map(tool->(AssistantTool)new AssistantTool() {
             public ToolDescriptor descriptor(){return tool.descriptor();}
             public void validateArguments(JsonNode a,Scope s){tool.validateArguments(a,s);}
@@ -61,6 +81,7 @@ public final class AssistantReadHostService implements AutoCloseable {
     private AssistantReadAccessContext context() {
         if(!properties.enabled())throw HostJson.error(503,"ASSISTANT_DISABLED");
         if(properties.modelEnabled()||!properties.databaseEnabled())throw HostJson.error(503,"CAPABILITY_UNAVAILABLE");
+        initializeWebsite();
         AssistantReadAccessContext a=access.get();if(a==null)throw HostJson.error(401,"ACCESS_CONTEXT_UNAVAILABLE");
         if(bindings==null||!bindings.verified().test(a.grant()))throw HostJson.error(503,"READ_IDENTITY_UNVERIFIED");
         return a;
@@ -88,7 +109,7 @@ public final class AssistantReadHostService implements AutoCloseable {
             items.add(HostJson.obj("id",id,"status",supported?status:"unavailable","reasonCodes",supported?reasons:List.of(unavailableReason),"readOnly",true,"formalAvailable",false));
         }
         return HostJson.obj("contractVersion","08-stage1-v1","hostInstanceId",instance,"observedAt",clock.instant().toString(),
-                "executionMode","deterministic_tools","accessMode","isolated_local_single_owner","multiUserIsolation",false,
+                "executionMode","deterministic_tools","accessMode",accessMode,"multiUserIsolation",false,
                 "databaseIdentityVerified",ready,"capabilities",items,"persistence",HostJson.obj("mode","memory","recoverableAfterRestart",false,
                         "recoverableAfterRefresh",false,"terminalRetentionSeconds",1800,"maxRetainedRuns",32,"maxActiveRuns",8));
     }
